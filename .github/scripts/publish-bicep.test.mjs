@@ -69,7 +69,7 @@ function github(s = source, overrides = {}) {
         { path: "radius", type: "commit", mode: "160000", sha: state.radiusPin }
       ] } }) },
       repos: {
-        getBranch: async () => ({ data: { protected: state.protected, commit: { sha: state.mainSha } } }),
+        getBranch: async () => ({ data: { name: "main", protected: state.protected, commit: { sha: state.mainSha } } }),
         getCommit: async () => ({ data: { sha: state.tagSha } }),
         compareCommitsWithBasehead: async () => ({ data: { status: state.comparison } })
       },
@@ -182,11 +182,168 @@ test("OCI versions do not change legacy extension metadata or @default API versi
     { version: "0.62.1-rc.2", typeVersion: "0.62.1-rc.2" });
 });
 
-test("frozen release source must still resolve and belong to protected main history", async () => {
+test("frozen release source must still resolve and its controller must belong to protected main", async () => {
   await verifySource(github().api, source);
   for (const state of [{ tagSha: "c".repeat(40) }, { protected: false }, { comparison: "diverged" }]) {
     await assert.rejects(verifySource(github(source, state).api, source));
   }
+});
+
+function releaseHistory(s = source, overrides = {}) {
+  const { api, state } = github(s, {
+    mainSha: "d".repeat(40), releaseSha: "e".repeat(40),
+    releaseBranch: "release/0.62",
+    sourceMain: "diverged", sourceRelease: "ahead", controllerMain: "ahead",
+    ...overrides
+  });
+  const branches = [];
+  const comparisons = [];
+  api.rest.repos.getBranch = async ({ branch }) => {
+    branches.push(branch);
+    if (branch === "main")
+      return { data: { name: "main", protected: state.protected, commit: { sha: state.mainSha } } };
+    assert.equal(branch, state.releaseBranch, "Only the version-matched channel may be queried");
+    if (state.branchError) throw state.branchError;
+    return { data: { name: branch, commit: { sha: state.releaseSha } } };
+  };
+  api.rest.repos.compareCommitsWithBasehead = async ({ basehead }) => {
+    comparisons.push(basehead);
+    const [base, head] = basehead.split("...");
+    if (base === s.commit && state.comparisonError) throw state.comparisonError;
+    if (head === state.releaseSha && state.releaseComparisonError) throw state.releaseComparisonError;
+    const status = base !== s.commit ? state.controllerMain :
+      head === state.mainSha ? state.sourceMain : state.sourceRelease;
+    return { data: { status } };
+  };
+  return { api, state, branches, comparisons };
+}
+
+test("release-only stable and RC sources accept only their version-matched channel", async () => {
+  for (const [ref, releaseBranch] of [
+    [source.ref, "release/0.62"], ["refs/tags/v0.62.1-rc.2", "release/0.62"],
+    ["refs/tags/v1.73.2", "release/1.73"]
+  ]) {
+    for (const sourceMain of ["behind", "diverged"]) {
+      for (const sourceRelease of ["ahead", "identical"]) {
+        const s = { ...source, ref };
+        const { api, state, branches, comparisons } = releaseHistory(s, {
+          sourceMain, sourceRelease, releaseBranch
+        });
+        assert.equal(await verifySource(api, s), state.mainSha);
+        assert.deepEqual(branches, ["main", "main", releaseBranch]);
+        assert.deepEqual(comparisons, [
+          `${controllerSha}...${state.mainSha}`, `${sha}...${state.mainSha}`,
+          `${sha}...${state.releaseSha}`
+        ]);
+      }
+    }
+  }
+});
+
+test("main release sources do not require a release branch and main publication is unchanged", async () => {
+  for (const sourceMain of ["ahead", "identical"]) {
+    const { api, state, branches } = releaseHistory(source, {
+      sourceMain, branchError: new Error("release branch does not exist")
+    });
+    assert.equal(await verifySource(api, source), state.mainSha);
+    assert.deepEqual(branches, ["main", "main"]);
+  }
+  const { api, state, branches, comparisons } = releaseHistory(main);
+  assert.equal(await verifySource(api, main), state.mainSha);
+  assert.deepEqual(branches, ["main"]);
+  assert.deepEqual(comparisons, []);
+});
+
+test("renamed release branches are rejected before comparing their tips", async () => {
+  for (const name of ["release/0.63", "renamed-release", undefined]) {
+    const { api, state, comparisons } = releaseHistory();
+    const getBranch = api.rest.repos.getBranch;
+    api.rest.repos.getBranch = async (args) => {
+      const response = await getBranch(args);
+      if (args.branch !== "main") response.data.name = name;
+      return response;
+    };
+    await assert.rejects(verifySource(api, source), /Release branch name must match/);
+    assert.deepEqual(comparisons, [
+      `${controllerSha}...${state.mainSha}`, `${sha}...${state.mainSha}`
+    ]);
+  }
+});
+
+test("both main lookups reject protected renamed branches before ancestry comparison", async () => {
+  for (const lookup of [1, 2]) {
+    for (const name of ["renamed-main", undefined]) {
+      const { api, state, comparisons, branches } = releaseHistory();
+      const getBranch = api.rest.repos.getBranch;
+      let mainLookups = 0;
+      api.rest.repos.getBranch = async (args) => {
+        const response = await getBranch(args);
+        if (args.branch === "main" && ++mainLookups === lookup) response.data.name = name;
+        return response;
+      };
+      await assert.rejects(verifySource(api, source), /Main branch name must match/);
+      assert.deepEqual(comparisons, lookup === 1 ? [] : [`${controllerSha}...${state.mainSha}`]);
+      assert.deepEqual(branches, Array(lookup).fill("main"));
+    }
+  }
+});
+
+test("unrelated or wrong-channel sources and malformed release versions fail closed", async () => {
+  for (const sourceRelease of ["behind", "diverged", "unknown", undefined]) {
+    const { api, branches } = releaseHistory(source, { sourceRelease });
+    await assert.rejects(verifySource(api, source));
+    assert.deepEqual(branches, ["main", "main", "release/0.62"]);
+  }
+  for (const ref of ["refs/tags/v0.62", "refs/tags/v0.62.1-rc1", "refs/tags/v00.62.1"]) {
+    const s = { ...source, ref };
+    const { api, branches } = releaseHistory(s);
+    await assert.rejects(verifySource(api, s), /Invalid full release version/);
+    assert.ok(branches.every((branch) => branch === "main"));
+  }
+});
+
+test("source API failures and invalid main comparisons never authorize release fallback", async () => {
+  for (const status of [401, 403, 404, 500, undefined]) {
+    const error = Object.assign(new Error("comparison unavailable"), { status });
+    const { api, branches } = releaseHistory(source, { comparisonError: error });
+    await assert.rejects(verifySource(api, source), (actual) => actual === error);
+    assert.deepEqual(branches, ["main", "main"]);
+    const channel = releaseHistory(source, { branchError: error });
+    await assert.rejects(verifySource(channel.api, source), (actual) => actual === error);
+    const channelComparison = releaseHistory(source, { releaseComparisonError: error });
+    await assert.rejects(verifySource(channelComparison.api, source), (actual) => actual === error);
+  }
+  for (const sourceMain of ["unknown", "", undefined]) {
+    const { api, branches } = releaseHistory(source, { sourceMain });
+    await assert.rejects(verifySource(api, source));
+    assert.deepEqual(branches, ["main", "main"]);
+  }
+  for (const changes of [{ mainSha: "invalid" }, { releaseSha: "invalid" }]) {
+    await assert.rejects(verifySource(releaseHistory(source, changes).api, source));
+  }
+});
+
+test("release ancestry cannot rescue a moved tag or an off-main current or original controller", async () => {
+  for (const changes of [{ tagSha: "f".repeat(40) }, { controllerMain: "diverged" }]) {
+    const { api, branches } = releaseHistory(source, changes);
+    await assert.rejects(verifySource(api, source));
+    assert.ok(branches.every((branch) => branch === "main"));
+  }
+  const { api, branches } = releaseHistory(source, { controllerMain: "behind" });
+  await assert.rejects(resolveGeneration(api, { ...source, runId: 101 }, "100", "1"));
+  assert.deepEqual(branches, ["main"]);
+});
+
+test("release branch advances preserve frozen source and original capture recovery", async () => {
+  const { api, state, branches } = releaseHistory();
+  await verifySource(api, source);
+  state.mainSha = "f".repeat(40);
+  state.releaseSha = "b".repeat(40);
+  const current = { ...source, runId: 101, controller: { ...source.controller, commit: state.mainSha } };
+  const original = await resolveGeneration(api, current, "100", "1");
+  assert.deepEqual(original, source);
+  assert.equal(await verifySource(api, original), state.mainSha);
+  assert.equal(branches.filter((branch) => branch === "release/0.62").length, 2);
 });
 
 test("cross-run recovery requires an original run and capture attempt", () => {
