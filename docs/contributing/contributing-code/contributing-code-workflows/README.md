@@ -117,7 +117,15 @@ A separate schema-input job runs only the controller's downloader with the
 existing `publish-bicep` environment's AWS credentials. A fresh, unprivileged job
 runs the frozen generator without environment secrets or package-write authority.
 The uploader checks out the controller commit, authenticates the original
-capture, and imports only the data-only OCI graph. The frozen source can never
+capture, checks `schemas/radius-commit` against the frozen gitlink for pin-aware
+sources, and imports only the data-only OCI graph. Before its first registry
+write, it wraps the exact verified types layer as a local Bicep extension and
+compiles a controller-owned template. For a pinned source, the template reads
+`AWS.MSK/ServerlessCluster@default`'s `BootstrapBrokerStringSaslIam`. Missing
+type warnings fail the check just like errors. A historical release whose Git
+history **never** contained `radius` instead compiles an S3 bucket template;
+deleting or replacing the gitlink does not qualify. The same check runs on
+recovered snapshots, without regenerating them. The frozen source can never
 choose commands, helpers or destinations in a privileged job.
 
 The fresh uploader uses this repository's `GITHUB_TOKEN` with `packages: write`.
@@ -247,8 +255,11 @@ an uncertain response. A run title is only a discovery hint, not source evidence
 Do not delete request intent or reconstruct missing generation to bypass an
 ambiguous outcome.
 
-The tag must resolve to the exact source SHA; Radius independently
-matches it to the controller-frozen AWS commit. Full-version tags follow a
+The tag must resolve to the exact source SHA. For a plan with `radiusPin`, the
+Radius controller must use the landed commit from the verified receipt for
+dispatch and collection, not the pre-pin base in `siblingRepositories[].sourceCommit`.
+Plans without `radiusPin` use the frozen sibling `sourceCommit` directly.
+Full-version tags follow a
 publish-once CI policy: identical retries verify content, conflicting digests fail,
 and no release path force-overwrites an existing version.
 
