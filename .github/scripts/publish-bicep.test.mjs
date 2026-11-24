@@ -11,11 +11,12 @@ import {
   mainWorkflow, maximumSnapshotSize, originalSource, packageInfo, prepare, publish,
   releaseWorkflow, repository, select, selectSnapshot, snapshotName, target, tool,
   validateManifest, verifyArtifact, verifyCapture, verifySource, versions,
-  releaseRunName, resolveGeneration, prepareSchemas, schemaSnapshotName
+  releaseRunName, resolveGeneration, prepareSchemas, schemaSnapshotName, frozenRadiusPin
 } from "./publish-bicep.mjs";
 
 const sha = "a".repeat(40);
 const controllerSha = "c".repeat(40);
+const fixturePin = "e".repeat(40);
 const source = {
   repository, ref: "refs/tags/v0.62.1", commit: sha,
   workflow: releaseWorkflow, runId: 100, generationAttempt: 1,
@@ -51,7 +52,7 @@ const apiRun = (s = source) => ({
 });
 function github(s = source, overrides = {}) {
   const state = {
-    mainSha: sha, protected: true, tagSha: sha, comparison: "identical",
+    mainSha: sha, protected: true, tagSha: sha, comparison: "identical", radiusPin: fixturePin,
     runs: [], artifacts: [], visibility: "public",
     jobs: [{
       name: s.workflow === releaseWorkflow ? captureJob : "Capture main AWS Bicep types",
@@ -62,8 +63,11 @@ function github(s = source, overrides = {}) {
   };
   const api = {
     rest: {
+      git: { getTree: async () => ({ data: { truncated: false, tree: [
+        { path: "radius", type: "commit", mode: "160000", sha: state.radiusPin }
+      ] } }) },
       repos: {
-        getBranch: async () => ({ data: { protected: state.protected, commit: { sha: state.mainSha } } }),
+        getBranch: async () => ({ data: { name: "main", protected: state.protected, commit: { sha: state.mainSha } } }),
         getCommit: async () => ({ data: { sha: state.tagSha } }),
         compareCommitsWithBasehead: async () => ({ data: { status: state.comparison } })
       },
@@ -160,11 +164,168 @@ test("OCI versions do not change legacy extension metadata or @default API versi
     { version: "0.62.1-rc.2", typeVersion: "0.62.1-rc.2" });
 });
 
-test("frozen release source must still resolve and belong to protected main history", async () => {
+test("frozen release source must still resolve and its controller must belong to protected main", async () => {
   await verifySource(github().api, source);
   for (const state of [{ tagSha: "c".repeat(40) }, { protected: false }, { comparison: "diverged" }]) {
     await assert.rejects(verifySource(github(source, state).api, source));
   }
+});
+
+function releaseHistory(s = source, overrides = {}) {
+  const { api, state } = github(s, {
+    mainSha: "d".repeat(40), releaseSha: "e".repeat(40),
+    releaseBranch: "release/0.62",
+    sourceMain: "diverged", sourceRelease: "ahead", controllerMain: "ahead",
+    ...overrides
+  });
+  const branches = [];
+  const comparisons = [];
+  api.rest.repos.getBranch = async ({ branch }) => {
+    branches.push(branch);
+    if (branch === "main")
+      return { data: { name: "main", protected: state.protected, commit: { sha: state.mainSha } } };
+    assert.equal(branch, state.releaseBranch, "Only the version-matched channel may be queried");
+    if (state.branchError) throw state.branchError;
+    return { data: { name: branch, commit: { sha: state.releaseSha } } };
+  };
+  api.rest.repos.compareCommitsWithBasehead = async ({ basehead }) => {
+    comparisons.push(basehead);
+    const [base, head] = basehead.split("...");
+    if (base === s.commit && state.comparisonError) throw state.comparisonError;
+    if (head === state.releaseSha && state.releaseComparisonError) throw state.releaseComparisonError;
+    const status = base !== s.commit ? state.controllerMain :
+      head === state.mainSha ? state.sourceMain : state.sourceRelease;
+    return { data: { status } };
+  };
+  return { api, state, branches, comparisons };
+}
+
+test("release-only stable and RC sources accept only their version-matched channel", async () => {
+  for (const [ref, releaseBranch] of [
+    [source.ref, "release/0.62"], ["refs/tags/v0.62.1-rc.2", "release/0.62"],
+    ["refs/tags/v1.73.2", "release/1.73"]
+  ]) {
+    for (const sourceMain of ["behind", "diverged"]) {
+      for (const sourceRelease of ["ahead", "identical"]) {
+        const s = { ...source, ref };
+        const { api, state, branches, comparisons } = releaseHistory(s, {
+          sourceMain, sourceRelease, releaseBranch
+        });
+        assert.equal(await verifySource(api, s), state.mainSha);
+        assert.deepEqual(branches, ["main", "main", releaseBranch]);
+        assert.deepEqual(comparisons, [
+          `${controllerSha}...${state.mainSha}`, `${sha}...${state.mainSha}`,
+          `${sha}...${state.releaseSha}`
+        ]);
+      }
+    }
+  }
+});
+
+test("main release sources do not require a release branch and main publication is unchanged", async () => {
+  for (const sourceMain of ["ahead", "identical"]) {
+    const { api, state, branches } = releaseHistory(source, {
+      sourceMain, branchError: new Error("release branch does not exist")
+    });
+    assert.equal(await verifySource(api, source), state.mainSha);
+    assert.deepEqual(branches, ["main", "main"]);
+  }
+  const { api, state, branches, comparisons } = releaseHistory(main);
+  assert.equal(await verifySource(api, main), state.mainSha);
+  assert.deepEqual(branches, ["main"]);
+  assert.deepEqual(comparisons, []);
+});
+
+test("renamed release branches are rejected before comparing their tips", async () => {
+  for (const name of ["release/0.63", "renamed-release", undefined]) {
+    const { api, state, comparisons } = releaseHistory();
+    const getBranch = api.rest.repos.getBranch;
+    api.rest.repos.getBranch = async (args) => {
+      const response = await getBranch(args);
+      if (args.branch !== "main") response.data.name = name;
+      return response;
+    };
+    await assert.rejects(verifySource(api, source), /Release branch name must match/);
+    assert.deepEqual(comparisons, [
+      `${controllerSha}...${state.mainSha}`, `${sha}...${state.mainSha}`
+    ]);
+  }
+});
+
+test("both main lookups reject protected renamed branches before ancestry comparison", async () => {
+  for (const lookup of [1, 2]) {
+    for (const name of ["renamed-main", undefined]) {
+      const { api, state, comparisons, branches } = releaseHistory();
+      const getBranch = api.rest.repos.getBranch;
+      let mainLookups = 0;
+      api.rest.repos.getBranch = async (args) => {
+        const response = await getBranch(args);
+        if (args.branch === "main" && ++mainLookups === lookup) response.data.name = name;
+        return response;
+      };
+      await assert.rejects(verifySource(api, source), /Main branch name must match/);
+      assert.deepEqual(comparisons, lookup === 1 ? [] : [`${controllerSha}...${state.mainSha}`]);
+      assert.deepEqual(branches, Array(lookup).fill("main"));
+    }
+  }
+});
+
+test("unrelated or wrong-channel sources and malformed release versions fail closed", async () => {
+  for (const sourceRelease of ["behind", "diverged", "unknown", undefined]) {
+    const { api, branches } = releaseHistory(source, { sourceRelease });
+    await assert.rejects(verifySource(api, source));
+    assert.deepEqual(branches, ["main", "main", "release/0.62"]);
+  }
+  for (const ref of ["refs/tags/v0.62", "refs/tags/v0.62.1-rc1", "refs/tags/v00.62.1"]) {
+    const s = { ...source, ref };
+    const { api, branches } = releaseHistory(s);
+    await assert.rejects(verifySource(api, s), /Invalid full release version/);
+    assert.ok(branches.every((branch) => branch === "main"));
+  }
+});
+
+test("source API failures and invalid main comparisons never authorize release fallback", async () => {
+  for (const status of [401, 403, 404, 500, undefined]) {
+    const error = Object.assign(new Error("comparison unavailable"), { status });
+    const { api, branches } = releaseHistory(source, { comparisonError: error });
+    await assert.rejects(verifySource(api, source), (actual) => actual === error);
+    assert.deepEqual(branches, ["main", "main"]);
+    const channel = releaseHistory(source, { branchError: error });
+    await assert.rejects(verifySource(channel.api, source), (actual) => actual === error);
+    const channelComparison = releaseHistory(source, { releaseComparisonError: error });
+    await assert.rejects(verifySource(channelComparison.api, source), (actual) => actual === error);
+  }
+  for (const sourceMain of ["unknown", "", undefined]) {
+    const { api, branches } = releaseHistory(source, { sourceMain });
+    await assert.rejects(verifySource(api, source));
+    assert.deepEqual(branches, ["main", "main"]);
+  }
+  for (const changes of [{ mainSha: "invalid" }, { releaseSha: "invalid" }]) {
+    await assert.rejects(verifySource(releaseHistory(source, changes).api, source));
+  }
+});
+
+test("release ancestry cannot rescue a moved tag or an off-main current or original controller", async () => {
+  for (const changes of [{ tagSha: "f".repeat(40) }, { controllerMain: "diverged" }]) {
+    const { api, branches } = releaseHistory(source, changes);
+    await assert.rejects(verifySource(api, source));
+    assert.ok(branches.every((branch) => branch === "main"));
+  }
+  const { api, branches } = releaseHistory(source, { controllerMain: "behind" });
+  await assert.rejects(resolveGeneration(api, { ...source, runId: 101 }, "100", "1"));
+  assert.deepEqual(branches, ["main"]);
+});
+
+test("release branch advances preserve frozen source and original capture recovery", async () => {
+  const { api, state, branches } = releaseHistory();
+  await verifySource(api, source);
+  state.mainSha = "f".repeat(40);
+  state.releaseSha = "b".repeat(40);
+  const current = { ...source, runId: 101, controller: { ...source.controller, commit: state.mainSha } };
+  const original = await resolveGeneration(api, current, "100", "1");
+  assert.deepEqual(original, source);
+  assert.equal(await verifySource(api, original), state.mainSha);
+  assert.equal(branches.filter((branch) => branch === "release/0.62").length, 2);
 });
 
 test("cross-run recovery requires an original run and capture attempt", () => {
@@ -190,6 +351,7 @@ test("recovery authenticates the original controller independently of the curren
   const originalArtifact = { ...artifact, digest: hash(await readFile(archive)) };
   const raw = JSON.stringify(manifest);
   const run = async (args) => {
+    if (args.includes("schemas/radius-commit")) return fixturePin;
     if (args[0] === "tar") return JSON.stringify({ source, manifestDigest: hash(raw) });
     if (args.includes("fetch-config")) return "{}";
     if (args.includes("fetch")) return raw;
@@ -203,6 +365,13 @@ test("recovery authenticates the original controller independently of the curren
   assert.deepEqual(Object.keys(prepared.record).sort(),
     ["name", "source", "version", "reference", "digest", "generation"].sort());
   assert.deepEqual(prepared.record.source, { repository, commit: sha });
+  await assert.rejects(prepare(api, archive, generation, originalArtifact, directory,
+    (args) => args.includes("schemas/radius-commit") ? controllerSha : run(args)), /frozen gitlink/);
+  await assert.rejects(prepare(api, archive, generation, originalArtifact, directory, (args) => {
+    if (args.includes(".github/scripts/smoke-test-aws-types.sh")) throw new Error("invalid packaged overlay");
+    assert.ok(!args.includes("push"), "Never stamp a rejected recovery snapshot");
+    return run(args);
+  }), /invalid packaged overlay/);
   await assert.rejects(prepare(api, archive, { ...generation, controller: current.controller },
     originalArtifact, directory, run));
   for (const mutation of [
@@ -359,6 +528,7 @@ test("same-run retry record retains original capture attempt and artifact digest
   const actualArtifact = { ...artifact, digest: hash(await readFile(archive)) };
   const raw = JSON.stringify(manifest);
   const run = async (args) => {
+    if (args.includes("schemas/radius-commit")) return fixturePin;
     if (args[0] === "tar") return JSON.stringify({ source, manifestDigest: hash(raw) });
     if (args.includes("fetch-config")) return "{}";
     if (args.includes("fetch")) return raw;
@@ -632,6 +802,47 @@ test("generator CLI preserves legacy dashed arguments and default resource ident
   }
 });
 
+test("only a frozen source with no Radius gitlink history gets the legacy smoke", async () => {
+  const { api } = github();
+  api.rest.git.getTree = async () => ({ data: { truncated: false, tree: [] } });
+  api.rest.repos.listCommits = async (args) => {
+    assert.equal(args.sha, sha); assert.equal(args.path, "radius"); return { data: [] };
+  };
+  assert.equal(await frozenRadiusPin(api, sha), null);
+  api.rest.repos.listCommits = async () => ({ data: [{ sha }] });
+  await assert.rejects(frozenRadiusPin(api, sha), /removed/);
+  api.rest.git.getTree = async () => ({ data: { truncated: true, tree: [] } });
+  await assert.rejects(frozenRadiusPin(api, sha), /incomplete Git tree/);
+  api.rest.git.getTree = async () => ({ data: { truncated: false, tree: [{ path: "radius", type: "blob" }] } });
+  await assert.rejects(frozenRadiusPin(api, sha), /must be a gitlink/);
+});
+
+test("generator CLI packages the real pinned Radius MSK property; dropping the overlay fails the smoke", {
+  skip: process.env.AWS_BICEP_TEST_GENERATOR !== "true"
+}, async (t) => {
+  const directory = await scratch(t);
+  const input = join(directory, "input");
+  await mkdir(input);
+  await cp(resolve("artifacts/types/AWS::MSK::ServerlessCluster.json"), join(input, "msk.json"));
+  const pinned = resolve("radius");
+  assert.equal((await tool(["git", "-C", pinned, "rev-parse", "HEAD"])).trim(),
+    (await tool(["git", "rev-parse", "HEAD:radius"])).trim());
+  const missing = join(directory, "missing");
+  await mkdir(join(missing, "pkg/aws/extraproperties"), { recursive: true });
+  await writeFile(join(missing, "pkg/aws/extraproperties/extra_properties.json"), "{}");
+  for (const radius of [pinned, missing]) {
+    const output = await scratch(t);
+    await tool(["node", resolve("src/aws-type-generator/dist/src/main.js"), "--input", input,
+      "--radius", radius, "--output", output]);
+    const pkg = join(output, "aws.tgz");
+    await tool(["bicep", "publish-extension", join(output, "index.json"), "--target", pkg]);
+    await tool(["tar", "-xzf", pkg, "-C", output, "types.tgz"]);
+    const compile = () => tool(["bash", ".github/scripts/smoke-test-aws-types.sh", join(output, "types.tgz"), "radius"]);
+    if (radius === pinned) await compile();
+    else await assert.rejects(compile, /BootstrapBrokerStringSaslIam/);
+  }
+});
+
 test("native Bicep/ORAS raw snapshot, stable/RC publish, retry, restore and conflict", {
   skip: !process.env.AWS_BICEP_TEST_REGISTRY
 }, async (t) => {
@@ -687,7 +898,7 @@ test("native Bicep/ORAS raw snapshot, stable/RC publish, retry, restore and conf
       digest: hash(await readFile(archive)),
       workflow_run: { ...artifact.workflow_run }
     };
-    const { api } = github(s);
+    const { api } = github(s, { radiusPin: radiusCommit });
     const result = await prepare(api, archive, s, a, directory);
     const localTarget = `${registry}/published`;
     const run = async (args, options) => {
@@ -750,6 +961,8 @@ test("native GHCR main interruption, original-snapshot recovery and same-SHA sup
   };
   const directory = await scratch(t);
   await cp(resolve("artifacts/types"), join(directory, "schemas"), { recursive: true });
+  const radiusPin = (await tool(["git", "rev-parse", "HEAD:radius"])).trim();
+  await writeFile(join(directory, "schemas/radius-commit"), `${radiusPin}\n`);
   await cp(resolve("artifacts/bicep"), join(directory, "generated"), { recursive: true });
   const indexPath = join(directory, "generated/index.json");
   const index = JSON.parse(await readFile(indexPath));
@@ -762,7 +975,7 @@ test("native GHCR main interruption, original-snapshot recovery and same-SHA sup
     digest: hash(await readFile(archive)),
     workflow_run: { ...artifact.workflow_run, head_sha: main.commit }
   };
-  const { api } = github(main);
+  const { api } = github(main, { radiusPin });
   api.rest.actions.getArtifact = async () => ({ data: a });
   const result = await prepare(api, archive, main, a, directory);
   await assert.rejects(publish(api, main, result, directory, async (args, options) => {
@@ -806,7 +1019,7 @@ test("native GHCR main interruption, original-snapshot recovery and same-SHA sup
     digest: hash(await readFile(newerArchive)),
     workflow_run: { ...a.workflow_run, id: 101 }
   };
-  const newerApi = github(newer).api;
+  const newerApi = github(newer, { radiusPin }).api;
   newerApi.rest.actions.getArtifact = async () => ({ data: newerArtifact });
   const newerResult = await prepare(newerApi, newerArchive, newer, newerArtifact, directory);
   assert.notEqual(newerResult.record.digest, result.record.digest);

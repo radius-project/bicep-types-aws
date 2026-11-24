@@ -46,6 +46,18 @@ The publishing helper tests require Node, without installing npm dependencies:
 node --test .github/scripts/publish-bicep.test.mjs
 ```
 
+With the generator built as above, Bicep on `PATH` and `jq` installed, run the
+same no-cloud pin test as **Build and test** from the repository root:
+
+```bash
+AWS_BICEP_TEST_GENERATOR=true node --test --test-name-pattern='generator CLI' .github/scripts/publish-bicep.test.mjs
+```
+
+It generates an extension from the checked-in AWS MSK schema and the actual
+`radius` gitlink, then compiles a template that reads the Radius-only serverless
+broker address. Generating the same package without the overlay must fail the
+smoke test. The test never deploys the cluster.
+
 For native fixtures, install checksum-pinned tools into a user-owned directory,
 add it to `PATH`, and run with Docker available:
 

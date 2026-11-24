@@ -7,7 +7,13 @@ generator tests. A separate read-only job exercises the publishing helper and
 native Bicep/ORAS fixtures using checked-in schemas/output and a local registry.
 It receives no AWS, Azure, App-key or package-write credentials.
 
-The generator tests are in `src/aws-type-generator/src/*.test.ts`, and the downloader tests, including the breaking change check, are in `src/aws-type-downloader`. The build also compiles the templates in `src/aws-type-generator/bicep-test` with the Bicep CLI against types generated from the test fixtures. Run it locally with `npm run build && npm run test:bicep` in `src/aws-type-generator`, with `bicep` on your `PATH`.
+It runs on pull requests into `main` and `release/*`. Before checking out the
+`radius` submodule, both jobs run `.github/scripts/check-radius-pin.sh`, which fails
+with a clear message unless the commit's `.gitmodules` maps `radius` to
+`https://github.com/radius-project/radius` and the submodule pins a commit in that
+repository. Its tests run with `node --test .github/scripts/check-radius-pin.test.mjs`.
+
+The generator tests are in `src/aws-type-generator/src/*.test.ts`, and the downloader tests, including the breaking change check, are in `src/aws-type-downloader`. The build also compiles the templates in `src/aws-type-generator/bicep-test` with the Bicep CLI against types generated from the test fixtures. Run it locally with `npm run build && npm run test:bicep` in `src/aws-type-generator`, with `bicep` on your `PATH`. Last, `npm run test:reports` changes the Radius test fixtures and checks that the breaking-change report and the reference docs show the changes.
 
 ## `generate-types.yaml`
 
@@ -15,13 +21,20 @@ This workflow downloads the latest AWS resource type schemas, regenerates the Bi
 
 The downloader keeps the types that AWS Cloud Control can create, including create-and-delete-only types that it can't update, and the read-only types that AWS creates on its own. A read-only type's schema has a read handler but no create handler, and a create-and-delete-only type's schema has a create handler but no update handler. Other types that Cloud Control can't create, such as legacy and deprecated types, are left out.
 
-The pull request body lists the changes that can break existing templates: removed resource types, types that became read-only, types that can no longer be updated, removed properties, properties that became required, and properties whose type changed. It also lists the new read-only and create-and-delete-only types, so a reviewer can check that each one belongs in the extension. The lists are cut short to fit in the pull request body. The job summary of the workflow run has longer lists, which are cut short only past the job summary limits set in `generate-types.yaml`. To run the checks locally, copy `artifacts/types` to another directory, run the downloader, and then run:
+The pull request body lists the changes that can break existing templates: removed resource types, types that became read-only, types that can no longer be updated, removed properties, properties that became required, and properties whose type changed. This report and the reference documentation read the effective types, AWS's types with the schemas and extra properties Radius owns applied, so they cover Radius's changes too. The report compares them with the effective types from the previous AWS types and the Radius commit in `artifacts/radius-commit`. If that file has no commit, the workflow fails, because the report would hide Radius's changes. It also lists the new read-only and create-and-delete-only types, so a reviewer can check that each one belongs in the extension. The lists are cut short to fit in the pull request body. The job summary of the workflow run has longer lists, which are cut short only past the job summary limits set in `generate-types.yaml`. To run the checks locally, copy `artifacts/types` to another directory, extract the Radius commit in `artifacts/radius-commit` to another directory, run the downloader, and then run:
 
 ```bash
-cd src/aws-type-downloader
-go run . breaking-changes --old <copy of the previous types> --new ../../artifacts/types
+cd src/aws-type-generator
+npm run start -- --input ../../artifacts/types --output ../../artifacts/bicep \
+  --previous-input <copy of the previous types> --previous-radius <previous Radius checkout> \
+  --effective-output <effective types> --previous-effective-output <previous effective types>
+cd ../aws-type-downloader
+go run . breaking-changes --old <previous effective types> --new <effective types>
 go run . added-types --old <copy of the previous types> --new ../../artifacts/types
+python ../../.github/scripts/generate-reference-docs.py <effective types> ../../docs/reference/supported-resources.md
 ```
+
+Use a new or empty directory for each effective types directory. The generator never deletes or replaces a file there, so it fails if the directory already has JSON files, such as from an earlier run.
 
 The generator also applies the schemas and extra properties Radius owns, from the commit the `radius` submodule pins, and the pull request body names that commit. If AWS publishes a type or a property with the same name as one Radius provides, the generator keeps Radius's type and AWS's property, and the workflow opens an issue titled "AWS types clash with Radius types" instead of failing. A run that finds the same clashes as any issue with that title, open or closed, changes nothing. A run that finds different clashes adds them as a comment on the open issue, or opens a new one if none is open. A clash is reported when either side is new, compared with what the checked-in types were generated from: `artifacts/types` on `main`, and the Radius commit recorded in `artifacts/radius-commit`, which the workflow updates on every run. A type clash is new if either the AWS type or Radius's hand-written schema is new. A property clash is new if either the type's property or Radius's extra property is new, where the type's property comes from AWS's schema or Radius's, whichever the extension used. A clash both sides already had isn't reported again, so a clash a person reviewed and kept stays quiet. Close the issue after the pull request that refreshes the types merges.
 
@@ -83,7 +96,15 @@ A separate schema-input job runs only the controller's downloader with the
 existing `publish-bicep` environment's AWS credentials. A fresh, unprivileged job
 runs the frozen generator without environment secrets or package-write authority.
 The uploader checks out the controller commit, authenticates the original
-capture, and imports only the data-only OCI graph. The frozen source can never
+capture, checks `schemas/radius-commit` against the frozen gitlink for pin-aware
+sources, and imports only the data-only OCI graph. Before its first registry
+write, it wraps the exact verified types layer as a local Bicep extension and
+compiles a controller-owned template. For a pinned source, the template reads
+`AWS.MSK/ServerlessCluster@default`'s `BootstrapBrokerStringSaslIam`. Missing
+type warnings fail the check just like errors. A historical release whose Git
+history **never** contained `radius` instead compiles an S3 bucket template;
+deleting or replacing the gitlink does not qualify. The same check runs on
+recovered snapshots, without regenerating them. The frozen source can never
 choose commands, helpers or destinations in a privileged job.
 
 The fresh uploader uses this repository's `GITHUB_TOKEN` with `packages: write`.
@@ -155,8 +176,11 @@ an uncertain response. A run title is only a discovery hint, not source evidence
 Do not delete request intent or reconstruct missing generation to bypass an
 ambiguous outcome.
 
-The tag must resolve to the exact source SHA; Radius independently
-matches it to the controller-frozen AWS commit. Full-version tags follow a
+The tag must resolve to the exact source SHA. For a plan with `radiusPin`, the
+Radius controller must use the landed commit from the verified receipt for
+dispatch and collection, not the pre-pin base in `siblingRepositories[].sourceCommit`.
+Plans without `radiusPin` use the frozen sibling `sourceCommit` directly.
+Full-version tags follow a
 publish-once CI policy: identical retries verify content, conflicting digests fail,
 and no release path force-overwrites an existing version.
 
@@ -186,6 +210,18 @@ For release snapshots, root `source.json` is
 Publishing and original-generation runs must each authenticate as default-main
 `repository_dispatch` runs of this workflow. Their controller SHAs are checked
 against protected main history independently of the frozen tag/source SHA.
+The full stable or dotted-RC tag must still resolve to the frozen source SHA.
+The producer first accepts source ancestry on main, without requiring a release
+branch. Only a successful comparison proving the source is not on main permits a
+second check against `release/X.Y`, derived from that validated version.
+Release-only backports must be ancestors of (or equal to) that channel's head;
+wrong-channel or unrelated sources are rejected. Missing branches, API failures
+and invalid comparisons fail closed. Every main and release branch response must
+match the requested name exactly; redirects to renamed branches are rejected
+before comparing their tips. Neither current nor original capture
+controllers may use this release-branch fallback. The Radius collector separately
+enforces the exact source branch selected by the approved release plan; the
+producer accepts the allowed main/channel union, not the plan's branch choice.
 Actions artifact run metadata binds to the controller, not the tagged source.
 The collector verifies the raw artifact digest before parsing `source.json` and
 binding its source, controller and original generation to API evidence. Recovery
