@@ -16,6 +16,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.OpenSearchService/DomainProperties](#awsopensearchservicedomainproperties) (Identifier): properties of the resource
 
+## Resource AWS.OpenSearchService/ReplicationPeer@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.OpenSearchService/ReplicationPeerProperties](#awsopensearchservicereplicationpeerproperties) (Required, Identifier): properties of the resource
+
 ## AdvancedSecurityOptionsInput
 ### Properties
 * **AnonymousAuthDisableDate**: string (ReadOnly)
@@ -96,6 +104,15 @@
 * **Tags**: [Tag](#tag)[]: An arbitrary set of tags (key-value pairs) for this Domain.
 * **UseCase**: string: The primary use case of the domain. Determines the default configuration tuned for the workload. For GENERAL engine-mode domains, this value can be changed after creation. For OPTIMIZED engine-mode domains, this value cannot be changed after creation.
 * **VPCOptions**: [VPCOptions](#vpcoptions)
+
+## AWS.OpenSearchService/ReplicationPeerProperties
+### Properties
+* **DomainArn**: string (ReadOnly): The ARN of the domain being replicated.
+* **DomainName**: string (Required, Identifier): The name of the domain to replicate, which becomes the primary. The domain must be in the same account and Region as the stack. After a switchover or failover this domain may no longer be the primary.
+* **PeerDomainArn**: string (Required, Identifier): The ARN of the domain to replicate with, which becomes the secondary. The peer domain must be in the same account and can be in the same or another Region.
+* **PeerRole**: string (ReadOnly): The replication role of the peer domain (PRIMARY or SECONDARY), as of the last time CloudFormation read the resource. Switchover and failover change it outside CloudFormation; call DescribeDomainReplication for the current role.
+* **Role**: string (ReadOnly): The replication role of the domain (PRIMARY or SECONDARY), as of the last time CloudFormation read the resource. Switchover and failover change it outside CloudFormation; call DescribeDomainReplication for the current role.
+* **Status**: string (ReadOnly): The state of the replication relationship, as of the last time CloudFormation read it.
 
 ## ClusterConfig
 ### Properties

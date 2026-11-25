@@ -1,0 +1,130 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-ElasticLoadBalancingProxy-CertificateAssociation",
+  "type": "AWS::ElasticLoadBalancingProxy::CertificateAssociation",
+  "time": "2026-11-25T21:26:53.08Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/ProxyName",
+        "/properties/ProxyId",
+        "/properties/CertificateId"
+      ],
+      [
+        "/properties/ProxyArn",
+        "/properties/CertificateArn"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/ProxyArn",
+      "/properties/CertificateArn"
+    ],
+    "description": "Resource Type definition for AWS::ElasticLoadBalancingProxy::CertificateAssociation. Associates an AWS Certificate Manager (ACM) certificate with an Elastic Load Balancing for Envoy proxy so the proxy can serve TLS with it. If an earlier association of the same proxy and certificate failed, remove it with DisassociateCertificate before creating it again; while the failed association exists, a create reports the resource as already existing.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "elasticloadbalancing:AssociateCertificate",
+          "elasticloadbalancing:ListCertificateAssociations",
+          "acm:CreateCertificateRelation"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "elasticloadbalancing:DisassociateCertificate",
+          "elasticloadbalancing:ListCertificateAssociations"
+        ]
+      },
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "ProxyArn": {
+              "maxLength": 2048,
+              "minLength": 1,
+              "pattern": "^arn:[a-z-]+:elasticloadbalancing:[a-z0-9-]+:[0-9]{12}:proxy/[a-zA-Z0-9-]+:[a-zA-Z0-9]+$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "ProxyArn"
+          ]
+        },
+        "permissions": [
+          "elasticloadbalancing:ListCertificateAssociations"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "elasticloadbalancing:ListCertificateAssociations"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "Identifier of the association. The service does not issue an ARN for a certificate association; this value is built from the proxy ARN and the certificate ID so CloudFormation can address the association, and it is not accepted by any service API.",
+        "pattern": "^arn:[a-z-]+:elasticloadbalancing:[a-z0-9-]+:[0-9]{12}:proxy/[a-zA-Z0-9-]+:[a-zA-Z0-9]+/certificate/.+$",
+        "type": "string"
+      },
+      "CertificateArn": {
+        "description": "The ARN of the ACM certificate to associate with the proxy. The certificate must be in the same account and Region as the proxy. A certificate from another account fails as not found.",
+        "maxLength": 512,
+        "minLength": 1,
+        "pattern": "^arn:[a-z0-9\\-]+:acm:[a-z0-9\\-]+:[0-9]{12}:certificate/.+$",
+        "type": "string"
+      },
+      "CertificateId": {
+        "description": "The ID of the ACM certificate, taken from the certificate ARN.",
+        "type": "string"
+      },
+      "CreatedAt": {
+        "description": "The time the association was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "ProxyArn": {
+        "description": "The ARN of the proxy to associate the certificate with.",
+        "maxLength": 2048,
+        "minLength": 1,
+        "pattern": "^arn:[a-z-]+:elasticloadbalancing:[a-z0-9-]+:[0-9]{12}:proxy/[a-zA-Z0-9-]+:[a-zA-Z0-9]+$",
+        "type": "string"
+      },
+      "ProxyId": {
+        "description": "The ID of the proxy, taken from the proxy ARN.",
+        "type": "string"
+      },
+      "ProxyName": {
+        "description": "The name of the proxy, taken from the proxy ARN.",
+        "type": "string"
+      },
+      "Status": {
+        "description": "The status of the association.",
+        "enum": [
+          "associate-in-progress",
+          "active",
+          "associate-failed",
+          "disassociate-in-progress",
+          "disassociated"
+        ],
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/ProxyName",
+      "/properties/ProxyId",
+      "/properties/CertificateId",
+      "/properties/Status",
+      "/properties/CreatedAt"
+    ],
+    "required": [
+      "ProxyArn",
+      "CertificateArn"
+    ],
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::ElasticLoadBalancingProxy::CertificateAssociation"
+  }
+}

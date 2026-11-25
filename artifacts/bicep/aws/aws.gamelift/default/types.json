@@ -2639,11 +2639,31 @@
   },
   {
     "$type": "ObjectType",
+    "name": "DeliveryDestination",
+    "properties": {
+      "DestinationArn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "The Amazon Resource Name (ARN) of the resource that receives the placement logs. The resource type must match LogDestination (a CloudWatch Logs log group, S3 bucket, or Firehose delivery stream). Required for FIREHOSE; optional for CLOUDWATCH and S3."
+      },
+      "LogDestination": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The type of service that receives the game session queue's placement logs."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "FilterConfiguration",
     "properties": {
       "AllowedLocations": {
         "type": {
-          "$ref": "#/145"
+          "$ref": "#/147"
         },
         "flags": 0
       }
@@ -2665,6 +2685,19 @@
     "$type": "ObjectType",
     "name": "LocationOrder",
     "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "LogConfiguration",
+    "properties": {
+      "DeliveryDestinations": {
+        "type": {
+          "$ref": "#/149"
+        },
+        "flags": 1,
+        "description": "The set of destinations that receive the game session queue's placement logs. A queue can deliver logs to between 1 and 3 destinations."
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -2692,13 +2725,13 @@
     "properties": {
       "LocationOrder": {
         "type": {
-          "$ref": "#/147"
+          "$ref": "#/150"
         },
         "flags": 0
       },
       "PriorityOrder": {
         "type": {
-          "$ref": "#/148"
+          "$ref": "#/151"
         },
         "flags": 0
       }
@@ -2750,6 +2783,12 @@
   {
     "$type": "ArrayType",
     "itemType": {
+      "$ref": "#/137"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
       "$ref": "#/2"
     }
   },
@@ -2772,7 +2811,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/138"
+      "$ref": "#/139"
     }
   },
   {
@@ -2787,7 +2826,7 @@
     "properties": {
       "AllowedLocations": {
         "type": {
-          "$ref": "#/152"
+          "$ref": "#/155"
         },
         "flags": 0
       }
@@ -2796,7 +2835,26 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/140"
+      "$ref": "#/137"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "GameSessionQueue_LogConfiguration",
+    "properties": {
+      "DeliveryDestinations": {
+        "type": {
+          "$ref": "#/157"
+        },
+        "flags": 1,
+        "description": "The set of destinations that receive the game session queue's placement logs. A queue can deliver logs to between 1 and 3 destinations."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/142"
     }
   },
   {
@@ -2817,13 +2875,13 @@
     "properties": {
       "LocationOrder": {
         "type": {
-          "$ref": "#/155"
+          "$ref": "#/160"
         },
         "flags": 0
       },
       "PriorityOrder": {
         "type": {
-          "$ref": "#/156"
+          "$ref": "#/161"
         },
         "flags": 0
       }
@@ -2832,7 +2890,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/143"
+      "$ref": "#/145"
     }
   },
   {
@@ -2855,17 +2913,24 @@
       },
       "Destinations": {
         "type": {
-          "$ref": "#/151"
+          "$ref": "#/154"
         },
         "flags": 0,
         "description": "A list of fleets and/or fleet aliases that can be used to fulfill game session placement requests in the queue."
       },
       "FilterConfiguration": {
         "type": {
-          "$ref": "#/153"
+          "$ref": "#/156"
         },
         "flags": 0,
         "description": "A list of locations where a queue is allowed to place new game sessions."
+      },
+      "LogConfiguration": {
+        "type": {
+          "$ref": "#/158"
+        },
+        "flags": 0,
+        "description": "A policy that determines where a game session queue's placement logs are delivered."
       },
       "Name": {
         "type": {
@@ -2883,21 +2948,21 @@
       },
       "PlayerLatencyPolicies": {
         "type": {
-          "$ref": "#/154"
+          "$ref": "#/159"
         },
         "flags": 0,
         "description": "A set of policies that act as a sliding cap on player latency."
       },
       "PriorityConfiguration": {
         "type": {
-          "$ref": "#/157"
+          "$ref": "#/162"
         },
         "flags": 0,
         "description": "Custom settings to use when prioritizing destinations and locations for game session placements."
       },
       "Tags": {
         "type": {
-          "$ref": "#/158"
+          "$ref": "#/163"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -2931,7 +2996,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/159"
+          "$ref": "#/164"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2942,7 +3007,7 @@
     "$type": "ResourceType",
     "name": "AWS.GameLift/GameSessionQueue@default",
     "body": {
-      "$ref": "#/160"
+      "$ref": "#/165"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -2974,7 +3039,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/162"
+      "$ref": "#/167"
     }
   },
   {
@@ -2995,7 +3060,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/164"
+          "$ref": "#/169"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -3022,7 +3087,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/165"
+          "$ref": "#/170"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -3033,7 +3098,7 @@
     "$type": "ResourceType",
     "name": "AWS.GameLift/Location@default",
     "body": {
-      "$ref": "#/166"
+      "$ref": "#/171"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -3085,7 +3150,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/168"
+      "$ref": "#/173"
     }
   },
   {
@@ -3097,7 +3162,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/169"
+      "$ref": "#/174"
     }
   },
   {
@@ -3169,7 +3234,7 @@
       },
       "GameProperties": {
         "type": {
-          "$ref": "#/171"
+          "$ref": "#/176"
         },
         "flags": 0,
         "description": "A set of custom properties for a game session, formatted as key:value pairs."
@@ -3183,7 +3248,7 @@
       },
       "GameSessionQueueArns": {
         "type": {
-          "$ref": "#/172"
+          "$ref": "#/177"
         },
         "flags": 0,
         "description": "The Amazon Resource Name (ARN) that is assigned to a Amazon GameLift game session queue resource and uniquely identifies it."
@@ -3225,7 +3290,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/173"
+          "$ref": "#/178"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -3252,7 +3317,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/174"
+          "$ref": "#/179"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -3263,7 +3328,7 @@
     "$type": "ResourceType",
     "name": "AWS.GameLift/MatchmakingConfiguration@default",
     "body": {
-      "$ref": "#/175"
+      "$ref": "#/180"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -3295,7 +3360,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/177"
+      "$ref": "#/182"
     }
   },
   {
@@ -3332,7 +3397,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/179"
+          "$ref": "#/184"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -3359,7 +3424,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/180"
+          "$ref": "#/185"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -3370,7 +3435,7 @@
     "$type": "ResourceType",
     "name": "AWS.GameLift/MatchmakingRuleSet@default",
     "body": {
-      "$ref": "#/181"
+      "$ref": "#/186"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -3470,7 +3535,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/184"
+      "$ref": "#/189"
     }
   },
   {
@@ -3521,14 +3586,14 @@
       },
       "StorageLocation": {
         "type": {
-          "$ref": "#/186"
+          "$ref": "#/191"
         },
         "flags": 1,
         "description": "The location of the Amazon S3 bucket where a zipped file containing your Realtime scripts is stored. The storage location must specify the Amazon S3 bucket name, the zip file name (the \"key\"), and a role ARN that allows Amazon GameLift to access the Amazon S3 storage location. The S3 bucket must be in the same Region where you want to create a new script. By default, Amazon GameLift uploads the latest version of the zip file; if you have S3 object versioning turned on, you can use the ObjectVersion parameter to specify an earlier version."
       },
       "Tags": {
         "type": {
-          "$ref": "#/187"
+          "$ref": "#/192"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -3562,7 +3627,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/188"
+          "$ref": "#/193"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -3573,7 +3638,7 @@
     "$type": "ResourceType",
     "name": "AWS.GameLift/Script@default",
     "body": {
-      "$ref": "#/189"
+      "$ref": "#/194"
     },
     "readableScopes": 0,
     "writableScopes": 0

@@ -178,8 +178,8 @@
 * **GroupDomain**: string
 * **Id**: string (ReadOnly)
 * **Name**: string (Required)
-* **PortRanges**: string[]
-* **ProtocolType**: string
+* **PortRanges**: string[]: The port ranges the resource configuration listens on, as single ports or ranges (for example, 80 or 1001-2000). Applies to SINGLE, GROUP, CHILD, and CIDR resource configurations. For a CIDR resource configuration with ProtocolType TCP_UDP, these ranges cover both TCP and UDP traffic, so include port 53 to carry DNS to the network segment.
+* **ProtocolType**: string: The protocol the resource configuration accepts. SINGLE and GROUP resource configurations support TCP. CIDR resource configurations support TCP and TCP_UDP; use TCP_UDP to carry UDP traffic such as DNS on port 53.
 * **ResourceConfigurationAuthType**: string (WriteOnly)
 * **ResourceConfigurationDefinition**: [ResourceConfiguration_ResourceConfigurationDefinition](#resourceconfigurationresourceconfigurationdefinition)
 * **ResourceConfigurationGroupId**: string (WriteOnly)

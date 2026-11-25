@@ -73,10 +73,24 @@
 * **TaskCount**: int: The number of tasks to create based on TaskDefinition. The default is 1.
 * **TaskDefinitionArn**: string (Required): The ARN of the task definition to use if the event target is an Amazon ECS task.
 
+## EventBridgeMetadataMap
+### Properties
+### Additional Properties
+* **Additional Properties Type**: string
+
 ## EventBridgeParameters
 ### Properties
 * **DetailType**: string (Required): Free-form string, with a maximum of 128 characters, used to decide what fields to expect in the event detail.
 * **Source**: string (Required): The source of the event.
+
+## EventBridgePutEventsV2Parameters
+### Properties
+* **DetailType**: string (Required): Free-form string, with a maximum of 128 characters, used to decide what fields to expect in the event detail.
+* **Source**: string (Required): The source of the event.
+
+## EventBridgePutRawEventsParameters
+### Properties
+* **Metadata**: [EventBridgeMetadataMap](#eventbridgemetadatamap)
 
 ## FlexibleTimeWindow
 ### Properties
@@ -135,6 +149,8 @@
 * **DeadLetterConfig**: [DeadLetterConfig](#deadletterconfig)
 * **EcsParameters**: [EcsParameters](#ecsparameters)
 * **EventBridgeParameters**: [EventBridgeParameters](#eventbridgeparameters)
+* **EventBridgePutEventsV2Parameters**: [EventBridgePutEventsV2Parameters](#eventbridgeputeventsv2parameters)
+* **EventBridgePutRawEventsParameters**: [EventBridgePutRawEventsParameters](#eventbridgeputraweventsparameters)
 * **Input**: string: The text, or well-formed JSON, passed to the target. If you are configuring a templated Lambda, AWS Step Functions, or Amazon EventBridge target, the input must be a well-formed JSON. For all other target types, a JSON is not required. If you do not specify anything for this field, EventBridge Scheduler delivers a default notification to the target.
 * **KinesisParameters**: [KinesisParameters](#kinesisparameters)
 * **RetryPolicy**: [RetryPolicy](#retrypolicy)

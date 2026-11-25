@@ -229,7 +229,7 @@
 * **FailureRedirectionURL**: string (Required): The URL that the recipient of the verification email is sent to if his or her address is not successfully verified.
 * **FromEmailAddress**: string (Required): The email address that the custom verification email is sent from.
 * **SuccessRedirectionURL**: string (Required): The URL that the recipient of the verification email is sent to if his or her address is successfully verified.
-* **Tags**: [Tag](#tag)[]: The tags (keys and values) associated with the tenant.
+* **Tags**: [Tag](#tag)[]: The tags (keys and values) associated with the custom verification email template.
 * **TemplateContent**: string (Required): The content of the custom verification email. The total size of the email must be less than 10 MB. The message body may contain HTML, with some limitations.
 * **TemplateName**: string (Required, Identifier): The name of the custom verification email template.
 * **TemplateSubject**: string (Required): The subject line of the custom verification email.

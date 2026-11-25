@@ -64,6 +64,22 @@
 * **name**: string: the resource name
 * **properties**: [AWS.CloudFront/DistributionTenantProperties](#awscloudfrontdistributiontenantproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.CloudFront/FieldLevelEncryptionConfig@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.CloudFront/FieldLevelEncryptionConfigProperties](#awscloudfrontfieldlevelencryptionconfigproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.CloudFront/FieldLevelEncryptionProfile@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.CloudFront/FieldLevelEncryptionProfileProperties](#awscloudfrontfieldlevelencryptionprofileproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.CloudFront/Function@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -244,6 +260,7 @@
 * **RoutingEndpoint**: string (ReadOnly)
 * **Status**: string (ReadOnly)
 * **Tags**: [Tag](#tag)[]: A complex type that contains zero or more ``Tag`` elements.
+* **ViewerFallback**: [ViewerFallback](#viewerfallback)
 
 ## AWS.CloudFront/ContinuousDeploymentPolicyProperties
 ### Properties
@@ -265,6 +282,7 @@
 * **CreatedTime**: string (ReadOnly)
 * **Customizations**: [Customizations](#customizations): Customizations for the distribution tenant. For each distribution tenant, you can specify the geographic restrictions, and the Amazon Resource Names (ARNs) for the ACM certificate and WAF web ACL. These are specific values that you can override or disable from the multi-tenant distribution that was used to create the distribution tenant.
 * **DistributionId**: string (Required): The ID of the multi-tenant distribution.
+* **DomainMappings**: [DomainMapping](#domainmapping)[]
 * **DomainResults**: [DomainResult](#domainresult)[] (ReadOnly)
 * **Domains**: string[] (Required): The domains associated with the distribution tenant.
 * **Enabled**: bool: Indicates whether the distribution tenant is in an enabled state. If disabled, the distribution tenant won't serve traffic.
@@ -273,9 +291,27 @@
 * **LastModifiedTime**: string (ReadOnly)
 * **ManagedCertificateRequest**: [ManagedCertificateRequest](#managedcertificaterequest) (WriteOnly): An object that represents the request for the Amazon CloudFront managed ACM certificate.
 * **Name**: string (Required): The name of the distribution tenant.
+* **OnDomainTakeover**: string (WriteOnly)
 * **Parameters**: [Parameter](#parameter)[]: A list of parameter values to add to the resource. A parameter is specified as a key-value pair. A valid parameter value must exist for any parameter that is marked as required in the multi-tenant distribution.
 * **Status**: string (ReadOnly)
 * **Tags**: [Tag](#tag)[]: A complex type that contains zero or more ``Tag`` elements.
+
+## AWS.CloudFront/FieldLevelEncryptionConfigProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the field-level encryption configuration.
+* **CallerReference**: string (Required): A unique value that identifies the create request. Any string unique within the account works; CloudFront refuses to change it once set, so supplying a different value replaces the configuration. It is also the only value CloudFront returns that identifies a configuration as this stack's, so cleaning up after a failed create depends on the template keeping it.
+* **Comment**: string: An optional comment describing the field-level encryption configuration. CloudFront stores an omitted comment and an explicitly empty one identically as an empty string, and Read normalizes that empty string back to absent -- so omitting Comment round-trips, while asking for an empty string does not and would report perpetual drift. `minLength: 1` refuses the empty string at template validation; omission is the way to express no comment. The service documents a maximum of 128 characters, and `maxLength` moves that refusal from the API to template validation.
+* **ContentTypeProfileConfig**: [ContentTypeProfileConfig](#contenttypeprofileconfig) (Required)
+* **Id**: string (ReadOnly): The identifier CloudFront assigns to the field-level encryption configuration.
+* **LastModifiedTime**: string (ReadOnly): The time the field-level encryption configuration was last changed.
+* **QueryArgProfileConfig**: [QueryArgProfileConfig](#queryargprofileconfig) (Required)
+
+## AWS.CloudFront/FieldLevelEncryptionProfileProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the field-level encryption profile.
+* **FieldLevelEncryptionProfileConfig**: [FieldLevelEncryptionProfileConfig](#fieldlevelencryptionprofileconfig) (Required)
+* **Id**: string (ReadOnly): The identifier that CloudFront assigns to the field-level encryption profile.
+* **LastModifiedTime**: string (ReadOnly): The time the field-level encryption profile was last modified.
 
 ## AWS.CloudFront/FunctionProperties
 ### Properties
@@ -478,6 +514,17 @@
 ### Properties
 * **Override**: bool (Required): A Boolean that determines whether CloudFront overrides the ``X-Content-Type-Options`` HTTP response header received from the origin with the one specified in this response headers policy.
 
+## ContentTypeProfile
+### Properties
+* **ContentType**: string (Required): The content type CloudFront encrypts. The service accepts only application/x-www-form-urlencoded.
+* **Format**: string (Required): The encryption format CloudFront uses for this content type.
+* **ProfileId**: string (Required): The identifier of the field-level encryption profile CloudFront uses for this content type. Required, so that it cannot be omitted: the service accepts a content-type profile with the member absent on create and refuses one on update, and an update sends the whole profile list, so a configuration created that way could never be updated again. Supply an empty string to configure a content type and forward it WITHOUT field-level encryption. That mode is available through this resource and round-trips: create, update and read all accept and return the empty string, and it is the service's own encoding for the state -- asked for a content-type list with no items, CloudFront returns one item whose ProfileId is empty. Note that this is not the same as omitting the content type from the configuration, because ForwardWhenContentTypeIsUnknown governs only content types absent from it.
+
+## ContentTypeProfileConfig
+### Properties
+* **ContentTypeProfiles**: [ContentTypeProfile](#contenttypeprofile)[] (Required): The content types paired with a profile. Required, and at least one item, because the service synthesizes one default item when the list is absent or empty, so neither state round-trips.
+* **ForwardWhenContentTypeIsUnknown**: bool (Required): Whether CloudFront forwards a request when the content type names a profile that does not exist.
+
 ## ContinuousDeploymentPolicy_SingleHeaderPolicyConfig
 ### Properties
 * **Header**: string (Required)
@@ -584,13 +631,14 @@
 * **HTTPPort**: int: The HTTP port that CloudFront uses to connect to the origin. Specify the HTTP port that the origin listens on.
 * **HTTPSPort**: int: The HTTPS port that CloudFront uses to connect to the origin. Specify the HTTPS port that the origin listens on.
 * **IpAddressType**: string: Specifies which IP protocol CloudFront uses when connecting to your origin. If your origin uses both IPv4 and IPv6 protocols, you can choose ``dualstack`` to help optimize reliability.
+* **OriginHttpVersion**: string
 * **OriginKeepaliveTimeout**: int: Specifies how long, in seconds, CloudFront persists its connection to the origin. The minimum timeout is 1 second, the maximum is 300 seconds, and the default (if you don't specify otherwise) is 5 seconds.
  For more information, see [Keep-alive timeout (custom origins only)](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/DownloadDistValuesOrigin.html#DownloadDistValuesOriginKeepaliveTimeout) in the *Amazon CloudFront Developer Guide*.
 * **OriginMtlsConfig**: [OriginMtlsConfig](#originmtlsconfig): Configures mutual TLS authentication between CloudFront and your origin server.
 * **OriginProtocolPolicy**: string (Required): Specifies the protocol (HTTP or HTTPS) that CloudFront uses to connect to the origin. Valid values are:
-  +  ``http-only`` ? CloudFront always uses HTTP to connect to the origin.
-  +  ``match-viewer`` ? CloudFront connects to the origin using the same protocol that the viewer used to connect to CloudFront.
-  +  ``https-only`` ? CloudFront always uses HTTPS to connect to the origin.
+  +  ``http-only`` – CloudFront always uses HTTP to connect to the origin.
+  +  ``match-viewer`` – CloudFront connects to the origin using the same protocol that the viewer used to connect to CloudFront.
+  +  ``https-only`` – CloudFront always uses HTTPS to connect to the origin.
 * **OriginReadTimeout**: int: Specifies how long, in seconds, CloudFront waits for a response from the origin. This is also known as the *origin response timeout*. The minimum timeout is 1 second, the maximum is 120 seconds, and the default (if you don't specify otherwise) is 30 seconds.
  For more information, see [Response timeout](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/DownloadDistValuesOrigin.html#DownloadDistValuesOriginResponseTimeout) in the *Amazon CloudFront Developer Guide*.
 * **OriginSSLProtocols**: string[]: Specifies the minimum SSL/TLS protocol that CloudFront uses when connecting to your origin over HTTPS. Valid values include ``SSLv3``, ``TLSv1``, ``TLSv1.1``, and ``TLSv1.2``.
@@ -732,15 +780,36 @@
   A unique identifier that specifies the WAF web ACL, if any, to associate with this distribution. To specify a web ACL created using the latest version of WAF, use the ACL ARN, for example ``arn:aws:wafv2:us-east-1:123456789012:global/webacl/ExampleWebACL/a1b2c3d4-5678-90ab-cdef-EXAMPLE11111``. To specify a web ACL created using WAF Classic, use the ACL ID, for example ``a1b2c3d4-5678-90ab-cdef-EXAMPLE11111``.
  WAF is a web application firewall that lets you monitor the HTTP and HTTPS requests that are forwarded to CloudFront, and lets you control access to your content. Based on conditions that you specify, such as the IP addresses that requests originate from or the values of query strings, CloudFront responds to requests either with the requested content or with an HTTP 403 status code (Forbidden). You can also configure CloudFront to return a custom error page when a request is blocked. For more information about WAF, see the [Developer Guide](https://docs.aws.amazon.com/waf/latest/developerguide/what-is-aws-waf.html).
 
+## DomainMapping
+### Properties
+* **Domain**: string (Required): The domain to serve only on the Anycast IP list. Must be lowercase and must also be listed in `Domains`.
+* **ServeOn**: string (Required): Set to `anycast-ip-list-only` to serve the domain only on the Anycast IP list of the tenant's connection group. To serve a domain normally, on all CloudFront IP addresses, omit it from `DomainMappings`.
+
 ## DomainResult
 ### Properties
 * **Domain**: string: The specified domain.
+* **ServeOn**: string
 * **Status**: string: Whether the domain is active or inactive.
+* **StatusReason**: string
+* **StatusReasonCode**: string
+
+## EncryptionEntity
+### Properties
+* **FieldPatterns**: string[] (Required): The request-body field names to encrypt. A pattern is either a full field name or leading characters followed by a wildcard (*). Patterns are case-sensitive and must not overlap.
+* **ProviderId**: string (Required): The provider associated with the public key. The same value must be supplied with the private key for an application to decrypt the data.
+* **PublicKeyId**: string (Required): The identifier of the CloudFront public key used to encrypt the fields that match the patterns.
 
 ## EndPoint
 ### Properties
 * **KinesisStreamConfig**: [KinesisStreamConfig](#kinesisstreamconfig) (Required): Contains information about the Amazon Kinesis data stream where you are sending real-time log data in a real-time log configuration.
 * **StreamType**: string (Required): The type of data stream where you are sending real-time log data. The only valid value is ``Kinesis``.
+
+## FieldLevelEncryptionProfileConfig
+### Properties
+* **CallerReference**: string (Required): A unique value that identifies the creation request. Caller references are unique within an AWS account and cannot be changed after creation.
+* **Comment**: string: An optional comment describing the field-level encryption profile.
+* **EncryptionEntities**: [EncryptionEntity](#encryptionentity)[] (Required): The encryption entities of the field-level encryption profile. At least one entity is required.
+* **Name**: string (Required): The name of the field-level encryption profile. Names are unique within an AWS account.
 
 ## ForwardedValues
 ### Properties
@@ -1036,6 +1105,16 @@
 * **EncodedKey**: string (Required): The public key that you can use with [signed URLs and signed cookies](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html), or with [field-level encryption](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/field-level-encryption.html).
 * **Name**: string (Required): A name to help identify the public key.
 
+## QueryArgProfile
+### Properties
+* **ProfileId**: string (Required): The identifier of the field-level encryption profile CloudFront uses for this query argument.
+* **QueryArg**: string (Required): The query argument that CloudFront encrypts with the paired profile.
+
+## QueryArgProfileConfig
+### Properties
+* **ForwardWhenQueryArgProfileIsUnknown**: bool (Required): Whether CloudFront forwards a request when the query argument names a profile that does not exist.
+* **QueryArgProfiles**: [QueryArgProfile](#queryargprofile)[] (Required): The query arguments paired with a profile. Required because the service returns an empty list rather than preserving absence, so an omitted value cannot round-trip. An empty list is accepted and is preserved.
+
 ## QueryStringsConfig
 ### Properties
 * **QueryStringBehavior**: string (Required): Determines whether any URL query strings in viewer requests are included in the cache key and in requests that CloudFront sends to the origin. Valid values are:
@@ -1251,11 +1330,15 @@
  If the distribution uses the CloudFront domain name such as ``d111111abcdef8.cloudfront.net`` (you set ``CloudFrontDefaultCertificate`` to ``true``), CloudFront automatically sets the security policy to ``TLSv1`` regardless of the value that you set here.
 * **SslSupportMethod**: string: In CloudFormation, this field name is ``SslSupportMethod``. Note the different capitalization.
   If the distribution uses ``Aliases`` (alternate domain names or CNAMEs), specify which viewers the distribution accepts HTTPS connections from.
-  +  ``sni-only`` ? The distribution accepts HTTPS connections from only viewers that support [server name indication (SNI)](https://docs.aws.amazon.com/https://en.wikipedia.org/wiki/Server_Name_Indication). This is recommended. Most browsers and clients support SNI.
-  +  ``vip`` ? The distribution accepts HTTPS connections from all viewers including those that don't support SNI. This is not recommended, and results in additional monthly charges from CloudFront.
+  +  ``sni-only`` – The distribution accepts HTTPS connections from only viewers that support [server name indication (SNI)](https://docs.aws.amazon.com/https://en.wikipedia.org/wiki/Server_Name_Indication). This is recommended. Most browsers and clients support SNI.
+  +  ``vip`` – The distribution accepts HTTPS connections from all viewers including those that don't support SNI. This is not recommended, and results in additional monthly charges from CloudFront.
   +  ``static-ip`` - Do not specify this value unless your distribution has been enabled for this feature by the CloudFront team. If you have a use case that requires static IP addresses for a distribution, contact CloudFront through the [Center](https://docs.aws.amazon.com/support/home).
   
  If the distribution uses the CloudFront domain name such as ``d111111abcdef8.cloudfront.net``, don't set a value for this field.
+
+## ViewerFallback
+### Properties
+* **DistributionId**: string (Required)
 
 ## ViewerMtlsConfig
 ### Properties
@@ -1264,6 +1347,7 @@
 
 ## VpcOriginConfig
 ### Properties
+* **OriginHttpVersion**: string
 * **OriginKeepaliveTimeout**: int: Specifies how long, in seconds, CloudFront persists its connection to the origin. The minimum timeout is 1 second, the maximum is 300 seconds, and the default (if you don't specify otherwise) is 5 seconds.
  For more information, see [Keep-alive timeout (custom origins only)](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/DownloadDistValuesOrigin.html#DownloadDistValuesOriginKeepaliveTimeout) in the *Amazon CloudFront Developer Guide*.
 * **OriginReadTimeout**: int: Specifies how long, in seconds, CloudFront waits for a response from the origin. This is also known as the *origin response timeout*. The minimum timeout is 1 second, the maximum is 120 seconds, and the default (if you don't specify otherwise) is 30 seconds.

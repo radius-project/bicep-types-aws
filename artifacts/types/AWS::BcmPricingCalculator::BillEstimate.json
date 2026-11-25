@@ -1,0 +1,207 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-BcmPricingCalculator-BillEstimate",
+  "type": "AWS::BcmPricingCalculator::BillEstimate",
+  "time": "2026-11-25T21:11:34.631Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/Id"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/BillScenarioId"
+    ],
+    "definitions": {
+      "BillEstimateStatus": {
+        "enum": [
+          "IN_PROGRESS",
+          "COMPLETE",
+          "FAILED"
+        ],
+        "type": "string"
+      },
+      "BillInterval": {
+        "additionalProperties": false,
+        "properties": {
+          "End": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "Start": {
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "GroupSharingPreference": {
+        "enum": [
+          "OPEN",
+          "PRIORITIZED",
+          "RESTRICTED"
+        ],
+        "type": "string"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::BcmPricingCalculator::BillEstimate",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "bcm-pricing-calculator:CreateBillEstimate",
+          "bcm-pricing-calculator:UpdateBillEstimate",
+          "bcm-pricing-calculator:GetBillEstimate",
+          "bcm-pricing-calculator:TagResource"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "bcm-pricing-calculator:DeleteBillEstimate",
+          "bcm-pricing-calculator:GetBillEstimate",
+          "bcm-pricing-calculator:ListTagsForResource"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "bcm-pricing-calculator:ListBillEstimates"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "bcm-pricing-calculator:GetBillEstimate",
+          "bcm-pricing-calculator:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "bcm-pricing-calculator:UpdateBillEstimate",
+          "bcm-pricing-calculator:GetBillEstimate",
+          "bcm-pricing-calculator:TagResource",
+          "bcm-pricing-calculator:UntagResource",
+          "bcm-pricing-calculator:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the bill estimate.",
+        "pattern": "^arn:aws[-a-z]*:bcm-pricing-calculator::[0-9]{12}:bill-estimate/[a-f0-9-]+$",
+        "type": "string"
+      },
+      "BillInterval": {
+        "$ref": "#/definitions/BillInterval",
+        "description": "The time period covered by the bill estimate"
+      },
+      "BillScenarioId": {
+        "description": "The unique identifier of the bill scenario this estimate is based on",
+        "maxLength": 36,
+        "minLength": 36,
+        "pattern": "^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$",
+        "type": "string"
+      },
+      "CostCategoryGroupSharingPreferenceArn": {
+        "description": "The ARN of the cost category group sharing preference",
+        "pattern": "^arn:aws[-a-z0-9]*:ce::[0-9]{12}:costcategory/[a-f0-9-]{36}$",
+        "type": "string"
+      },
+      "CostCategoryGroupSharingPreferenceEffectiveDate": {
+        "description": "The effective date of the cost category group sharing preference",
+        "format": "date-time",
+        "type": "string"
+      },
+      "CreatedAt": {
+        "description": "The timestamp when the bill estimate was created",
+        "format": "date-time",
+        "type": "string"
+      },
+      "ExpiresAt": {
+        "description": "The timestamp when the bill estimate expires",
+        "format": "date-time",
+        "type": "string"
+      },
+      "GroupSharingPreference": {
+        "$ref": "#/definitions/GroupSharingPreference",
+        "description": "The group sharing preference for the bill estimate"
+      },
+      "Id": {
+        "description": "The unique identifier of the bill estimate",
+        "maxLength": 36,
+        "minLength": 36,
+        "pattern": "^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$",
+        "type": "string"
+      },
+      "Name": {
+        "description": "The name of the bill estimate",
+        "maxLength": 64,
+        "pattern": "^[a-zA-Z0-9-]+$",
+        "type": "string"
+      },
+      "Status": {
+        "$ref": "#/definitions/BillEstimateStatus",
+        "description": "The status of the bill estimate"
+      },
+      "Tags": {
+        "description": "An array of key-value pairs to apply to this resource",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 200,
+        "type": "array"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/Id",
+      "/properties/BillInterval",
+      "/properties/Status",
+      "/properties/CreatedAt",
+      "/properties/GroupSharingPreference",
+      "/properties/CostCategoryGroupSharingPreferenceArn",
+      "/properties/CostCategoryGroupSharingPreferenceEffectiveDate"
+    ],
+    "required": [
+      "Name"
+    ],
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-bcm-pricing-calculator",
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "bcm-pricing-calculator:TagResource",
+        "bcm-pricing-calculator:UntagResource",
+        "bcm-pricing-calculator:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::BcmPricingCalculator::BillEstimate",
+    "writeOnlyProperties": [
+      "/properties/BillScenarioId"
+    ]
+  }
+}

@@ -51,6 +51,9 @@
 ## OrganizationConfiguration
 ### Properties
 * **AccountIds**: string[]: List of account IDs where the organization rule applies
+* **ExcludedAccountIds**: string[]: List of account IDs to exclude from the organization rule. Excluded accounts take precedence over included organizational units and accounts.
+* **ExcludedOrganizationalUnitIds**: string[]: List of organizational unit or organization root IDs to exclude from the organization rule. Exclusions include accounts in descendant organizational units and take precedence over included organizational units and accounts.
+* **OrganizationalUnitIds**: string[]: List of organizational unit or organization root IDs where the organization rule applies. The rule also applies to accounts in descendant organizational units.
 * **RuleApplyOrder**: string: When the rule should be applied relative to account rules
 
 ## ResourceTagsCriteriaCondition

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-MGN-NetworkMigrationDefinition",
   "type": "AWS::MGN::NetworkMigrationDefinition",
-  "time": "2026-10-21T23:35:43.665Z",
+  "time": "2026-11-25T21:10:05.007Z",
   "schema": {
     "additionalIdentifiers": [
       [
@@ -10,6 +10,31 @@
     ],
     "additionalProperties": false,
     "definitions": {
+      "CidrMapping": {
+        "additionalProperties": false,
+        "description": "Maps a source CIDR range to the corresponding target CIDR range to use in the target network.",
+        "properties": {
+          "OriginalCidr": {
+            "description": "The original CIDR range in the source network.",
+            "maxLength": 18,
+            "minLength": 9,
+            "pattern": "^((25[0-4]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])\\.){3}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])/(1[6-9]|2[0-8])$",
+            "type": "string"
+          },
+          "UpdatedCidr": {
+            "description": "The updated CIDR range to use in the target network.",
+            "maxLength": 18,
+            "minLength": 9,
+            "pattern": "^((25[0-4]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])\\.){3}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])/(1[6-9]|2[0-8])$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "OriginalCidr",
+          "UpdatedCidr"
+        ],
+        "type": "object"
+      },
       "ScopeTagsMap": {
         "additionalProperties": false,
         "description": "Scope tags map for the network migration definition.",
@@ -36,7 +61,9 @@
               "PALO_ALTO_FIREWALL",
               "CISCO_ACI",
               "LOGICAL_MODEL",
-              "MODELIZE_IT"
+              "MODELIZE_IT",
+              "AWS_DISCOVERY_COLLECTOR",
+              "MIGRATION_PLANNING_ARTIFACTS"
             ],
             "type": "string"
           },
@@ -222,6 +249,15 @@
         "minLength": 20,
         "type": "string"
       },
+      "CidrMappings": {
+        "description": "A list of CIDR mappings that map original source CIDR ranges to updated target CIDR ranges. CIDR mappings can be provided only when VpcProvisioningStrategy is USE_EXISTING.",
+        "items": {
+          "$ref": "#/definitions/CidrMapping"
+        },
+        "maxItems": 50,
+        "minItems": 0,
+        "type": "array"
+      },
       "CreatedAt": {
         "description": "The timestamp when the network migration definition was created.",
         "format": "date-time",
@@ -289,6 +325,14 @@
       "UpdatedAt": {
         "description": "The timestamp when the network migration definition was last updated.",
         "format": "date-time",
+        "type": "string"
+      },
+      "VpcProvisioningStrategy": {
+        "description": "Specifies whether to create new target VPCs or use existing ones. CREATE_NEW provisions new target VPCs as part of the migration; USE_EXISTING migrates into existing VPCs in the target account.",
+        "enum": [
+          "CREATE_NEW",
+          "USE_EXISTING"
+        ],
         "type": "string"
       }
     },

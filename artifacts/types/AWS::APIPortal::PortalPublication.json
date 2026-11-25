@@ -1,0 +1,78 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-APIPortal-PortalPublication",
+  "type": "AWS::APIPortal::PortalPublication",
+  "time": "2026-11-23T07:44:36.153Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/PortalArn"
+    ],
+    "description": "Resource Type definition for AWS::APIPortal::PortalPublication. Drives the publish/unpublish lifecycle of an AWS::APIPortal::Portal. A separate resource keyed on PortalArn with a customer-controlled ChangeToken as the change-trigger. Customers may set ChangeToken to a literal value, a CFN parameter (manual republish), or a Fn::Sub-composed string referencing dependent resources' UpdatedAt attributes (auto-republish through CFN's dependency graph).",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "apiportal:GetPortal",
+          "apiportal:UpdatePortalPublishStatus"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "apiportal:GetPortal",
+          "apiportal:UpdatePortalPublishStatus"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "apiportal:ListPortals"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "apiportal:GetPortal"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "apiportal:GetPortal",
+          "apiportal:UpdatePortalPublishStatus"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/PortalArn"
+    ],
+    "properties": {
+      "ChangeToken": {
+        "description": "Customer-supplied change-trigger string. Any change forces a republish on UpdateHandler. Customers may set this to a literal token, a CFN parameter, or a Fn::Sub-composed string (for example, a concatenation of dependent resources' UpdatedAt attributes) to chain republish through CFN's dependency graph.",
+        "maxLength": 4096,
+        "minLength": 1,
+        "type": "string"
+      },
+      "Description": {
+        "description": "A description of the changes made in this published version. Forwarded to PublishPortal.description.",
+        "maxLength": 1024,
+        "minLength": 0,
+        "type": "string"
+      },
+      "PortalArn": {
+        "description": "The ARN of the parent portal that this PortalPublication targets.",
+        "maxLength": 2048,
+        "minLength": 20,
+        "type": "string"
+      }
+    },
+    "required": [
+      "PortalArn",
+      "ChangeToken"
+    ],
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-apiportal.git",
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::APIPortal::PortalPublication",
+    "writeOnlyProperties": [
+      "/properties/Description",
+      "/properties/ChangeToken"
+    ]
+  }
+}

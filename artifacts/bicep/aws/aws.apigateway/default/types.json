@@ -227,6 +227,117 @@
     "writableScopes": 0
   },
   {
+    "$type": "ObjectType",
+    "name": "JwtAdditionalClaim",
+    "properties": {
+      "ClaimName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The claim name. Can't be iss, aud, exp, nbf, iat, scope or scp."
+      },
+      "ExpectedValues": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "The value the claim must have. Leave it out to check only that the claim is present."
+      },
+      "Format": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The claim's format. SINGLE_STRING is the only format."
+      },
+      "Required": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "Whether the token must carry the claim. Defaults to false."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "JwtConfiguration",
+    "properties": {
+      "DefaultAlgorithms": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 1,
+        "description": "The signing algorithms the authorizer accepts: RS256, RS384, RS512, ES256, ES384 or ES512."
+      },
+      "Issuers": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 1,
+        "description": "The token issuers the authorizer accepts."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "JwtIssuer",
+    "properties": {
+      "AdditionalClaims": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 0,
+        "description": "Other claims the token must carry."
+      },
+      "Audiences": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 1,
+        "description": "The values that the token's aud claim must contain at least one of."
+      },
+      "Issuer": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The HTTPS URL that the token's iss claim must match."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/16"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/14"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
     "$type": "StringLiteralType",
     "value": "AWS.ApiGateway/AuthorizerProperties"
   },
@@ -266,7 +377,7 @@
       },
       "AuthorizerResultTtlInSeconds": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/23"
         },
         "flags": 0,
         "description": ""
@@ -292,6 +403,13 @@
         "flags": 0,
         "description": ""
       },
+      "JwtConfiguration": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0,
+        "description": ""
+      },
       "Name": {
         "type": {
           "$ref": "#/1"
@@ -301,7 +419,7 @@
       },
       "ProviderARNs": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/24"
         },
         "flags": 0,
         "description": ""
@@ -342,7 +460,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/25"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -353,7 +471,7 @@
     "$type": "ResourceType",
     "name": "AWS.ApiGateway/Authorizer@default",
     "body": {
-      "$ref": "#/18"
+      "$ref": "#/26"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -416,7 +534,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/29"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -427,7 +545,7 @@
     "$type": "ResourceType",
     "name": "AWS.ApiGateway/BasePathMapping@default",
     "body": {
-      "$ref": "#/22"
+      "$ref": "#/30"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -497,7 +615,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/33"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -508,7 +626,7 @@
     "$type": "ResourceType",
     "name": "AWS.ApiGateway/BasePathMappingV2@default",
     "body": {
-      "$ref": "#/26"
+      "$ref": "#/34"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -540,7 +658,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/28"
+      "$ref": "#/36"
     }
   },
   {
@@ -563,7 +681,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/38"
         },
         "flags": 0,
         "description": ""
@@ -590,7 +708,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/39"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -601,7 +719,7 @@
     "$type": "ResourceType",
     "name": "AWS.ApiGateway/ClientCertificate@default",
     "body": {
-      "$ref": "#/32"
+      "$ref": "#/40"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -632,14 +750,14 @@
     "properties": {
       "PercentTraffic": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/23"
         },
         "flags": 0,
         "description": ""
       },
       "StageVariableOverrides": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/48"
         },
         "flags": 0,
         "description": ""
@@ -659,14 +777,14 @@
     "properties": {
       "PercentTraffic": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/23"
         },
         "flags": 0,
         "description": ""
       },
       "StageVariableOverrides": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/49"
         },
         "flags": 0,
         "description": ""
@@ -693,7 +811,7 @@
       },
       "CacheTtlInSeconds": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/23"
         },
         "flags": 0,
         "description": ""
@@ -742,14 +860,14 @@
       },
       "ThrottlingBurstLimit": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/23"
         },
         "flags": 0,
         "description": ""
       },
       "ThrottlingRateLimit": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/23"
         },
         "flags": 0,
         "description": ""
@@ -762,7 +880,7 @@
     "properties": {
       "AccessLogSetting": {
         "type": {
-          "$ref": "#/34"
+          "$ref": "#/42"
         },
         "flags": 0,
         "description": "Specifies settings for logging access in this stage."
@@ -790,7 +908,7 @@
       },
       "CacheTtlInSeconds": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/23"
         },
         "flags": 0,
         "description": "The time-to-live (TTL) period, in seconds, that specifies how long API Gateway caches responses."
@@ -804,7 +922,7 @@
       },
       "CanarySetting": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/43"
         },
         "flags": 0,
         "description": "Specifies settings for the canary deployment in this stage."
@@ -846,7 +964,7 @@
       },
       "MethodSettings": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/50"
         },
         "flags": 0,
         "description": "Configures settings for all of the stage's methods."
@@ -860,21 +978,21 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/51"
         },
         "flags": 0,
         "description": "An array of arbitrary tags (key-value pairs) to associate with the stage."
       },
       "ThrottlingBurstLimit": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/23"
         },
         "flags": 0,
         "description": "The target request burst rate limit. This allows more requests through for a period of time than the target rate limit. For more information, see [Manage API Request Throttling](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-request-throttling.html) in the *API Gateway Developer Guide*."
       },
       "ThrottlingRateLimit": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/23"
         },
         "flags": 0,
         "description": "The target request steady-state rate limit. For more information, see [Manage API Request Throttling](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-request-throttling.html) in the *API Gateway Developer Guide*."
@@ -888,7 +1006,7 @@
       },
       "Variables": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/52"
         },
         "flags": 0,
         "description": "A map that defines the stage variables. Variable names must consist of alphanumeric characters, and the values must match the following regular expression: ``[A-Za-z0-9-._~:/?#&=,]+``."
@@ -934,13 +1052,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/37"
+      "$ref": "#/45"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/39"
+      "$ref": "#/47"
     }
   },
   {
@@ -961,7 +1079,7 @@
     "properties": {
       "DeploymentCanarySettings": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/44"
         },
         "flags": 4,
         "description": ""
@@ -989,7 +1107,7 @@
       },
       "StageDescription": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/46"
         },
         "flags": 4,
         "description": "The description of the Stage resource for the Deployment resource to create. To specify a stage description, you must also provide a stage name."
@@ -1023,7 +1141,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/54"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1034,7 +1152,7 @@
     "$type": "ResourceType",
     "name": "AWS.ApiGateway/Deployment@default",
     "body": {
-      "$ref": "#/47"
+      "$ref": "#/55"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1097,7 +1215,7 @@
       },
       "Location": {
         "type": {
-          "$ref": "#/49"
+          "$ref": "#/57"
         },
         "flags": 1,
         "description": ""
@@ -1138,7 +1256,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/59"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1149,7 +1267,7 @@
     "$type": "ResourceType",
     "name": "AWS.ApiGateway/DocumentationPart@default",
     "body": {
-      "$ref": "#/52"
+      "$ref": "#/60"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1205,7 +1323,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/55"
+          "$ref": "#/63"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1216,7 +1334,7 @@
     "$type": "ResourceType",
     "name": "AWS.ApiGateway/DocumentationVersion@default",
     "body": {
-      "$ref": "#/56"
+      "$ref": "#/64"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1234,7 +1352,7 @@
       },
       "Types": {
         "type": {
-          "$ref": "#/61"
+          "$ref": "#/69"
         },
         "flags": 0,
         "description": ""
@@ -1294,7 +1412,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/60"
+      "$ref": "#/68"
     }
   },
   {
@@ -1345,14 +1463,14 @@
       },
       "EndpointConfiguration": {
         "type": {
-          "$ref": "#/58"
+          "$ref": "#/66"
         },
         "flags": 0,
         "description": "The endpoint configuration of this DomainName showing the endpoint types and IP address types of the domain name."
       },
       "MutualTlsAuthentication": {
         "type": {
-          "$ref": "#/59"
+          "$ref": "#/67"
         },
         "flags": 0,
         "description": ""
@@ -1397,11 +1515,11 @@
           "$ref": "#/1"
         },
         "flags": 0,
-        "description": ""
+        "description": "The Transport Layer Security (TLS) version + cipher suite for this DomainName."
       },
       "Tags": {
         "type": {
-          "$ref": "#/63"
+          "$ref": "#/71"
         },
         "flags": 0,
         "description": ""
@@ -1428,7 +1546,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/64"
+          "$ref": "#/72"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -1439,7 +1557,7 @@
     "$type": "ResourceType",
     "name": "AWS.ApiGateway/DomainName@default",
     "body": {
-      "$ref": "#/65"
+      "$ref": "#/73"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1469,7 +1587,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/67"
+      "$ref": "#/75"
     }
   },
   {
@@ -1506,7 +1624,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/69"
+          "$ref": "#/77"
         },
         "flags": 0,
         "description": "An array of arbitrary tags (key-value pairs) to associate with the domainname access association."
@@ -1533,7 +1651,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/70"
+          "$ref": "#/78"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1544,7 +1662,7 @@
     "$type": "ResourceType",
     "name": "AWS.ApiGateway/DomainNameAccessAssociation@default",
     "body": {
-      "$ref": "#/71"
+      "$ref": "#/79"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1561,7 +1679,7 @@
       },
       "Types": {
         "type": {
-          "$ref": "#/75"
+          "$ref": "#/83"
         },
         "flags": 0
       }
@@ -1603,14 +1721,14 @@
     "name": "DomainNameV2_Policy",
     "properties": {},
     "additionalProperties": {
-      "$ref": "#/77"
+      "$ref": "#/85"
     }
   },
   {
     "$type": "UnionType",
     "elements": [
       {
-        "$ref": "#/78"
+        "$ref": "#/86"
       },
       {
         "$ref": "#/1"
@@ -1620,7 +1738,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/74"
+      "$ref": "#/82"
     }
   },
   {
@@ -1660,13 +1778,13 @@
       },
       "EndpointConfiguration": {
         "type": {
-          "$ref": "#/73"
+          "$ref": "#/81"
         },
         "flags": 0
       },
       "Policy": {
         "type": {
-          "$ref": "#/79"
+          "$ref": "#/87"
         },
         "flags": 0
       },
@@ -1685,7 +1803,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/80"
+          "$ref": "#/88"
         },
         "flags": 0
       }
@@ -1711,7 +1829,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/81"
+          "$ref": "#/89"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -1722,7 +1840,7 @@
     "$type": "ResourceType",
     "name": "AWS.ApiGateway/DomainNameV2@default",
     "body": {
-      "$ref": "#/82"
+      "$ref": "#/90"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1760,14 +1878,14 @@
       },
       "ResponseParameters": {
         "type": {
-          "$ref": "#/85"
+          "$ref": "#/93"
         },
         "flags": 0,
         "description": ""
       },
       "ResponseTemplates": {
         "type": {
-          "$ref": "#/86"
+          "$ref": "#/94"
         },
         "flags": 0,
         "description": ""
@@ -1815,7 +1933,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/87"
+          "$ref": "#/95"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1826,7 +1944,7 @@
     "$type": "ResourceType",
     "name": "AWS.ApiGateway/GatewayResponse@default",
     "body": {
-      "$ref": "#/88"
+      "$ref": "#/96"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1837,7 +1955,7 @@
     "properties": {
       "CacheKeyParameters": {
         "type": {
-          "$ref": "#/93"
+          "$ref": "#/101"
         },
         "flags": 0,
         "description": ""
@@ -1886,7 +2004,7 @@
       },
       "IntegrationResponses": {
         "type": {
-          "$ref": "#/94"
+          "$ref": "#/102"
         },
         "flags": 0,
         "description": ""
@@ -1907,14 +2025,14 @@
       },
       "RequestParameters": {
         "type": {
-          "$ref": "#/95"
+          "$ref": "#/103"
         },
         "flags": 0,
         "description": ""
       },
       "RequestTemplates": {
         "type": {
-          "$ref": "#/96"
+          "$ref": "#/104"
         },
         "flags": 0,
         "description": ""
@@ -1928,7 +2046,7 @@
       },
       "TimeoutInMillis": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/23"
         },
         "flags": 0,
         "description": ""
@@ -1962,14 +2080,14 @@
       },
       "ResponseParameters": {
         "type": {
-          "$ref": "#/97"
+          "$ref": "#/105"
         },
         "flags": 0,
         "description": ""
       },
       "ResponseTemplates": {
         "type": {
-          "$ref": "#/98"
+          "$ref": "#/106"
         },
         "flags": 0,
         "description": ""
@@ -1996,14 +2114,14 @@
     "properties": {
       "ResponseModels": {
         "type": {
-          "$ref": "#/99"
+          "$ref": "#/107"
         },
         "flags": 0,
         "description": ""
       },
       "ResponseParameters": {
         "type": {
-          "$ref": "#/101"
+          "$ref": "#/109"
         },
         "flags": 0,
         "description": ""
@@ -2026,7 +2144,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/91"
+      "$ref": "#/99"
     }
   },
   {
@@ -2085,7 +2203,7 @@
     "name": "Method_ResponseParameters",
     "properties": {},
     "additionalProperties": {
-      "$ref": "#/100"
+      "$ref": "#/108"
     }
   },
   {
@@ -2101,7 +2219,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/92"
+      "$ref": "#/100"
     }
   },
   {
@@ -2128,7 +2246,7 @@
     "name": "Method_RequestParameters",
     "properties": {},
     "additionalProperties": {
-      "$ref": "#/106"
+      "$ref": "#/114"
     }
   },
   {
@@ -2144,7 +2262,7 @@
       },
       "AuthorizationScopes": {
         "type": {
-          "$ref": "#/103"
+          "$ref": "#/111"
         },
         "flags": 0,
         "description": ""
@@ -2154,7 +2272,7 @@
           "$ref": "#/1"
         },
         "flags": 0,
-        "description": "The method's authorization type. This parameter is required. For valid values, see [Method](https://docs.aws.amazon.com/apigateway/latest/api/API_Method.html) in the *API Gateway API Reference*.\n  If you specify the ``AuthorizerId`` property, specify ``CUSTOM`` or ``COGNITO_USER_POOLS`` for this property."
+        "description": "The method's authorization type. This parameter is required. For valid values, see [Method](https://docs.aws.amazon.com/apigateway/latest/api/API_Method.html) in the *API Gateway API Reference*.\n  If you specify the ``AuthorizerId`` property, specify ``CUSTOM``, ``COGNITO_USER_POOLS``, or ``JWT`` for this property."
       },
       "AuthorizerId": {
         "type": {
@@ -2172,14 +2290,14 @@
       },
       "Integration": {
         "type": {
-          "$ref": "#/90"
+          "$ref": "#/98"
         },
         "flags": 0,
         "description": ""
       },
       "MethodResponses": {
         "type": {
-          "$ref": "#/104"
+          "$ref": "#/112"
         },
         "flags": 0,
         "description": ""
@@ -2193,14 +2311,14 @@
       },
       "RequestModels": {
         "type": {
-          "$ref": "#/105"
+          "$ref": "#/113"
         },
         "flags": 0,
         "description": ""
       },
       "RequestParameters": {
         "type": {
-          "$ref": "#/107"
+          "$ref": "#/115"
         },
         "flags": 0,
         "description": ""
@@ -2248,7 +2366,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/108"
+          "$ref": "#/116"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2259,7 +2377,7 @@
     "$type": "ResourceType",
     "name": "AWS.ApiGateway/Method@default",
     "body": {
-      "$ref": "#/109"
+      "$ref": "#/117"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -2273,14 +2391,14 @@
     "name": "Model_Schema",
     "properties": {},
     "additionalProperties": {
-      "$ref": "#/77"
+      "$ref": "#/85"
     }
   },
   {
     "$type": "UnionType",
     "elements": [
       {
-        "$ref": "#/112"
+        "$ref": "#/120"
       },
       {
         "$ref": "#/1"
@@ -2321,7 +2439,7 @@
       },
       "Schema": {
         "type": {
-          "$ref": "#/113"
+          "$ref": "#/121"
         },
         "flags": 0,
         "description": ""
@@ -2348,7 +2466,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/114"
+          "$ref": "#/122"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2359,7 +2477,7 @@
     "$type": "ResourceType",
     "name": "AWS.ApiGateway/Model@default",
     "body": {
-      "$ref": "#/115"
+      "$ref": "#/123"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -2429,7 +2547,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/118"
+          "$ref": "#/126"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2440,7 +2558,7 @@
     "$type": "ResourceType",
     "name": "AWS.ApiGateway/RequestValidator@default",
     "body": {
-      "$ref": "#/119"
+      "$ref": "#/127"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -2503,7 +2621,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/122"
+          "$ref": "#/130"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2514,7 +2632,7 @@
     "$type": "ResourceType",
     "name": "AWS.ApiGateway/Resource@default",
     "body": {
-      "$ref": "#/123"
+      "$ref": "#/131"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -2532,14 +2650,14 @@
       },
       "Types": {
         "type": {
-          "$ref": "#/128"
+          "$ref": "#/136"
         },
         "flags": 0,
         "description": ""
       },
       "VpcEndpointIds": {
         "type": {
-          "$ref": "#/129"
+          "$ref": "#/137"
         },
         "flags": 0,
         "description": ""
@@ -2627,14 +2745,14 @@
     "name": "RestApi_Body",
     "properties": {},
     "additionalProperties": {
-      "$ref": "#/77"
+      "$ref": "#/85"
     }
   },
   {
     "$type": "UnionType",
     "elements": [
       {
-        "$ref": "#/132"
+        "$ref": "#/140"
       },
       {
         "$ref": "#/1"
@@ -2653,7 +2771,7 @@
     "$type": "UnionType",
     "elements": [
       {
-        "$ref": "#/134"
+        "$ref": "#/142"
       },
       {
         "$ref": "#/1"
@@ -2665,14 +2783,14 @@
     "name": "RestApi_Policy",
     "properties": {},
     "additionalProperties": {
-      "$ref": "#/77"
+      "$ref": "#/85"
     }
   },
   {
     "$type": "UnionType",
     "elements": [
       {
-        "$ref": "#/136"
+        "$ref": "#/144"
       },
       {
         "$ref": "#/1"
@@ -2682,7 +2800,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/127"
+      "$ref": "#/135"
     }
   },
   {
@@ -2698,21 +2816,21 @@
       },
       "BinaryMediaTypes": {
         "type": {
-          "$ref": "#/131"
+          "$ref": "#/139"
         },
         "flags": 0,
         "description": ""
       },
       "Body": {
         "type": {
-          "$ref": "#/133"
+          "$ref": "#/141"
         },
         "flags": 4,
         "description": "An OpenAPI specification that defines a set of RESTful APIs in JSON format. For YAML templates, you can also provide the specification in YAML format."
       },
       "BodyS3Location": {
         "type": {
-          "$ref": "#/126"
+          "$ref": "#/134"
         },
         "flags": 4,
         "description": "The Amazon Simple Storage Service (Amazon S3) location that points to an OpenAPI file, which defines a set of RESTful APIs in JSON or YAML format."
@@ -2747,7 +2865,7 @@
       },
       "EndpointConfiguration": {
         "type": {
-          "$ref": "#/125"
+          "$ref": "#/133"
         },
         "flags": 0,
         "description": "A list of the endpoint types and IP address types of the API. Use this property when creating an API. When importing an existing API, specify the endpoint configuration types using the ``Parameters`` property."
@@ -2761,7 +2879,7 @@
       },
       "MinimumCompressionSize": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/23"
         },
         "flags": 0,
         "description": ""
@@ -2782,14 +2900,14 @@
       },
       "Parameters": {
         "type": {
-          "$ref": "#/135"
+          "$ref": "#/143"
         },
         "flags": 4,
         "description": ""
       },
       "Policy": {
         "type": {
-          "$ref": "#/137"
+          "$ref": "#/145"
         },
         "flags": 0,
         "description": "A policy document that contains the permissions for the ``RestApi`` resource. To set the ARN for the policy, use the ``!Join`` intrinsic function with ``\"\"`` as delimiter and values of ``\"execute-api:/\"`` and ``\"*\"``."
@@ -2817,7 +2935,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/138"
+          "$ref": "#/146"
         },
         "flags": 0,
         "description": ""
@@ -2851,7 +2969,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/139"
+          "$ref": "#/147"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -2862,7 +2980,7 @@
     "$type": "ResourceType",
     "name": "AWS.ApiGateway/RestApi@default",
     "body": {
-      "$ref": "#/140"
+      "$ref": "#/148"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -2900,14 +3018,14 @@
       },
       "PercentTraffic": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/23"
         },
         "flags": 0,
         "description": ""
       },
       "StageVariableOverrides": {
         "type": {
-          "$ref": "#/146"
+          "$ref": "#/154"
         },
         "flags": 0,
         "description": ""
@@ -2934,7 +3052,7 @@
       },
       "CacheTtlInSeconds": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/23"
         },
         "flags": 0,
         "description": ""
@@ -2983,14 +3101,14 @@
       },
       "ThrottlingBurstLimit": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/23"
         },
         "flags": 0,
         "description": ""
       },
       "ThrottlingRateLimit": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/23"
         },
         "flags": 0,
         "description": ""
@@ -3032,13 +3150,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/144"
+      "$ref": "#/152"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/145"
+      "$ref": "#/153"
     }
   },
   {
@@ -3055,7 +3173,7 @@
     "properties": {
       "AccessLogSetting": {
         "type": {
-          "$ref": "#/142"
+          "$ref": "#/150"
         },
         "flags": 0,
         "description": ""
@@ -3076,7 +3194,7 @@
       },
       "CanarySetting": {
         "type": {
-          "$ref": "#/143"
+          "$ref": "#/151"
         },
         "flags": 0,
         "description": ""
@@ -3111,7 +3229,7 @@
       },
       "MethodSettings": {
         "type": {
-          "$ref": "#/148"
+          "$ref": "#/156"
         },
         "flags": 0,
         "description": ""
@@ -3132,7 +3250,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/149"
+          "$ref": "#/157"
         },
         "flags": 0,
         "description": ""
@@ -3146,7 +3264,7 @@
       },
       "Variables": {
         "type": {
-          "$ref": "#/150"
+          "$ref": "#/158"
         },
         "flags": 0,
         "description": "A map (string-to-string map) that defines the stage variables, where the variable name is the key and the variable value is the value. Variable names are limited to alphanumeric characters. Values must match the following regular expression: ``[A-Za-z0-9-._~:/?#&=,]+``."
@@ -3173,7 +3291,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/151"
+          "$ref": "#/159"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -3184,7 +3302,7 @@
     "$type": "ResourceType",
     "name": "AWS.ApiGateway/Stage@default",
     "body": {
-      "$ref": "#/152"
+      "$ref": "#/160"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -3209,7 +3327,7 @@
       },
       "Throttle": {
         "type": {
-          "$ref": "#/158"
+          "$ref": "#/166"
         },
         "flags": 0,
         "description": ""
@@ -3222,14 +3340,14 @@
     "properties": {
       "Limit": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/23"
         },
         "flags": 0,
         "description": ""
       },
       "Offset": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/23"
         },
         "flags": 0,
         "description": ""
@@ -3269,14 +3387,14 @@
     "properties": {
       "BurstLimit": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/23"
         },
         "flags": 0,
         "description": ""
       },
       "RateLimit": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/23"
         },
         "flags": 0,
         "description": ""
@@ -3288,7 +3406,7 @@
     "name": "UsagePlan_Throttle",
     "properties": {},
     "additionalProperties": {
-      "$ref": "#/157"
+      "$ref": "#/165"
     }
   },
   {
@@ -3298,13 +3416,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/154"
+      "$ref": "#/162"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/156"
+      "$ref": "#/164"
     }
   },
   {
@@ -3313,7 +3431,7 @@
     "properties": {
       "ApiStages": {
         "type": {
-          "$ref": "#/160"
+          "$ref": "#/168"
         },
         "flags": 0,
         "description": ""
@@ -3334,21 +3452,21 @@
       },
       "Quota": {
         "type": {
-          "$ref": "#/155"
+          "$ref": "#/163"
         },
         "flags": 0,
         "description": ""
       },
       "Tags": {
         "type": {
-          "$ref": "#/161"
+          "$ref": "#/169"
         },
         "flags": 0,
         "description": ""
       },
       "Throttle": {
         "type": {
-          "$ref": "#/157"
+          "$ref": "#/165"
         },
         "flags": 0,
         "description": ""
@@ -3382,7 +3500,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/162"
+          "$ref": "#/170"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -3393,7 +3511,7 @@
     "$type": "ResourceType",
     "name": "AWS.ApiGateway/UsagePlan@default",
     "body": {
-      "$ref": "#/163"
+      "$ref": "#/171"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -3456,7 +3574,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/166"
+          "$ref": "#/174"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -3467,7 +3585,7 @@
     "$type": "ResourceType",
     "name": "AWS.ApiGateway/UsagePlanKey@default",
     "body": {
-      "$ref": "#/167"
+      "$ref": "#/175"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -3499,7 +3617,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/169"
+      "$ref": "#/177"
     }
   },
   {
@@ -3528,14 +3646,14 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/171"
+          "$ref": "#/179"
         },
         "flags": 0,
         "description": "An array of arbitrary tags (key-value pairs) to associate with the VPC link."
       },
       "TargetArns": {
         "type": {
-          "$ref": "#/172"
+          "$ref": "#/180"
         },
         "flags": 1,
         "description": ""
@@ -3569,7 +3687,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/173"
+          "$ref": "#/181"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -3580,7 +3698,7 @@
     "$type": "ResourceType",
     "name": "AWS.ApiGateway/VpcLink@default",
     "body": {
-      "$ref": "#/174"
+      "$ref": "#/182"
     },
     "readableScopes": 0,
     "writableScopes": 0

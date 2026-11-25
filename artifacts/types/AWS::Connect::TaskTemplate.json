@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Connect-TaskTemplate",
   "type": "AWS::Connect::TaskTemplate",
-  "time": "2026-10-21T21:30:20.311Z",
+  "time": "2026-11-19T22:23:14.459Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
@@ -278,6 +278,18 @@
         "description": "The identifier of the contact flow.",
         "pattern": "^$|arn:aws[-a-z0-9]*:connect:[-a-z0-9]*:[0-9]{12}:instance/[-a-zA-Z0-9]*/contact-flow/[-a-zA-Z0-9]*(:[a-zA-Z0-9-]+)?$",
         "type": "string"
+      },
+      "ContactHooks": {
+        "additionalProperties": false,
+        "description": "The contact hooks for the task template.",
+        "properties": {
+          "WrapUpFlowArn": {
+            "description": "The identifier (arn) of the flow module that runs when an agent attempts to disconnect from a task created by referencing this template. If no agent ever connects to the task, the flow module runs when the task is terminated.",
+            "pattern": "^arn:aws[-a-z0-9]*:connect:[-a-z0-9]*:[0-9]{12}:instance/[-a-zA-Z0-9]*/flow-module/[-a-zA-Z0-9]*$",
+            "type": "string"
+          }
+        },
+        "type": "object"
       },
       "Defaults": {
         "description": "",

@@ -1,14 +1,15 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SecurityHub-ConnectorV2",
   "type": "AWS::SecurityHub::ConnectorV2",
-  "time": "2026-10-19T17:50:54.518Z",
+  "time": "2026-11-20T01:08:14.497Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
       "/properties/Name",
       "/properties/KmsKeyArn",
       "/properties/Provider/ServiceNow/InstanceName",
-      "/properties/Provider/Azure/AWSConfigConnectorArn"
+      "/properties/Provider/Azure/AWSConfigConnectorArn",
+      "/properties/Provider/GCP/AWSConfigConnectorArn"
     ],
     "definitions": {
       "AuthStatus": {
@@ -63,6 +64,65 @@
           },
           "ScopeValues": {
             "description": "The list of scope values for the Azure connector",
+            "insertionOrder": false,
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 100,
+            "minItems": 0,
+            "type": "array",
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "ScopeType"
+        ],
+        "type": "object"
+      },
+      "GcpProviderConfiguration": {
+        "additionalProperties": false,
+        "description": "The configuration settings required to establish an integration between AWS Security Hub and GCP",
+        "properties": {
+          "AWSConfigConnectorArn": {
+            "description": "The ARN of the AWS Config connector used for the GCP integration",
+            "type": "string"
+          },
+          "GCPRegions": {
+            "description": "The list of GCP regions to include in the connector scope",
+            "insertionOrder": false,
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 256,
+            "minItems": 1,
+            "type": "array",
+            "uniqueItems": true
+          },
+          "ScopeConfiguration": {
+            "$ref": "#/definitions/GcpScopeConfiguration"
+          }
+        },
+        "required": [
+          "AWSConfigConnectorArn",
+          "ScopeConfiguration",
+          "GCPRegions"
+        ],
+        "type": "object"
+      },
+      "GcpScopeConfiguration": {
+        "additionalProperties": false,
+        "description": "The scope configuration for a GCP connector",
+        "properties": {
+          "ScopeType": {
+            "description": "The scope type for the GCP connector",
+            "enum": [
+              "PROJECT",
+              "ORGANIZATION"
+            ],
+            "type": "string"
+          },
+          "ScopeValues": {
+            "description": "The list of scope values for the GCP connector",
             "insertionOrder": false,
             "items": {
               "type": "string"
@@ -154,6 +214,18 @@
             },
             "required": [
               "Azure"
+            ],
+            "type": "object"
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "GCP": {
+                "$ref": "#/definitions/GcpProviderConfiguration"
+              }
+            },
+            "required": [
+              "GCP"
             ],
             "type": "object"
           }

@@ -170,6 +170,7 @@
 * **GeneratedTemplateName**: string (Required): The name assigned to the generated template.
 * **LastUpdatedTime**: string (ReadOnly): The time the generated template was last updated.
 * **Progress**: [TemplateProgress](#templateprogress) (ReadOnly)
+* **StackId**: string: The Amazon Resource Name (ARN) of the stack to use as the base stack for the generated template.
 * **Status**: string (ReadOnly): The status of the template generation.
 * **TemplateConfiguration**: [TemplateConfiguration](#templateconfiguration)
 * **TotalWarnings**: int (ReadOnly): The number of warnings generated for this template.

@@ -1359,5 +1359,93 @@
     },
     "readableScopes": 0,
     "writableScopes": 0
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.OpenSearchService/ReplicationPeerProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.OpenSearchService/ReplicationPeerProperties",
+    "properties": {
+      "DomainArn": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "The ARN of the domain being replicated."
+      },
+      "DomainName": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 17,
+        "description": "The name of the domain to replicate, which becomes the primary. The domain must be in the same account and Region as the stack. After a switchover or failover this domain may no longer be the primary."
+      },
+      "PeerDomainArn": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 17,
+        "description": "The ARN of the domain to replicate with, which becomes the secondary. The peer domain must be in the same account and can be in the same or another Region."
+      },
+      "PeerRole": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "The replication role of the peer domain (PRIMARY or SECONDARY), as of the last time CloudFormation read the resource. Switchover and failover change it outside CloudFormation; call DescribeDomainReplication for the current role."
+      },
+      "Role": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "The replication role of the domain (PRIMARY or SECONDARY), as of the last time CloudFormation read the resource. Switchover and failover change it outside CloudFormation; call DescribeDomainReplication for the current role."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "The state of the replication relationship, as of the last time CloudFormation read it."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.OpenSearchService/ReplicationPeer",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/63"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.OpenSearchService/ReplicationPeer@default",
+    "body": {
+      "$ref": "#/64"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
   }
 ]

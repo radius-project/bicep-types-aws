@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Route53-HostedZone",
   "type": "AWS::Route53::HostedZone",
-  "time": "2026-10-21T16:23:36.207Z",
+  "time": "2026-11-20T10:15:09.925Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -9,6 +9,55 @@
       "/properties/DelegationSetId"
     ],
     "definitions": {
+      "ChangeGuardrail": {
+        "additionalProperties": false,
+        "description": "",
+        "properties": {
+          "Name": {
+            "description": "The name of the Change Guardrail.",
+            "enum": [
+              "NS_OCCLUSION_CHECK",
+              "ALIAS_TARGET_CHECK",
+              "ACTIVE_RECORD_CHECK",
+              "ACTIVE_DELEGATION_CHECK"
+            ],
+            "type": "string"
+          },
+          "Status": {
+            "description": "The status of the Change Guardrail. ENABLED makes Route 53 block the corresponding destructive change; DISABLED turns the guardrail off.",
+            "enum": [
+              "ENABLED",
+              "DISABLED"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "Name",
+          "Status"
+        ],
+        "type": "object"
+      },
+      "ChangeHistory": {
+        "additionalProperties": false,
+        "description": "",
+        "properties": {
+          "RetentionStartsAt": {
+            "description": "The earliest time the hosted zone's change history can be read from, as an ISO 8601 timestamp. Present only when Status is ENABLED.",
+            "format": "date-time",
+            "type": "string"
+          },
+          "Status": {
+            "description": "Whether change history is enabled for the hosted zone.",
+            "enum": [
+              "ENABLED",
+              "DISABLED"
+            ],
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
       "HostedZoneConfig": {
         "additionalProperties": false,
         "description": "A complex type that contains an optional comment about your hosted zone. If you don't want to specify a comment, omit both the ``HostedZoneConfig`` and ``Comment`` elements.",
@@ -16,6 +65,14 @@
           "Comment": {
             "description": "Any comments that you want to include about the hosted zone.",
             "maxLength": 256,
+            "type": "string"
+          },
+          "HostedZoneTier": {
+            "description": "",
+            "enum": [
+              "STANDARD",
+              "ADVANCED"
+            ],
             "type": "string"
           }
         },
@@ -25,7 +82,24 @@
         "additionalProperties": false,
         "description": "Represents the features configuration for a hosted zone, including the status of various features and any associated failure reasons.",
         "properties": {
+          "ChangeGuardrails": {
+            "description": "",
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/ChangeGuardrail"
+            },
+            "type": "array",
+            "uniqueItems": true
+          },
+          "ChangeHistory": {
+            "$ref": "#/definitions/ChangeHistory",
+            "description": ""
+          },
           "EnableAcceleratedRecovery": {
+            "description": "",
+            "type": "boolean"
+          },
+          "EnablePublicDNSFallback": {
             "description": "",
             "type": "boolean"
           }
@@ -134,6 +208,7 @@
           "route53:ListQueryLoggingConfigs",
           "route53:UpdateHostedZoneComment",
           "route53:UpdateHostedZoneFeatures",
+          "route53:UpdateHostedZoneTier",
           "route53:ChangeTagsForResource",
           "route53:AssociateVPCWithHostedZone",
           "route53:DisassociateVPCFromHostedZone",
@@ -204,7 +279,8 @@
     },
     "readOnlyProperties": [
       "/properties/Id",
-      "/properties/NameServers"
+      "/properties/NameServers",
+      "/properties/HostedZoneFeatures/ChangeHistory"
     ],
     "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-route53.git",
     "tagging": {

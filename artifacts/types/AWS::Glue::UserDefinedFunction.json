@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Glue-UserDefinedFunction",
   "type": "AWS::Glue::UserDefinedFunction",
-  "time": "2026-10-21T20:33:47.698Z",
+  "time": "2026-11-25T20:50:22.54Z",
   "schema": {
     "additionalIdentifiers": [
       [
@@ -13,13 +13,19 @@
     "createOnlyProperties": [
       "/properties/DatabaseName",
       "/properties/FunctionName",
-      "/properties/FunctionType"
+      "/properties/FunctionType",
+      "/properties/GovernanceMode"
     ],
     "definitions": {
       "ResourceUri": {
         "additionalProperties": false,
         "description": "The URIs for function resources.",
         "properties": {
+          "LastModified": {
+            "description": "The time at which Glue recorded the resource as last modified in Amazon S3 for a Lake Formation governed function.",
+            "format": "date-time",
+            "type": "string"
+          },
           "ResourceType": {
             "description": "The type of the resource.",
             "enum": [
@@ -92,6 +98,13 @@
         "description": "The Amazon Resource Name (ARN) of the user-defined function.",
         "type": "string"
       },
+      "ArtifactLocation": {
+        "description": "The registered Amazon S3 location that contains the function artifacts. Required when GovernanceMode is LAKE_FORMATION.",
+        "maxLength": 1024,
+        "minLength": 1,
+        "pattern": "^[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\r\\n\\t]*$",
+        "type": "string"
+      },
       "ClassName": {
         "description": "The Java class that contains the function code.",
         "maxLength": 255,
@@ -122,6 +135,14 @@
         ],
         "type": "string"
       },
+      "GovernanceMode": {
+        "description": "How access to the function is governed. The mode cannot be changed after creation.",
+        "enum": [
+          "IAM_ONLY",
+          "LAKE_FORMATION"
+        ],
+        "type": "string"
+      },
       "OwnerName": {
         "description": "The owner of the function.",
         "maxLength": 255,
@@ -148,7 +169,8 @@
       }
     },
     "readOnlyProperties": [
-      "/properties/Arn"
+      "/properties/Arn",
+      "/properties/ResourceUris/*/LastModified"
     ],
     "required": [
       "DatabaseName",

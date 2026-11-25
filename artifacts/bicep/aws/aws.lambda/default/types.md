@@ -104,6 +104,30 @@
 * **name**: string: the resource name
 * **properties**: [AWS.Lambda/ResourcePolicyProperties](#awslambdaresourcepolicyproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.Lambda/Runtime@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Lambda/RuntimeProperties](#awslambdaruntimeproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.Lambda/RuntimeAlias@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Lambda/RuntimeAliasProperties](#awslambdaruntimealiasproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.Lambda/RuntimeVersion@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Lambda/RuntimeVersionProperties](#awslambdaruntimeversionproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.Lambda/Url@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -143,6 +167,10 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Lambda/WebFunctionRevisionProperties](#awslambdawebfunctionrevisionproperties) (Required, Identifier): properties of the resource
+
+## AcceleratorConfig
+### Properties
+* **AcceleratorMemorySize**: int (Required): The minimum amount of memory (in GB) of each accelerator device exposed to the execution environment. Lambda might allocate more, depending on the accelerator instance types available. Valid values: 3, 6, 12, 16, 24, 48.
 
 ## AliasRoutingConfiguration
 ### Properties
@@ -275,6 +303,7 @@
 
 ## AWS.Lambda/FunctionProperties
 ### Properties
+* **AcceleratorConfig**: [AcceleratorConfig](#acceleratorconfig)
 * **Architectures**: string[]: The instruction set architecture that the function supports. Enter a string array with one of the valid values (arm64 or x86_64). The default value is ``x86_64``.
 * **Arn**: string (ReadOnly)
 * **CapacityProviderConfig**: [CapacityProviderConfig](#capacityproviderconfig): Configuration for the capacity provider that manages compute resources for Lambda functions.
@@ -315,6 +344,7 @@
 * **Runtime**: string: The identifier of the function's [runtime](https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html). Runtime is required if the deployment package is a .zip file archive. Specifying a runtime results in an error if you're deploying a function using a container image.
  The following list includes deprecated runtimes. Lambda blocks creating new functions and updating existing functions shortly after each runtime is deprecated. For more information, see [Runtime use after deprecation](https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html#runtime-deprecation-levels).
  For a list of all currently supported runtimes, see [Supported runtimes](https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html#runtimes-supported).
+* **RuntimeConfig**: [RuntimeConfig](#runtimeconfig)
 * **RuntimeManagementConfig**: [RuntimeManagementConfig](#runtimemanagementconfig): Sets the runtime management configuration for a function's version. For more information, see [Runtime updates](https://docs.aws.amazon.com/lambda/latest/dg/runtimes-update.html).
 * **SnapStart**: [SnapStart](#snapstart) (WriteOnly): The function's [SnapStart](https://docs.aws.amazon.com/lambda/latest/dg/snapstart.html) setting.
 * **SnapStartResponse**: [SnapStartResponse](#snapstartresponse) (ReadOnly)
@@ -357,6 +387,7 @@
 * **EnvironmentVariables**: [EnvironmentVariable](#environmentvariable)[] (Required, WriteOnly): Environment variables to set in the container during the snapshot build.
 * **Hooks**: [Hooks](#hooks) (Required, WriteOnly)
 * **ImageArn**: string (ReadOnly, Identifier): ARN of the MicroVM image.
+* **KmsKeyIdentifier**: string (WriteOnly): The customer managed KMS key used to encrypt the MicroVM image configuration at rest. When omitted, a service owned key is used.
 * **LatestActiveImageVersion**: string (ReadOnly): The latest active version of the MicroVM image.
 * **LatestFailedImageVersion**: string (ReadOnly): The latest failed version of the MicroVM image.
 * **Logging**: [Logging](#logging) (Required, WriteOnly): Configuration for MicroVM image logging.
@@ -402,6 +433,46 @@
 * **PolicyDocument**: [ResourcePolicy_PolicyDocument](#resourcepolicypolicydocument) (Required): The policy document you want to add to your LAM resource. This is formatted as a JSON string.
  For more information, see [Working with resource-based policies in](https://docs.aws.amazon.com/lambda/latest/dg/access-control-resource-based.html) in the *Developer Guide*.
 * **ResourceArn**: string (Required, Identifier)
+
+## AWS.Lambda/RuntimeAliasProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the runtime alias.
+* **Compatibility**: [Compatibility](#compatibility) (ReadOnly)
+* **Created**: string (ReadOnly): The timestamp when the runtime alias was created.
+* **Description**: string: A description of the runtime alias.
+* **LastModified**: string (ReadOnly): The timestamp when the runtime alias was last modified.
+* **Name**: string (Required): The alias name.
+* **ReleaseLifecycle**: [ReleaseLifecycle](#releaselifecycle)
+* **RuntimeName**: string (Required): The name of the parent runtime.
+* **RuntimeVersion**: string (Required): The runtime version this alias points to.
+* **RuntimeVersionArn**: string (ReadOnly): The ARN of the runtime version this alias points to.
+* **State**: string (ReadOnly): The lifecycle state of the runtime alias.
+
+## AWS.Lambda/RuntimeProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the runtime.
+* **Created**: string (ReadOnly): The timestamp when the runtime was created.
+* **Description**: string: A description of the runtime.
+* **LastModified**: string (ReadOnly): The timestamp when the runtime was last modified.
+* **LicenseInfo**: string: Licensing information for the runtime.
+* **Name**: string (Required): The name of the runtime.
+* **ReleaseLifecycle**: [ReleaseLifecycle](#releaselifecycle)
+* **State**: string (ReadOnly): The lifecycle state of the runtime.
+* **Tags**: [Tag](#tag)[]: A list of tags to apply to the runtime.
+
+## AWS.Lambda/RuntimeVersionProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the runtime version.
+* **Compatibility**: [Compatibility](#compatibility) (ReadOnly)
+* **Created**: string (ReadOnly): The timestamp when the runtime version was created.
+* **ImageUri**: string (WriteOnly): The URI of the OCI image to publish as this runtime version. Not returned in Read.
+* **LastModified**: string (ReadOnly): The timestamp when the runtime version was last modified.
+* **Name**: string (Required): The version identifier (1-128 chars, alphanumeric plus _.-).
+* **Platforms**: [Platform](#platform)[] (ReadOnly): The OCI platforms resolved from the image manifest.
+* **ReleaseNotes**: string: Optional release notes for this runtime version. Updatable; removing it from the template clears the release notes.
+* **ResolvedUri**: string (ReadOnly): The fully resolved (digest-pinned) image URI for this runtime version.
+* **RuntimeName**: string (Required): The name of the parent runtime.
+* **State**: string (ReadOnly): The lifecycle state of the runtime version.
 
 ## AWS.Lambda/UrlProperties
 ### Properties
@@ -525,6 +596,18 @@
 ### Properties
 * **UntrustedArtifactOnDeployment**: string (Required): Indicates how Lambda operations involve updating the code artifact will operate. Default to Warn if not provided
 
+## Compatibility
+### Properties
+* **Architectures**: string[]
+* **IntegrationModels**: string[]
+* **ManagedInstances**: string
+
+## Compatibility
+### Properties
+* **Architectures**: string[]: Supported CPU architectures for the runtime version.
+* **IntegrationModels**: string[]: Supported integration models for the runtime version.
+* **ManagedInstances**: string: Whether the runtime version supports managed instances.
+
 ## Config
 ### Properties
 * **VpcEgressConfiguration**: [VpcEgressConfiguration](#vpcegressconfiguration) (Required)
@@ -573,6 +656,10 @@
 * **ExecutionTimeout**: int (Required): The maximum time (in seconds) that a durable execution can run before timing out. This timeout applies to the entire durable execution, not individual function invocations.
 * **KMSKeyArn**: string: The ARN of the KMSlong (KMS) customer managed key that is used to encrypt your durable execution's payload data, including input, output, and error payloads.
 * **RetentionPeriodInDays**: int: The number of days to retain execution history after a durable execution completes. After this period, execution history is no longer available through the GetDurableExecutionHistory API.
+
+## ElasticIpConfiguration
+### Properties
+* **Type**: string (Required): The Elastic IP address type for the connector's ENIs. With None, Lambda doesn't assign an Elastic IP address. With ServiceManaged, Lambda allocates a service-managed Elastic IP address in your account for each ENI, associates it with that ENI, and releases it when it deletes the ENI. The connector's operator role must allow the ec2:AllocateAddress and ec2:AssociateAddress actions on Elastic IP addresses and on the connector's ENIs.
 
 ## Endpoints
 ### Properties
@@ -709,6 +796,12 @@
 ### Properties
 * **Destination**: string (Required): The Amazon Resource Name (ARN) of the destination resource.
 
+## Platform
+### Properties
+* **Architecture**: string (Required)
+* **Digest**: string (Required)
+* **Os**: string (Required)
+
 ## PropagateTagsConfig
 ### Properties
 * **ExplicitTags**: [Tag](#tag)[]: A list of tags to explicitly propagate to managed resources. Maximum of 40 tags.
@@ -740,6 +833,20 @@
 * **UpdateStatus**: string: The status of the most recent update to the endpoint.
 * **UpdateStatusReason**: string: The reason for the current update status of the endpoint.
 
+## ReleaseLifecycle
+### Properties
+* **DeprecationDate**: string: The date on which the runtime becomes deprecated. A UTC calendar date in yyyy-mm-dd format.
+* **FunctionCreateBlockDate**: string: The date on which creating new functions on this runtime is blocked. A UTC calendar date in yyyy-mm-dd format.
+* **FunctionUpdateBlockDate**: string: The date on which updating existing functions on this runtime is blocked. A UTC calendar date in yyyy-mm-dd format.
+* **ReleaseState**: string: The release state of the runtime. DEPRECATED requires a DeprecationDate on or before today (UTC); PREVIEW and GA require a later DeprecationDate, or none. Reads report DEPRECATED once DeprecationDate is reached.
+
+## ReleaseLifecycle
+### Properties
+* **DeprecationDate**: string: The date on which the alias becomes deprecated. A UTC calendar date in yyyy-mm-dd format.
+* **FunctionCreateBlockDate**: string: The date on which creating new functions on this alias is blocked. A UTC calendar date in yyyy-mm-dd format.
+* **FunctionUpdateBlockDate**: string: The date on which updating existing functions on this alias is blocked. A UTC calendar date in yyyy-mm-dd format.
+* **ReleaseState**: string: The release state of the alias. DEPRECATED requires a DeprecationDate on or before today (UTC); PREVIEW and GA require a later DeprecationDate, or none. Reads report DEPRECATED once DeprecationDate is reached.
+
 ## ResourcePolicy_PolicyDocument
 ### Properties
 ### Additional Properties
@@ -753,6 +860,11 @@
 ### Properties
 * **RevisionId**: string (Required): The revision identifier.
 * **Weight**: int (Required): The traffic weight for this revision.
+
+## RuntimeConfig
+### Properties
+* **RuntimeAlias**: string (Required): The name of the runtime alias that controls the function's runtime update cadence (for example, stable or latest).
+* **RuntimeArn**: string (Required): The Amazon Resource Name (ARN) of the runtime that the function uses.
 
 ## RuntimeManagementConfig
 ### Properties
@@ -795,7 +907,11 @@
 
 ## SchemaRegistryAccessConfig
 ### Properties
-* **Type**: string: The type of authentication Lambda uses to access your schema registry.
+* **Type**: string: The type of authentication Lambda uses to access your schema registry. 
+  +  ``BASIC_AUTH`` – The Secrets Manager ARN of your secret key used for basic authentication with your Confluent schema registry.
+  +  ``CLIENT_CERTIFICATE_TLS_AUTH`` – The Secrets Manager ARN of your secret key containing the certificate chain (X.509 PEM), private key (PKCS#8 PEM), and private key password (optional) used for mutual TLS authentication with your Confluent schema registry.
+  +  ``SERVER_ROOT_CA_CERTIFICATE`` – The Secrets Manager ARN of your secret key containing the root CA certificate (X.509 PEM) used for TLS encryption with your Confluent schema registry.
+  +  ``OAUTHBEARER_AUTH`` – The Secrets Manager ARN of your secret key containing the OAuth 2.0 credentials that Lambda uses to acquire an access token for your Confluent schema registry. For the contents of the secret, see [Configuring the OAuth secret](https://docs.aws.amazon.com/lambda/latest/dg/kafka-cluster-auth.html#smaa-auth-oauth-secret).
 * **URI**: string: The URI of the secret (Secrets Manager secret ARN) to authenticate with your schema registry.
 
 ## SchemaRegistryConfig
@@ -843,7 +959,14 @@
   +  ``SASL_SCRAM_512_AUTH`` – (Amazon MSK, Self-managed Apache Kafka) The Secrets Manager ARN of your secret key used for SASL SCRAM-512 authentication of your self-managed Apache Kafka brokers.
   +  ``VIRTUAL_HOST`` –- (RabbitMQ) The name of the virtual host in your RabbitMQ broker. Lambda uses this RabbitMQ host as the event source. This property cannot be specified in an UpdateEventSourceMapping API call.
   +  ``CLIENT_CERTIFICATE_TLS_AUTH`` – (Amazon MSK, self-managed Apache Kafka) The Secrets Manager ARN of your secret key containing the certificate chain (X.509 PEM), private key (PKCS#8 PEM), and private key password (optional) used for mutual TLS authentication of your MSK/Apache Kafka brokers.
-  +  ``SERVER_ROOT_CA_CERTIFICATE`` – (Self-managed Apache Kafka) The Secrets Manager ARN of your secret key containing the root CA certificate (X.509 PEM) used for TLS encryption of your Apache Kafka brokers.
+  +  ``SERVER_ROOT_CA_CERTIFICATE`` – (Self-managed Apache Kafka) The Secrets Manager ARN of your secret key containing the root CA certificate (X.509 PEM) used for TLS encryption of your Apache Kafka brokers. 
+  +  ``OAUTHBEARER_AUTH`` – (Self-managed Apache Kafka) The Secrets Manager ARN of your secret key containing the OAuth 2.0 credentials that Lambda uses for SASL/OAUTHBEARER authentication with your Apache Kafka brokers. For the contents of the secret, see [Configuring the OAuth secret](https://docs.aws.amazon.com/lambda/latest/dg/kafka-cluster-auth.html#smaa-auth-oauth-secret).
+  +  ``OAUTHBEARER_SCOPE`` – (Self-managed Apache Kafka) The OAuth 2.0 scope that Lambda requests when it acquires an access token. The ``URI`` field holds the scope value, not a secret ARN. This type requires ``OAUTHBEARER_AUTH``.
+  +  ``OAUTHBEARER_AUDIENCE`` – (Self-managed Apache Kafka) The OAuth 2.0 audience that Lambda requests when it acquires an access token. The ``URI`` field holds the audience value, not a secret ARN. This type requires either ``OAUTHBEARER_AUTH`` or ``IAM_OAUTHBEARER_AUTH``.
+  +  ``OAUTHBEARER_LOGICAL_CLUSTER`` – (Self-managed Apache Kafka) The logical cluster identifier that Lambda sends to a Confluent Cloud broker. The ``URI`` field holds the identifier, not a secret ARN. This type requires ``OAUTHBEARER_AUTH``.
+  +  ``OAUTHBEARER_IDENTITY_POOL`` – (Self-managed Apache Kafka) The identity pool identifier that Lambda sends to a Confluent Cloud broker. The ``URI`` field holds the identifier, not a secret ARN. This type requires ``OAUTHBEARER_AUTH``.
+  +  ``IAM_AUTH`` – (Self-managed Apache Kafka) Authenticate with IAMlong (IAM). Your function's execution role signs each connection, so there is no secret to provide. Omit the ``URI`` field for this type.
+  +  ``IAM_OAUTHBEARER_AUTH`` – (Self-managed Apache Kafka) Authenticate with an AWS web identity token over SASL/OAUTHBEARER. Lambda requests the token for your function's execution role, so there is no secret to provide. Omit the ``URI`` field for this type. This type requires ``OAUTHBEARER_AUDIENCE`` and does not support the other ``OAUTHBEARER`` types.
 * **URI**: string: The value for your chosen configuration in ``Type``. For example: ``"URI": "arn:aws:secretsmanager:us-east-1:01234567890:secret:MyBrokerSecretName"``.
 
 ## Tag
@@ -875,6 +998,11 @@
 ### Properties
 * **Key**: string (Required): The key name of the tag.
 * **Value**: string: The value for the tag.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length.
 
 ## Tag
 ### Properties
@@ -912,6 +1040,7 @@
 ## VpcEgressConfiguration
 ### Properties
 * **AssociatedComputeResourceTypes**: string[] (Required): The types of Lambda compute resources that can use this connector. Supported values are MicroVm and WebFunction.
+* **ElasticIpConfiguration**: [ElasticIpConfiguration](#elasticipconfiguration)
 * **NetworkProtocol**: string (Required): The network protocol for the connector. Specify IPv4 for IPv4-only networking, or DualStack for both IPv4 and IPv6.
 * **SecurityGroupIds**: string[] (Required): The IDs of the VPC security groups to attach to the ENIs. All security groups must be in the same VPC as the subnets.
 * **SubnetIds**: string[] (Required): The IDs of the VPC subnets where Lambda provisions elastic network interfaces (ENIs). Specify 1 to 16 subnets. All subnets must be in the same VPC.
@@ -932,7 +1061,7 @@
 
 ## WebFunctionRevision_BuildConfig_RuntimeConfig
 ### Properties
-* **Runtime**: string (Required): The runtime identifier.
+* **Runtime**: string (Required): The runtime identifier. Either a short runtime name (for example, nodejs24.x) or a Lambda runtime ARN.
 
 ## WebFunctionRevision_ServiceConfig
 ### Properties

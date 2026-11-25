@@ -1,13 +1,14 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Route53-HealthCheck",
   "type": "AWS::Route53::HealthCheck",
-  "time": "2026-10-21T18:42:22.458Z",
+  "time": "2026-11-20T20:23:32.83Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
       "/properties/HealthCheckConfig/Type",
       "/properties/HealthCheckConfig/MeasureLatency",
-      "/properties/HealthCheckConfig/RequestInterval"
+      "/properties/HealthCheckConfig/RequestInterval",
+      "/properties/HealthCheckConfig/EndpointType"
     ],
     "definitions": {
       "AlarmIdentifier": {
@@ -111,6 +112,14 @@
           "EnableSNI": {
             "type": "boolean"
           },
+          "EndpointType": {
+            "description": "Whether the health check targets a public endpoint or a private endpoint inside a VPC. Defaults to PUBLIC. Adding this property to an existing health check's template replaces the health check; leave it unset for existing public health checks.",
+            "enum": [
+              "PUBLIC",
+              "PRIVATE"
+            ],
+            "type": "string"
+          },
           "FailureThreshold": {
             "maximum": 10,
             "minimum": 1,
@@ -118,6 +127,16 @@
           },
           "FullyQualifiedDomainName": {
             "maxLength": 255,
+            "type": "string"
+          },
+          "HealthCheckSourceId": {
+            "description": "The ID of the health check source that Route 53 uses to reach a private endpoint. Required when EndpointType is PRIVATE.",
+            "maxLength": 64,
+            "minLength": 1,
+            "relationshipRef": {
+              "propertyPath": "/properties/HealthCheckSourceId",
+              "typeName": "AWS::Route53::HealthCheckSource"
+            },
             "type": "string"
           },
           "HealthThreshold": {

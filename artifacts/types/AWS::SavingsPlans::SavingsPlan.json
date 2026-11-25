@@ -1,0 +1,198 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SavingsPlans-SavingsPlan",
+  "type": "AWS::SavingsPlans::SavingsPlan",
+  "time": "2026-11-25T21:22:11.248Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/SavingsPlanId"
+      ]
+    ],
+    "additionalProperties": false,
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource type definition for a Savings Plan.",
+    "handlers": {
+      "list": {
+        "permissions": [
+          "savingsplans:DescribeSavingsPlans"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "savingsplans:DescribeSavingsPlans",
+          "savingsplans:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/SavingsPlanArn"
+    ],
+    "properties": {
+      "Commitment": {
+        "description": "The hourly commitment amount in the specified currency.",
+        "type": "string"
+      },
+      "Currency": {
+        "description": "The currency.",
+        "enum": [
+          "CNY",
+          "USD",
+          "EUR"
+        ],
+        "type": "string"
+      },
+      "Description": {
+        "description": "The description.",
+        "type": "string"
+      },
+      "End": {
+        "description": "The end time.",
+        "type": "string"
+      },
+      "PaymentOption": {
+        "description": "The payment option.",
+        "enum": [
+          "All Upfront",
+          "Partial Upfront",
+          "No Upfront"
+        ],
+        "type": "string"
+      },
+      "ProductTypes": {
+        "description": "The product types.",
+        "insertionOrder": false,
+        "items": {
+          "enum": [
+            "EC2",
+            "Fargate",
+            "Lambda",
+            "SageMaker",
+            "RDS",
+            "DSQL",
+            "DynamoDB",
+            "ElastiCache",
+            "DocDB",
+            "Neptune",
+            "Timestream",
+            "Keyspaces",
+            "DMS",
+            "OpenSearch"
+          ],
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "RecurringPaymentAmount": {
+        "description": "The recurring payment amount.",
+        "type": "string"
+      },
+      "SavingsPlanArn": {
+        "description": "The Amazon Resource Name (ARN) of the Savings Plan.",
+        "type": "string"
+      },
+      "SavingsPlanId": {
+        "description": "The ID of the Savings Plan.",
+        "type": "string"
+      },
+      "SavingsPlanOfferingId": {
+        "description": "The ID of the offering.",
+        "type": "string"
+      },
+      "SavingsPlanType": {
+        "description": "The plan type.",
+        "enum": [
+          "Compute",
+          "EC2Instance",
+          "SageMaker",
+          "Database"
+        ],
+        "type": "string"
+      },
+      "Start": {
+        "description": "The start time.",
+        "type": "string"
+      },
+      "State": {
+        "description": "The current state of the Savings Plan.",
+        "enum": [
+          "payment-pending",
+          "payment-failed",
+          "active",
+          "retired",
+          "queued",
+          "queued-deleted",
+          "pending-return",
+          "returned"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "One or more tags.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": true
+      },
+      "TermDurationInSeconds": {
+        "description": "The duration of the term, in seconds.",
+        "type": "integer"
+      },
+      "UpfrontPaymentAmount": {
+        "description": "The up-front payment amount.",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/SavingsPlanArn",
+      "/properties/SavingsPlanId",
+      "/properties/SavingsPlanOfferingId",
+      "/properties/Commitment",
+      "/properties/UpfrontPaymentAmount",
+      "/properties/Tags",
+      "/properties/State",
+      "/properties/SavingsPlanType",
+      "/properties/PaymentOption",
+      "/properties/ProductTypes",
+      "/properties/Currency",
+      "/properties/Description",
+      "/properties/Start",
+      "/properties/End",
+      "/properties/RecurringPaymentAmount",
+      "/properties/TermDurationInSeconds"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "savingsplans:ListTagsForResource"
+      ],
+      "tagOnCreate": false,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": false,
+      "taggable": true
+    },
+    "typeName": "AWS::SavingsPlans::SavingsPlan"
+  }
+}

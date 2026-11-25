@@ -68,6 +68,10 @@
 * **Metadata**: [Asset_Metadata](#assetmetadata): Per-file metadata document. Values may be strings, numbers, booleans, or lists of any of those (validated server-side).
 * **Path**: string (Required): Path of this file within the asset bundle.
 
+## AutomatedTestingCapabilityConfiguration
+### Properties
+* **Enabled**: bool: Whether the capability is enabled for this association
+
 ## AWS.DevOpsAgent/AgentSpaceProperties
 ### Properties
 * **AgentSpaceId**: string (ReadOnly, Identifier): The unique identifier of the AgentSpace
@@ -99,6 +103,7 @@
 ### Properties
 * **AgentSpaceId**: string (Required, Identifier): The unique identifier of the AgentSpace
 * **AssociationId**: string (ReadOnly, Identifier): The unique identifier of the association
+* **Capabilities**: [Capabilities](#capabilities): Automated AWS DevOps Agent capabilities enabled for this association, such as code change risk analysis
 * **Configuration**: [ServiceConfiguration](#serviceconfiguration) (Required): The configuration that directs how AgentSpace interacts with the given service
 * **CreatedAt**: string (ReadOnly): The timestamp when the association was created
 * **LinkedAssociationIds**: string[] (WriteOnly): Set of linked association IDs for parent-child relationships
@@ -142,6 +147,16 @@
 * **Type**: string (Required): The type of trigger.
 * **UpdatedAt**: string (ReadOnly): The timestamp when the trigger was last updated.
 
+## Capabilities
+### Properties
+* **CodeChangeRiskAnalysis**: [CapabilityConfiguration](#capabilityconfiguration): Configuration for code change risk analysis, in which AWS DevOps Agent automatically analyzes pull requests and merge requests for deployment risk.
+* **CodeChangeRiskAnalysisAutomatedTesting**: [AutomatedTestingCapabilityConfiguration](#automatedtestingcapabilityconfiguration): Configuration for code change risk analysis automated testing, in which AWS DevOps Agent also runs tests against the change during the analysis.
+
+## CapabilityConfiguration
+### Properties
+* **Enabled**: bool: Whether the capability is enabled for this association
+* **TriggerFilterGroups**: [TriggerFilterGroup](#triggerfiltergroup)[]: Filter groups controlling when the capability triggers automatically. The capability triggers when any group matches. When omitted, all applicable events trigger the capability. Retained while the capability is disabled.
+
 ## Condition
 ### Properties
 * **Schedule**: [Schedule](#schedule) (Required)
@@ -179,6 +194,10 @@
 * **Iam**: [IamAuthConfiguration](#iamauthconfiguration)
 * **Idc**: [IdcAuthConfiguration](#idcauthconfiguration)
 * **Idp**: [IdpAuthConfiguration](#idpauthconfiguration)
+
+## PatternFilter
+### Properties
+* **Patterns**: string[] (Required): Anchored full-match regex patterns, for example 'main' or 'release/.*'
 
 ## Preferences
 ### Properties
@@ -218,4 +237,9 @@
 ### Properties
 ### Additional Properties
 * **Additional Properties Type**: any
+
+## TriggerFilterGroup
+### Properties
+* **Events**: string[]: Passes when the webhook event is one of the listed events
+* **TargetBranches**: [PatternFilter](#patternfilter): Passes when the change request target branch matches
 

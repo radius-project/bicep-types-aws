@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EC2-TransitGatewayPeeringAttachment",
   "type": "AWS::EC2::TransitGatewayPeeringAttachment",
-  "time": "2026-10-21T20:09:33.238Z",
+  "time": "2026-11-19T21:02:30.668Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -34,6 +34,23 @@
           },
           "Value": {
             "description": "The value of the tag. Constraints: Tag values are case-sensitive and accept a maximum of 255 Unicode characters.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "TransitGatewayPeeringAttachmentOptions": {
+        "additionalProperties": false,
+        "properties": {
+          "AllowMultipathResilience": {
+            "description": "Whether to enable MultipathResilience on this side of the peering attachment.",
+            "type": "boolean"
+          },
+          "MultipathResilienceMode": {
+            "description": "The MultipathResilience mode. Only valid when AllowMultipathResilience is true.",
+            "enum": [
+              "always-on"
+            ],
             "type": "string"
           }
         },
@@ -84,10 +101,22 @@
       "/properties/TransitGatewayAttachmentId"
     ],
     "properties": {
+      "AccepterAllowMultipathResilience": {
+        "description": "Whether the accepter side of the peering attachment has opted in to MultipathResilience.",
+        "type": "boolean"
+      },
       "CreationTime": {
         "description": "The time the transit gateway peering attachment was created.",
         "format": "date-time",
         "type": "string"
+      },
+      "MultipathResilienceStatus": {
+        "description": "The connection-level MultipathResilience status, computed from both sides of the peering attachment. (enabled/pending/disabled)",
+        "type": "string"
+      },
+      "Options": {
+        "$ref": "#/definitions/TransitGatewayPeeringAttachmentOptions",
+        "description": "Options for transit gateway peering attachment"
       },
       "PeerAccountId": {
         "description": "The ID of the peer account",
@@ -99,6 +128,14 @@
       },
       "PeerTransitGatewayId": {
         "description": "The ID of the peer transit gateway.",
+        "type": "string"
+      },
+      "RequesterAllowMultipathResilience": {
+        "description": "Whether the requester side of the peering attachment has opted in to MultipathResilience.",
+        "type": "boolean"
+      },
+      "RequesterMultipathResilienceMode": {
+        "description": "The MultipathResilience mode chosen by the requester side of the peering attachment.",
         "type": "string"
       },
       "State": {
@@ -129,7 +166,11 @@
       "/properties/TransitGatewayAttachmentId",
       "/properties/Status",
       "/properties/State",
-      "/properties/CreationTime"
+      "/properties/CreationTime",
+      "/properties/RequesterAllowMultipathResilience",
+      "/properties/RequesterMultipathResilienceMode",
+      "/properties/AccepterAllowMultipathResilience",
+      "/properties/MultipathResilienceStatus"
     ],
     "required": [
       "TransitGatewayId",
@@ -149,6 +190,9 @@
       "tagUpdatable": true,
       "taggable": true
     },
-    "typeName": "AWS::EC2::TransitGatewayPeeringAttachment"
+    "typeName": "AWS::EC2::TransitGatewayPeeringAttachment",
+    "writeOnlyProperties": [
+      "/properties/Options"
+    ]
   }
 }

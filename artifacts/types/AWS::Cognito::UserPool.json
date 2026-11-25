@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Cognito-UserPool",
   "type": "AWS::Cognito::UserPool",
-  "time": "2026-10-21T23:45:35.427Z",
+  "time": "2026-11-22T03:06:48.825Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
@@ -61,6 +61,43 @@
           },
           "LambdaVersion": {
             "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "DcrConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "AllowedScopes": {
+            "insertionOrder": false,
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "AuthenticatedGrantTypes": {
+            "insertionOrder": false,
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "EnableStatus": {
+            "enum": [
+              "Enabled",
+              "Disabled"
+            ],
+            "type": "string"
+          },
+          "OpenDcrEnabled": {
+            "type": "boolean"
+          },
+          "OpenDcrGrantTypes": {
+            "insertionOrder": false,
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
           }
         },
         "type": "object"
@@ -534,6 +571,9 @@
           "type": "string"
         },
         "type": "array"
+      },
+      "DcrConfiguration": {
+        "$ref": "#/definitions/DcrConfiguration"
       },
       "DeletionProtection": {
         "type": "string"

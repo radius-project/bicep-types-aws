@@ -1,11 +1,146 @@
 [
   {
     "$type": "ObjectType",
+    "name": "Identifier",
+    "properties": {
+      "Domain": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The fully qualified domain name (RFC 1035/1123) with at least two labels, in lowercase. The service stores domain names in lowercase, so specify the value in lowercase to avoid drift."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The key of the tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The value of the tag."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "VerificationStatus",
+    "properties": {}
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.AgentRegistry/PublisherProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.AgentRegistry/PublisherProperties",
+    "properties": {
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The timestamp when the Publisher was created."
+      },
+      "PublisherArn": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the Publisher. The Publisher is a global resource, so the ARN has no Region."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The verification status of the Publisher."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "Tags to assign to the Publisher."
+      },
+      "UpdatedAt": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The timestamp when the Publisher was last updated."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/0"
+        },
+        "flags": 1,
+        "description": "The identifier that this Publisher proves ownership of."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.AgentRegistry/Publisher",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.AgentRegistry/Publisher@default",
+    "body": {
+      "$ref": "#/7"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
     "name": "ApprovalConfiguration",
     "properties": {
       "AutoApprovalRules": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/25"
         },
         "flags": 0,
         "description": "The rules that determine which registry records are automatically approved on submission. When omitted or empty, submitted records require manual review."
@@ -18,7 +153,7 @@
     "properties": {
       "CustomJWTAuthorizer": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/17"
         },
         "flags": 1
       }
@@ -30,13 +165,13 @@
     "properties": {
       "ClaimMatchOperator": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/3"
         },
         "flags": 1
       },
       "ClaimMatchValue": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/15"
         },
         "flags": 1
       }
@@ -63,13 +198,13 @@
     "properties": {
       "MatchValueString": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/3"
         },
         "flags": 0
       },
       "MatchValueStringList": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/26"
         },
         "flags": 0
       }
@@ -81,19 +216,19 @@
     "properties": {
       "AuthorizingClaimMatchValue": {
         "type": {
-          "$ref": "#/2"
+          "$ref": "#/11"
         },
         "flags": 1
       },
       "InboundTokenClaimName": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/3"
         },
         "flags": 1
       },
       "InboundTokenClaimValueType": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/3"
         },
         "flags": 1
       }
@@ -105,38 +240,38 @@
     "properties": {
       "AllowedAudience": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/27"
         },
         "flags": 0,
         "description": "The audience values accepted during JWT validation."
       },
       "AllowedClients": {
         "type": {
-          "$ref": "#/20"
+          "$ref": "#/28"
         },
         "flags": 0,
         "description": "The client identifiers accepted during JWT validation."
       },
       "AllowedScopes": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/29"
         },
         "flags": 0,
         "description": "The scopes accepted during JWT validation."
       },
       "CustomClaims": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/30"
         },
         "flags": 0,
         "description": "Additional custom claim validations applied to the inbound JWT."
       },
       "DiscoveryUrl": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/3"
         },
         "flags": 1,
-        "description": "The OpenID Connect discovery URL used to retrieve the identity provider's metadata and signing keys."
+        "description": "The OpenID Connect discovery or OAuth 2.0 authorization server metadata URL used to retrieve the identity provider's metadata and signing keys. The URL contains /.well-known/openid-configuration or /.well-known/oauth-authorization-server, respectively."
       }
     }
   },
@@ -146,14 +281,14 @@
     "properties": {
       "DefaultSchema": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/3"
         },
         "flags": 0,
         "description": "The default JSON Schema that applies to record types without a specific override. Supported property types are string, string with an enum constraint, string with a uri format, and boolean."
       },
       "RecordTypeSchemaOverrides": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/31"
         },
         "flags": 0,
         "description": "A list of per-record-type schema overrides. When a record's type matches an override, that override's schema is used instead of the default schema for validation."
@@ -166,7 +301,7 @@
     "properties": {
       "AuthorizerConfiguration": {
         "type": {
-          "$ref": "#/1"
+          "$ref": "#/10"
         },
         "flags": 0
       }
@@ -178,7 +313,7 @@
     "properties": {
       "KmsKeyArn": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/3"
         },
         "flags": 1,
         "description": "The Amazon Resource Name (ARN) of the customer-managed AWS KMS key used to encrypt the registry's content. The key must be a symmetric encryption key in the same AWS account and Region as the registry. Multi-Region keys are not supported."
@@ -191,14 +326,14 @@
     "properties": {
       "RecordType": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/3"
         },
         "flags": 1,
         "description": "The record type that this schema override applies to."
       },
       "Schema": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/3"
         },
         "flags": 1,
         "description": "The JSON Schema for the specified record type. Must follow the same structural rules as the default schema."
@@ -221,14 +356,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/3"
         },
         "flags": 1,
         "description": "The key of the tag."
       },
       "Value": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/3"
         },
         "flags": 1,
         "description": "The value of the tag."
@@ -236,12 +371,33 @@
     }
   },
   {
-    "$type": "StringType"
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/3"
+    }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/16"
+      "$ref": "#/3"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/3"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/3"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/3"
     }
   },
   {
@@ -253,31 +409,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/16"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/16"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/16"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/7"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/12"
+      "$ref": "#/21"
     }
   },
   {
@@ -290,7 +422,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/15"
+      "$ref": "#/24"
     }
   },
   {
@@ -299,104 +431,104 @@
     "properties": {
       "ApprovalConfiguration": {
         "type": {
-          "$ref": "#/0"
+          "$ref": "#/9"
         },
         "flags": 0
       },
       "AuthorizerType": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/3"
         },
         "flags": 0
       },
       "AutoDetectionEnabled": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/33"
         },
         "flags": 0,
         "description": "Specifies whether auto-detection is requested for the registry. Must be specified together with AutoDetectionScope. Setting this to true is necessary but not sufficient for auto-detection to become active; the preconditions of the configured scope must also be met. To turn auto-detection off, explicitly set this to false - removing AutoDetectionEnabled and AutoDetectionScope from the template is a no-op and leaves the existing auto-detection settings unchanged. A registry cannot be deleted while auto-detection is enabled: set this to false and update the stack before deleting the registry."
       },
       "AutoDetectionScope": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/3"
         },
         "flags": 0
       },
       "AutoDetectionStatus": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/3"
         },
         "flags": 2
       },
       "CreatedAt": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/3"
         },
         "flags": 2,
         "description": "The timestamp when the registry was created."
       },
       "CustomMetadataSchemaConfiguration": {
         "type": {
-          "$ref": "#/9"
+          "$ref": "#/18"
         },
         "flags": 0
       },
       "Description": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/3"
         },
         "flags": 0,
         "description": "The description of the registry."
       },
       "DiscoveryConfiguration": {
         "type": {
-          "$ref": "#/10"
+          "$ref": "#/19"
         },
         "flags": 0
       },
       "EncryptionConfiguration": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/20"
         },
         "flags": 0
       },
       "Name": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/3"
         },
         "flags": 1,
         "description": "The name of the registry."
       },
       "RegistryArn": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/3"
         },
         "flags": 18,
         "description": "The Amazon Resource Name (ARN) of the registry."
       },
       "RegistryId": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/3"
         },
         "flags": 2,
         "description": "The unique identifier of the registry."
       },
       "Status": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/3"
         },
         "flags": 2
       },
       "Tags": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/34"
         },
         "flags": 0,
         "description": "Tags to assign to the registry."
       },
       "UpdatedAt": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/3"
         },
         "flags": 2,
         "description": "The timestamp when the registry was last updated."
@@ -409,21 +541,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/3"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/3"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/27"
+          "$ref": "#/35"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -434,7 +566,7 @@
     "$type": "ResourceType",
     "name": "AWS.AgentRegistry/Registry@default",
     "body": {
-      "$ref": "#/28"
+      "$ref": "#/36"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -445,20 +577,20 @@
     "properties": {
       "Data": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/3"
         },
         "flags": 0
       },
       "DataSchemaVersion": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/3"
         },
         "flags": 0,
         "description": "Version of the descriptor type schema."
       },
       "Source": {
         "type": {
-          "$ref": "#/37"
+          "$ref": "#/47"
         },
         "flags": 0
       }
@@ -470,7 +602,7 @@
     "properties": {
       "Source": {
         "type": {
-          "$ref": "#/52"
+          "$ref": "#/68"
         },
         "flags": 0
       }
@@ -482,9 +614,23 @@
     "properties": {
       "SkillMd": {
         "type": {
-          "$ref": "#/34"
+          "$ref": "#/42"
         },
         "flags": 0
+      },
+      "SkillPackage": {
+        "type": {
+          "$ref": "#/43"
+        },
+        "flags": 0,
+        "description": "The source that the registry synchronizes the full skill package from. You can't set it together with SkillMd.Source or SkillMd Data."
+      },
+      "SourceConfiguration": {
+        "type": {
+          "$ref": "#/44"
+        },
+        "flags": 0,
+        "description": "The provider-specific settings of the record's skill source."
       }
     }
   },
@@ -494,19 +640,19 @@
     "properties": {
       "AdditionalData": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/40"
         },
         "flags": 0
       },
       "Data": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/3"
         },
         "flags": 0
       },
       "DataSchemaVersion": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/3"
         },
         "flags": 0,
         "description": "Version of the descriptor type schema."
@@ -519,22 +665,48 @@
     "properties": {
       "Data": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/3"
         },
         "flags": 0
       },
       "DataSchemaVersion": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/3"
         },
         "flags": 0,
         "description": "Version of the descriptor type schema."
       },
       "Source": {
         "type": {
-          "$ref": "#/50"
+          "$ref": "#/64"
         },
         "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AgentSkillsPackageDescriptor",
+    "properties": {
+      "Source": {
+        "type": {
+          "$ref": "#/64"
+        },
+        "flags": 0,
+        "description": "The source of the skill package, as an s3:// URL of a ZIP object."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AgentSkillsSourceConfiguration",
+    "properties": {
+      "S3": {
+        "type": {
+          "$ref": "#/62"
+        },
+        "flags": 1,
+        "description": "The settings of an Amazon S3 source."
       }
     }
   },
@@ -544,7 +716,7 @@
     "properties": {
       "Data": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/3"
         },
         "flags": 0
       }
@@ -561,7 +733,7 @@
     "properties": {
       "FromUrl": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/48"
         },
         "flags": 0
       }
@@ -573,14 +745,14 @@
     "properties": {
       "CredentialProviderConfigurations": {
         "type": {
-          "$ref": "#/55"
+          "$ref": "#/71"
         },
         "flags": 0,
         "description": "The credential providers used to authenticate when fetching descriptor content from the source URL."
       },
       "Url": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/3"
         },
         "flags": 1,
         "description": "URL source for descriptor content."
@@ -593,37 +765,37 @@
     "properties": {
       "A2aAgentCard": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/38"
         },
         "flags": 0
       },
       "AgentSkillsDefinition": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/41"
         },
         "flags": 0
       },
       "Agui": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/39"
         },
         "flags": 0
       },
       "Custom": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/45"
         },
         "flags": 0
       },
       "Http": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/50"
         },
         "flags": 0
       },
       "McpServer": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/52"
         },
         "flags": 0
       }
@@ -635,7 +807,7 @@
     "properties": {
       "Source": {
         "type": {
-          "$ref": "#/52"
+          "$ref": "#/68"
         },
         "flags": 0
       }
@@ -647,7 +819,7 @@
     "properties": {
       "Tools": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/53"
         },
         "flags": 0
       }
@@ -659,26 +831,26 @@
     "properties": {
       "AdditionalData": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/51"
         },
         "flags": 0
       },
       "Data": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/3"
         },
         "flags": 0
       },
       "DataSchemaVersion": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/3"
         },
         "flags": 0,
         "description": "Version of the descriptor type schema."
       },
       "Source": {
         "type": {
-          "$ref": "#/37"
+          "$ref": "#/47"
         },
         "flags": 0
       }
@@ -690,13 +862,13 @@
     "properties": {
       "Data": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/3"
         },
         "flags": 0
       },
       "DataSchemaVersion": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/3"
         },
         "flags": 0,
         "description": "Version of the tools descriptor schema."
@@ -710,17 +882,30 @@
   },
   {
     "$type": "ObjectType",
+    "name": "RegistryRecordArtifact",
+    "properties": {
+      "Sha256": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The SHA-256 checksum of the skill package, as 64 lowercase hexadecimal characters."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "RegistryRecordCredentialProviderConfiguration",
     "properties": {
       "CredentialProvider": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/57"
         },
         "flags": 1
       },
       "CredentialProviderType": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/3"
         },
         "flags": 1
       }
@@ -732,13 +917,13 @@
     "properties": {
       "IamCredentialProvider": {
         "type": {
-          "$ref": "#/47"
+          "$ref": "#/58"
         },
         "flags": 0
       },
       "OauthCredentialProvider": {
         "type": {
-          "$ref": "#/48"
+          "$ref": "#/59"
         },
         "flags": 0
       }
@@ -750,21 +935,21 @@
     "properties": {
       "Region": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/3"
         },
         "flags": 0,
         "description": "The SigV4 signing region."
       },
       "RoleArn": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/3"
         },
         "flags": 0,
         "description": "The ARN of the IAM role."
       },
       "Service": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/3"
         },
         "flags": 0,
         "description": "The SigV4 signing service name."
@@ -777,27 +962,27 @@
     "properties": {
       "CustomParameters": {
         "type": {
-          "$ref": "#/56"
+          "$ref": "#/72"
         },
         "flags": 0,
         "description": "Additional custom parameters for the OAuth flow."
       },
       "GrantType": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/3"
         },
         "flags": 0
       },
       "ProviderArn": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/3"
         },
         "flags": 1,
         "description": "The ARN of the OAuth credential provider."
       },
       "Scopes": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/73"
         },
         "flags": 0,
         "description": "OAuth scopes to request."
@@ -811,11 +996,64 @@
   },
   {
     "$type": "ObjectType",
+    "name": "RegistryRecordSynchronizedSource",
+    "properties": {
+      "S3": {
+        "type": {
+          "$ref": "#/63"
+        },
+        "flags": 1,
+        "description": "The Amazon S3 source that the registry read."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "S3SourceConfiguration",
+    "properties": {
+      "BucketOwnerAccountId": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The ID of the AWS account that owns the source bucket. The registry checks that the bucket belongs to this account each time it reads the source. If you omit it for a source that uses an IAM role, the registry expects the bucket in the role's account. A source without a credential provider, which the registry reads as a public object, requires it."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "S3SynchronizedSource",
+    "properties": {
+      "ETag": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The entity tag (ETag) of the object that the registry read, without quotes, when the object has no version ID. Not recorded for a SKILL.md source on a registry that is encrypted with a customer managed key."
+      },
+      "SynchronizedAt": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The timestamp when the registry read the source."
+      },
+      "VersionId": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The version ID of the object that the registry read. Absent when the bucket isn't versioned."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "SkillMdSource",
     "properties": {
       "FromUrl": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/65"
         },
         "flags": 0
       }
@@ -825,12 +1063,52 @@
     "$type": "ObjectType",
     "name": "SkillMdSourceFromUrl",
     "properties": {
+      "CredentialProviderConfigurations": {
+        "type": {
+          "$ref": "#/74"
+        },
+        "flags": 0,
+        "description": "The credential provider that the registry uses to read the source. For an Amazon S3 source, specify an IAM role in your account that the agent-registry.amazonaws.com service principal can assume and that can read the object. Omit it to read a public object, and set SourceConfiguration.S3.BucketOwnerAccountId instead."
+      },
       "Url": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/3"
         },
         "flags": 1,
-        "description": "URL source for the SkillMd document."
+        "description": "The URL of the source. For synchronization, specify an s3://<bucket>/<key> URL that names one object in a bucket in the same AWS Region as the registry: a SKILL.md object for SkillMd, or a skill package ZIP object for SkillPackage."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SkillSourceCredentialProviderConfiguration",
+    "properties": {
+      "CredentialProvider": {
+        "type": {
+          "$ref": "#/67"
+        },
+        "flags": 1,
+        "description": "The credential provider details."
+      },
+      "CredentialProviderType": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The type of the credential provider."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SkillSourceCredentialProviderUnion",
+    "properties": {
+      "IamCredentialProvider": {
+        "type": {
+          "$ref": "#/58"
+        },
+        "flags": 0,
+        "description": "The IAM role that the registry assumes to read the source. For an Amazon S3 source, omit Service or set it to s3, and omit Region or set it to the registry's Region."
       }
     }
   },
@@ -840,7 +1118,7 @@
     "properties": {
       "FromUrl": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/69"
         },
         "flags": 0
       }
@@ -852,7 +1130,7 @@
     "properties": {
       "Url": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/3"
         },
         "flags": 1,
         "description": "URL source for descriptor content."
@@ -865,14 +1143,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/3"
         },
         "flags": 1,
         "description": "The key of the tag."
       },
       "Value": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/3"
         },
         "flags": 1,
         "description": "The value of the tag."
@@ -882,7 +1160,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/45"
+      "$ref": "#/56"
     }
   },
   {
@@ -890,13 +1168,19 @@
     "name": "RegistryRecord_CustomParameters",
     "properties": {},
     "additionalProperties": {
-      "$ref": "#/16"
+      "$ref": "#/3"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/16"
+      "$ref": "#/3"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/66"
     }
   },
   {
@@ -911,124 +1195,138 @@
     "name": "RegistryRecord_CustomMetadata",
     "properties": {},
     "additionalProperties": {
-      "$ref": "#/59"
+      "$ref": "#/76"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/54"
+      "$ref": "#/70"
     }
   },
   {
     "$type": "ObjectType",
     "name": "AWS.AgentRegistry/RegistryRecordProperties",
     "properties": {
+      "Artifact": {
+        "type": {
+          "$ref": "#/55"
+        },
+        "flags": 2,
+        "description": "The skill package that the registry stores for a skill record that synchronizes a skill package. The package's download URL isn't returned."
+      },
       "CreatedAt": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/3"
         },
         "flags": 2,
         "description": "The timestamp when the registry record was created."
       },
       "CreatedBy": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/3"
         },
         "flags": 2,
         "description": "The identifier of the AWS account that created the registry record."
       },
       "CustomMetadata": {
         "type": {
-          "$ref": "#/60"
+          "$ref": "#/77"
         },
         "flags": 0,
         "description": "The custom metadata to attach to the registry record. Each key must match a property defined in the registry's custom metadata schema. Values can be strings (maximum 128 characters) or native JSON booleans (true or false)."
       },
       "Description": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/3"
         },
         "flags": 0,
         "description": "The description of the registry record."
       },
       "Descriptors": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/49"
         },
         "flags": 1
       },
       "DisplayName": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/3"
         },
         "flags": 0,
         "description": "The human-readable display name of the registry record."
       },
       "Name": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/3"
         },
         "flags": 1,
         "description": "The name of the registry record."
       },
       "RecordArn": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/3"
         },
         "flags": 18,
         "description": "The Amazon Resource Name (ARN) of the registry record."
       },
       "RecordId": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/3"
         },
         "flags": 2,
         "description": "The unique identifier of the registry record."
       },
       "RecordType": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/3"
         },
         "flags": 1
       },
       "RecordVersion": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/3"
         },
         "flags": 0,
         "description": "The version of the registry record."
       },
       "RegistryArn": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/3"
         },
         "flags": 2,
         "description": "The Amazon Resource Name (ARN) of the registry containing the record."
       },
       "RegistryId": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/3"
         },
         "flags": 4,
         "description": "The identifier of the registry in which to create the record. You can specify either the registry ID or the registry Amazon Resource Name (ARN). Use the ARN form to reference a registry shared from another account via AWS Resource Access Manager (RAM)."
       },
       "Status": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/3"
         },
         "flags": 2
       },
-      "Tags": {
+      "SynchronizedSource": {
         "type": {
           "$ref": "#/61"
+        },
+        "flags": 2,
+        "description": "The source that the registry last synchronized the record's skill content from, and the version that it read. Absent until the first successful synchronization."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/78"
         },
         "flags": 0,
         "description": "Tags to assign to the registry record."
       },
       "UpdatedAt": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/3"
         },
         "flags": 2,
         "description": "The timestamp when the registry record was last updated."
@@ -1041,21 +1339,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/3"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/3"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/62"
+          "$ref": "#/79"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1066,7 +1364,7 @@
     "$type": "ResourceType",
     "name": "AWS.AgentRegistry/RegistryRecord@default",
     "body": {
-      "$ref": "#/63"
+      "$ref": "#/80"
     },
     "readableScopes": 0,
     "writableScopes": 0

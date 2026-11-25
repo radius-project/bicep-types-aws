@@ -1,0 +1,193 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-BcmPricingCalculator-WorkloadEstimate",
+  "type": "AWS::BcmPricingCalculator::WorkloadEstimate",
+  "time": "2026-11-25T20:53:59.582Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/Id"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/RateType"
+    ],
+    "definitions": {
+      "CurrencyCode": {
+        "enum": [
+          "USD"
+        ],
+        "type": "string"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      },
+      "WorkloadEstimateRateType": {
+        "enum": [
+          "BEFORE_DISCOUNTS",
+          "AFTER_DISCOUNTS",
+          "AFTER_DISCOUNTS_AND_COMMITMENTS"
+        ],
+        "type": "string"
+      },
+      "WorkloadEstimateStatus": {
+        "enum": [
+          "UPDATING",
+          "VALID",
+          "INVALID",
+          "ACTION_NEEDED"
+        ],
+        "type": "string"
+      }
+    },
+    "description": "Resource Type definition for AWS::BcmPricingCalculator::WorkloadEstimate",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "bcm-pricing-calculator:CreateWorkloadEstimate",
+          "bcm-pricing-calculator:UpdateWorkloadEstimate",
+          "bcm-pricing-calculator:GetWorkloadEstimate",
+          "bcm-pricing-calculator:TagResource"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "bcm-pricing-calculator:DeleteWorkloadEstimate",
+          "bcm-pricing-calculator:GetWorkloadEstimate",
+          "bcm-pricing-calculator:ListTagsForResource"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "bcm-pricing-calculator:ListWorkloadEstimates"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "bcm-pricing-calculator:GetWorkloadEstimate",
+          "bcm-pricing-calculator:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "bcm-pricing-calculator:UpdateWorkloadEstimate",
+          "bcm-pricing-calculator:GetWorkloadEstimate",
+          "bcm-pricing-calculator:TagResource",
+          "bcm-pricing-calculator:UntagResource",
+          "bcm-pricing-calculator:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the workload estimate.",
+        "pattern": "^arn:aws[-a-z]*:bcm-pricing-calculator::[0-9]{12}:workload-estimate/[a-f0-9-]+$",
+        "type": "string"
+      },
+      "CostCurrency": {
+        "$ref": "#/definitions/CurrencyCode",
+        "description": "The currency of the estimated cost."
+      },
+      "CreatedAt": {
+        "description": "The timestamp when the workload estimate was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "ExpiresAt": {
+        "description": "The timestamp when the workload estimate will expire.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "FailureMessage": {
+        "description": "An error message if the workload estimate failed.",
+        "type": "string"
+      },
+      "Id": {
+        "description": "The unique identifier of the workload estimate.",
+        "maxLength": 36,
+        "minLength": 36,
+        "pattern": "^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$",
+        "type": "string"
+      },
+      "Name": {
+        "description": "The name of the workload estimate.",
+        "maxLength": 64,
+        "pattern": "^[a-zA-Z0-9-]+$",
+        "type": "string"
+      },
+      "RateTimestamp": {
+        "description": "The timestamp of the pricing rates used for the estimate.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "RateType": {
+        "$ref": "#/definitions/WorkloadEstimateRateType",
+        "description": "The type of pricing rates used for the estimate."
+      },
+      "Status": {
+        "$ref": "#/definitions/WorkloadEstimateStatus",
+        "description": "The current status of the workload estimate."
+      },
+      "Tags": {
+        "description": "An array of key-value pairs to apply to this resource.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 200,
+        "type": "array"
+      },
+      "TotalCost": {
+        "description": "The total estimated cost for the workload.",
+        "type": "number"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/Id",
+      "/properties/Status",
+      "/properties/TotalCost",
+      "/properties/CostCurrency",
+      "/properties/CreatedAt",
+      "/properties/RateTimestamp",
+      "/properties/FailureMessage"
+    ],
+    "required": [
+      "Name"
+    ],
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-bcm-pricing-calculator",
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "bcm-pricing-calculator:TagResource",
+        "bcm-pricing-calculator:UntagResource",
+        "bcm-pricing-calculator:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::BcmPricingCalculator::WorkloadEstimate"
+  }
+}

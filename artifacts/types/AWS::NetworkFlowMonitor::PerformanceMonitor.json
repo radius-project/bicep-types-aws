@@ -1,0 +1,200 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-NetworkFlowMonitor-PerformanceMonitor",
+  "type": "AWS::NetworkFlowMonitor::PerformanceMonitor",
+  "time": "2026-11-25T21:23:46.204Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/MonitorName"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/MonitorName",
+      "/properties/ScopeArn"
+    ],
+    "definitions": {
+      "PerformanceMonitorTarget": {
+        "additionalProperties": false,
+        "description": "A target that is monitored by a performance monitor.",
+        "properties": {
+          "Identifier": {
+            "description": "The identifier of the target.",
+            "maxLength": 128,
+            "minLength": 20,
+            "pattern": "^arn:.*$",
+            "type": "string"
+          },
+          "Type": {
+            "description": "The type of the target.",
+            "enum": [
+              "AWS::EC2::VPC"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "Type",
+          "Identifier"
+        ],
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Creates a performance monitor to monitor network performance between a set of targets for a workload.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "networkflowmonitor:CreatePerformanceMonitor",
+          "networkflowmonitor:GetPerformanceMonitor",
+          "networkflowmonitor:TagResource"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "networkflowmonitor:DeletePerformanceMonitor",
+          "networkflowmonitor:GetPerformanceMonitor"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "networkflowmonitor:ListPerformanceMonitors"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "networkflowmonitor:GetPerformanceMonitor",
+          "networkflowmonitor:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "networkflowmonitor:UpdatePerformanceMonitor",
+          "networkflowmonitor:GetPerformanceMonitor",
+          "networkflowmonitor:TagResource",
+          "networkflowmonitor:UntagResource",
+          "networkflowmonitor:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the performance monitor.",
+        "maxLength": 512,
+        "minLength": 20,
+        "pattern": "^arn:.*$",
+        "type": "string"
+      },
+      "CreatedAt": {
+        "description": "The date and time when the performance monitor was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "ModifiedAt": {
+        "description": "The date and time when the performance monitor was last modified.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "MonitorName": {
+        "description": "The name of the performance monitor.",
+        "maxLength": 255,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9_.-]+$",
+        "type": "string"
+      },
+      "MonitorStatus": {
+        "description": "The status of the performance monitor.",
+        "enum": [
+          "PENDING",
+          "ACTIVE",
+          "INACTIVE",
+          "ERROR",
+          "DELETING"
+        ],
+        "type": "string"
+      },
+      "MonitorType": {
+        "description": "The type of the performance monitor.",
+        "enum": [
+          "VPC"
+        ],
+        "type": "string"
+      },
+      "ScopeArn": {
+        "description": "The Amazon Resource Name (ARN) of the scope for the performance monitor.",
+        "maxLength": 2048,
+        "minLength": 20,
+        "pattern": "^arn:.*$",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "The tags for the performance monitor.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 200,
+        "type": "array"
+      },
+      "Targets": {
+        "description": "The targets that are monitored by the performance monitor.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/PerformanceMonitorTarget"
+        },
+        "maxItems": 100,
+        "minItems": 1,
+        "type": "array"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/MonitorType",
+      "/properties/MonitorStatus",
+      "/properties/CreatedAt",
+      "/properties/ModifiedAt"
+    ],
+    "required": [
+      "MonitorName",
+      "Targets"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "networkflowmonitor:TagResource",
+        "networkflowmonitor:UntagResource",
+        "networkflowmonitor:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::NetworkFlowMonitor::PerformanceMonitor",
+    "writeOnlyProperties": [
+      "/properties/ScopeArn"
+    ]
+  }
+}

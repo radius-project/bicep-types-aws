@@ -1,0 +1,158 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EC2-TransitGatewayNetworkFunctionAttachment",
+  "type": "AWS::EC2::TransitGatewayNetworkFunctionAttachment",
+  "time": "2026-11-20T02:12:50.43Z",
+  "schema": {
+    "additionalProperties": false,
+    "anyOf": [
+      {
+        "required": [
+          "AvailabilityZones"
+        ]
+      },
+      {
+        "required": [
+          "AvailabilityZoneIds"
+        ]
+      }
+    ],
+    "createOnlyProperties": [
+      "/properties/TransitGatewayId",
+      "/properties/ServiceName"
+    ],
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "description": "The key of the tag.",
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value of the tag.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "description": "The AWS::EC2::TransitGatewayNetworkFunctionAttachment type",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "ec2:CreateTransitGatewayNetworkFunctionAttachment",
+          "ec2:DescribeTransitGatewayNetworkFunctionAttachments",
+          "ec2:DescribeVpcEndpointServices",
+          "ec2:CreateTags",
+          "ec2:DescribeTags"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "ec2:DeleteTransitGatewayNetworkFunctionAttachment",
+          "ec2:DescribeTransitGatewayNetworkFunctionAttachments",
+          "ec2:DeleteTags",
+          "ec2:DescribeTags"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "ec2:DescribeTransitGatewayNetworkFunctionAttachments",
+          "ec2:DescribeTags"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "ec2:DescribeTransitGatewayNetworkFunctionAttachments",
+          "ec2:DescribeTags"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "ec2:ModifyTransitGatewayNetworkFunctionAttachment",
+          "ec2:DescribeTransitGatewayNetworkFunctionAttachments",
+          "ec2:DeleteTags",
+          "ec2:CreateTags",
+          "ec2:DescribeTags"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/TransitGatewayAttachmentId"
+    ],
+    "properties": {
+      "AvailabilityZoneIds": {
+        "description": "The Availability Zone IDs for the attachment.",
+        "insertionOrder": false,
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "AvailabilityZones": {
+        "description": "The Availability Zones for the attachment.",
+        "insertionOrder": false,
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "CreationTime": {
+        "description": "The creation time of the attachment.",
+        "type": "string"
+      },
+      "ResourceId": {
+        "description": "The resource ID of the network function.",
+        "type": "string"
+      },
+      "ServiceName": {
+        "description": "The name of the network function service.",
+        "type": "string"
+      },
+      "State": {
+        "description": "The state of the attachment.",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "The tags for the attachment.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array"
+      },
+      "TransitGatewayAttachmentId": {
+        "description": "The ID of the network function attachment.",
+        "type": "string"
+      },
+      "TransitGatewayId": {
+        "description": "The ID of the transit gateway.",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/TransitGatewayAttachmentId",
+      "/properties/State",
+      "/properties/ResourceId",
+      "/properties/CreationTime"
+    ],
+    "required": [
+      "TransitGatewayId"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "ec2:CreateTags",
+        "ec2:DeleteTags"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::EC2::TransitGatewayNetworkFunctionAttachment",
+    "writeOnlyProperties": [
+      "/properties/ServiceName"
+    ]
+  }
+}

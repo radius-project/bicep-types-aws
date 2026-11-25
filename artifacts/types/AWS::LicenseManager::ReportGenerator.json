@@ -1,0 +1,227 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-LicenseManager-ReportGenerator",
+  "type": "AWS::LicenseManager::ReportGenerator",
+  "time": "2026-11-25T20:33:01.264Z",
+  "schema": {
+    "additionalProperties": false,
+    "definitions": {
+      "ReportContext": {
+        "additionalProperties": false,
+        "description": "Details of the license configurations and asset groups that this generator reports on.",
+        "properties": {
+          "LicenseAssetGroupArns": {
+            "description": "Amazon Resource Names (ARNs) of the license asset groups to include in the report.",
+            "insertionOrder": false,
+            "items": {
+              "maxLength": 2048,
+              "minLength": 0,
+              "pattern": "^arn:aws[a-zA-Z-]*:[A-Za-z0-9][A-Za-z0-9_/.-]{0,62}:[A-Za-z0-9_/.-]{0,63}:[A-Za-z0-9_/.-]{0,63}:[A-Za-z0-9][A-Za-z0-9:_/+=,@.-]{0,1023}$",
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "LicenseConfigurationArns": {
+            "description": "Amazon Resource Names (ARNs) of the license configurations that this generator reports on.",
+            "insertionOrder": false,
+            "items": {
+              "maxLength": 2048,
+              "minLength": 0,
+              "pattern": "^arn:aws[a-zA-Z-]*:[A-Za-z0-9][A-Za-z0-9_/.-]{0,62}:[A-Za-z0-9_/.-]{0,63}:[A-Za-z0-9_/.-]{0,63}:[A-Za-z0-9][A-Za-z0-9:_/+=,@.-]{0,1023}$",
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "ReportEndDate": {
+            "description": "End date for the report data collection period.",
+            "format": "date-time",
+            "type": "string"
+          },
+          "ReportStartDate": {
+            "description": "Start date for the report data collection period.",
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "ReportFrequency": {
+        "additionalProperties": false,
+        "description": "Details about how frequently reports are generated.",
+        "properties": {
+          "Period": {
+            "description": "Time period between each report. The period can be daily, weekly, or monthly.",
+            "enum": [
+              "DAY",
+              "WEEK",
+              "MONTH",
+              "ONE_TIME"
+            ],
+            "type": "string"
+          },
+          "Value": {
+            "description": "Number of times within the frequency period that a report is generated. The only supported value is 1.",
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "S3Location": {
+        "additionalProperties": false,
+        "description": "Details of the S3 bucket that report generator reports are published to.",
+        "properties": {
+          "Bucket": {
+            "description": "Name of the S3 bucket reports are published to.",
+            "type": "string"
+          },
+          "KeyPrefix": {
+            "description": "Prefix of the S3 bucket reports are published to.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with a resource.",
+        "properties": {
+          "Key": {
+            "description": "The tag key.",
+            "type": "string"
+          },
+          "Value": {
+            "description": "The tag value.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "A report generator that creates periodic reports about your AWS License Manager license configurations.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "license-manager:CreateLicenseManagerReportGenerator",
+          "license-manager:GetLicenseConfiguration",
+          "license-manager:GetServiceSettings",
+          "license-manager:TagResource",
+          "license-manager:UpdateServiceSettings",
+          "s3:CreateBucket"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "license-manager:DeleteLicenseManagerReportGenerator"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "license-manager:ListLicenseManagerReportGenerators"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "license-manager:GetLicenseManagerReportGenerator"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "license-manager:UpdateLicenseManagerReportGenerator",
+          "license-manager:GetLicenseConfiguration",
+          "license-manager:GetServiceSettings",
+          "license-manager:TagResource",
+          "license-manager:UntagResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "Amazon Resource Name (ARN) of the report generator.",
+        "maxLength": 2048,
+        "minLength": 0,
+        "pattern": "^arn:aws[a-zA-Z-]*:[A-Za-z0-9][A-Za-z0-9_/.-]{0,62}:[A-Za-z0-9_/.-]{0,63}:[A-Za-z0-9_/.-]{0,63}:[A-Za-z0-9][A-Za-z0-9:_/+=,@.-]{0,1023}$",
+        "type": "string"
+      },
+      "CreateTime": {
+        "description": "Time the report was created.",
+        "type": "string"
+      },
+      "Description": {
+        "description": "Description of the report generator.",
+        "type": "string"
+      },
+      "ReportContext": {
+        "$ref": "#/definitions/ReportContext"
+      },
+      "ReportCreatorAccount": {
+        "description": "The AWS account ID used to create the report generator.",
+        "type": "string"
+      },
+      "ReportFrequency": {
+        "$ref": "#/definitions/ReportFrequency"
+      },
+      "ReportGeneratorName": {
+        "description": "Name of the report generator.",
+        "maxLength": 100,
+        "minLength": 1,
+        "type": "string"
+      },
+      "ReportType": {
+        "description": "Type of reports to generate. The report type determines the data reported on.",
+        "insertionOrder": false,
+        "items": {
+          "enum": [
+            "LicenseConfigurationSummaryReport",
+            "LicenseConfigurationUsageReport",
+            "LicenseAssetGroupUsageReport"
+          ],
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "S3Location": {
+        "$ref": "#/definitions/S3Location"
+      },
+      "Tags": {
+        "description": "An array of key-value pairs to apply to this resource.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": true
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/S3Location",
+      "/properties/CreateTime",
+      "/properties/ReportCreatorAccount"
+    ],
+    "required": [
+      "ReportGeneratorName",
+      "ReportType",
+      "ReportContext",
+      "ReportFrequency"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "license-manager:TagResource",
+        "license-manager:UntagResource",
+        "license-manager:GetLicenseManagerReportGenerator"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::LicenseManager::ReportGenerator"
+  }
+}

@@ -1,0 +1,314 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-APIPortal-ProductApiPage",
+  "type": "AWS::APIPortal::ProductApiPage",
+  "time": "2026-11-23T07:44:50.949Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/ProductId",
+        "/properties/ProductApiPageId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/ProductId",
+      "/properties/ManagedApiId"
+    ],
+    "definitions": {
+      "ApiId": {
+        "additionalProperties": false,
+        "description": "The route (Path + Method) on the source-service resource, resolved from the Managed API's signature. One ResourceArn covers API Gateway, ALB, and CloudFront.",
+        "properties": {
+          "IdentifierParts": {
+            "$ref": "#/definitions/IdentifierParts"
+          }
+        },
+        "required": [
+          "IdentifierParts"
+        ],
+        "type": "object"
+      },
+      "DisplayContent": {
+        "additionalProperties": false,
+        "description": "Three-mode content: write with either Overrides or None; the service populates ApiUrl, OperationName and Body on Read.",
+        "properties": {
+          "ApiUrl": {
+            "description": "Service-rendered API URL. Read-only.",
+            "maxLength": 1024,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Body": {
+            "description": "Service-rendered documentation body. Read-only.",
+            "maxLength": 32768,
+            "minLength": 1,
+            "type": "string"
+          },
+          "None": {
+            "$ref": "#/definitions/None"
+          },
+          "OperationName": {
+            "description": "Service-rendered operation name. Read-only.",
+            "maxLength": 255,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Overrides": {
+            "$ref": "#/definitions/DisplayContentOverrides"
+          }
+        },
+        "type": "object"
+      },
+      "DisplayContentOverrides": {
+        "additionalProperties": false,
+        "description": "Customer-supplied overrides for the service-rendered API documentation.",
+        "properties": {
+          "ApiUrl": {
+            "description": "Override for the API URL.",
+            "maxLength": 1024,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Body": {
+            "description": "Override for the documentation body.",
+            "maxLength": 32768,
+            "minLength": 1,
+            "type": "string"
+          },
+          "OperationName": {
+            "description": "Override for the operation name.",
+            "maxLength": 255,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "IdentifierParts": {
+        "additionalProperties": false,
+        "properties": {
+          "Method": {
+            "description": "The HTTP method of the route.",
+            "maxLength": 20,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Path": {
+            "description": "The route path within the source-service resource.",
+            "maxLength": 4096,
+            "minLength": 1,
+            "type": "string"
+          },
+          "ResourceArn": {
+            "description": "ARN of the source-service resource (API Gateway RestApi+Stage, ALB, or CloudFront distribution).",
+            "maxLength": 2048,
+            "minLength": 20,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Path",
+          "Method",
+          "ResourceArn"
+        ],
+        "type": "object"
+      },
+      "None": {
+        "additionalProperties": false,
+        "description": "Marker selecting the default service-rendered content with no overrides.",
+        "type": "object"
+      },
+      "StatusException": {
+        "additionalProperties": false,
+        "description": "Reported when Status is FAILED.",
+        "properties": {
+          "Exception": {
+            "maxLength": 256,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Message": {
+            "maxLength": 2048,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with a resource.",
+        "properties": {
+          "Key": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::APIPortal::ProductApiPage. Per-API documentation page attached to an AWS::APIPortal::Product.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "apiportal:CreateProductApiPage",
+          "apiportal:GetProductApiPage",
+          "apiportal:GetManagedApi",
+          "apiportal:ListProductApiPages",
+          "apiportal:TagResource"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "apiportal:DeleteProductApiPage",
+          "apiportal:GetProductApiPage"
+        ]
+      },
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "ProductId": {
+              "$ref": "resource-schema.json#/properties/ProductId"
+            }
+          },
+          "required": [
+            "ProductId"
+          ]
+        },
+        "permissions": [
+          "apiportal:ListProductApiPages"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "apiportal:GetProductApiPage"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "apiportal:UpdateProductApiPage",
+          "apiportal:GetProductApiPage",
+          "apiportal:TagResource",
+          "apiportal:UntagResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/ProductApiPageArn"
+    ],
+    "properties": {
+      "ApiId": {
+        "$ref": "#/definitions/ApiId"
+      },
+      "DisplayContent": {
+        "$ref": "#/definitions/DisplayContent"
+      },
+      "ManagedApiId": {
+        "description": "Identifier of the Managed API this page documents.",
+        "maxLength": 30,
+        "minLength": 10,
+        "pattern": "^[a-z0-9]+$",
+        "type": "string"
+      },
+      "ProductApiPageArn": {
+        "description": "The ARN of the product API page.",
+        "maxLength": 2048,
+        "minLength": 20,
+        "type": "string"
+      },
+      "ProductApiPageId": {
+        "description": "The product API page identifier.",
+        "maxLength": 30,
+        "minLength": 10,
+        "pattern": "^[a-z0-9]+$",
+        "type": "string"
+      },
+      "ProductId": {
+        "description": "The identifier of the parent Product.",
+        "maxLength": 30,
+        "minLength": 10,
+        "pattern": "^[a-z0-9]+$",
+        "type": "string"
+      },
+      "Status": {
+        "description": "Provisioning status of the API documentation.",
+        "enum": [
+          "AVAILABLE",
+          "IN_PROGRESS",
+          "FAILED"
+        ],
+        "type": "string"
+      },
+      "StatusException": {
+        "$ref": "#/definitions/StatusException"
+      },
+      "Tags": {
+        "description": "The tags associated with the product API page.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": false
+      },
+      "TryItState": {
+        "description": "Whether the interactive TryIt UI is enabled for this API.",
+        "enum": [
+          "ENABLED",
+          "DISABLED"
+        ],
+        "type": "string"
+      },
+      "UpdatedAt": {
+        "description": "The timestamp when the product API page was last modified.",
+        "format": "date-time",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/ProductApiPageArn",
+      "/properties/ProductApiPageId",
+      "/properties/ApiId",
+      "/properties/Status",
+      "/properties/StatusException",
+      "/properties/StatusException/Exception",
+      "/properties/StatusException/Message",
+      "/properties/DisplayContent/ApiUrl",
+      "/properties/DisplayContent/OperationName",
+      "/properties/DisplayContent/Body",
+      "/properties/UpdatedAt"
+    ],
+    "required": [
+      "ProductId"
+    ],
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-apiportal.git",
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "apiportal:TagResource",
+        "apiportal:UntagResource",
+        "apiportal:GetProductApiPage"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::APIPortal::ProductApiPage",
+    "writeOnlyProperties": [
+      "/properties/ManagedApiId",
+      "/properties/DisplayContent/Overrides",
+      "/properties/DisplayContent/None"
+    ]
+  }
+}

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Scheduler-Schedule",
   "type": "AWS::Scheduler::Schedule",
-  "time": "2026-10-14T16:56:17.126Z",
+  "time": "2026-11-20T17:07:04.782Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -192,6 +192,19 @@
         ],
         "type": "object"
       },
+      "EventBridgeMetadataMap": {
+        "additionalProperties": false,
+        "description": "Customer-defined metadata key-value pairs.",
+        "maxProperties": 100,
+        "minProperties": 0,
+        "patternProperties": {
+          "^[^/]{1,128}$": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
       "EventBridgeParameters": {
         "additionalProperties": false,
         "description": "EventBridge PutEvent predefined target type.",
@@ -214,6 +227,40 @@
           "DetailType",
           "Source"
         ],
+        "type": "object"
+      },
+      "EventBridgePutEventsV2Parameters": {
+        "additionalProperties": false,
+        "description": "EventBridge PutEvent V2 predefined target type",
+        "properties": {
+          "DetailType": {
+            "description": "Free-form string, with a maximum of 128 characters, used to decide what fields to expect in the event detail.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Source": {
+            "description": "The source of the event.",
+            "maxLength": 256,
+            "minLength": 1,
+            "pattern": "^(?=[/\\.\\-_A-Za-z0-9]+)((?!aws\\.).*)|(\\$(\\.[\\w_-]+(\\[(\\d+|\\*)\\])*)*)$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "DetailType",
+          "Source"
+        ],
+        "type": "object"
+      },
+      "EventBridgePutRawEventsParameters": {
+        "additionalProperties": false,
+        "description": "EventBridge PutRawEvent predefined target type",
+        "properties": {
+          "Metadata": {
+            "$ref": "#/definitions/EventBridgeMetadataMap"
+          }
+        },
         "type": "object"
       },
       "FlexibleTimeWindow": {
@@ -442,6 +489,12 @@
           },
           "EventBridgeParameters": {
             "$ref": "#/definitions/EventBridgeParameters"
+          },
+          "EventBridgePutEventsV2Parameters": {
+            "$ref": "#/definitions/EventBridgePutEventsV2Parameters"
+          },
+          "EventBridgePutRawEventsParameters": {
+            "$ref": "#/definitions/EventBridgePutRawEventsParameters"
           },
           "Input": {
             "description": "The text, or well-formed JSON, passed to the target. If you are configuring a templated Lambda, AWS Step Functions, or Amazon EventBridge target, the input must be a well-formed JSON. For all other target types, a JSON is not required. If you do not specify anything for this field, EventBridge Scheduler delivers a default notification to the target.",

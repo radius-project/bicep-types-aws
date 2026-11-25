@@ -27,6 +27,9 @@
 * **Link**: [default](aws/aws.acmpca/default/types.md#resource-awsacmpcapermissiondefault)
 
 ## aws.agentregistry
+### aws.agentregistry/publisher
+* **Link**: [default](aws/aws.agentregistry/default/types.md#resource-awsagentregistrypublisherdefault)
+
 ### aws.agentregistry/registry
 * **Link**: [default](aws/aws.agentregistry/default/types.md#resource-awsagentregistryregistrydefault)
 
@@ -185,6 +188,43 @@
 
 ### aws.apigatewayv2/vpclink
 * **Link**: [default](aws/aws.apigatewayv2/default/types.md#resource-awsapigatewayv2vpclinkdefault)
+
+## aws.apiportal
+### aws.apiportal/discoveryconfiguration
+* **Link**: [default](aws/aws.apiportal/default/types.md#resource-awsapiportaldiscoveryconfigurationdefault)
+
+### aws.apiportal/discoveryenablement
+* **Link**: [default](aws/aws.apiportal/default/types.md#resource-awsapiportaldiscoveryenablementdefault)
+
+### aws.apiportal/managedapi
+* **Link**: [default](aws/aws.apiportal/default/types.md#resource-awsapiportalmanagedapidefault)
+
+### aws.apiportal/organizationdiscoveryconfiguration
+* **Link**: [default](aws/aws.apiportal/default/types.md#resource-awsapiportalorganizationdiscoveryconfigurationdefault)
+
+### aws.apiportal/portal
+* **Link**: [default](aws/aws.apiportal/default/types.md#resource-awsapiportalportaldefault)
+
+### aws.apiportal/portalpublication
+* **Link**: [default](aws/aws.apiportal/default/types.md#resource-awsapiportalportalpublicationdefault)
+
+### aws.apiportal/product
+* **Link**: [default](aws/aws.apiportal/default/types.md#resource-awsapiportalproductdefault)
+
+### aws.apiportal/productapipage
+* **Link**: [default](aws/aws.apiportal/default/types.md#resource-awsapiportalproductapipagedefault)
+
+### aws.apiportal/productdisplayorder
+* **Link**: [default](aws/aws.apiportal/default/types.md#resource-awsapiportalproductdisplayorderdefault)
+
+### aws.apiportal/productmanagedapiassociation
+* **Link**: [default](aws/aws.apiportal/default/types.md#resource-awsapiportalproductmanagedapiassociationdefault)
+
+### aws.apiportal/productpage
+* **Link**: [default](aws/aws.apiportal/default/types.md#resource-awsapiportalproductpagedefault)
+
+### aws.apiportal/productsharingpolicy
+* **Link**: [default](aws/aws.apiportal/default/types.md#resource-awsapiportalproductsharingpolicydefault)
 
 ## aws.appconfig
 ### aws.appconfig/application
@@ -410,6 +450,9 @@
 ### aws.athena/session
 * **Link**: [default](aws/aws.athena/default/types.md#resource-awsathenasessiondefault)
 
+### aws.athena/systemtables
+* **Link**: [default](aws/aws.athena/default/types.md#resource-awsathenasystemtablesdefault)
+
 ### aws.athena/workgroup
 * **Link**: [default](aws/aws.athena/default/types.md#resource-awsathenaworkgroupdefault)
 
@@ -551,8 +594,14 @@
 * **Link**: [default](aws/aws.bcmdataexports/default/types.md#resource-awsbcmdataexportstabledefault)
 
 ## aws.bcmpricingcalculator
+### aws.bcmpricingcalculator/billestimate
+* **Link**: [default](aws/aws.bcmpricingcalculator/default/types.md#resource-awsbcmpricingcalculatorbillestimatedefault)
+
 ### aws.bcmpricingcalculator/billscenario
 * **Link**: [default](aws/aws.bcmpricingcalculator/default/types.md#resource-awsbcmpricingcalculatorbillscenariodefault)
+
+### aws.bcmpricingcalculator/workloadestimate
+* **Link**: [default](aws/aws.bcmpricingcalculator/default/types.md#resource-awsbcmpricingcalculatorworkloadestimatedefault)
 
 ## aws.bedrock
 ### aws.bedrock/agent
@@ -1009,6 +1058,12 @@
 ### aws.cloudfront/distributiontenant
 * **Link**: [default](aws/aws.cloudfront/default/types.md#resource-awscloudfrontdistributiontenantdefault)
 
+### aws.cloudfront/fieldlevelencryptionconfig
+* **Link**: [default](aws/aws.cloudfront/default/types.md#resource-awscloudfrontfieldlevelencryptionconfigdefault)
+
+### aws.cloudfront/fieldlevelencryptionprofile
+* **Link**: [default](aws/aws.cloudfront/default/types.md#resource-awscloudfrontfieldlevelencryptionprofiledefault)
+
 ### aws.cloudfront/function
 * **Link**: [default](aws/aws.cloudfront/default/types.md#resource-awscloudfrontfunctiondefault)
 
@@ -1046,6 +1101,10 @@
 ### aws.cloudhsm/cluster
 * **Link**: [default](aws/aws.cloudhsm/default/types.md#resource-awscloudhsmclusterdefault)
 
+## aws.cloudhsmv2
+### aws.cloudhsmv2/backup
+* **Link**: [default](aws/aws.cloudhsmv2/default/types.md#resource-awscloudhsmv2backupdefault)
+
 ## aws.cloudtrail
 ### aws.cloudtrail/channel
 * **Link**: [default](aws/aws.cloudtrail/default/types.md#resource-awscloudtrailchanneldefault)
@@ -1075,6 +1134,9 @@
 ### aws.cloudwatch/alarmmuterule
 * **Link**: [default](aws/aws.cloudwatch/default/types.md#resource-awscloudwatchalarmmuteruledefault)
 
+### aws.cloudwatch/alert
+* **Link**: [default](aws/aws.cloudwatch/default/types.md#resource-awscloudwatchalertdefault)
+
 ### aws.cloudwatch/anomalydetector
 * **Link**: [default](aws/aws.cloudwatch/default/types.md#resource-awscloudwatchanomalydetectordefault)
 
@@ -1101,6 +1163,9 @@
 
 ### aws.cloudwatch/logalarm
 * **Link**: [default](aws/aws.cloudwatch/default/types.md#resource-awscloudwatchlogalarmdefault)
+
+### aws.cloudwatch/metricdataquerydefinition
+* **Link**: [default](aws/aws.cloudwatch/default/types.md#resource-awscloudwatchmetricdataquerydefinitiondefault)
 
 ### aws.cloudwatch/metricstream
 * **Link**: [default](aws/aws.cloudwatch/default/types.md#resource-awscloudwatchmetricstreamdefault)
@@ -1212,6 +1277,9 @@
 * **Link**: [default](aws/aws.codestarnotifications/default/types.md#resource-awscodestarnotificationsnotificationruledefault)
 
 ## aws.cognito
+### aws.cognito/cimdpolicy
+* **Link**: [default](aws/aws.cognito/default/types.md#resource-awscognitocimdpolicydefault)
+
 ### aws.cognito/identitypool
 * **Link**: [default](aws/aws.cognito/default/types.md#resource-awscognitoidentitypooldefault)
 
@@ -1236,6 +1304,9 @@
 ### aws.cognito/userpoolclient
 * **Link**: [default](aws/aws.cognito/default/types.md#resource-awscognitouserpoolclientdefault)
 
+### aws.cognito/userpoolclientsessionconfigurationattachment
+* **Link**: [default](aws/aws.cognito/default/types.md#resource-awscognitouserpoolclientsessionconfigurationattachmentdefault)
+
 ### aws.cognito/userpooldomain
 * **Link**: [default](aws/aws.cognito/default/types.md#resource-awscognitouserpooldomaindefault)
 
@@ -1256,6 +1327,9 @@
 
 ### aws.cognito/userpoolriskconfigurationattachment
 * **Link**: [default](aws/aws.cognito/default/types.md#resource-awscognitouserpoolriskconfigurationattachmentdefault)
+
+### aws.cognito/userpoolsessionconfigurationattachment
+* **Link**: [default](aws/aws.cognito/default/types.md#resource-awscognitouserpoolsessionconfigurationattachmentdefault)
 
 ### aws.cognito/userpooluicustomizationattachment
 * **Link**: [default](aws/aws.cognito/default/types.md#resource-awscognitouserpooluicustomizationattachmentdefault)
@@ -1521,6 +1595,9 @@
 
 ### aws.customerprofiles/recommender
 * **Link**: [default](aws/aws.customerprofiles/default/types.md#resource-awscustomerprofilesrecommenderdefault)
+
+### aws.customerprofiles/recommenderfilter
+* **Link**: [default](aws/aws.customerprofiles/default/types.md#resource-awscustomerprofilesrecommenderfilterdefault)
 
 ### aws.customerprofiles/recommenderschema
 * **Link**: [default](aws/aws.customerprofiles/default/types.md#resource-awscustomerprofilesrecommenderschemadefault)
@@ -1993,6 +2070,12 @@
 ### aws.ec2/exportinstancetask
 * **Link**: [default](aws/aws.ec2/default/types.md#resource-awsec2exportinstancetaskdefault)
 
+### aws.ec2/fcapolicy
+* **Link**: [default](aws/aws.ec2/default/types.md#resource-awsec2fcapolicydefault)
+
+### aws.ec2/fcapolicyassociation
+* **Link**: [default](aws/aws.ec2/default/types.md#resource-awsec2fcapolicyassociationdefault)
+
 ### aws.ec2/flowlog
 * **Link**: [default](aws/aws.ec2/default/types.md#resource-awsec2flowlogdefault)
 
@@ -2250,6 +2333,9 @@
 
 ### aws.ec2/transitgatewaymulticastgroupsource
 * **Link**: [default](aws/aws.ec2/default/types.md#resource-awsec2transitgatewaymulticastgroupsourcedefault)
+
+### aws.ec2/transitgatewaynetworkfunctionattachment
+* **Link**: [default](aws/aws.ec2/default/types.md#resource-awsec2transitgatewaynetworkfunctionattachmentdefault)
 
 ### aws.ec2/transitgatewaypeeringattachment
 * **Link**: [default](aws/aws.ec2/default/types.md#resource-awsec2transitgatewaypeeringattachmentdefault)
@@ -2525,6 +2611,13 @@
 ### aws.elasticloadbalancing/loadbalancer
 * **Link**: [default](aws/aws.elasticloadbalancing/default/types.md#resource-awselasticloadbalancingloadbalancerdefault)
 
+## aws.elasticloadbalancingproxy
+### aws.elasticloadbalancingproxy/certificateassociation
+* **Link**: [default](aws/aws.elasticloadbalancingproxy/default/types.md#resource-awselasticloadbalancingproxycertificateassociationdefault)
+
+### aws.elasticloadbalancingproxy/proxy
+* **Link**: [default](aws/aws.elasticloadbalancingproxy/default/types.md#resource-awselasticloadbalancingproxyproxydefault)
+
 ## aws.elasticloadbalancingv2
 ### aws.elasticloadbalancingv2/listener
 * **Link**: [default](aws/aws.elasticloadbalancingv2/default/types.md#resource-awselasticloadbalancingv2listenerdefault)
@@ -2546,6 +2639,10 @@
 
 ### aws.elasticloadbalancingv2/truststorerevocation
 * **Link**: [default](aws/aws.elasticloadbalancingv2/default/types.md#resource-awselasticloadbalancingv2truststorerevocationdefault)
+
+## aws.elasticsearch
+### aws.elasticsearch/domain
+* **Link**: [default](aws/aws.elasticsearch/default/types.md#resource-awselasticsearchdomaindefault)
 
 ## aws.elementalinference
 ### aws.elementalinference/dictionary
@@ -2770,6 +2867,9 @@
 ### aws.fsx/backup
 * **Link**: [default](aws/aws.fsx/default/types.md#resource-awsfsxbackupdefault)
 
+### aws.fsx/clusterpeer
+* **Link**: [default](aws/aws.fsx/default/types.md#resource-awsfsxclusterpeerdefault)
+
 ### aws.fsx/datarepositoryassociation
 * **Link**: [default](aws/aws.fsx/default/types.md#resource-awsfsxdatarepositoryassociationdefault)
 
@@ -2782,11 +2882,23 @@
 ### aws.fsx/s3accesspointattachment
 * **Link**: [default](aws/aws.fsx/default/types.md#resource-awsfsxs3accesspointattachmentdefault)
 
+### aws.fsx/snapmirrorpolicy
+* **Link**: [default](aws/aws.fsx/default/types.md#resource-awsfsxsnapmirrorpolicydefault)
+
+### aws.fsx/snapmirrorrelationship
+* **Link**: [default](aws/aws.fsx/default/types.md#resource-awsfsxsnapmirrorrelationshipdefault)
+
 ### aws.fsx/snapshot
 * **Link**: [default](aws/aws.fsx/default/types.md#resource-awsfsxsnapshotdefault)
 
+### aws.fsx/snapshotpolicy
+* **Link**: [default](aws/aws.fsx/default/types.md#resource-awsfsxsnapshotpolicydefault)
+
 ### aws.fsx/storagevirtualmachine
 * **Link**: [default](aws/aws.fsx/default/types.md#resource-awsfsxstoragevirtualmachinedefault)
+
+### aws.fsx/storagevirtualmachinepeer
+* **Link**: [default](aws/aws.fsx/default/types.md#resource-awsfsxstoragevirtualmachinepeerdefault)
 
 ### aws.fsx/task
 * **Link**: [default](aws/aws.fsx/default/types.md#resource-awsfsxtaskdefault)
@@ -3448,6 +3560,9 @@
 ### aws.kinesis/channel
 * **Link**: [default](aws/aws.kinesis/default/types.md#resource-awskinesischanneldefault)
 
+### aws.kinesis/queue
+* **Link**: [default](aws/aws.kinesis/default/types.md#resource-awskinesisqueuedefault)
+
 ### aws.kinesis/resourcepolicy
 * **Link**: [default](aws/aws.kinesis/default/types.md#resource-awskinesisresourcepolicydefault)
 
@@ -3463,6 +3578,9 @@
 
 ### aws.kinesisanalyticsv2/applicationcloudwatchloggingoption
 * **Link**: [default](aws/aws.kinesisanalyticsv2/default/types.md#resource-awskinesisanalyticsv2applicationcloudwatchloggingoptiondefault)
+
+### aws.kinesisanalyticsv2/snapshot
+* **Link**: [default](aws/aws.kinesisanalyticsv2/default/types.md#resource-awskinesisanalyticsv2snapshotdefault)
 
 ## aws.kinesisfirehose
 ### aws.kinesisfirehose/deliverystream
@@ -3547,6 +3665,15 @@
 ### aws.lambda/resourcepolicy
 * **Link**: [default](aws/aws.lambda/default/types.md#resource-awslambdaresourcepolicydefault)
 
+### aws.lambda/runtime
+* **Link**: [default](aws/aws.lambda/default/types.md#resource-awslambdaruntimedefault)
+
+### aws.lambda/runtimealias
+* **Link**: [default](aws/aws.lambda/default/types.md#resource-awslambdaruntimealiasdefault)
+
+### aws.lambda/runtimeversion
+* **Link**: [default](aws/aws.lambda/default/types.md#resource-awslambdaruntimeversiondefault)
+
 ### aws.lambda/url
 * **Link**: [default](aws/aws.lambda/default/types.md#resource-awslambdaurldefault)
 
@@ -3594,6 +3721,9 @@
 
 ### aws.licensemanager/licenseconfiguration
 * **Link**: [default](aws/aws.licensemanager/default/types.md#resource-awslicensemanagerlicenseconfigurationdefault)
+
+### aws.licensemanager/reportgenerator
+* **Link**: [default](aws/aws.licensemanager/default/types.md#resource-awslicensemanagerreportgeneratordefault)
 
 ## aws.licensemanagerlinuxsubscriptions
 ### aws.licensemanagerlinuxsubscriptions/subscriptionprovider
@@ -4108,6 +4238,9 @@
 ### aws.networkflowmonitor/monitor
 * **Link**: [default](aws/aws.networkflowmonitor/default/types.md#resource-awsnetworkflowmonitormonitordefault)
 
+### aws.networkflowmonitor/performancemonitor
+* **Link**: [default](aws/aws.networkflowmonitor/default/types.md#resource-awsnetworkflowmonitorperformancemonitordefault)
+
 ### aws.networkflowmonitor/scope
 * **Link**: [default](aws/aws.networkflowmonitor/default/types.md#resource-awsnetworkflowmonitorscopedefault)
 
@@ -4120,6 +4253,12 @@
 
 ### aws.networkmanager/connectpeer
 * **Link**: [default](aws/aws.networkmanager/default/types.md#resource-awsnetworkmanagerconnectpeerdefault)
+
+### aws.networkmanager/contextstore
+* **Link**: [default](aws/aws.networkmanager/default/types.md#resource-awsnetworkmanagercontextstoredefault)
+
+### aws.networkmanager/contextstoreassociation
+* **Link**: [default](aws/aws.networkmanager/default/types.md#resource-awsnetworkmanagercontextstoreassociationdefault)
 
 ### aws.networkmanager/corenetwork
 * **Link**: [default](aws/aws.networkmanager/default/types.md#resource-awsnetworkmanagercorenetworkdefault)
@@ -4171,6 +4310,9 @@
 * **Link**: [default](aws/aws.networkmonitor/default/types.md#resource-awsnetworkmonitorprobedefault)
 
 ## aws.networksecuritymanager
+### aws.networksecuritymanager/deployment
+* **Link**: [default](aws/aws.networksecuritymanager/default/types.md#resource-awsnetworksecuritymanagerdeploymentdefault)
+
 ### aws.networksecuritymanager/policy
 * **Link**: [default](aws/aws.networksecuritymanager/default/types.md#resource-awsnetworksecuritymanagerpolicydefault)
 
@@ -4275,6 +4417,10 @@
 ### aws.opensearch/datasource
 * **Link**: [default](aws/aws.opensearch/default/types.md#resource-awsopensearchdatasourcedefault)
 
+## aws.opensearchmemory
+### aws.opensearchmemory/space
+* **Link**: [default](aws/aws.opensearchmemory/default/types.md#resource-awsopensearchmemoryspacedefault)
+
 ## aws.opensearchserverless
 ### aws.opensearchserverless/accesspolicy
 * **Link**: [default](aws/aws.opensearchserverless/default/types.md#resource-awsopensearchserverlessaccesspolicydefault)
@@ -4309,6 +4455,9 @@
 
 ### aws.opensearchservice/domain
 * **Link**: [default](aws/aws.opensearchservice/default/types.md#resource-awsopensearchservicedomaindefault)
+
+### aws.opensearchservice/replicationpeer
+* **Link**: [default](aws/aws.opensearchservice/default/types.md#resource-awsopensearchservicereplicationpeerdefault)
 
 ## aws.organizations
 ### aws.organizations/account
@@ -4837,17 +4986,29 @@
 ### aws.route53/healthcheck
 * **Link**: [default](aws/aws.route53/default/types.md#resource-awsroute53healthcheckdefault)
 
+### aws.route53/healthchecksource
+* **Link**: [default](aws/aws.route53/default/types.md#resource-awsroute53healthchecksourcedefault)
+
 ### aws.route53/hostedzone
 * **Link**: [default](aws/aws.route53/default/types.md#resource-awsroute53hostedzonedefault)
 
 ### aws.route53/keysigningkey
 * **Link**: [default](aws/aws.route53/default/types.md#resource-awsroute53keysigningkeydefault)
 
+### aws.route53/queryloggingconfig
+* **Link**: [default](aws/aws.route53/default/types.md#resource-awsroute53queryloggingconfigdefault)
+
 ### aws.route53/recordset
 * **Link**: [default](aws/aws.route53/default/types.md#resource-awsroute53recordsetdefault)
 
+### aws.route53/recordsetprotection
+* **Link**: [default](aws/aws.route53/default/types.md#resource-awsroute53recordsetprotectiondefault)
+
 ### aws.route53/trafficpolicy
 * **Link**: [default](aws/aws.route53/default/types.md#resource-awsroute53trafficpolicydefault)
+
+### aws.route53/trafficpolicyinstance
+* **Link**: [default](aws/aws.route53/default/types.md#resource-awsroute53trafficpolicyinstancedefault)
 
 ## aws.route53globalresolver
 ### aws.route53globalresolver/accesssource
@@ -4855,6 +5016,9 @@
 
 ### aws.route53globalresolver/accesstoken
 * **Link**: [default](aws/aws.route53globalresolver/default/types.md#resource-awsroute53globalresolveraccesstokendefault)
+
+### aws.route53globalresolver/corenetworkendpoint
+* **Link**: [default](aws/aws.route53globalresolver/default/types.md#resource-awsroute53globalresolvercorenetworkendpointdefault)
 
 ### aws.route53globalresolver/dnsview
 * **Link**: [default](aws/aws.route53globalresolver/default/types.md#resource-awsroute53globalresolverdnsviewdefault)
@@ -5128,11 +5292,17 @@
 ### aws.sagemaker/endpointconfig
 * **Link**: [default](aws/aws.sagemaker/default/types.md#resource-awssagemakerendpointconfigdefault)
 
+### aws.sagemaker/endpointpolicy
+* **Link**: [default](aws/aws.sagemaker/default/types.md#resource-awssagemakerendpointpolicydefault)
+
 ### aws.sagemaker/experiment
 * **Link**: [default](aws/aws.sagemaker/default/types.md#resource-awssagemakerexperimentdefault)
 
 ### aws.sagemaker/experimenttrialcomponent
 * **Link**: [default](aws/aws.sagemaker/default/types.md#resource-awssagemakerexperimenttrialcomponentdefault)
+
+### aws.sagemaker/extension
+* **Link**: [default](aws/aws.sagemaker/default/types.md#resource-awssagemakerextensiondefault)
 
 ### aws.sagemaker/featuregroup
 * **Link**: [default](aws/aws.sagemaker/default/types.md#resource-awssagemakerfeaturegroupdefault)
@@ -5160,6 +5330,9 @@
 
 ### aws.sagemaker/inferenceexperiment
 * **Link**: [default](aws/aws.sagemaker/default/types.md#resource-awssagemakerinferenceexperimentdefault)
+
+### aws.sagemaker/inferencerouter
+* **Link**: [default](aws/aws.sagemaker/default/types.md#resource-awssagemakerinferencerouterdefault)
 
 ### aws.sagemaker/mlflowapp
 * **Link**: [default](aws/aws.sagemaker/default/types.md#resource-awssagemakermlflowappdefault)
@@ -5244,6 +5417,10 @@
 
 ### aws.sagemaker/workteam
 * **Link**: [default](aws/aws.sagemaker/default/types.md#resource-awssagemakerworkteamdefault)
+
+## aws.savingsplans
+### aws.savingsplans/savingsplan
+* **Link**: [default](aws/aws.savingsplans/default/types.md#resource-awssavingsplanssavingsplandefault)
 
 ## aws.scheduler
 ### aws.scheduler/schedule
@@ -5609,6 +5786,9 @@
 ### aws.ssm/cloudconnector
 * **Link**: [default](aws/aws.ssm/default/types.md#resource-awsssmcloudconnectordefault)
 
+### aws.ssm/defaulthostmanagementconfiguration
+* **Link**: [default](aws/aws.ssm/default/types.md#resource-awsssmdefaulthostmanagementconfigurationdefault)
+
 ### aws.ssm/document
 * **Link**: [default](aws/aws.ssm/default/types.md#resource-awsssmdocumentdefault)
 
@@ -5783,6 +5963,9 @@
 ## aws.timestream
 ### aws.timestream/database
 * **Link**: [default](aws/aws.timestream/default/types.md#resource-awstimestreamdatabasedefault)
+
+### aws.timestream/influxdbbackup
+* **Link**: [default](aws/aws.timestream/default/types.md#resource-awstimestreaminfluxdbbackupdefault)
 
 ### aws.timestream/influxdbcluster
 * **Link**: [default](aws/aws.timestream/default/types.md#resource-awstimestreaminfluxdbclusterdefault)
@@ -5962,8 +6145,14 @@
 ### aws.wellarchitected/agentgoal
 * **Link**: [default](aws/aws.wellarchitected/default/types.md#resource-awswellarchitectedagentgoaldefault)
 
+### aws.wellarchitected/agentorganizationalprofile
+* **Link**: [default](aws/aws.wellarchitected/default/types.md#resource-awswellarchitectedagentorganizationalprofiledefault)
+
 ### aws.wellarchitected/agentprofile
 * **Link**: [default](aws/aws.wellarchitected/default/types.md#resource-awswellarchitectedagentprofiledefault)
+
+### aws.wellarchitected/agentprofilepolicy
+* **Link**: [default](aws/aws.wellarchitected/default/types.md#resource-awswellarchitectedagentprofilepolicydefault)
 
 ### aws.wellarchitected/lens
 * **Link**: [default](aws/aws.wellarchitected/default/types.md#resource-awswellarchitectedlensdefault)

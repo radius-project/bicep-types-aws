@@ -170,6 +170,217 @@
   },
   {
     "$type": "ObjectType",
+    "name": "DataLakePrincipal",
+    "properties": {
+      "DataLakePrincipalIdentifier": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "PrincipalPermissions",
+    "properties": {
+      "Permissions": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1
+      },
+      "Principal": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.LakeFormation/DataLakeSettingsProperties"
+  },
+  {
+    "$type": "BooleanType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/14"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/15"
+    }
+  },
+  {
+    "$type": "AnyType"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "DataLakeSettings_Parameters",
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/21"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/14"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/14"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/15"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.LakeFormation/DataLakeSettingsProperties",
+    "properties": {
+      "AllowExternalDataFiltering": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 0
+      },
+      "ExternalDataFilteringAllowList": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 0
+      },
+      "CreateTableDefaultPermissions": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 0
+      },
+      "MutationType": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 4
+      },
+      "Parameters": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0
+      },
+      "ReadOnlyAdmins": {
+        "type": {
+          "$ref": "#/23"
+        },
+        "flags": 0
+      },
+      "AllowFullTableExternalDataAccess": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 0
+      },
+      "Admins": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 0
+      },
+      "CreateDatabaseDefaultPermissions": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 0
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 18,
+        "description": "Always DataLakeSettings, because an account has one set of settings in each Region."
+      },
+      "AuthorizedSessionTagValueList": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 0
+      },
+      "TrustedResourceOwners": {
+        "type": {
+          "$ref": "#/27"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.LakeFormation/DataLakeSettings",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/28"
+        },
+        "flags": 16,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.LakeFormation/DataLakeSettings@default",
+    "body": {
+      "$ref": "#/29"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
     "name": "CatalogIdString",
     "properties": {}
   },
@@ -197,7 +408,7 @@
     "properties": {
       "ExcludedColumnNames": {
         "type": {
-          "$ref": "#/49"
+          "$ref": "#/66"
         },
         "flags": 0,
         "description": "Excludes column names. Any column with this name will be excluded."
@@ -324,7 +535,7 @@
       },
       "TagValues": {
         "type": {
-          "$ref": "#/52"
+          "$ref": "#/69"
         },
         "flags": 0,
         "description": "A list of possible values of the corresponding ``TagKey`` of an LF-tag key-value pair."
@@ -356,7 +567,7 @@
       },
       "TagValues": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/70"
         },
         "flags": 1,
         "description": "A list of possible values for the corresponding ``TagKey`` of an LF-tag key-value pair."
@@ -381,7 +592,7 @@
       },
       "TagValues": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/71"
         },
         "flags": 1
       }
@@ -400,7 +611,7 @@
       },
       "Expression": {
         "type": {
-          "$ref": "#/55"
+          "$ref": "#/72"
         },
         "flags": 1,
         "description": "A list of LF-tag conditions that apply to the resource's LF-tag policy."
@@ -455,13 +666,13 @@
     "properties": {
       "DataLakePrincipal": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/36"
         },
         "flags": 0
       },
       "PermissionList": {
         "type": {
-          "$ref": "#/61"
+          "$ref": "#/77"
         },
         "flags": 0
       }
@@ -478,13 +689,13 @@
     "properties": {
       "Principal": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/36"
         },
         "flags": 1
       },
       "Resource": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/58"
         },
         "flags": 1
       }
@@ -496,56 +707,56 @@
     "properties": {
       "Catalog": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/32"
         },
         "flags": 0,
         "description": "The identifier for the Data Catalog. By default, the account ID. The Data Catalog is the persistent metadata store. It contains database definitions, table definitions, and other control information to manage your LFlong environment."
       },
       "DataCellsFilter": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/35"
         },
         "flags": 0,
         "description": "A data cell filter."
       },
       "DataLocation": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/39"
         },
         "flags": 0,
         "description": "The location of an Amazon S3 path where permissions are granted or revoked."
       },
       "Database": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/40"
         },
         "flags": 0,
         "description": "The database for the resource. Unique to the Data Catalog. A database is a set of associated table definitions organized into a logical group. You can Grant and Revoke database permissions to a principal."
       },
       "LFTag": {
         "type": {
-          "$ref": "#/28"
+          "$ref": "#/45"
         },
         "flags": 0,
         "description": "The LF-tag key and values attached to a resource."
       },
       "LFTagPolicy": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/47"
         },
         "flags": 0,
         "description": "A list of LF-tag conditions that define a resource's LF-tag policy."
       },
       "Table": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/61"
         },
         "flags": 0,
         "description": "The table for the resource. A table is a metadata definition that represents your data. You can Grant and Revoke table privileges to a principal."
       },
       "TableWithColumns": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/63"
         },
         "flags": 0,
         "description": "The table with columns for the resource. A principal with permissions to this resource can select metadata from the columns of a table in the Data Catalog and the underlying data in Amazon S3."
@@ -589,7 +800,7 @@
       },
       "TableWildcard": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/62"
         },
         "flags": 0,
         "description": "A wildcard object representing every table under a database.\n At least one of ``TableResource$Name`` or ``TableResource$TableWildcard`` is required."
@@ -614,14 +825,14 @@
       },
       "ColumnNames": {
         "type": {
-          "$ref": "#/63"
+          "$ref": "#/79"
         },
         "flags": 0,
         "description": "The list of column names for the table. At least one of ``ColumnNames`` or ``ColumnWildcard`` is required."
       },
       "ColumnWildcard": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/34"
         },
         "flags": 0,
         "description": "A wildcard specified by a ``ColumnWildcard`` object. At least one of ``ColumnNames`` or ``ColumnWildcard`` is required."
@@ -662,19 +873,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/19"
+      "$ref": "#/36"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/26"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/5"
+      "$ref": "#/43"
     }
   },
   {
@@ -692,17 +897,20 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/26"
+      "$ref": "#/5"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/29"
+      "$ref": "#/43"
     }
   },
   {
-    "$type": "BooleanType"
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/46"
+    }
   },
   {
     "$type": "NullType"
@@ -711,10 +919,10 @@
     "$type": "UnionType",
     "elements": [
       {
-        "$ref": "#/57"
+        "$ref": "#/18"
       },
       {
-        "$ref": "#/58"
+        "$ref": "#/74"
       }
     ]
   },
@@ -733,7 +941,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/38"
+      "$ref": "#/55"
     }
   },
   {
@@ -777,21 +985,21 @@
       },
       "Permissions": {
         "type": {
-          "$ref": "#/66"
+          "$ref": "#/82"
         },
         "flags": 1,
         "description": "The permissions granted or revoked."
       },
       "PermissionsWithGrantOption": {
         "type": {
-          "$ref": "#/67"
+          "$ref": "#/83"
         },
         "flags": 1,
         "description": "Indicates the ability to grant permissions (as a subset of permissions granted)."
       },
       "Principal": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/36"
         },
         "flags": 1,
         "description": "The principal to be granted a permission."
@@ -805,7 +1013,7 @@
       },
       "Resource": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/58"
         },
         "flags": 1,
         "description": "The resource to be granted or revoked permissions."
@@ -839,7 +1047,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/68"
+          "$ref": "#/84"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -850,7 +1058,7 @@
     "$type": "ResourceType",
     "name": "AWS.LakeFormation/PrincipalPermissions@default",
     "body": {
-      "$ref": "#/69"
+      "$ref": "#/85"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -879,21 +1087,21 @@
       },
       "WithFederation": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/18"
         },
         "flags": 0,
         "description": "Allows Lake Formation to assume a role to access tables in a federated database."
       },
       "HybridAccessEnabled": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/18"
         },
         "flags": 0,
         "description": "Indicates whether the data access of tables pointing to the location can be managed by both Lake Formation permissions as well as Amazon S3 bucket policies."
       },
       "UseServiceLinkedRole": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/18"
         },
         "flags": 5,
         "description": "Designates a trusted caller, an IAM principal, by registering this caller with the Data Catalog."
@@ -927,7 +1135,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/72"
+          "$ref": "#/88"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -938,7 +1146,7 @@
     "$type": "ResourceType",
     "name": "AWS.LakeFormation/Resource@default",
     "body": {
-      "$ref": "#/73"
+      "$ref": "#/89"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -999,7 +1207,7 @@
       },
       "TagValues": {
         "type": {
-          "$ref": "#/81"
+          "$ref": "#/97"
         },
         "flags": 1,
         "description": "A list of possible values an attribute can take."
@@ -1026,7 +1234,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/82"
+          "$ref": "#/98"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1037,7 +1245,7 @@
     "$type": "ResourceType",
     "name": "AWS.LakeFormation/Tag@default",
     "body": {
-      "$ref": "#/83"
+      "$ref": "#/99"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1115,7 +1323,7 @@
       },
       "TagValues": {
         "type": {
-          "$ref": "#/103"
+          "$ref": "#/119"
         },
         "flags": 1
       }
@@ -1142,25 +1350,25 @@
     "properties": {
       "Catalog": {
         "type": {
-          "$ref": "#/86"
+          "$ref": "#/102"
         },
         "flags": 0
       },
       "Database": {
         "type": {
-          "$ref": "#/90"
+          "$ref": "#/106"
         },
         "flags": 0
       },
       "Table": {
         "type": {
-          "$ref": "#/98"
+          "$ref": "#/114"
         },
         "flags": 0
       },
       "TableWithColumns": {
         "type": {
-          "$ref": "#/100"
+          "$ref": "#/116"
         },
         "flags": 0
       }
@@ -1195,7 +1403,7 @@
       },
       "TableWildcard": {
         "type": {
-          "$ref": "#/99"
+          "$ref": "#/115"
         },
         "flags": 0
       }
@@ -1218,7 +1426,7 @@
       },
       "ColumnNames": {
         "type": {
-          "$ref": "#/105"
+          "$ref": "#/121"
         },
         "flags": 1
       },
@@ -1256,7 +1464,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/92"
+      "$ref": "#/108"
     }
   },
   {
@@ -1278,7 +1486,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/92"
+      "$ref": "#/108"
     }
   },
   {
@@ -1287,14 +1495,14 @@
     "properties": {
       "LFTags": {
         "type": {
-          "$ref": "#/108"
+          "$ref": "#/124"
         },
         "flags": 1,
         "description": "List of Lake Formation Tags to associate with the Lake Formation Resource"
       },
       "Resource": {
         "type": {
-          "$ref": "#/96"
+          "$ref": "#/112"
         },
         "flags": 1,
         "description": "Resource to tag with the Lake Formation Tags"
@@ -1335,7 +1543,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/109"
+          "$ref": "#/125"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1345,214 +1553,6 @@
   {
     "$type": "ResourceType",
     "name": "AWS.LakeFormation/TagAssociation@default",
-    "body": {
-      "$ref": "#/110"
-    },
-    "readableScopes": 0,
-    "writableScopes": 0
-  },
-  {
-    "$type": "ObjectType",
-    "name": "DataLakePrincipal",
-    "properties": {
-      "DataLakePrincipalIdentifier": {
-        "type": {
-          "$ref": "#/5"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "PrincipalPermissions",
-    "properties": {
-      "Permissions": {
-        "type": {
-          "$ref": "#/114"
-        },
-        "flags": 1
-      },
-      "Principal": {
-        "type": {
-          "$ref": "#/112"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/5"
-    }
-  },
-  {
-    "$type": "StringLiteralType",
-    "value": "AWS.LakeFormation/DataLakeSettingsProperties"
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/112"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/113"
-    }
-  },
-  {
-    "$type": "AnyType"
-  },
-  {
-    "$type": "ObjectType",
-    "name": "DataLakeSettings_Parameters",
-    "properties": {},
-    "additionalProperties": {
-      "$ref": "#/118"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/112"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/112"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/113"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/5"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/5"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "AWS.LakeFormation/DataLakeSettingsProperties",
-    "properties": {
-      "AllowExternalDataFiltering": {
-        "type": {
-          "$ref": "#/57"
-        },
-        "flags": 0
-      },
-      "ExternalDataFilteringAllowList": {
-        "type": {
-          "$ref": "#/116"
-        },
-        "flags": 0
-      },
-      "CreateTableDefaultPermissions": {
-        "type": {
-          "$ref": "#/117"
-        },
-        "flags": 0
-      },
-      "MutationType": {
-        "type": {
-          "$ref": "#/5"
-        },
-        "flags": 4
-      },
-      "Parameters": {
-        "type": {
-          "$ref": "#/119"
-        },
-        "flags": 0
-      },
-      "ReadOnlyAdmins": {
-        "type": {
-          "$ref": "#/120"
-        },
-        "flags": 0
-      },
-      "AllowFullTableExternalDataAccess": {
-        "type": {
-          "$ref": "#/57"
-        },
-        "flags": 0
-      },
-      "Admins": {
-        "type": {
-          "$ref": "#/121"
-        },
-        "flags": 0
-      },
-      "CreateDatabaseDefaultPermissions": {
-        "type": {
-          "$ref": "#/122"
-        },
-        "flags": 0
-      },
-      "Id": {
-        "type": {
-          "$ref": "#/5"
-        },
-        "flags": 18,
-        "description": "Always DataLakeSettings, because an account has one set of settings in each Region."
-      },
-      "AuthorizedSessionTagValueList": {
-        "type": {
-          "$ref": "#/123"
-        },
-        "flags": 0
-      },
-      "TrustedResourceOwners": {
-        "type": {
-          "$ref": "#/124"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "AWS.LakeFormation/DataLakeSettings",
-    "properties": {
-      "name": {
-        "type": {
-          "$ref": "#/5"
-        },
-        "flags": 0,
-        "description": "the resource name"
-      },
-      "alias": {
-        "type": {
-          "$ref": "#/5"
-        },
-        "flags": 17,
-        "description": "the resource alias"
-      },
-      "properties": {
-        "type": {
-          "$ref": "#/125"
-        },
-        "flags": 16,
-        "description": "properties of the resource"
-      }
-    }
-  },
-  {
-    "$type": "ResourceType",
-    "name": "AWS.LakeFormation/DataLakeSettings@default",
     "body": {
       "$ref": "#/126"
     },

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-ComputeOptimizer-AutomationRule",
   "type": "AWS::ComputeOptimizer::AutomationRule",
-  "time": "2026-10-13T19:09:52.994Z",
+  "time": "2026-11-21T03:41:23.184Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
@@ -120,6 +120,39 @@
               "type": "string"
             },
             "maxItems": 50,
+            "minItems": 1,
+            "type": "array"
+          },
+          "ExcludedAccountIds": {
+            "description": "List of account IDs to exclude from the organization rule. Excluded accounts take precedence over included organizational units and accounts.",
+            "insertionOrder": false,
+            "items": {
+              "pattern": "^[0-9]{12}$",
+              "type": "string"
+            },
+            "maxItems": 50,
+            "minItems": 1,
+            "type": "array"
+          },
+          "ExcludedOrganizationalUnitIds": {
+            "description": "List of organizational unit or organization root IDs to exclude from the organization rule. Exclusions include accounts in descendant organizational units and take precedence over included organizational units and accounts.",
+            "insertionOrder": false,
+            "items": {
+              "pattern": "^(r-[0-9a-z]{4,32}|ou-[0-9a-z]{4,32}-[a-z0-9]{8,32})$",
+              "type": "string"
+            },
+            "maxItems": 150,
+            "minItems": 1,
+            "type": "array"
+          },
+          "OrganizationalUnitIds": {
+            "description": "List of organizational unit or organization root IDs where the organization rule applies. The rule also applies to accounts in descendant organizational units.",
+            "insertionOrder": false,
+            "items": {
+              "pattern": "^(r-[0-9a-z]{4,32}|ou-[0-9a-z]{4,32}-[a-z0-9]{8,32})$",
+              "type": "string"
+            },
+            "maxItems": 150,
             "minItems": 1,
             "type": "array"
           },

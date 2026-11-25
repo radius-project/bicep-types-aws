@@ -208,6 +208,19 @@
 ### Additional Properties
 * **Additional Properties Type**: string
 
+## GcpProviderConfiguration
+### Properties
+* **AutoInstallVMScanner**: bool: Whether to automatically install the VM scanner. Defaults to true.
+* **AwsConfigConnectorArn**: string (Required): The ARN of the AWS Config connector used for GCP resource discovery.
+* **GcpRegions**: string[] (Required): List of GCP regions to scan (e.g. us-central1).
+* **ScopeConfiguration**: [GcpScopeConfigurationMap](#gcpscopeconfigurationmap) (Required)
+
+## GcpScopeConfigurationMap
+### Properties
+* **ContainerImageScanning**: [ScopeConfiguration](#scopeconfiguration)
+* **ServerlessScanning**: [ScopeConfiguration](#scopeconfiguration)
+* **VmScanning**: [ScopeConfiguration](#scopeconfiguration)
+
 ## MapFilter
 ### Properties
 * **Comparison**: string (Required)
@@ -252,7 +265,8 @@
 
 ## ProviderConfiguration
 ### Properties
-* **Azure**: [AzureProviderConfiguration](#azureproviderconfiguration) (Required)
+* **Azure**: [AzureProviderConfiguration](#azureproviderconfiguration)
+* **Gcp**: [GcpProviderConfiguration](#gcpproviderconfiguration)
 
 ## Schedule
 ### Properties
@@ -264,21 +278,42 @@
 ## ScopeConfiguration
 ### Properties
 * **ScopeType**: string (Required)
-* **ScopeValues**: string[]: List of subscription IDs. Empty for TENANT scope.
+* **ScopeValues**: string[]: List of scope identifiers. For Azure, subscription IDs (empty for TENANT scope). For GCP, project IDs or organization ID (empty for ORGANIZATION scope).
 * **State**: string (ReadOnly)
 * **StateReason**: string (ReadOnly): Reason for the current scope state.
 
 ## ScopeConfiguration
 ### Properties
 * **ScopeType**: string (Required)
-* **ScopeValues**: string[]: List of subscription IDs. Empty for TENANT scope.
+* **ScopeValues**: string[]: List of scope identifiers. For Azure, subscription IDs (empty for TENANT scope). For GCP, project IDs or organization ID (empty for ORGANIZATION scope).
 * **State**: string (ReadOnly)
 * **StateReason**: string (ReadOnly): Reason for the current scope state.
 
 ## ScopeConfiguration
 ### Properties
 * **ScopeType**: string (Required)
-* **ScopeValues**: string[]: List of subscription IDs. Empty for TENANT scope.
+* **ScopeValues**: string[]: List of scope identifiers. For Azure, subscription IDs (empty for TENANT scope). For GCP, project IDs or organization ID (empty for ORGANIZATION scope).
+* **State**: string (ReadOnly)
+* **StateReason**: string (ReadOnly): Reason for the current scope state.
+
+## ScopeConfiguration
+### Properties
+* **ScopeType**: string (Required)
+* **ScopeValues**: string[]: List of scope identifiers. For Azure, subscription IDs (empty for TENANT scope). For GCP, project IDs or organization ID (empty for ORGANIZATION scope).
+* **State**: string (ReadOnly)
+* **StateReason**: string (ReadOnly): Reason for the current scope state.
+
+## ScopeConfiguration
+### Properties
+* **ScopeType**: string (Required)
+* **ScopeValues**: string[]: List of scope identifiers. For Azure, subscription IDs (empty for TENANT scope). For GCP, project IDs or organization ID (empty for ORGANIZATION scope).
+* **State**: string (ReadOnly)
+* **StateReason**: string (ReadOnly): Reason for the current scope state.
+
+## ScopeConfiguration
+### Properties
+* **ScopeType**: string (Required)
+* **ScopeValues**: string[]: List of scope identifiers. For Azure, subscription IDs (empty for TENANT scope). For GCP, project IDs or organization ID (empty for ORGANIZATION scope).
 * **State**: string (ReadOnly)
 * **StateReason**: string (ReadOnly): Reason for the current scope state.
 

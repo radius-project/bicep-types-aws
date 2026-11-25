@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-GameLift-GameSessionQueue",
   "type": "AWS::GameLift::GameSessionQueue",
-  "time": "2026-11-04T17:19:28.139Z",
+  "time": "2026-11-19T18:24:39.672Z",
   "schema": {
     "$schema": "https://schema.cloudformation.us-east-1.amazonaws.com/provider.definition.schema.v1.json",
     "additionalProperties": false,
@@ -21,6 +21,32 @@
         "maxItems": 100,
         "minItems": 1,
         "type": "array"
+      },
+      "DeliveryDestination": {
+        "additionalProperties": false,
+        "description": "The destination to deliver a game session queue's placement logs to. Omit DestinationArn for a CLOUDWATCH or S3 destination to have GameLift create one; FIREHOSE requires DestinationArn.",
+        "properties": {
+          "DestinationArn": {
+            "description": "The Amazon Resource Name (ARN) of the resource that receives the placement logs. The resource type must match LogDestination (a CloudWatch Logs log group, S3 bucket, or Firehose delivery stream). Required for FIREHOSE; optional for CLOUDWATCH and S3.",
+            "maxLength": 512,
+            "minLength": 1,
+            "pattern": "^arn:[a-zA-Z0-9:/*._#-]+$",
+            "type": "string"
+          },
+          "LogDestination": {
+            "description": "The type of service that receives the game session queue's placement logs.",
+            "enum": [
+              "CLOUDWATCH",
+              "S3",
+              "FIREHOSE"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "LogDestination"
+        ],
+        "type": "object"
       },
       "FilterConfiguration": {
         "additionalProperties": false,
@@ -56,6 +82,27 @@
         "maxItems": 100,
         "minItems": 1,
         "type": "array"
+      },
+      "LogConfiguration": {
+        "additionalProperties": false,
+        "description": "A policy that determines where a game session queue's placement logs are delivered.",
+        "properties": {
+          "DeliveryDestinations": {
+            "description": "The set of destinations that receive the game session queue's placement logs. A queue can deliver logs to between 1 and 3 destinations.",
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/DeliveryDestination"
+            },
+            "maxItems": 3,
+            "minItems": 1,
+            "type": "array",
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "DeliveryDestinations"
+        ],
+        "type": "object"
       },
       "PlayerLatencyPolicy": {
         "additionalProperties": false,
@@ -224,6 +271,11 @@
       "FilterConfiguration": {
         "$ref": "#/definitions/FilterConfiguration",
         "description": "A list of locations where a queue is allowed to place new game sessions.",
+        "type": "object"
+      },
+      "LogConfiguration": {
+        "$ref": "#/definitions/LogConfiguration",
+        "description": "A policy that determines where a game session queue's placement logs are delivered.",
         "type": "object"
       },
       "Name": {

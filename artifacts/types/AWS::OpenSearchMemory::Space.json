@@ -1,0 +1,254 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-OpenSearchMemory-Space",
+  "type": "AWS::OpenSearchMemory::Space",
+  "time": "2026-11-25T20:47:54.145Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/SpaceId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Name",
+      "/properties/EncryptionConfiguration"
+    ],
+    "definitions": {
+      "EncryptionConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "KmsKeyArn": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "MemoryStrategy": {
+        "additionalProperties": false,
+        "properties": {
+          "Configuration": {
+            "$ref": "#/definitions/MemoryStrategyConfiguration"
+          },
+          "Description": {
+            "maxLength": 4096,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Name": {
+            "maxLength": 64,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$",
+            "type": "string"
+          },
+          "Type": {
+            "enum": [
+              "SEMANTIC",
+              "SUMMARY",
+              "CUSTOM"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "Type",
+          "Name"
+        ],
+        "type": "object"
+      },
+      "MemoryStrategyConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "ConsolidationEnabled": {
+            "type": "boolean"
+          },
+          "ExtractEveryNMessages": {
+            "maximum": 1000,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "ExtractEveryNTokens": {
+            "maximum": 80000,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "ExtractionPrompt": {
+            "maxLength": 30720,
+            "minLength": 1,
+            "type": "string"
+          },
+          "ExtractionSeedRecentN": {
+            "maximum": 20,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "ExtractionSeedTopK": {
+            "maximum": 20,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "IdleTimeoutSeconds": {
+            "maximum": 86400,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with a resource.",
+        "properties": {
+          "Key": {
+            "description": "The key name of the tag.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value for the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::OpenSearchMemory::Space",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "kms:CreateGrant",
+          "osm:CreateSpace",
+          "osm:GetSpace",
+          "osm:TagResource"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "osm:DeleteSpace",
+          "osm:GetSpace"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "osm:ListSpaces"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "osm:GetSpace",
+          "osm:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "osm:GetSpace",
+          "osm:ListTagsForResource",
+          "osm:TagResource",
+          "osm:UntagResource",
+          "osm:UpdateSpace"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the resource.",
+        "pattern": "^arn:aws(?:-[a-z]+)*:osm:(?:[a-z]{2,4}(?:-[a-z0-9]+)+)?:[0-9]{12}:space/(?:sp-[a-f0-9]{12})$",
+        "type": "string"
+      },
+      "CreatedAt": {
+        "format": "date-time",
+        "type": "string"
+      },
+      "EncryptionConfiguration": {
+        "$ref": "#/definitions/EncryptionConfiguration"
+      },
+      "EventExpiryDays": {
+        "maximum": 365,
+        "minimum": 1,
+        "type": "integer"
+      },
+      "ExtractionModelId": {
+        "maxLength": 128,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9][a-zA-Z0-9._:-]*$",
+        "type": "string"
+      },
+      "MemoryExpiryDays": {
+        "maximum": 3650,
+        "minimum": 0,
+        "type": "integer"
+      },
+      "MemoryStrategies": {
+        "items": {
+          "$ref": "#/definitions/MemoryStrategy"
+        },
+        "maxItems": 10,
+        "type": "array"
+      },
+      "Name": {
+        "maxLength": 128,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z][a-zA-Z0-9 _-]*$",
+        "type": "string"
+      },
+      "SpaceId": {
+        "maxLength": 64,
+        "minLength": 1,
+        "pattern": "^sp-[a-f0-9]{12}$",
+        "type": "string"
+      },
+      "Status": {
+        "enum": [
+          "CREATING",
+          "ACTIVE",
+          "UPDATING",
+          "DELETING",
+          "DELETED",
+          "FAILED"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "An array of key-value pairs to apply to this resource.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 200,
+        "type": "array",
+        "uniqueItems": true
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/SpaceId",
+      "/properties/Status",
+      "/properties/CreatedAt",
+      "/properties/Arn"
+    ],
+    "required": [
+      "Name"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "osm:ListTagsForResource",
+        "osm:TagResource",
+        "osm:UntagResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::OpenSearchMemory::Space"
+  }
+}

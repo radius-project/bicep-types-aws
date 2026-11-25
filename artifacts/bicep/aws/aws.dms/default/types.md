@@ -391,6 +391,8 @@ If you specify multiple values, they must be of the same type. For example, if y
 * **CertificateArn**: string
 * **DatabaseName**: string (Required)
 * **Port**: int (Required)
+* **S3AccessRoleArn**: string: The ARN for the role the application uses to access its Amazon S3 bucket.
+* **S3Path**: string: The path for the Amazon S3 bucket that the application uses for accessing the user-defined schema.
 * **SecretsManagerOracleAsmAccessRoleArn**: string
 * **SecretsManagerOracleAsmSecretId**: string
 * **SecretsManagerSecurityDbEncryptionAccessRoleArn**: string

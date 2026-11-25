@@ -427,19 +427,25 @@
 
 ## AssetOptions
 ### Properties
+* **CustomActionDefaults**: [VisualCustomActionDefaults](#visualcustomactiondefaults)
 * **Timezone**: string
+* **VisualMessages**: [VisualMessages](#visualmessages)
 * **WeekStart**: string
 
 ## AssetOptions
 ### Properties
+* **CustomActionDefaults**: [VisualCustomActionDefaults](#visualcustomactiondefaults)
 * **ExcludedDataSetArns**: string[]
 * **QBusinessInsightsStatus**: string
 * **Timezone**: string
+* **VisualMessages**: [VisualMessages](#visualmessages)
 * **WeekStart**: string
 
 ## AssetOptions
 ### Properties
+* **CustomActionDefaults**: [VisualCustomActionDefaults](#visualcustomactiondefaults)
 * **Timezone**: string
+* **VisualMessages**: [VisualMessages](#visualmessages)
 * **WeekStart**: string
 
 ## AthenaParameters
@@ -10929,6 +10935,7 @@ At least one asset type is required.
 ## SheetDefinition
 ### Properties
 * **ContentType**: string
+* **CustomActionDefaults**: [VisualCustomActionDefaults](#visualcustomactiondefaults)
 * **Description**: string
 * **FilterControls**: [FilterControl](#filtercontrol)[]
 * **Images**: [SheetImage](#sheetimage)[]
@@ -10944,6 +10951,7 @@ At least one asset type is required.
 ## SheetDefinition
 ### Properties
 * **ContentType**: string
+* **CustomActionDefaults**: [VisualCustomActionDefaults](#visualcustomactiondefaults)
 * **Description**: string
 * **FilterControls**: [FilterControl](#filtercontrol)[]
 * **Images**: [SheetImage](#sheetimage)[]
@@ -10959,6 +10967,7 @@ At least one asset type is required.
 ## SheetDefinition
 ### Properties
 * **ContentType**: string
+* **CustomActionDefaults**: [VisualCustomActionDefaults](#visualcustomactiondefaults)
 * **Description**: string
 * **FilterControls**: [FilterControl](#filtercontrol)[]
 * **Images**: [SheetImage](#sheetimage)[]
@@ -13225,12 +13234,17 @@ At least one asset type is required.
 * **Status**: string
 * **Trigger**: string (Required)
 
-## VisualCustomActionOperation
+## VisualCustomActionDefaults
 ### Properties
-* **FilterOperation**: [CustomActionFilterOperation](#customactionfilteroperation)
-* **NavigationOperation**: [CustomActionNavigationOperation](#customactionnavigationoperation)
-* **SetParametersOperation**: [CustomActionSetParametersOperation](#customactionsetparametersoperation)
-* **URLOperation**: [CustomActionURLOperation](#customactionurloperation)
+* **HighlightOperation**: [VisualHighlightOperation](#visualhighlightoperation)
+
+## VisualCustomActionDefaults
+### Properties
+* **HighlightOperation**: [VisualHighlightOperation](#visualhighlightoperation)
+
+## VisualCustomActionDefaults
+### Properties
+* **HighlightOperation**: [VisualHighlightOperation](#visualhighlightoperation)
 
 ## VisualCustomActionOperation
 ### Properties
@@ -13245,6 +13259,25 @@ At least one asset type is required.
 * **NavigationOperation**: [CustomActionNavigationOperation](#customactionnavigationoperation)
 * **SetParametersOperation**: [CustomActionSetParametersOperation](#customactionsetparametersoperation)
 * **URLOperation**: [CustomActionURLOperation](#customactionurloperation)
+
+## VisualCustomActionOperation
+### Properties
+* **FilterOperation**: [CustomActionFilterOperation](#customactionfilteroperation)
+* **NavigationOperation**: [CustomActionNavigationOperation](#customactionnavigationoperation)
+* **SetParametersOperation**: [CustomActionSetParametersOperation](#customactionsetparametersoperation)
+* **URLOperation**: [CustomActionURLOperation](#customactionurloperation)
+
+## VisualHighlightOperation
+### Properties
+* **Trigger**: string (Required)
+
+## VisualHighlightOperation
+### Properties
+* **Trigger**: string (Required)
+
+## VisualHighlightOperation
+### Properties
+* **Trigger**: string (Required)
 
 ## VisualInteractionOptions
 ### Properties
@@ -13272,6 +13305,51 @@ At least one asset type is required.
 ## VisualMenuOption
 ### Properties
 * **AvailabilityStatus**: string
+
+## VisualMessageConfiguration
+### Properties
+* **Description**: string
+* **DescriptionVisibility**: string
+* **Enabled**: bool
+* **LinkText**: string
+* **LinkUrl**: string
+* **LinkVisibility**: string
+* **Title**: string
+* **TitleVisibility**: string
+
+## VisualMessageConfiguration
+### Properties
+* **Description**: string
+* **DescriptionVisibility**: string
+* **Enabled**: bool
+* **LinkText**: string
+* **LinkUrl**: string
+* **LinkVisibility**: string
+* **Title**: string
+* **TitleVisibility**: string
+
+## VisualMessageConfiguration
+### Properties
+* **Description**: string
+* **DescriptionVisibility**: string
+* **Enabled**: bool
+* **LinkText**: string
+* **LinkUrl**: string
+* **LinkVisibility**: string
+* **Title**: string
+* **TitleVisibility**: string
+
+## VisualMessages
+### Properties
+* **NoDataMessage**: [VisualMessageConfiguration](#visualmessageconfiguration)
+
+## VisualMessages
+### Properties
+* **NoDataMessage**: [VisualMessageConfiguration](#visualmessageconfiguration)
+
+## VisualMessages
+### Properties
+* **NoDataMessage**: [VisualMessageConfiguration](#visualmessageconfiguration)
 
 ## VisualPalette
 ### Properties

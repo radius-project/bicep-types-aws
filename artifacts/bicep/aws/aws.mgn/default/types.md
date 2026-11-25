@@ -163,6 +163,7 @@
 ## AWS.MGN/NetworkMigrationDefinitionProperties
 ### Properties
 * **Arn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the network migration definition.
+* **CidrMappings**: [CidrMapping](#cidrmapping)[]: A list of CIDR mappings that map original source CIDR ranges to updated target CIDR ranges. CIDR mappings can be provided only when VpcProvisioningStrategy is USE_EXISTING.
 * **CreatedAt**: string (ReadOnly): The timestamp when the network migration definition was created.
 * **Description**: string: A description of the network migration definition.
 * **Name**: string (Required): The name of the network migration definition.
@@ -174,6 +175,7 @@
 * **TargetNetwork**: [TargetNetwork](#targetnetwork) (Required): The target network configuration including topology and CIDR ranges.
 * **TargetS3Configuration**: [TargetS3Configuration](#targets3configuration) (Required): The S3 configuration for storing the target network artifacts.
 * **UpdatedAt**: string (ReadOnly): The timestamp when the network migration definition was last updated.
+* **VpcProvisioningStrategy**: string: Specifies whether to create new target VPCs or use existing ones. CREATE_NEW provisions new target VPCs as part of the migration; USE_EXISTING migrates into existing VPCs in the target account.
 
 ## AWS.MGN/ReplicationConfigurationTemplateProperties
 ### Properties
@@ -224,6 +226,11 @@
 * **Tags**: [Tag](#tag)[]: Tags to assign to the wave.
 * **WaveAggregatedStatus**: [WaveAggregatedStatus](#waveaggregatedstatus) (ReadOnly): The aggregated migration status of the wave.
 * **WaveID**: string (ReadOnly): The unique identifier of the wave.
+
+## CidrMapping
+### Properties
+* **OriginalCidr**: string (Required): The original CIDR range in the source network.
+* **UpdatedCidr**: string (Required): The updated CIDR range to use in the target network.
 
 ## ConnectorSsmCommandConfig
 ### Properties

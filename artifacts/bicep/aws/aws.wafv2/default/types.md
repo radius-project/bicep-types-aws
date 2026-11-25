@@ -56,6 +56,10 @@
 ### Properties
 * **CustomRequestHandling**: [CustomRequestHandling](#customrequesthandling)
 
+## AnalyticsConfig
+### Properties
+* **Mode**: string (Required)
+
 ## AndStatement
 ### Properties
 * **Statements**: [Statement](#statement)[] (Required)
@@ -141,6 +145,7 @@
 
 ## AWS.WAFv2/WebACLProperties
 ### Properties
+* **AnalyticsConfig**: [AnalyticsConfig](#analyticsconfig)
 * **ApplicationConfig**: [ApplicationConfig](#applicationconfig): Collection of application attributes.
 * **Arn**: string (ReadOnly)
 * **AssociationConfig**: [AssociationConfig](#associationconfig)
@@ -275,6 +280,36 @@
 ### Properties
 * **ActionCondition**: [LoggingConfiguration_ActionCondition](#loggingconfigurationactioncondition): A single action condition.
 * **LabelNameCondition**: [LoggingConfiguration_LabelNameCondition](#loggingconfigurationlabelnamecondition): A single label name condition.
+
+## ConnectedAccountChainConfig
+### Properties
+* **Chain**: string (Required)
+* **Prices**: [ConnectedAccountPrice](#connectedaccountprice)[] (Required)
+
+## ConnectedAccountChainConfig
+### Properties
+* **Chain**: string (Required)
+* **Prices**: [ConnectedAccountPrice](#connectedaccountprice)[] (Required)
+
+## ConnectedAccountConfig
+### Properties
+* **ConnectedAccountArn**: string (Required)
+* **PaymentNetworks**: [ConnectedAccountChainConfig](#connectedaccountchainconfig)[] (Required)
+
+## ConnectedAccountConfig
+### Properties
+* **ConnectedAccountArn**: string (Required)
+* **PaymentNetworks**: [ConnectedAccountChainConfig](#connectedaccountchainconfig)[] (Required)
+
+## ConnectedAccountPrice
+### Properties
+* **Amount**: string (Required)
+* **Currency**: string (Required)
+
+## ConnectedAccountPrice
+### Properties
+* **Amount**: string (Required)
+* **Currency**: string (Required)
 
 ## CookieMatchPattern
 ### Properties
@@ -645,11 +680,13 @@
 
 ## MonetizationConfig
 ### Properties
+* **ConnectedAccountConfigs**: [ConnectedAccountConfig](#connectedaccountconfig)[]
 * **CryptoConfig**: [CryptoConfig](#cryptoconfig)
 * **CurrencyMode**: string
 
 ## MonetizationConfig
 ### Properties
+* **ConnectedAccountConfigs**: [ConnectedAccountConfig](#connectedaccountconfig)[]
 * **CryptoConfig**: [CryptoConfig](#cryptoconfig)
 * **CurrencyMode**: string
 

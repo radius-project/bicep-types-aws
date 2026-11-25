@@ -152,6 +152,7 @@
 ## IdentityCenterConfiguration
 ### Properties
 * **IdentityCenterInstanceArn**: string: The IAM IdentityCenter instance arn
+* **UserBackgroundSessionsEnabled**: bool: Enables user background sessions for this application so sessions can continue running after users log out of their interactive notebook or their Identity Center sessions expire.
 
 ## ImageConfigurationInput
 ### Properties

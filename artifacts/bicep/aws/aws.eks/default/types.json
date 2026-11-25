@@ -2792,6 +2792,33 @@
     }
   },
   {
+    "$type": "ObjectType",
+    "name": "WorkloadIdentityConfig",
+    "properties": {
+      "Enabled": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 1,
+        "description": "Whether workload identity is enabled for the association. Enabling it requires TemplateArn and ProviderArn, and cannot be combined with TargetRoleArn."
+      },
+      "ProviderArn": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The ARN of the customer-owned IAM workload identity provider that produces the trusted context assertion for the workload."
+      },
+      "TemplateArn": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The ARN of the customer-owned IAM workload identity template that renders the workload's SPIFFE identity."
+      }
+    }
+  },
+  {
     "$type": "StringLiteralType",
     "value": "AWS.EKS/PodIdentityAssociationProperties"
   },
@@ -2870,7 +2897,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/148"
+          "$ref": "#/149"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -2881,6 +2908,12 @@
         },
         "flags": 0,
         "description": "The Target Role Arn of the pod identity association."
+      },
+      "WorkloadIdentityConfig": {
+        "type": {
+          "$ref": "#/147"
+        },
+        "flags": 0
       }
     }
   },
@@ -2904,7 +2937,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/149"
+          "$ref": "#/150"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2915,7 +2948,7 @@
     "$type": "ResourceType",
     "name": "AWS.EKS/PodIdentityAssociation@default",
     "body": {
-      "$ref": "#/150"
+      "$ref": "#/151"
     },
     "readableScopes": 0,
     "writableScopes": 0

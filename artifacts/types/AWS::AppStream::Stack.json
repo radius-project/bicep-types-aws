@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-AppStream-Stack",
   "type": "AWS::AppStream::Stack",
-  "time": "2026-10-21T23:34:55.782Z",
+  "time": "2026-11-18T20:58:13.057Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -31,8 +31,16 @@
         "additionalProperties": false,
         "description": "The configuration for agent access on a stack. Agent access enables AI agents to interact with desktop applications during streaming sessions.",
         "properties": {
+          "KmsKeyArn": {
+            "description": "The Amazon Resource Name (ARN) of the customer managed symmetric encryption KMS key that encrypts Replay Session artifacts while WorkSpaces Applications processes them. The key must be in the same Region as the stack, and ReplaySessionEnabled must be true. To remove the key, use AttributesToDelete with the AGENT_ACCESS_CONFIG_KMS_KEY_ARN value.",
+            "type": "string"
+          },
+          "ReplaySessionEnabled": {
+            "description": "Indicates whether Replay Session is enabled for agent sessions. WorkSpaces Applications delivers a video combining session screenshots, a transcript, and a report for each session. Requires the COMPUTER_VISION agent action. Setting this attribute to false also removes the KmsKeyArn value from the stack.",
+            "type": "boolean"
+          },
           "S3BucketArn": {
-            "description": "The Amazon Resource Name (ARN) of the Amazon S3 bucket where agent screenshots are stored. Required when ScreenshotsUploadEnabled is true.",
+            "description": "The Amazon Resource Name (ARN) of the Amazon S3 bucket where agent screenshots and Replay Session artifacts are stored. Required when ScreenshotsUploadEnabled or ReplaySessionEnabled is true.",
             "type": "string"
           },
           "ScreenImageFormat": {
@@ -232,7 +240,8 @@
         "permissions": [
           "appstream:CreateStack",
           "appstream:DescribeStacks",
-          "appstream:TagResource"
+          "appstream:TagResource",
+          "kms:DescribeKey"
         ]
       },
       "delete": {
@@ -259,7 +268,8 @@
           "appstream:DescribeStacks",
           "appstream:ListTagsForResource",
           "appstream:TagResource",
-          "appstream:UntagResource"
+          "appstream:UntagResource",
+          "kms:DescribeKey"
         ]
       }
     },
@@ -325,6 +335,10 @@
       },
       "RedirectURL": {
         "description": "The URL that users are redirected to after their streaming session ends.",
+        "type": "string"
+      },
+      "StorageConnectorAuthentication": {
+        "description": "Controls whether stored OneDrive and Google Drive authentication is retained between streaming sessions. Valid values: FORCE_REAUTHENTICATION | REUSE_CREDENTIALS.",
         "type": "string"
       },
       "StorageConnectors": {

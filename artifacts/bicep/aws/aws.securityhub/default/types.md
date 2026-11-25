@@ -564,17 +564,6 @@
 * **WorkflowState**: [StringFilter](#stringfilter)[]: The workflow state of a finding.
 * **WorkflowStatus**: [StringFilter](#stringfilter)[]: The status of the investigation into a finding.
 
-## AzureProviderConfiguration
-### Properties
-* **AWSConfigConnectorArn**: string (Required): The ARN of the multi-cloud configuration connector used to establish the connection to Azure.
-* **AzureRegions**: string[] (Required): The list of Azure regions to monitor.
-* **ScopeConfiguration**: [AzureScopeConfiguration](#azurescopeconfiguration) (Required): The scope configuration that defines which Azure resources are monitored.
-
-## AzureScopeConfiguration
-### Properties
-* **ScopeType**: string (Required): The type of scope. Valid values are ``tenant`` and ``subscription``.
-* **ScopeValues**: string[]: The list of scope values, such as subscription IDs, when the scope type is ``subscription``.
-
 ## BooleanFilter
 ### Properties
 * **Value**: bool (Required): The value of the boolean
@@ -789,7 +778,6 @@
 
 ## Provider
 ### Properties
-* **Azure**: [AzureProviderConfiguration](#azureproviderconfiguration) (Required)
 
 ## Provider
 ### Properties
@@ -826,7 +814,8 @@
 ### Properties
 * **Comparison**: string (Required): The condition to apply to a string value when filtering Security Hub CSPM findings.
  To search for values that have the filter value, use one of the following comparison operators:
-  +  To search for values that include the filter value, use ``CONTAINS``. For example, the filter ``Title CONTAINS CloudFront`` matches findings that have a ``Title`` that includes the string CloudFront.
+  +  To search for values that include the filter value, use ``CONTAINS``. For example, the filter ``Title CONTAINS CloudFront`` matches findings that have a ``Title`` that includes the string ``CloudFront``.
+  +  To search for values that contain a word matching the filter value, regardless of case, use ``CONTAINS_WORD``. For example, the filter ``Title CONTAINS_WORD lambda`` matches a finding whose ``Title`` is ``GuardDuty Lambda Protection``, because the ``Title`` contains the word Lambda. Including special characters in the filter value might produce unexpected search results.
   +  To search for values that exactly match the filter value, use ``EQUALS``. For example, the filter ``AwsAccountId EQUALS 123456789012`` only matches findings that have an account ID of ``123456789012``.
   +  To search for values that start with the filter value, use ``PREFIX``. For example, the filter ``ResourceRegion PREFIX us`` matches findings that have a ``ResourceRegion`` that starts with ``us``. A ``ResourceRegion`` that starts with a different value, such as ``af``, ``ap``, or ``ca``, doesn't match.
   

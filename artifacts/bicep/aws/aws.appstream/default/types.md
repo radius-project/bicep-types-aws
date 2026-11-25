@@ -133,8 +133,24 @@
 * **ScreenImageFormat**: string (Required): The image format for agent screen captures.
 * **ScreenResolution**: string (Required): The screen resolution for the agent streaming environment.
 * **ScreenshotsUploadEnabled**: bool: Indicates whether screenshot uploads to Amazon S3 are enabled for agent sessions.
+* **Settings**: [AgentAccessSetting](#agentaccesssetting)[] (Required): The list of agent access settings that define permissions for each agent action. You must specify at least one setting. Agent actions that aren't listed are disabled, so list only the actions that you enable.
+* **UserControlMode**: string: The user control mode for agent sessions. This setting determines how users can interact with agent sessions. Valid values are VIEW_ONLY, VIEW_STOP, and DISABLED.
+
+## AgentAccessConfig
+### Properties
+* **KmsKeyArn**: string: The Amazon Resource Name (ARN) of the customer managed symmetric encryption KMS key that encrypts Replay Session artifacts while WorkSpaces Applications processes them. The key must be in the same Region as the stack, and ReplaySessionEnabled must be true. To remove the key, use AttributesToDelete with the AGENT_ACCESS_CONFIG_KMS_KEY_ARN value.
+* **ReplaySessionEnabled**: bool: Indicates whether Replay Session is enabled for agent sessions. WorkSpaces Applications delivers a video combining session screenshots, a transcript, and a report for each session. Requires the COMPUTER_VISION agent action. Setting this attribute to false also removes the KmsKeyArn value from the stack.
+* **S3BucketArn**: string: The Amazon Resource Name (ARN) of the Amazon S3 bucket where agent screenshots and Replay Session artifacts are stored. Required when ScreenshotsUploadEnabled or ReplaySessionEnabled is true.
+* **ScreenImageFormat**: string (Required): The image format for agent screen captures.
+* **ScreenResolution**: string (Required): The screen resolution for the agent streaming environment.
+* **ScreenshotsUploadEnabled**: bool: Indicates whether screenshot uploads to Amazon S3 are enabled for agent sessions.
 * **Settings**: [AgentAccessSetting](#agentaccesssetting)[] (Required): The list of agent access settings that define permissions for each agent action. You must specify at least one setting.
 * **UserControlMode**: string: The user control mode for agent sessions. This setting determines how users can interact with agent sessions. Valid values are VIEW_ONLY, VIEW_STOP, and DISABLED.
+
+## AgentAccessSetting
+### Properties
+* **AgentAction**: string (Required): The agent action to configure. Valid values are COMPUTER_VISION, COMPUTER_INPUT, and FORWARD_MCP_TOOLS. COMPUTER_VISION allows agents to take screenshots of the desktop. COMPUTER_INPUT allows agents to click, type, and scroll on the desktop and requires COMPUTER_VISION to also be enabled. FORWARD_MCP_TOOLS allows agents to interact with applications and the desktop operating system through direct MCP calls rather than using computer use tools.
+* **Permission**: string (Required): Whether the agent action is enabled or disabled.
 
 ## AgentAccessSetting
 ### Properties
@@ -267,6 +283,7 @@
 ## AWS.AppStream/ImageBuilderProperties
 ### Properties
 * **AccessEndpoints**: [AccessEndpoint](#accessendpoint)[]
+* **AgentAccessConfig**: [AgentAccessConfig](#agentaccessconfig): The configuration for agent access on the image builder. If specified, agent access is enabled for the image builder.
 * **AppstreamAgentVersion**: string
 * **Description**: string
 * **DisableIMDSV1**: bool
@@ -325,6 +342,7 @@
 * **FeedbackURL**: string: The URL that users are redirected to after they click the Send Feedback link. If no URL is specified, no Send Feedback link is displayed.
 * **Name**: string (Identifier): The name of the stack.
 * **RedirectURL**: string: The URL that users are redirected to after their streaming session ends.
+* **StorageConnectorAuthentication**: string: Controls whether stored OneDrive and Google Drive authentication is retained between streaming sessions. Valid values: FORCE_REAUTHENTICATION | REUSE_CREDENTIALS.
 * **StorageConnectors**: [StorageConnector](#storageconnector)[]: The storage connectors to enable.
 * **StreamingExperienceSettings**: [StreamingExperienceSettings](#streamingexperiencesettings): The streaming protocol that you want your stack to prefer. This can be UDP or TCP. Currently, UDP is only supported in the Windows native client.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs.

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SageMaker-EndpointConfig",
   "type": "AWS::SageMaker::EndpointConfig",
-  "time": "2026-10-19T17:50:06.318Z",
+  "time": "2026-11-24T18:23:55.942Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -14,6 +14,7 @@
       "/properties/DataCaptureConfig",
       "/properties/ExplainerConfig",
       "/properties/MetricsConfig",
+      "/properties/CrossRegionTrafficConfig",
       "/properties/EndpointConfigName",
       "/properties/VpcConfig"
     ],
@@ -351,6 +352,29 @@
         },
         "required": [
           "DestinationS3Uri"
+        ],
+        "type": "object"
+      },
+      "CrossRegionTrafficConfig": {
+        "additionalProperties": false,
+        "description": "Limits the requests per second that the endpoint accepts from other AWS Regions. The limit is MaxCrossRegionPercentPerEndpoint percent of MaxInvocationsPerSecondPerInstance multiplied by the number of InService instances, shared by all production variants and inference components of the endpoint. Requests from the endpoint's own Region are not counted. Not supported with serverless variants or AsyncInferenceConfig. If you don't specify it, requests from other Regions are not limited.",
+        "properties": {
+          "MaxCrossRegionPercentPerEndpoint": {
+            "description": "The percentage of the endpoint's capacity (MaxInvocationsPerSecondPerInstance multiplied by the number of InService instances) that requests from other Regions can use. Valid values are 1 to 100.",
+            "maximum": 100,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "MaxInvocationsPerSecondPerInstance": {
+            "description": "The number of invocations per second that one InService instance can serve, used to size the limit on requests from other Regions. One value applies to every production variant, whatever its instance type. Valid values are 1 to 10000.",
+            "maximum": 10000,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "MaxInvocationsPerSecondPerInstance",
+          "MaxCrossRegionPercentPerEndpoint"
         ],
         "type": "object"
       },
@@ -746,6 +770,10 @@
       "AsyncInferenceConfig": {
         "$ref": "#/definitions/AsyncInferenceConfig",
         "description": "Specifies configuration for how an endpoint performs asynchronous inference."
+      },
+      "CrossRegionTrafficConfig": {
+        "$ref": "#/definitions/CrossRegionTrafficConfig",
+        "description": "Limits the requests per second that the endpoint accepts from other AWS Regions. The limit is MaxCrossRegionPercentPerEndpoint percent of MaxInvocationsPerSecondPerInstance multiplied by the number of InService instances, shared by all production variants and inference components of the endpoint. Requests from the endpoint's own Region are not counted. Not supported with serverless variants or AsyncInferenceConfig. If you don't specify it, requests from other Regions are not limited."
       },
       "DataCaptureConfig": {
         "$ref": "#/definitions/DataCaptureConfig",

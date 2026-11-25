@@ -284,6 +284,176 @@
   },
   {
     "$type": "ObjectType",
+    "name": "Pillar",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The tag key."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The tag value."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.WellArchitected/AgentOrganizationalProfileProperties"
+  },
+  {
+    "$type": "BooleanType"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/3"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/17"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.WellArchitected/AgentOrganizationalProfileProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the Agent Organizational Profile."
+      },
+      "BusinessOverview": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "A business overview for the organizational profile used to improve recommendation quality."
+      },
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The timestamp when the organizational profile was created."
+      },
+      "CreatedBy": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The identifier of the system or user that created this organizational profile."
+      },
+      "DeletionProtection": {
+        "type": {
+          "$ref": "#/19"
+        },
+        "flags": 0,
+        "description": "Whether deletion protection is enabled for the organizational profile. When enabled, the profile cannot be deleted until deletion protection is disabled."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "A description of the organizational profile."
+      },
+      "DisplayName": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "The human-readable display name of the organizational profile."
+      },
+      "LastModifiedAt": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The timestamp when the organizational profile was last modified."
+      },
+      "LastModifiedBy": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 2,
+        "description": "The identifier of the system or user that last modified this organizational profile."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The name of the organizational profile. Unique within the account and used as the last component of the ARN."
+      },
+      "Pillars": {
+        "type": {
+          "$ref": "#/20"
+        },
+        "flags": 1,
+        "description": "The list of Well-Architected pillars to focus on."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 0,
+        "description": "Key-value pairs to associate with the Agent Organizational Profile."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.WellArchitected/AgentOrganizationalProfile",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.WellArchitected/AgentOrganizationalProfile@default",
+    "body": {
+      "$ref": "#/23"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
     "name": "AggregationConfiguration",
     "properties": {
       "AccessRoleArn": {
@@ -302,7 +472,7 @@
       },
       "Regions": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/28"
         },
         "flags": 1,
         "description": "The target regions in the account."
@@ -347,11 +517,8 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/16"
+      "$ref": "#/25"
     }
-  },
-  {
-    "$type": "BooleanType"
   },
   {
     "$type": "ArrayType",
@@ -362,7 +529,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/18"
+      "$ref": "#/27"
     }
   },
   {
@@ -371,7 +538,7 @@
     "properties": {
       "AggregationConfiguration": {
         "type": {
-          "$ref": "#/21"
+          "$ref": "#/30"
         },
         "flags": 1,
         "description": "The aggregation configuration entries (account, regions, access role) associated with this profile."
@@ -406,7 +573,7 @@
       },
       "DeletionProtection": {
         "type": {
-          "$ref": "#/22"
+          "$ref": "#/19"
         },
         "flags": 0,
         "description": "Whether deletion protection is enabled for the profile. When enabled, the profile cannot be deleted until deletion protection is disabled."
@@ -455,14 +622,14 @@
       },
       "Pillars": {
         "type": {
-          "$ref": "#/23"
+          "$ref": "#/31"
         },
         "flags": 1,
         "description": "The list of Well-Architected pillars to focus on."
       },
       "Tags": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/32"
         },
         "flags": 0,
         "description": "Key-value pairs to associate with the Agent Profile."
@@ -489,7 +656,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/33"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -500,7 +667,67 @@
     "$type": "ResourceType",
     "name": "AWS.WellArchitected/AgentProfile@default",
     "body": {
-      "$ref": "#/26"
+      "$ref": "#/34"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.WellArchitected/AgentProfilePolicyProperties"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.WellArchitected/AgentProfilePolicyProperties",
+    "properties": {
+      "Policy": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 1,
+        "description": "The IAM resource-based policy document as a JSON string. Allow-only statements, no negation condition operators, maximum 51200 characters."
+      },
+      "ProfileArn": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 17,
+        "description": "The Amazon Resource Name (ARN) of the parent Agent Profile the policy is attached to. Pass `!GetAtt` (or `!Ref`) of the parent AWS::WellArchitected::AgentProfile to flow its ARN here. Also serves as the primary identifier of this policy attachment."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.WellArchitected/AgentProfilePolicy",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/3"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/37"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.WellArchitected/AgentProfilePolicy@default",
+    "body": {
+      "$ref": "#/38"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -530,7 +757,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/29"
+      "$ref": "#/41"
     }
   },
   {
@@ -588,7 +815,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/42"
         },
         "flags": 0,
         "description": "The tags assigned to the lens."
@@ -615,7 +842,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/43"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -626,7 +853,7 @@
     "$type": "ResourceType",
     "name": "AWS.WellArchitected/Lens@default",
     "body": {
-      "$ref": "#/32"
+      "$ref": "#/44"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -644,7 +871,7 @@
       },
       "SelectedChoiceIds": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/48"
         },
         "flags": 0,
         "description": "The selected choices."
@@ -684,13 +911,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/34"
+      "$ref": "#/46"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/35"
+      "$ref": "#/47"
     }
   },
   {
@@ -734,7 +961,7 @@
       },
       "ProfileQuestions": {
         "type": {
-          "$ref": "#/38"
+          "$ref": "#/50"
         },
         "flags": 1,
         "description": "The profile questions."
@@ -748,7 +975,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/51"
         },
         "flags": 0,
         "description": "The tags assigned to the profile."
@@ -782,7 +1009,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/52"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -793,7 +1020,7 @@
     "$type": "ResourceType",
     "name": "AWS.WellArchitected/Profile@default",
     "body": {
-      "$ref": "#/41"
+      "$ref": "#/53"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -829,7 +1056,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/45"
+      "$ref": "#/57"
     }
   },
   {
@@ -845,7 +1072,7 @@
       },
       "Lenses": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/56"
         },
         "flags": 1,
         "description": "The lenses applied to the review template."
@@ -866,7 +1093,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/58"
         },
         "flags": 0,
         "description": "The tags assigned to the review template."
@@ -921,7 +1148,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/47"
+          "$ref": "#/59"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -932,7 +1159,7 @@
     "$type": "ResourceType",
     "name": "AWS.WellArchitected/ReviewTemplate@default",
     "body": {
-      "$ref": "#/48"
+      "$ref": "#/60"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -972,11 +1199,23 @@
       },
       "WorkloadResourceDefinition": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/65"
         },
         "flags": 0,
         "description": "The mode to use for identifying resources associated with the workload."
       }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/3"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/3"
     }
   },
   {
@@ -1012,7 +1251,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/57"
+      "$ref": "#/71"
     }
   },
   {
@@ -1021,7 +1260,7 @@
     "properties": {
       "AccountIds": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/63"
         },
         "flags": 0,
         "description": "The list of Amazon Web Services account IDs associated with the workload."
@@ -1035,7 +1274,7 @@
       },
       "AwsRegions": {
         "type": {
-          "$ref": "#/52"
+          "$ref": "#/64"
         },
         "flags": 0,
         "description": "The list of Amazon Web Services Regions associated with the workload."
@@ -1049,7 +1288,7 @@
       },
       "DiscoveryConfig": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/66"
         },
         "flags": 0,
         "description": "Discovery configuration associated to the workload."
@@ -1084,14 +1323,14 @@
       },
       "Lenses": {
         "type": {
-          "$ref": "#/55"
+          "$ref": "#/67"
         },
         "flags": 1,
         "description": "The list of lenses associated with the workload."
       },
       "NonAwsRegions": {
         "type": {
-          "$ref": "#/56"
+          "$ref": "#/68"
         },
         "flags": 0,
         "description": "The list of non-Amazon Web Services Regions associated with the workload."
@@ -1103,6 +1342,20 @@
         "flags": 0,
         "description": "The notes associated with the workload."
       },
+      "PillarPriorities": {
+        "type": {
+          "$ref": "#/69"
+        },
+        "flags": 0,
+        "description": "The priorities of the pillars, which are used to order items in the improvement plan. Each pillar is represented by its pillar ID."
+      },
+      "ProfileArns": {
+        "type": {
+          "$ref": "#/70"
+        },
+        "flags": 0,
+        "description": "The list of profile ARNs associated with the workload."
+      },
       "ReviewOwner": {
         "type": {
           "$ref": "#/3"
@@ -1112,7 +1365,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/58"
+          "$ref": "#/72"
         },
         "flags": 0,
         "description": "The tags associated with the workload."
@@ -1160,7 +1413,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/59"
+          "$ref": "#/73"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1171,7 +1424,7 @@
     "$type": "ResourceType",
     "name": "AWS.WellArchitected/Workload@default",
     "body": {
-      "$ref": "#/60"
+      "$ref": "#/74"
     },
     "readableScopes": 0,
     "writableScopes": 0

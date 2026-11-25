@@ -8,6 +8,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.Kinesis/ChannelProperties](#awskinesischannelproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.Kinesis/Queue@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Kinesis/QueueProperties](#awskinesisqueueproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.Kinesis/ResourcePolicy@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -47,6 +55,16 @@
 * **StreamConfigurationList**: [StreamConfiguration](#streamconfiguration)[] (Required): List of stream configurations associated with the channel. v1 supports a single element; the list shape allows future extensibility to fan in from multiple streams.
 * **Tags**: [Tag](#tag)[]: An arbitrary set of tags (key-value pairs) to associate with the Kinesis channel.
 
+## AWS.Kinesis/QueueProperties
+### Properties
+* **QueueARN**: string (ReadOnly, Identifier): The ARN of the queue.
+* **QueueAttributes**: [QueueAttributes](#queueattributes): Mutable attributes that control queue consumption behavior.
+* **QueueCreationTimestamp**: string (ReadOnly): Timestamp of when the queue was created.
+* **QueueName**: string (Required): The name of the queue. The name's uniqueness is scoped per AWS account and region.
+* **QueueStatus**: string (ReadOnly): The status of the queue.
+* **StreamConfigurationList**: [QueueStreamConfiguration](#queuestreamconfiguration)[] (Required): List of stream configurations associated with the queue. v1 supports a single element; the list shape allows future extensibility to fan in from multiple streams.
+* **Tags**: [Tag](#tag)[]: An arbitrary set of tags (key-value pairs) to associate with the Kinesis queue.
+
 ## AWS.Kinesis/ResourcePolicyProperties
 ### Properties
 * **ResourceArn**: string (Required, Identifier): The ARN of the AWS Kinesis resource to which the policy applies.
@@ -82,6 +100,11 @@
 * **LogGroupName**: string: The CloudWatch log group name. When Enabled is true and LogGroupName is omitted, the service uses the default '/aws/kinesis/<channelName>/<channelId>'.
 * **LogStreamName**: string: The CloudWatch log stream name. Defaults to the literal string 'DestinationDelivery' when omitted.
 
+## DeadLetterConfiguration
+### Properties
+* **MaxReceiveCount**: int: The maximum number of times a record can be received before it is moved to the dead-letter target. Required when TargetType is BUILT_IN.
+* **TargetType**: string (Required): The dead-letter target type. BUILT_IN uses a service-managed dead-letter target; NONE disables dead-lettering.
+
 ## DeadLetterQueueS3Configuration
 ### Properties
 * **BucketARN**: string (Required): The ARN of the S3 bucket for storing failed records.
@@ -105,6 +128,21 @@
 ## PartitionSpec
 ### Properties
 * **PartitionFields**: [PartitionField](#partitionfield)[] (Required): List of partition fields that define how records are partitioned when written to the destination table.
+
+## QueueAttributes
+### Properties
+* **DeadLetterConfiguration**: [DeadLetterConfiguration](#deadletterconfiguration): The dead-letter configuration applied to records that exceed the maximum receive count.
+* **VisibilityTimeoutSeconds**: int: The duration, in seconds, that a received record is hidden from subsequent receive calls after being handed out to a consumer. Defaults to 30 seconds.
+
+## QueueStartingPosition
+### Properties
+* **Timestamp**: string (WriteOnly): The timestamp to start reading from. Required when Type is AT_TIMESTAMP; the timestamp must not be in the future.
+* **Type**: string (Required): The starting position type.
+
+## QueueStreamConfiguration
+### Properties
+* **StartingPosition**: [QueueStartingPosition](#queuestartingposition): The position in the stream from which the queue starts reading records.
+* **StreamARN**: string (Required): The Amazon resource name (ARN) of the Kinesis data stream that the queue reads from.
 
 ## RecordConfiguration
 ### Properties
@@ -157,6 +195,11 @@
 ## StreamModeDetails
 ### Properties
 * **StreamMode**: string (Required): The mode of the stream
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+* **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 
 ## Tag
 ### Properties

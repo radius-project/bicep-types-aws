@@ -262,6 +262,7 @@
 * **ServiceAccount**: string (Required): The Kubernetes service account that the pod identity association is created for.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 * **TargetRoleArn**: string: The Target Role Arn of the pod identity association.
+* **WorkloadIdentityConfig**: [WorkloadIdentityConfig](#workloadidentityconfig)
 
 ## AwsIdc
 ### Properties
@@ -572,6 +573,12 @@
 * **MinSize**: int: The minimum number of instances to maintain in the warm pool.
 * **PoolState**: string: The desired state of warm pool instances.
 * **ReuseOnScaleIn**: bool: Whether to return instances to the warm pool during scale-in instead of terminating them.
+
+## WorkloadIdentityConfig
+### Properties
+* **Enabled**: bool (Required): Whether workload identity is enabled for the association. Enabling it requires TemplateArn and ProviderArn, and cannot be combined with TargetRoleArn.
+* **ProviderArn**: string: The ARN of the customer-owned IAM workload identity provider that produces the trusted context assertion for the workload.
+* **TemplateArn**: string: The ARN of the customer-owned IAM workload identity template that renders the workload's SPIFFE identity.
 
 ## ZonalShiftConfig
 ### Properties

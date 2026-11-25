@@ -58,12 +58,15 @@
 * **IamInstanceProfileArn**: string (Required): The Amazon Resource Name (ARN) of the IAM instance profile used to pass an IAM role when launching EC2 instances. The role contained in your instance profile must have pcs:RegisterComputeNodeGroupInstance permissions attached to provision instances correctly.
 * **Id**: string (ReadOnly): The generated unique ID of the compute node group.
 * **InstanceConfigs**: [InstanceConfig](#instanceconfig)[] (Required): A list of EC2 instance configurations that AWS PCS can provision in the compute node group.
+* **LaunchTemplateMode**: string: How AWS PCS gets the launch template for the compute node group. CUSTOM uses CustomLaunchTemplate. MANAGED has AWS PCS generate and manage the launch template from the instance settings; omit CustomLaunchTemplate. Defaults to CUSTOM on create.
 * **Name**: string: The name that identifies the compute node group.
 * **NodeLifecycleActions**: [NodeLifecycleActions](#nodelifecycleactions)
 * **PurchaseOption**: string: Specifies how EC2 instances are purchased on your behalf. AWS PCS supports On-Demand, Spot, Capacity Block, and Interruptible Capacity Reservation instances. For more information, see Instance purchasing options in the Amazon Elastic Compute Cloud User Guide. If you don't provide this option, it defaults to On-Demand.
 * **ScalingConfiguration**: [ComputeNodeGroup_ScalingConfiguration](#computenodegroupscalingconfiguration) (Required): Specifies the boundaries of the compute node group auto scaling.
+* **SecurityGroupIds**: string[]: The IDs of the EC2 security groups configured directly on the compute node group. These replace the security groups from the custom launch template. A request cannot specify this property with a launch template that defines NetworkInterfaces. When not provided and a custom launch template is present, AWS PCS uses the security groups from the launch template.
 * **SlurmConfiguration**: [ComputeNodeGroup_SlurmConfiguration](#computenodegroupslurmconfiguration): Additional options related to the Slurm scheduler.
 * **SpotOptions**: [ComputeNodeGroup_SpotOptions](#computenodegroupspotoptions): Additional configuration when you specify SPOT as the purchase option.
+* **SshKeyName**: string: The name of the EC2 key pair configured directly on the compute node group. The key pair must exist in the caller's account and Region and overrides the key pair from the custom launch template. When not provided and a custom launch template is present, AWS PCS uses the key pair from the launch template.
 * **Status**: string (ReadOnly): The provisioning status of the compute node group. The provisioning status doesn't indicate the overall health of the compute node group.
 * **SubnetIds**: string[] (Required): The list of subnet IDs where instances are provisioned by the compute node group. The subnets must be in the same VPC as the cluster.
 * **Tags**: [ComputeNodeGroup_Tags](#computenodegrouptags): 1 or more tags added to the resource. Each tag consists of a tag key and tag value. The tag value is optional and can be an empty string.

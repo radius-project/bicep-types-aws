@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-BedrockAgentCore-PaymentManager",
   "type": "AWS::BedrockAgentCore::PaymentManager",
-  "time": "2026-10-22T00:14:14.13Z",
+  "time": "2026-11-25T21:07:44.199Z",
   "schema": {
     "additionalIdentifiers": [
       [
@@ -16,13 +16,12 @@
     ],
     "definitions": {
       "AuthorizerConfiguration": {
-        "description": "The authorizer configuration for the payment manager",
         "oneOf": [
           {
             "additionalProperties": false,
             "properties": {
               "CustomJWTAuthorizer": {
-                "$ref": "#/definitions/CustomJWTAuthorizer"
+                "$ref": "#/definitions/CustomJWTAuthorizerConfiguration"
               }
             },
             "required": [
@@ -33,7 +32,7 @@
           }
         ]
       },
-      "AuthorizingClaimMatchValue": {
+      "AuthorizingClaimMatchValueType": {
         "additionalProperties": false,
         "properties": {
           "ClaimMatchOperator": {
@@ -45,7 +44,7 @@
             "type": "string"
           },
           "ClaimMatchValue": {
-            "$ref": "#/definitions/ClaimMatchValue"
+            "$ref": "#/definitions/ClaimMatchValueType"
           }
         },
         "required": [
@@ -54,7 +53,7 @@
         ],
         "type": "object"
       },
-      "ClaimMatchValue": {
+      "ClaimMatchValueType": {
         "oneOf": [
           {
             "additionalProperties": false,
@@ -99,7 +98,7 @@
         "additionalProperties": false,
         "properties": {
           "AuthorizingClaimMatchValue": {
-            "$ref": "#/definitions/AuthorizingClaimMatchValue"
+            "$ref": "#/definitions/AuthorizingClaimMatchValueType"
           },
           "InboundTokenClaimName": {
             "maxLength": 255,
@@ -122,7 +121,7 @@
         ],
         "type": "object"
       },
-      "CustomJWTAuthorizer": {
+      "CustomJWTAuthorizerConfiguration": {
         "additionalProperties": false,
         "properties": {
           "AllowedAudience": {
@@ -195,7 +194,6 @@
       },
       "WorkloadIdentityDetails": {
         "additionalProperties": false,
-        "description": "The workload identity details for the payment manager",
         "properties": {
           "WorkloadIdentityArn": {
             "maxLength": 1024,

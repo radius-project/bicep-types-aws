@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-AppIntegrations-Application",
   "type": "AWS::AppIntegrations::Application",
-  "time": "2026-10-21T21:31:10.811Z",
+  "time": "2026-11-19T20:47:04.874Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
@@ -20,6 +20,32 @@
         "pattern": "^\\w+\\:\\/\\/.*$",
         "type": "string"
       },
+      "AuthConfig": {
+        "additionalProperties": false,
+        "properties": {
+          "AudienceOverride": {
+            "maxLength": 255,
+            "minLength": 1,
+            "type": "string"
+          },
+          "AuthType": {
+            "enum": [
+              "API_KEY",
+              "CONNECT_JWT"
+            ],
+            "type": "string"
+          },
+          "CredentialProviderIdentifier": {
+            "maxLength": 2048,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "AuthType"
+        ],
+        "type": "object"
+      },
       "ContactHandling": {
         "additionalProperties": false,
         "properties": {
@@ -31,9 +57,6 @@
             "type": "string"
           }
         },
-        "required": [
-          "Scope"
-        ],
         "type": "object"
       },
       "ExternalUrlConfig": {
@@ -167,9 +190,6 @@
             "$ref": "#/definitions/ExternalUrlConfig"
           }
         },
-        "required": [
-          "ExternalUrlConfig"
-        ],
         "type": "object"
       },
       "ApplicationType": {
@@ -177,9 +197,14 @@
         "enum": [
           "STANDARD",
           "SERVICE",
-          "MCP_SERVER"
+          "MCP_SERVER",
+          "A2A_SERVER"
         ],
         "type": "string"
+      },
+      "AuthConfig": {
+        "$ref": "#/definitions/AuthConfig",
+        "description": "The authentication configuration. Required when ApplicationType is A2A_SERVER."
       },
       "Description": {
         "description": "The application description.",
@@ -206,6 +231,14 @@
         "default": false,
         "description": "Indicates if the application is a service",
         "type": "boolean"
+      },
+      "LastModifiedRegion": {
+        "description": "The region in which the application was last modified.",
+        "type": "string"
+      },
+      "LastModifiedTime": {
+        "description": "The time when the application was last modified.",
+        "type": "string"
       },
       "Name": {
         "description": "The name of the application.",
@@ -243,7 +276,9 @@
     },
     "readOnlyProperties": [
       "/properties/ApplicationArn",
-      "/properties/Id"
+      "/properties/Id",
+      "/properties/LastModifiedTime",
+      "/properties/LastModifiedRegion"
     ],
     "required": [
       "Name",

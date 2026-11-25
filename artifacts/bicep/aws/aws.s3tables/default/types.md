@@ -53,6 +53,7 @@
 ## AWS.S3Tables/TableBucketProperties
 ### Properties
 * **EncryptionConfiguration**: [EncryptionConfiguration](#encryptionconfiguration)
+* **LoggingConfiguration**: [LoggingConfiguration](#loggingconfiguration)
 * **MetricsConfiguration**: [MetricsConfiguration](#metricsconfiguration)
 * **ReplicationConfiguration**: [ReplicationConfiguration](#replicationconfiguration)
 * **StorageClassConfiguration**: [StorageClassConfiguration](#storageclassconfiguration)
@@ -138,9 +139,19 @@
 * **Fields**: [IcebergSortField](#icebergsortfield)[] (Required): List of sort fields
 * **OrderId**: int: The sort order ID (defaults to 1 if not specified, 0 is reserved for unsorted)
 
+## LoggingConfiguration
+### Properties
+* **TargetBucket**: string (Required): The name of the general purpose bucket that logs are delivered to. The bucket must be in the same AWS Region and owned by the same AWS account as the table bucket. The bucket can't use SSE-KMS or DSSE-KMS default encryption, can't have S3 Object Lock enabled, and can't have Requester Pays enabled. You can deliver logs from multiple table buckets to the same target bucket. In this case, choose a different TargetPrefix for each table bucket so that you can tell their log objects apart.
+* **TargetObjectKeyFormat**: [TargetObjectKeyFormat](#targetobjectkeyformat) (Required)
+* **TargetPrefix**: string (Required): The prefix for the keys of the log objects that are delivered to the target bucket.
+
 ## MetricsConfiguration
 ### Properties
 * **Status**: string: Indicates whether Metrics are enabled.
+
+## PartitionedPrefix
+### Properties
+* **PartitionDateSource**: string (Required): The date to use for the log object key partitions. Valid values are EventTime, the time that the requests in the log were made, and DeliveryTime, the time that the log was delivered.
 
 ## ReplicationConfiguration
 ### Properties
@@ -201,6 +212,10 @@
 ### Properties
 * **Key**: string (Required): Tag key must be between 1 to 128 characters in length. Tag key cannot start with 'aws:' and can only contain alphanumeric characters, spaces, _, ., /, =, +, -, and @.
 * **Value**: string (Required): Tag value must be between 0 to 256 characters in length. Tag value can only contain alphanumeric characters, spaces, _, ., /, =, +, -, and @.
+
+## TargetObjectKeyFormat
+### Properties
+* **PartitionedPrefix**: [PartitionedPrefix](#partitionedprefix) (Required)
 
 ## UnreferencedFileRemoval
 ### Properties

@@ -1354,11 +1354,393 @@
   },
   {
     "$type": "ObjectType",
+    "name": "Condition",
+    "properties": {
+      "Comparator": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "The comparison operator. Valid values: GT, GTE, LT, LTE (greater than, greater than or equal to, less than, less than or equal to)."
+      },
+      "CriticalThreshold": {
+        "type": {
+          "$ref": "#/44"
+        },
+        "flags": 0,
+        "description": "The value at which the alert enters the CRITICAL state."
+      },
+      "ThresholdField": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "The result field to compare against the threshold. Required when ThresholdMode is FIELD_VALUE."
+      },
+      "ThresholdMode": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "How the threshold is applied. COUNT_OF_RESULTS compares the number of rows the query returns. FIELD_VALUE compares the value of ThresholdField in each result row; each row is tracked separately."
+      },
+      "WarningThreshold": {
+        "type": {
+          "$ref": "#/44"
+        },
+        "flags": 0,
+        "description": "The value at which the alert enters the WARNING state."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Evaluation",
+    "properties": {
+      "IntervalSeconds": {
+        "type": {
+          "$ref": "#/44"
+        },
+        "flags": 1,
+        "description": "The time between evaluations, in seconds. Valid values: 30, 60, 120, 300, 600, 900, 1800, 3600."
+      },
+      "PendingDurationSeconds": {
+        "type": {
+          "$ref": "#/44"
+        },
+        "flags": 0,
+        "description": "How long a threshold breach must last before the alert changes state, in seconds. Must be a multiple of IntervalSeconds. 0 changes state immediately."
+      },
+      "RecoveryDurationSeconds": {
+        "type": {
+          "$ref": "#/44"
+        },
+        "flags": 0,
+        "description": "How long the result must stay within its thresholds before the alert returns to OK, in seconds. Must be a multiple of IntervalSeconds. 0 returns to OK immediately."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Metadata",
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/8"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "NoData",
+    "properties": {
+      "TreatAs": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1,
+        "description": "The state to report when an evaluation returns no data. Valid values: OK, WARNING, CRITICAL, NODATA."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "NotificationRule",
+    "properties": {
+      "Target": {
+        "type": {
+          "$ref": "#/79"
+        },
+        "flags": 1
+      },
+      "Trigger": {
+        "type": {
+          "$ref": "#/81"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Query",
+    "properties": {
+      "Expression": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1,
+        "description": "The query expression. For PromQL, the series value is returned in a field named value."
+      },
+      "Language": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1,
+        "description": "The query language. Valid values: SQL, PROMQL."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Rule",
+    "properties": {
+      "TelemetryRule": {
+        "type": {
+          "$ref": "#/80"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1,
+        "description": "The key name of the tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1,
+        "description": "The value for the tag."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Target",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1,
+        "description": "The ARN of the target. For sns, the ARN of the Amazon SNS topic. For slack and pagerduty, the ARN of a CloudWatch Omni integration."
+      },
+      "Metadata": {
+        "type": {
+          "$ref": "#/73"
+        },
+        "flags": 0
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1,
+        "description": "The target type. Valid values: sns, slack, pagerduty."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TelemetryRule",
+    "properties": {
+      "Condition": {
+        "type": {
+          "$ref": "#/71"
+        },
+        "flags": 1
+      },
+      "Evaluation": {
+        "type": {
+          "$ref": "#/72"
+        },
+        "flags": 1
+      },
+      "NoData": {
+        "type": {
+          "$ref": "#/74"
+        },
+        "flags": 0
+      },
+      "Query": {
+        "type": {
+          "$ref": "#/76"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Trigger",
+    "properties": {
+      "StateValues": {
+        "type": {
+          "$ref": "#/82"
+        },
+        "flags": 0,
+        "description": "The alert states that trigger this rule. A notification is sent when the alert enters any listed state. If omitted or empty, every state triggers the rule."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/8"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.CloudWatch/AlertProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/75"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/78"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.CloudWatch/AlertProperties",
+    "properties": {
+      "AccountId": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 2,
+        "description": "The AWS account ID that owns the alert."
+      },
+      "AlertId": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 18,
+        "description": "The ID of the alert, assigned by CloudWatch when the alert is created. It doesn't change when the alert is updated, and it is the resource ID in the alert's ARN."
+      },
+      "Arn": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 2,
+        "description": "The Amazon Resource Name (ARN) of the alert."
+      },
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 2,
+        "description": "The time the alert was created, in ISO 8601 format (UTC)."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "A description of the alert."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1,
+        "description": "The display name of the alert. Names don't need to be unique within a space; the alert is identified by AlertId."
+      },
+      "NotificationRules": {
+        "type": {
+          "$ref": "#/84"
+        },
+        "flags": 0,
+        "description": "The notification rules that determine when and where notifications are sent."
+      },
+      "NotificationsEnabled": {
+        "type": {
+          "$ref": "#/45"
+        },
+        "flags": 0,
+        "description": "Whether the alert sends notifications. When false, the alert is still evaluated and records its state, but sends nothing. Defaults to true."
+      },
+      "ProfileId": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1,
+        "description": "The ID of the access profile the alert uses to run its query and send notifications."
+      },
+      "Rule": {
+        "type": {
+          "$ref": "#/77"
+        },
+        "flags": 1
+      },
+      "SpaceId": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 17,
+        "description": "The ID of the space to create the alert in. Changing this value replaces the alert."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/85"
+        },
+        "flags": 0,
+        "description": "An array of key-value pairs to apply to this resource."
+      },
+      "UpdatedAt": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 2,
+        "description": "The time the alert was last updated, in ISO 8601 format (UTC)."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.CloudWatch/Alert",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/86"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.CloudWatch/Alert@default",
+    "body": {
+      "$ref": "#/87"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
     "name": "ActionConfiguration",
     "properties": {
       "AlarmTagsPropagation": {
         "type": {
-          "$ref": "#/73"
+          "$ref": "#/91"
         },
         "flags": 0,
         "description": "Whether the alarm's tags are included in its action notifications and state-change events."
@@ -1383,14 +1765,14 @@
       },
       "ExcludedTagKeys": {
         "type": {
-          "$ref": "#/75"
+          "$ref": "#/93"
         },
         "flags": 0,
         "description": "The tag keys to leave out. Cannot be specified together with IncludedTagKeys."
       },
       "IncludedTagKeys": {
         "type": {
-          "$ref": "#/76"
+          "$ref": "#/94"
         },
         "flags": 0,
         "description": "The only tag keys to include. Cannot be specified together with ExcludedTagKeys."
@@ -1454,7 +1836,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/74"
+      "$ref": "#/92"
     }
   },
   {
@@ -1463,7 +1845,7 @@
     "properties": {
       "ActionConfiguration": {
         "type": {
-          "$ref": "#/71"
+          "$ref": "#/89"
         },
         "flags": 0,
         "description": "Configuration that applies to the notifications this alarm sends when it performs its actions."
@@ -1498,7 +1880,7 @@
       },
       "AlarmActions": {
         "type": {
-          "$ref": "#/78"
+          "$ref": "#/96"
         },
         "flags": 0,
         "description": "The list of actions to execute when this alarm transitions into an ALARM state from any other state. Specify each action as an Amazon Resource Name (ARN)."
@@ -1533,21 +1915,21 @@
       },
       "InsufficientDataActions": {
         "type": {
-          "$ref": "#/79"
+          "$ref": "#/97"
         },
         "flags": 0,
         "description": "The actions to execute when this alarm transitions to the INSUFFICIENT_DATA state from any other state. Each action is specified as an Amazon Resource Name (ARN)."
       },
       "OKActions": {
         "type": {
-          "$ref": "#/80"
+          "$ref": "#/98"
         },
         "flags": 0,
         "description": "The actions to execute when this alarm transitions to the OK state from any other state. Each action is specified as an Amazon Resource Name (ARN)."
       },
       "Tags": {
         "type": {
-          "$ref": "#/81"
+          "$ref": "#/99"
         },
         "flags": 0,
         "description": "A list of key-value pairs to associate with the composite alarm. You can associate as many as 50 tags with an alarm."
@@ -1574,7 +1956,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/82"
+          "$ref": "#/100"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1585,7 +1967,7 @@
     "$type": "ResourceType",
     "name": "AWS.CloudWatch/CompositeAlarm@default",
     "body": {
-      "$ref": "#/83"
+      "$ref": "#/101"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1617,7 +1999,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/85"
+      "$ref": "#/103"
     }
   },
   {
@@ -1640,7 +2022,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/87"
+          "$ref": "#/105"
         },
         "flags": 0,
         "description": "A list of key-value pairs to associate with the cloudwatch dashboard. You can associate up to 50 tags with a dashboard"
@@ -1667,7 +2049,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/88"
+          "$ref": "#/106"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1678,7 +2060,7 @@
     "$type": "ResourceType",
     "name": "AWS.CloudWatch/Dashboard@default",
     "body": {
-      "$ref": "#/89"
+      "$ref": "#/107"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1702,7 +2084,7 @@
     "properties": {
       "IdentityCenterConfiguration": {
         "type": {
-          "$ref": "#/91"
+          "$ref": "#/109"
         },
         "flags": 0
       }
@@ -1747,7 +2129,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/93"
+      "$ref": "#/111"
     }
   },
   {
@@ -1770,7 +2152,7 @@
       },
       "CustomEndpointUrls": {
         "type": {
-          "$ref": "#/95"
+          "$ref": "#/113"
         },
         "flags": 2,
         "description": "Additional endpoint URLs derived from the domain name."
@@ -1798,14 +2180,14 @@
       },
       "IdentityProviderConfiguration": {
         "type": {
-          "$ref": "#/92"
+          "$ref": "#/110"
         },
         "flags": 0,
         "description": "Identity provider configuration for the domain."
       },
       "IdentityProviders": {
         "type": {
-          "$ref": "#/96"
+          "$ref": "#/114"
         },
         "flags": 1,
         "description": "The identity providers configured for the domain."
@@ -1833,7 +2215,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/97"
+          "$ref": "#/115"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -1867,7 +2249,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/98"
+          "$ref": "#/116"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1878,7 +2260,7 @@
     "$type": "ResourceType",
     "name": "AWS.CloudWatch/Domain@default",
     "body": {
-      "$ref": "#/99"
+      "$ref": "#/117"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1889,7 +2271,7 @@
     "properties": {
       "PrincipalAttributes": {
         "type": {
-          "$ref": "#/104"
+          "$ref": "#/122"
         },
         "flags": 0,
         "description": "Attribute key-value pairs that select the principals the grant applies to."
@@ -1953,7 +2335,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/102"
+      "$ref": "#/120"
     }
   },
   {
@@ -1963,7 +2345,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/103"
+      "$ref": "#/121"
     }
   },
   {
@@ -2028,14 +2410,14 @@
       },
       "Principal": {
         "type": {
-          "$ref": "#/101"
+          "$ref": "#/119"
         },
         "flags": 1,
         "description": "The principal receiving the grant."
       },
       "Tags": {
         "type": {
-          "$ref": "#/106"
+          "$ref": "#/124"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -2069,7 +2451,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/107"
+          "$ref": "#/125"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2080,7 +2462,7 @@
     "$type": "ResourceType",
     "name": "AWS.CloudWatch/DomainAccessGrantForOrganization@default",
     "body": {
-      "$ref": "#/108"
+      "$ref": "#/126"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -2104,7 +2486,7 @@
     "properties": {
       "IdentityCenterConfiguration": {
         "type": {
-          "$ref": "#/110"
+          "$ref": "#/128"
         },
         "flags": 0
       }
@@ -2149,7 +2531,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/112"
+      "$ref": "#/130"
     }
   },
   {
@@ -2172,7 +2554,7 @@
       },
       "CustomEndpointUrls": {
         "type": {
-          "$ref": "#/114"
+          "$ref": "#/132"
         },
         "flags": 2,
         "description": "Additional endpoint URLs derived from the domain name."
@@ -2207,14 +2589,14 @@
       },
       "IdentityProviderConfiguration": {
         "type": {
-          "$ref": "#/111"
+          "$ref": "#/129"
         },
         "flags": 0,
         "description": "Identity provider configuration for the organization domain."
       },
       "IdentityProviders": {
         "type": {
-          "$ref": "#/115"
+          "$ref": "#/133"
         },
         "flags": 1,
         "description": "The identity providers configured for the organization domain."
@@ -2256,7 +2638,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/116"
+          "$ref": "#/134"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -2290,7 +2672,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/117"
+          "$ref": "#/135"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2301,7 +2683,7 @@
     "$type": "ResourceType",
     "name": "AWS.CloudWatch/DomainForOrganization@default",
     "body": {
-      "$ref": "#/118"
+      "$ref": "#/136"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -2331,7 +2713,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/120"
+      "$ref": "#/138"
     }
   },
   {
@@ -2370,7 +2752,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/122"
+          "$ref": "#/140"
         },
         "flags": 0
       }
@@ -2396,7 +2778,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/123"
+          "$ref": "#/141"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2407,7 +2789,7 @@
     "$type": "ResourceType",
     "name": "AWS.CloudWatch/InsightRule@default",
     "body": {
-      "$ref": "#/124"
+      "$ref": "#/142"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -2418,7 +2800,7 @@
     "properties": {
       "ApiKeyCredential": {
         "type": {
-          "$ref": "#/127"
+          "$ref": "#/145"
         },
         "flags": 1,
         "description": "API-key credential material that can be rotated in place on update."
@@ -2470,7 +2852,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/130"
+      "$ref": "#/148"
     }
   },
   {
@@ -2486,7 +2868,7 @@
       },
       "Credential": {
         "type": {
-          "$ref": "#/126"
+          "$ref": "#/144"
         },
         "flags": 4
       },
@@ -2499,7 +2881,7 @@
       },
       "IntegrationAttributes": {
         "type": {
-          "$ref": "#/129"
+          "$ref": "#/147"
         },
         "flags": 0,
         "description": "Type-specific configuration attributes (max 50 entries). EXTERNAL_AGENT requires 'catalogId'. On update, supplied attributes merge into the existing map; omitting a key does not remove it."
@@ -2541,7 +2923,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/131"
+          "$ref": "#/149"
         },
         "flags": 0,
         "description": "Tags associated with the integration."
@@ -2575,7 +2957,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/132"
+          "$ref": "#/150"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2586,7 +2968,7 @@
     "$type": "ResourceType",
     "name": "AWS.CloudWatch/Integration@default",
     "body": {
-      "$ref": "#/133"
+      "$ref": "#/151"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -2597,7 +2979,7 @@
     "properties": {
       "AlarmTagsPropagation": {
         "type": {
-          "$ref": "#/136"
+          "$ref": "#/154"
         },
         "flags": 0,
         "description": "Whether the alarm's tags are included in its action notifications and state-change events."
@@ -2617,14 +2999,14 @@
       },
       "ExcludedTagKeys": {
         "type": {
-          "$ref": "#/141"
+          "$ref": "#/159"
         },
         "flags": 0,
         "description": "The tag keys to leave out. Cannot be specified together with IncludedTagKeys."
       },
       "IncludedTagKeys": {
         "type": {
-          "$ref": "#/142"
+          "$ref": "#/160"
         },
         "flags": 0,
         "description": "The only tag keys to include. Cannot be specified together with ExcludedTagKeys."
@@ -2671,7 +3053,7 @@
       },
       "LogGroupIdentifiers": {
         "type": {
-          "$ref": "#/143"
+          "$ref": "#/161"
         },
         "flags": 0,
         "description": "The log groups to query."
@@ -2685,7 +3067,7 @@
       },
       "ScheduleConfiguration": {
         "type": {
-          "$ref": "#/137"
+          "$ref": "#/155"
         },
         "flags": 1,
         "description": "The schedule configuration."
@@ -2699,7 +3081,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/144"
+          "$ref": "#/162"
         },
         "flags": 0,
         "description": "A list of key-value pairs to associate with the scheduled query that backs the log alarm."
@@ -2767,7 +3149,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/139"
+      "$ref": "#/157"
     }
   },
   {
@@ -2795,7 +3177,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/139"
+      "$ref": "#/157"
     }
   },
   {
@@ -2804,7 +3186,7 @@
     "properties": {
       "ActionConfiguration": {
         "type": {
-          "$ref": "#/135"
+          "$ref": "#/153"
         },
         "flags": 0,
         "description": "Configuration that applies to the notifications this alarm sends when it performs its actions."
@@ -2832,7 +3214,7 @@
       },
       "AlarmActions": {
         "type": {
-          "$ref": "#/146"
+          "$ref": "#/164"
         },
         "flags": 0,
         "description": "The list of actions to execute when this alarm transitions into an ALARM state from any other state."
@@ -2867,14 +3249,14 @@
       },
       "InsufficientDataActions": {
         "type": {
-          "$ref": "#/147"
+          "$ref": "#/165"
         },
         "flags": 0,
         "description": "The actions to execute when this alarm transitions to the INSUFFICIENT_DATA state from any other state."
       },
       "OKActions": {
         "type": {
-          "$ref": "#/148"
+          "$ref": "#/166"
         },
         "flags": 0,
         "description": "The actions to execute when this alarm transitions to the OK state from any other state."
@@ -2895,14 +3277,14 @@
       },
       "ScheduledQueryConfiguration": {
         "type": {
-          "$ref": "#/138"
+          "$ref": "#/156"
         },
         "flags": 1,
         "description": "The scheduled query configuration for the log alarm."
       },
       "Tags": {
         "type": {
-          "$ref": "#/149"
+          "$ref": "#/167"
         },
         "flags": 0,
         "description": "A list of key-value pairs to associate with the log alarm."
@@ -2923,7 +3305,7 @@
       },
       "WarmUpConfiguration": {
         "type": {
-          "$ref": "#/140"
+          "$ref": "#/158"
         },
         "flags": 0,
         "description": "The warm-up configuration for the alarm. During the warm-up period, the alarm stays in INSUFFICIENT_DATA and doesn't perform alarm actions. For more information, see Alarm warm-up periods in the Amazon CloudWatch User Guide."
@@ -2950,7 +3332,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/150"
+          "$ref": "#/168"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2961,7 +3343,135 @@
     "$type": "ResourceType",
     "name": "AWS.CloudWatch/LogAlarm@default",
     "body": {
-      "$ref": "#/151"
+      "$ref": "#/169"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1,
+        "description": "The key of the tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1,
+        "description": "The value of the tag."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.CloudWatch/MetricDataQueryDefinitionProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/171"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.CloudWatch/MetricDataQueryDefinitionProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the metric data query definition."
+      },
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 2,
+        "description": "The timestamp when the metric data query definition was created."
+      },
+      "Expression": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1,
+        "description": "The metric query. It is stored as-is and is not validated."
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 2,
+        "description": "The ID of the metric data query definition, generated by the service."
+      },
+      "Path": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1,
+        "description": "The name of the metric data query definition. Use '/' to organize definitions into folders. Must be unique in the account and Region. Changing it renames the definition in place."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/173"
+        },
+        "flags": 0,
+        "description": "An array of key-value pairs to apply to the metric data query definition."
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1,
+        "description": "The query language of Expression."
+      },
+      "UpdatedAt": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 2,
+        "description": "The timestamp when the metric data query definition was last updated."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.CloudWatch/MetricDataQueryDefinition",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/174"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.CloudWatch/MetricDataQueryDefinition@default",
+    "body": {
+      "$ref": "#/175"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -2972,7 +3482,7 @@
     "properties": {
       "MetricNames": {
         "type": {
-          "$ref": "#/157"
+          "$ref": "#/181"
         },
         "flags": 0,
         "description": "Only metrics with MetricNames matching these values will be streamed. Must be set together with Namespace."
@@ -2992,14 +3502,14 @@
     "properties": {
       "AdditionalStatistics": {
         "type": {
-          "$ref": "#/158"
+          "$ref": "#/182"
         },
         "flags": 1,
         "description": "The additional statistics to stream for the metrics listed in IncludeMetrics."
       },
       "IncludeMetrics": {
         "type": {
-          "$ref": "#/159"
+          "$ref": "#/183"
         },
         "flags": 1,
         "description": "An array that defines the metrics that are to have additional statistics streamed."
@@ -3061,7 +3571,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/155"
+      "$ref": "#/179"
     }
   },
   {
@@ -3071,25 +3581,25 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/153"
+      "$ref": "#/177"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/153"
+      "$ref": "#/177"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/154"
+      "$ref": "#/178"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/156"
+      "$ref": "#/180"
     }
   },
   {
@@ -3112,7 +3622,7 @@
       },
       "ExcludeFilters": {
         "type": {
-          "$ref": "#/161"
+          "$ref": "#/185"
         },
         "flags": 0,
         "description": "Define which metrics will be not streamed. Metrics matched by multiple instances of MetricStreamFilter are joined with an OR operation by default. If both IncludeFilters and ExcludeFilters are omitted, all metrics in the account will be streamed. IncludeFilters and ExcludeFilters are mutually exclusive. Default to null."
@@ -3126,7 +3636,7 @@
       },
       "IncludeFilters": {
         "type": {
-          "$ref": "#/162"
+          "$ref": "#/186"
         },
         "flags": 0,
         "description": "Define which metrics will be streamed. Metrics matched by multiple instances of MetricStreamFilter are joined with an OR operation by default. If both IncludeFilters and ExcludeFilters are omitted, all metrics in the account will be streamed. IncludeFilters and ExcludeFilters are mutually exclusive. Default to null."
@@ -3175,14 +3685,14 @@
       },
       "StatisticsConfigurations": {
         "type": {
-          "$ref": "#/163"
+          "$ref": "#/187"
         },
         "flags": 0,
         "description": "By default, a metric stream always sends the MAX, MIN, SUM, and SAMPLECOUNT statistics for each metric that is streamed. You can use this parameter to have the metric stream also send additional statistics in the stream. This array can have up to 100 members."
       },
       "Tags": {
         "type": {
-          "$ref": "#/164"
+          "$ref": "#/188"
         },
         "flags": 0,
         "description": "A set of tags to assign to the delivery stream."
@@ -3209,7 +3719,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/165"
+          "$ref": "#/189"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -3220,7 +3730,7 @@
     "$type": "ResourceType",
     "name": "AWS.CloudWatch/MetricStream@default",
     "body": {
-      "$ref": "#/166"
+      "$ref": "#/190"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -3231,7 +3741,7 @@
     "properties": {
       "MetricNames": {
         "type": {
-          "$ref": "#/170"
+          "$ref": "#/194"
         },
         "flags": 0,
         "description": "Absent or empty means every metric in this namespace, in whichever direction this selector appears. Present means only these metric names."
@@ -3263,13 +3773,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/168"
+      "$ref": "#/192"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/168"
+      "$ref": "#/192"
     }
   },
   {
@@ -3285,14 +3795,14 @@
       },
       "ExcludeFilters": {
         "type": {
-          "$ref": "#/172"
+          "$ref": "#/196"
         },
         "flags": 0,
         "description": "Removes metrics from the include set. Absent or empty means nothing is removed. Evaluated after IncludeFilters, so ExcludeFilters always wins."
       },
       "IncludeFilters": {
         "type": {
-          "$ref": "#/173"
+          "$ref": "#/197"
         },
         "flags": 0,
         "description": "Scopes enrichment to a subset of the account's telemetry. Absent or empty means all namespaces are in scope. Present means only these are. The service enforces a combined cap of 100 selectors across IncludeFilters and ExcludeFilters, and rejects more than one selector for the same namespace within a direction."
@@ -3325,7 +3835,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/174"
+          "$ref": "#/198"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -3336,7 +3846,7 @@
     "$type": "ResourceType",
     "name": "AWS.CloudWatch/OTelEnrichment@default",
     "body": {
-      "$ref": "#/175"
+      "$ref": "#/199"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -3368,7 +3878,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/177"
+      "$ref": "#/201"
     }
   },
   {
@@ -3433,7 +3943,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/179"
+          "$ref": "#/203"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -3467,7 +3977,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/180"
+          "$ref": "#/204"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -3478,7 +3988,7 @@
     "$type": "ResourceType",
     "name": "AWS.CloudWatch/OmniDashboard@default",
     "body": {
-      "$ref": "#/181"
+      "$ref": "#/205"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -3489,7 +3999,7 @@
     "properties": {
       "IncludeMetrics": {
         "type": {
-          "$ref": "#/184"
+          "$ref": "#/208"
         },
         "flags": 1,
         "description": "The list of metric names to include in detailed monitoring for the resource."
@@ -3509,7 +4019,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/183"
+      "$ref": "#/207"
     }
   },
   {
@@ -3525,7 +4035,7 @@
       },
       "MetricSelections": {
         "type": {
-          "$ref": "#/186"
+          "$ref": "#/210"
         },
         "flags": 0,
         "description": "The metric selections that define which metrics are enabled for detailed monitoring on the resource."
@@ -3566,7 +4076,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/187"
+          "$ref": "#/211"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -3577,7 +4087,7 @@
     "$type": "ResourceType",
     "name": "AWS.CloudWatch/ResourceMetricsConfiguration@default",
     "body": {
-      "$ref": "#/188"
+      "$ref": "#/212"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -3591,14 +4101,14 @@
           "$ref": "#/8"
         },
         "flags": 1,
-        "description": "Whether the space is encrypted with an AWS owned key or a customer managed key."
+        "description": "Which kind of key to use. Required."
       },
       "KmsKeyArn": {
         "type": {
           "$ref": "#/8"
         },
         "flags": 0,
-        "description": "The Amazon Resource Name (ARN) of the customer managed KMS key. Required when encryptionStrategy is CUSTOMER_MANAGED."
+        "description": "Customer managed KMS key ARN. Required when encryptionStrategy is CUSTOMER_MANAGED, and must be omitted when it is AWS_OWNED. Must be a symmetric ENCRYPT_DECRYPT key in the caller's account and region."
       }
     }
   },
@@ -3629,7 +4139,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/191"
+      "$ref": "#/215"
     }
   },
   {
@@ -3641,7 +4151,7 @@
           "$ref": "#/8"
         },
         "flags": 0,
-        "description": "The Amazon Resource Name (ARN) of the IAM role used for AgentCore evaluation."
+        "description": "The ARN of the IAM role used by AgentCore online evaluation. Absent when the space was created without one."
       },
       "Arn": {
         "type": {
@@ -3655,56 +4165,56 @@
           "$ref": "#/8"
         },
         "flags": 2,
-        "description": "The time the space was created."
+        "description": "The timestamp when the space was created."
       },
       "DataAccessRoleArn": {
         "type": {
           "$ref": "#/8"
         },
         "flags": 1,
-        "description": "The Amazon Resource Name (ARN) of the IAM role the space uses to access observability data."
+        "description": "The ARN of the IAM role used for data access."
       },
       "DomainId": {
         "type": {
           "$ref": "#/8"
         },
         "flags": 1,
-        "description": "The identifier of the domain the space belongs to."
+        "description": "The ID of the domain to create the space in."
       },
       "EncryptionConfiguration": {
         "type": {
-          "$ref": "#/190"
+          "$ref": "#/214"
         },
         "flags": 0,
-        "description": "The encryption configuration for the space."
+        "description": "How the space's data at rest is encrypted. Always populated."
       },
       "Name": {
         "type": {
           "$ref": "#/8"
         },
         "flags": 1,
-        "description": "The name of the space."
+        "description": "A name that identifies the space."
       },
       "OwnerAccountId": {
         "type": {
           "$ref": "#/8"
         },
         "flags": 2,
-        "description": "The AWS account that owns the space."
+        "description": "AWS account ID that owns this space."
       },
       "Region": {
         "type": {
           "$ref": "#/8"
         },
         "flags": 2,
-        "description": "The AWS Region the space resides in."
+        "description": "The region where this space was created."
       },
       "SpaceId": {
         "type": {
           "$ref": "#/8"
         },
         "flags": 2,
-        "description": "The unique identifier of the space."
+        "description": "The unique ID of the space."
       },
       "Status": {
         "type": {
@@ -3715,7 +4225,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/193"
+          "$ref": "#/217"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -3725,7 +4235,7 @@
           "$ref": "#/8"
         },
         "flags": 2,
-        "description": "The time the space was last updated."
+        "description": "The timestamp when the space was last updated."
       }
     }
   },
@@ -3749,7 +4259,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/194"
+          "$ref": "#/218"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -3760,7 +4270,7 @@
     "$type": "ResourceType",
     "name": "AWS.CloudWatch/Space@default",
     "body": {
-      "$ref": "#/195"
+      "$ref": "#/219"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -3792,7 +4302,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/197"
+      "$ref": "#/221"
     }
   },
   {
@@ -3836,7 +4346,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/199"
+          "$ref": "#/223"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to the view."
@@ -3877,7 +4387,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/200"
+          "$ref": "#/224"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -3888,7 +4398,7 @@
     "$type": "ResourceType",
     "name": "AWS.CloudWatch/View@default",
     "body": {
-      "$ref": "#/201"
+      "$ref": "#/225"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -3911,7 +4421,7 @@
     "properties": {
       "MetricDataQueries": {
         "type": {
-          "$ref": "#/212"
+          "$ref": "#/236"
         },
         "flags": 0
       }
@@ -3929,7 +4439,7 @@
       },
       "ExcludedTimeRanges": {
         "type": {
-          "$ref": "#/213"
+          "$ref": "#/237"
         },
         "flags": 0
       }
@@ -3947,7 +4457,7 @@
       },
       "Metric": {
         "type": {
-          "$ref": "#/207"
+          "$ref": "#/231"
         },
         "flags": 1
       },
@@ -3977,7 +4487,7 @@
       },
       "Dimensions": {
         "type": {
-          "$ref": "#/214"
+          "$ref": "#/238"
         },
         "flags": 0
       },
@@ -4031,7 +4541,7 @@
       },
       "MetricStat": {
         "type": {
-          "$ref": "#/206"
+          "$ref": "#/230"
         },
         "flags": 0
       },
@@ -4085,7 +4595,7 @@
       },
       "Dimensions": {
         "type": {
-          "$ref": "#/215"
+          "$ref": "#/239"
         },
         "flags": 0
       },
@@ -4112,25 +4622,25 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/209"
+      "$ref": "#/233"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/210"
+      "$ref": "#/234"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/208"
+      "$ref": "#/232"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/208"
+      "$ref": "#/232"
     }
   },
   {
@@ -4140,7 +4650,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/208"
+      "$ref": "#/232"
     }
   },
   {
@@ -4149,7 +4659,7 @@
     "properties": {
       "MetricCharacteristics": {
         "type": {
-          "$ref": "#/203"
+          "$ref": "#/227"
         },
         "flags": 0
       },
@@ -4167,19 +4677,19 @@
       },
       "Configuration": {
         "type": {
-          "$ref": "#/205"
+          "$ref": "#/229"
         },
         "flags": 0
       },
       "MetricMathAnomalyDetector": {
         "type": {
-          "$ref": "#/204"
+          "$ref": "#/228"
         },
         "flags": 0
       },
       "Dimensions": {
         "type": {
-          "$ref": "#/217"
+          "$ref": "#/241"
         },
         "flags": 0
       },
@@ -4198,7 +4708,7 @@
       },
       "SingleMetricAnomalyDetector": {
         "type": {
-          "$ref": "#/211"
+          "$ref": "#/235"
         },
         "flags": 0
       }
@@ -4224,7 +4734,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/218"
+          "$ref": "#/242"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -4235,7 +4745,7 @@
     "$type": "ResourceType",
     "name": "AWS.CloudWatch/AnomalyDetector@default",
     "body": {
-      "$ref": "#/219"
+      "$ref": "#/243"
     },
     "readableScopes": 0,
     "writableScopes": 0

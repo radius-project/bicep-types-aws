@@ -3148,13 +3148,13 @@
       },
       "DetailedStatusCodesMetrics": {
         "type": {
-          "$ref": "#/174"
+          "$ref": "#/177"
         },
         "flags": 0
       },
       "StorageLensGroupLevel": {
         "type": {
-          "$ref": "#/185"
+          "$ref": "#/189"
         },
         "flags": 0
       }
@@ -3259,13 +3259,13 @@
       },
       "DetailedStatusCodesMetrics": {
         "type": {
-          "$ref": "#/174"
+          "$ref": "#/177"
         },
         "flags": 0
       },
       "PrefixLevel": {
         "type": {
-          "$ref": "#/177"
+          "$ref": "#/181"
         },
         "flags": 0
       }
@@ -3277,13 +3277,13 @@
     "properties": {
       "Buckets": {
         "type": {
-          "$ref": "#/189"
+          "$ref": "#/193"
         },
         "flags": 0
       },
       "Regions": {
         "type": {
-          "$ref": "#/190"
+          "$ref": "#/194"
         },
         "flags": 0
       }
@@ -3304,6 +3304,57 @@
   },
   {
     "$type": "ObjectType",
+    "name": "CostAndUsageReportsPrefixLevel",
+    "properties": {
+      "IsEnabled": {
+        "type": {
+          "$ref": "#/28"
+        },
+        "flags": 1,
+        "description": "Specifies whether publishing prefix-level metrics to AWS Cost and Usage Reports is enabled or disabled."
+      },
+      "SelectionCriteria": {
+        "type": {
+          "$ref": "#/175"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CostAndUsageReportsPublish",
+    "properties": {
+      "PrefixLevel": {
+        "type": {
+          "$ref": "#/173"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CostAndUsageReportsSelectionCriteria",
+    "properties": {
+      "MaxDepth": {
+        "type": {
+          "$ref": "#/109"
+        },
+        "flags": 0,
+        "description": "The maximum prefix depth to publish to AWS Cost and Usage Reports. You must specify MinDepth and MaxDepth together, or neither. If you specify neither, MaxDepth defaults to 3."
+      },
+      "MinDepth": {
+        "type": {
+          "$ref": "#/109"
+        },
+        "flags": 0,
+        "description": "The minimum prefix depth to publish to AWS Cost and Usage Reports. You must specify MinDepth and MaxDepth together, or neither. If you specify neither, MinDepth defaults to 1."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "DataExport",
     "properties": {
       "CloudWatchMetrics": {
@@ -3314,13 +3365,13 @@
       },
       "S3BucketDestination": {
         "type": {
-          "$ref": "#/179"
+          "$ref": "#/183"
         },
         "flags": 0
       },
       "StorageLensTableDestination": {
         "type": {
-          "$ref": "#/187"
+          "$ref": "#/191"
         },
         "flags": 0
       }
@@ -3351,11 +3402,24 @@
   },
   {
     "$type": "ObjectType",
+    "name": "IntAccessTiers",
+    "properties": {
+      "IsEnabled": {
+        "type": {
+          "$ref": "#/28"
+        },
+        "flags": 0,
+        "description": "Specifies whether metric breakdown per Intelligent-Tiering access tiers is enabled or disabled."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "PrefixLevel",
     "properties": {
       "StorageMetrics": {
         "type": {
-          "$ref": "#/178"
+          "$ref": "#/182"
         },
         "flags": 1
       }
@@ -3374,7 +3438,7 @@
       },
       "SelectionCriteria": {
         "type": {
-          "$ref": "#/181"
+          "$ref": "#/185"
         },
         "flags": 0
       }
@@ -3400,7 +3464,7 @@
       },
       "Encryption": {
         "type": {
-          "$ref": "#/175"
+          "$ref": "#/178"
         },
         "flags": 0
       },
@@ -3483,9 +3547,15 @@
         },
         "flags": 0
       },
+      "CostAndUsageReportsPublish": {
+        "type": {
+          "$ref": "#/174"
+        },
+        "flags": 0
+      },
       "DataExport": {
         "type": {
-          "$ref": "#/173"
+          "$ref": "#/176"
         },
         "flags": 0
       },
@@ -3497,7 +3567,7 @@
       },
       "ExpandedPrefixesDataExport": {
         "type": {
-          "$ref": "#/183"
+          "$ref": "#/187"
         },
         "flags": 0
       },
@@ -3510,6 +3580,12 @@
       "Include": {
         "type": {
           "$ref": "#/171"
+        },
+        "flags": 0
+      },
+      "IntAccessTiers": {
+        "type": {
+          "$ref": "#/180"
         },
         "flags": 0
       },
@@ -3542,13 +3618,13 @@
     "properties": {
       "S3BucketDestination": {
         "type": {
-          "$ref": "#/179"
+          "$ref": "#/183"
         },
         "flags": 0
       },
       "StorageLensTableDestination": {
         "type": {
-          "$ref": "#/187"
+          "$ref": "#/191"
         },
         "flags": 0
       }
@@ -3565,7 +3641,7 @@
     "properties": {
       "StorageLensGroupSelectionCriteria": {
         "type": {
-          "$ref": "#/186"
+          "$ref": "#/190"
         },
         "flags": 0
       }
@@ -3577,13 +3653,13 @@
     "properties": {
       "Exclude": {
         "type": {
-          "$ref": "#/191"
+          "$ref": "#/195"
         },
         "flags": 0
       },
       "Include": {
         "type": {
-          "$ref": "#/192"
+          "$ref": "#/196"
         },
         "flags": 0
       }
@@ -3595,7 +3671,7 @@
     "properties": {
       "Encryption": {
         "type": {
-          "$ref": "#/175"
+          "$ref": "#/178"
         },
         "flags": 0
       },
@@ -3657,7 +3733,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/188"
+      "$ref": "#/192"
     }
   },
   {
@@ -3666,13 +3742,13 @@
     "properties": {
       "StorageLensConfiguration": {
         "type": {
-          "$ref": "#/182"
+          "$ref": "#/186"
         },
         "flags": 1
       },
       "Tags": {
         "type": {
-          "$ref": "#/194"
+          "$ref": "#/198"
         },
         "flags": 0,
         "description": "A set of tags (key-value pairs) for this Amazon S3 Storage Lens configuration."
@@ -3699,7 +3775,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/195"
+          "$ref": "#/199"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -3710,7 +3786,7 @@
     "$type": "ResourceType",
     "name": "AWS.S3/StorageLens@default",
     "body": {
-      "$ref": "#/196"
+      "$ref": "#/200"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -3721,31 +3797,31 @@
     "properties": {
       "MatchAnyPrefix": {
         "type": {
-          "$ref": "#/208"
+          "$ref": "#/212"
         },
         "flags": 0
       },
       "MatchAnySuffix": {
         "type": {
-          "$ref": "#/209"
+          "$ref": "#/213"
         },
         "flags": 0
       },
       "MatchAnyTag": {
         "type": {
-          "$ref": "#/210"
+          "$ref": "#/214"
         },
         "flags": 0
       },
       "MatchObjectAge": {
         "type": {
-          "$ref": "#/203"
+          "$ref": "#/207"
         },
         "flags": 0
       },
       "MatchObjectSize": {
         "type": {
-          "$ref": "#/204"
+          "$ref": "#/208"
         },
         "flags": 0
       }
@@ -3757,43 +3833,43 @@
     "properties": {
       "And": {
         "type": {
-          "$ref": "#/198"
+          "$ref": "#/202"
         },
         "flags": 0
       },
       "MatchAnyPrefix": {
         "type": {
-          "$ref": "#/211"
+          "$ref": "#/215"
         },
         "flags": 0
       },
       "MatchAnySuffix": {
         "type": {
-          "$ref": "#/212"
+          "$ref": "#/216"
         },
         "flags": 0
       },
       "MatchAnyTag": {
         "type": {
-          "$ref": "#/213"
+          "$ref": "#/217"
         },
         "flags": 0
       },
       "MatchObjectAge": {
         "type": {
-          "$ref": "#/203"
+          "$ref": "#/207"
         },
         "flags": 0
       },
       "MatchObjectSize": {
         "type": {
-          "$ref": "#/204"
+          "$ref": "#/208"
         },
         "flags": 0
       },
       "Or": {
         "type": {
-          "$ref": "#/206"
+          "$ref": "#/210"
         },
         "flags": 0
       }
@@ -3865,31 +3941,31 @@
     "properties": {
       "MatchAnyPrefix": {
         "type": {
-          "$ref": "#/217"
+          "$ref": "#/221"
         },
         "flags": 0
       },
       "MatchAnySuffix": {
         "type": {
-          "$ref": "#/218"
+          "$ref": "#/222"
         },
         "flags": 0
       },
       "MatchAnyTag": {
         "type": {
-          "$ref": "#/219"
+          "$ref": "#/223"
         },
         "flags": 0
       },
       "MatchObjectAge": {
         "type": {
-          "$ref": "#/203"
+          "$ref": "#/207"
         },
         "flags": 0
       },
       "MatchObjectSize": {
         "type": {
-          "$ref": "#/204"
+          "$ref": "#/208"
         },
         "flags": 0
       }
@@ -3928,7 +4004,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/207"
+      "$ref": "#/211"
     }
   },
   {
@@ -3946,7 +4022,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/207"
+      "$ref": "#/211"
     }
   },
   {
@@ -3964,7 +4040,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/207"
+      "$ref": "#/211"
     }
   },
   {
@@ -3982,7 +4058,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/207"
+      "$ref": "#/211"
     }
   },
   {
@@ -3992,7 +4068,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/207"
+      "$ref": "#/211"
     }
   },
   {
@@ -4001,7 +4077,7 @@
     "properties": {
       "Filter": {
         "type": {
-          "$ref": "#/199"
+          "$ref": "#/203"
         },
         "flags": 1
       },
@@ -4020,7 +4096,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/221"
+          "$ref": "#/225"
         },
         "flags": 0,
         "description": "A set of tags (key-value pairs) for this Amazon S3 Storage Lens Group."
@@ -4047,7 +4123,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/222"
+          "$ref": "#/226"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -4058,7 +4134,7 @@
     "$type": "ResourceType",
     "name": "AWS.S3/StorageLensGroup@default",
     "body": {
-      "$ref": "#/223"
+      "$ref": "#/227"
     },
     "readableScopes": 0,
     "writableScopes": 0

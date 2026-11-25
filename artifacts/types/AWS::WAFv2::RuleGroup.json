@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-WAFv2-RuleGroup",
   "type": "AWS::WAFv2::RuleGroup",
-  "time": "2026-11-04T18:23:47.559Z",
+  "time": "2026-11-20T11:05:11.551Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -163,6 +163,109 @@
           }
         },
         "type": "object"
+      },
+      "ConnectedAccountArn": {
+        "description": "The ARN of the connected account that provisions deposit addresses for this configuration.",
+        "maxLength": 140,
+        "minLength": 56,
+        "pattern": "^arn:aws(-[a-z]+)*:payments::[0-9]{12}:connectedaccount/[a-zA-Z0-9][a-zA-Z0-9_-]{0,63}-[A-Za-z0-9]{6}$",
+        "type": "string"
+      },
+      "ConnectedAccountChain": {
+        "description": "The blockchain chain to use with a connected account. Connected accounts are mainnet only.",
+        "enum": [
+          "BASE",
+          "SOLANA"
+        ],
+        "type": "string"
+      },
+      "ConnectedAccountChainConfig": {
+        "additionalProperties": false,
+        "description": "Per-chain price configuration for a connected account. The deposit address is provisioned by the payments provider and is not specified here.",
+        "properties": {
+          "Chain": {
+            "$ref": "#/definitions/ConnectedAccountChain"
+          },
+          "Prices": {
+            "$ref": "#/definitions/ConnectedAccountPrices"
+          }
+        },
+        "required": [
+          "Chain",
+          "Prices"
+        ],
+        "type": "object"
+      },
+      "ConnectedAccountChainConfigs": {
+        "description": "List of per-chain configurations for a connected account.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/ConnectedAccountChainConfig"
+        },
+        "maxItems": 2,
+        "minItems": 1,
+        "type": "array"
+      },
+      "ConnectedAccountConfig": {
+        "additionalProperties": false,
+        "description": "Configuration for a single connected account and the chains it accepts payment on.",
+        "properties": {
+          "ConnectedAccountArn": {
+            "$ref": "#/definitions/ConnectedAccountArn"
+          },
+          "PaymentNetworks": {
+            "$ref": "#/definitions/ConnectedAccountChainConfigs"
+          }
+        },
+        "required": [
+          "ConnectedAccountArn",
+          "PaymentNetworks"
+        ],
+        "type": "object"
+      },
+      "ConnectedAccountConfigs": {
+        "description": "List of connected account configurations. A connected account delegates deposit-address provisioning to the payments provider instead of specifying a wallet directly.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/ConnectedAccountConfig"
+        },
+        "maxItems": 1,
+        "minItems": 1,
+        "type": "array"
+      },
+      "ConnectedAccountPrice": {
+        "additionalProperties": false,
+        "description": "A connected-account price configuration. The payment provider rejects amounts below $0.01 and does not support sub-cent amounts.",
+        "properties": {
+          "Amount": {
+            "$ref": "#/definitions/ConnectedAccountPriceAmount"
+          },
+          "Currency": {
+            "$ref": "#/definitions/CryptoCurrency"
+          }
+        },
+        "required": [
+          "Amount",
+          "Currency"
+        ],
+        "type": "object"
+      },
+      "ConnectedAccountPriceAmount": {
+        "description": "The price amount for a connected account. Whole cents only, from 0.01 up to the payment provider's maximum of 999999.99.",
+        "maxLength": 9,
+        "minLength": 1,
+        "pattern": "^([1-9][0-9]{0,5}(\\.[0-9]{1,2})?|0\\.(0[1-9]|[1-9][0-9]?))$",
+        "type": "string"
+      },
+      "ConnectedAccountPrices": {
+        "description": "List of connected-account price configurations. A single price is supported.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/ConnectedAccountPrice"
+        },
+        "maxItems": 1,
+        "minItems": 1,
+        "type": "array"
       },
       "CookieMatchPattern": {
         "additionalProperties": false,
@@ -771,6 +874,9 @@
         "additionalProperties": false,
         "description": "Configures monetization for the web ACL or rule group.",
         "properties": {
+          "ConnectedAccountConfigs": {
+            "$ref": "#/definitions/ConnectedAccountConfigs"
+          },
           "CryptoConfig": {
             "$ref": "#/definitions/CryptoConfig"
           },

@@ -1,0 +1,82 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-NetworkManager-ContextStoreAssociation",
+  "type": "AWS::NetworkManager::ContextStoreAssociation",
+  "time": "2026-11-19T01:12:43.318Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/ContextStoreId",
+      "/properties/ResourceArn"
+    ],
+    "description": "Associates a Transit Gateway with a Context Store for sharing network context.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "networkmanager:AssociateContextStore",
+          "networkmanager:GetContextStoreAssociation"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "networkmanager:DisassociateContextStore",
+          "networkmanager:GetContextStoreAssociation"
+        ]
+      },
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "ContextStoreId": {
+              "$ref": "resource-schema.json#/properties/ContextStoreId"
+            }
+          },
+          "required": [
+            "ContextStoreId"
+          ]
+        },
+        "permissions": [
+          "networkmanager:ListContextStoreAssociations"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "networkmanager:GetContextStoreAssociation"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/ContextStoreId",
+      "/properties/ResourceArn"
+    ],
+    "properties": {
+      "ContextStoreId": {
+        "description": "The ID of the context store.",
+        "type": "string"
+      },
+      "CreatedAt": {
+        "description": "Creation timestamp (ISO-8601).",
+        "type": "string"
+      },
+      "ResourceArn": {
+        "description": "The ARN of the Transit Gateway to associate.",
+        "type": "string"
+      },
+      "State": {
+        "description": "The state of the association (ASSOCIATING, ASSOCIATED, DISASSOCIATING, FAILED).",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/State",
+      "/properties/CreatedAt"
+    ],
+    "required": [
+      "ContextStoreId",
+      "ResourceArn"
+    ],
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-networkmanager.git",
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::NetworkManager::ContextStoreAssociation"
+  }
+}

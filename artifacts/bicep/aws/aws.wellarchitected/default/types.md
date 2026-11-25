@@ -16,6 +16,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.WellArchitected/AgentGoalProperties](#awswellarchitectedagentgoalproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.WellArchitected/AgentOrganizationalProfile@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.WellArchitected/AgentOrganizationalProfileProperties](#awswellarchitectedagentorganizationalprofileproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.WellArchitected/AgentProfile@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -23,6 +31,14 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.WellArchitected/AgentProfileProperties](#awswellarchitectedagentprofileproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.WellArchitected/AgentProfilePolicy@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.WellArchitected/AgentProfilePolicyProperties](#awswellarchitectedagentprofilepolicyproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.WellArchitected/Lens@default
 * **Readable Scope(s)**: None
@@ -95,6 +111,26 @@
 * **ProfileArn**: string (Required): The Amazon Resource Name (ARN) of the parent Agent Profile that owns this goal. Pass `!Ref` of the parent AWS::WellArchitected::AgentProfile to flow its ARN here.
 * **Title**: string (Required): The title of the Agent Goal.
 
+## AWS.WellArchitected/AgentOrganizationalProfileProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the Agent Organizational Profile.
+* **BusinessOverview**: string: A business overview for the organizational profile used to improve recommendation quality.
+* **CreatedAt**: string (ReadOnly): The timestamp when the organizational profile was created.
+* **CreatedBy**: string (ReadOnly): The identifier of the system or user that created this organizational profile.
+* **DeletionProtection**: bool: Whether deletion protection is enabled for the organizational profile. When enabled, the profile cannot be deleted until deletion protection is disabled.
+* **Description**: string: A description of the organizational profile.
+* **DisplayName**: string: The human-readable display name of the organizational profile.
+* **LastModifiedAt**: string (ReadOnly): The timestamp when the organizational profile was last modified.
+* **LastModifiedBy**: string (ReadOnly): The identifier of the system or user that last modified this organizational profile.
+* **Name**: string (Required): The name of the organizational profile. Unique within the account and used as the last component of the ARN.
+* **Pillars**: string[] (Required): The list of Well-Architected pillars to focus on.
+* **Tags**: [Tag](#tag)[]: Key-value pairs to associate with the Agent Organizational Profile.
+
+## AWS.WellArchitected/AgentProfilePolicyProperties
+### Properties
+* **Policy**: string (Required): The IAM resource-based policy document as a JSON string. Allow-only statements, no negation condition operators, maximum 51200 characters.
+* **ProfileArn**: string (Required, Identifier): The Amazon Resource Name (ARN) of the parent Agent Profile the policy is attached to. Pass `!GetAtt` (or `!Ref`) of the parent AWS::WellArchitected::AgentProfile to flow its ARN here. Also serves as the primary identifier of this policy attachment.
+
 ## AWS.WellArchitected/AgentProfileProperties
 ### Properties
 * **AggregationConfiguration**: [AggregationConfiguration](#aggregationconfiguration)[] (Required): The aggregation configuration entries (account, regions, access role) associated with this profile.
@@ -161,6 +197,8 @@
 * **Lenses**: string[] (Required): The list of lenses associated with the workload.
 * **NonAwsRegions**: string[]: The list of non-Amazon Web Services Regions associated with the workload.
 * **Notes**: string: The notes associated with the workload.
+* **PillarPriorities**: string[]: The priorities of the pillars, which are used to order items in the improvement plan. Each pillar is represented by its pillar ID.
+* **ProfileArns**: string[]: The list of profile ARNs associated with the workload.
 * **ReviewOwner**: string: The review owner of the workload.
 * **Tags**: [Workload_Tags](#workloadtags)[]: The tags associated with the workload.
 * **WorkloadArn**: string (ReadOnly, Identifier): The ARN for the workload.
@@ -181,6 +219,11 @@
 ### Properties
 * **Key**: string (Required)
 * **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required): The tag key.
+* **Value**: string (Required): The tag value.
 
 ## Tag
 ### Properties

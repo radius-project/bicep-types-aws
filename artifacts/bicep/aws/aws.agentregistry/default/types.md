@@ -1,5 +1,13 @@
 # AWS.AgentRegistry @ default
 
+## Resource AWS.AgentRegistry/Publisher@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.AgentRegistry/PublisherProperties](#awsagentregistrypublisherproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.AgentRegistry/Registry@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -25,6 +33,8 @@
 ## AgentSkillsAdditionalData
 ### Properties
 * **SkillMd**: [AgentSkillsMdDescriptor](#agentskillsmddescriptor)
+* **SkillPackage**: [AgentSkillsPackageDescriptor](#agentskillspackagedescriptor): The source that the registry synchronizes the full skill package from. You can't set it together with SkillMd.Source or SkillMd Data.
+* **SourceConfiguration**: [AgentSkillsSourceConfiguration](#agentskillssourceconfiguration): The provider-specific settings of the record's skill source.
 
 ## AgentSkillsDefinitionDescriptor
 ### Properties
@@ -37,6 +47,14 @@
 * **Data**: string
 * **DataSchemaVersion**: string: Version of the descriptor type schema.
 * **Source**: [SkillMdSource](#skillmdsource)
+
+## AgentSkillsPackageDescriptor
+### Properties
+* **Source**: [SkillMdSource](#skillmdsource): The source of the skill package, as an s3:// URL of a ZIP object.
+
+## AgentSkillsSourceConfiguration
+### Properties
+* **S3**: [S3SourceConfiguration](#s3sourceconfiguration) (Required): The settings of an Amazon S3 source.
 
 ## AgUiDescriptor
 ### Properties
@@ -54,6 +72,15 @@
 ### Properties
 * **ClaimMatchOperator**: string (Required)
 * **ClaimMatchValue**: [ClaimMatchValueType](#claimmatchvaluetype) (Required)
+
+## AWS.AgentRegistry/PublisherProperties
+### Properties
+* **CreatedAt**: string (ReadOnly): The timestamp when the Publisher was created.
+* **PublisherArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the Publisher. The Publisher is a global resource, so the ARN has no Region.
+* **Status**: string (ReadOnly): The verification status of the Publisher.
+* **Tags**: [Tag](#tag)[]: Tags to assign to the Publisher.
+* **UpdatedAt**: string (ReadOnly): The timestamp when the Publisher was last updated.
+* **Value**: [Identifier](#identifier) (Required): The identifier that this Publisher proves ownership of.
 
 ## AWS.AgentRegistry/RegistryProperties
 ### Properties
@@ -76,6 +103,7 @@
 
 ## AWS.AgentRegistry/RegistryRecordProperties
 ### Properties
+* **Artifact**: [RegistryRecordArtifact](#registryrecordartifact) (ReadOnly): The skill package that the registry stores for a skill record that synchronizes a skill package. The package's download URL isn't returned.
 * **CreatedAt**: string (ReadOnly): The timestamp when the registry record was created.
 * **CreatedBy**: string (ReadOnly): The identifier of the AWS account that created the registry record.
 * **CustomMetadata**: [RegistryRecord_CustomMetadata](#registryrecordcustommetadata): The custom metadata to attach to the registry record. Each key must match a property defined in the registry's custom metadata schema. Values can be strings (maximum 128 characters) or native JSON booleans (true or false).
@@ -90,6 +118,7 @@
 * **RegistryArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the registry containing the record.
 * **RegistryId**: string (WriteOnly): The identifier of the registry in which to create the record. You can specify either the registry ID or the registry Amazon Resource Name (ARN). Use the ARN form to reference a registry shared from another account via AWS Resource Access Manager (RAM).
 * **Status**: string (ReadOnly)
+* **SynchronizedSource**: [RegistryRecordSynchronizedSource](#registryrecordsynchronizedsource) (ReadOnly): The source that the registry last synchronized the record's skill content from, and the version that it read. Absent until the first successful synchronization.
 * **Tags**: [Tag](#tag)[]: Tags to assign to the registry record.
 * **UpdatedAt**: string (ReadOnly): The timestamp when the registry record was last updated.
 
@@ -114,7 +143,7 @@
 * **AllowedClients**: string[]: The client identifiers accepted during JWT validation.
 * **AllowedScopes**: string[]: The scopes accepted during JWT validation.
 * **CustomClaims**: [CustomClaimValidationType](#customclaimvalidationtype)[]: Additional custom claim validations applied to the inbound JWT.
-* **DiscoveryUrl**: string (Required): The OpenID Connect discovery URL used to retrieve the identity provider's metadata and signing keys.
+* **DiscoveryUrl**: string (Required): The OpenID Connect discovery or OAuth 2.0 authorization server metadata URL used to retrieve the identity provider's metadata and signing keys. The URL contains /.well-known/openid-configuration or /.well-known/oauth-authorization-server, respectively.
 
 ## CustomMetadataSchemaConfiguration
 ### Properties
@@ -151,6 +180,10 @@
 ### Properties
 * **Source**: [SourceOnlyDescriptorSource](#sourceonlydescriptorsource)
 
+## Identifier
+### Properties
+* **Domain**: string (Required): The fully qualified domain name (RFC 1035/1123) with at least two labels, in lowercase. The service stores domain names in lowercase, so specify the value in lowercase to avoid drift.
+
 ## McpServerAdditionalData
 ### Properties
 * **Tools**: [McpToolsDescriptor](#mcptoolsdescriptor)
@@ -182,6 +215,10 @@
 ### Additional Properties
 * **Additional Properties Type**: string
 
+## RegistryRecordArtifact
+### Properties
+* **Sha256**: string: The SHA-256 checksum of the skill package, as 64 lowercase hexadecimal characters.
+
 ## RegistryRecordCredentialProviderConfiguration
 ### Properties
 * **CredentialProvider**: [RegistryRecordCredentialProviderUnion](#registryrecordcredentialproviderunion) (Required)
@@ -205,13 +242,37 @@
 * **ProviderArn**: string (Required): The ARN of the OAuth credential provider.
 * **Scopes**: string[]: OAuth scopes to request.
 
+## RegistryRecordSynchronizedSource
+### Properties
+* **S3**: [S3SynchronizedSource](#s3synchronizedsource) (Required): The Amazon S3 source that the registry read.
+
+## S3SourceConfiguration
+### Properties
+* **BucketOwnerAccountId**: string: The ID of the AWS account that owns the source bucket. The registry checks that the bucket belongs to this account each time it reads the source. If you omit it for a source that uses an IAM role, the registry expects the bucket in the role's account. A source without a credential provider, which the registry reads as a public object, requires it.
+
+## S3SynchronizedSource
+### Properties
+* **ETag**: string: The entity tag (ETag) of the object that the registry read, without quotes, when the object has no version ID. Not recorded for a SKILL.md source on a registry that is encrypted with a customer managed key.
+* **SynchronizedAt**: string (Required): The timestamp when the registry read the source.
+* **VersionId**: string: The version ID of the object that the registry read. Absent when the bucket isn't versioned.
+
 ## SkillMdSource
 ### Properties
 * **FromUrl**: [SkillMdSourceFromUrl](#skillmdsourcefromurl)
 
 ## SkillMdSourceFromUrl
 ### Properties
-* **Url**: string (Required): URL source for the SkillMd document.
+* **CredentialProviderConfigurations**: [SkillSourceCredentialProviderConfiguration](#skillsourcecredentialproviderconfiguration)[]: The credential provider that the registry uses to read the source. For an Amazon S3 source, specify an IAM role in your account that the agent-registry.amazonaws.com service principal can assume and that can read the object. Omit it to read a public object, and set SourceConfiguration.S3.BucketOwnerAccountId instead.
+* **Url**: string (Required): The URL of the source. For synchronization, specify an s3://<bucket>/<key> URL that names one object in a bucket in the same AWS Region as the registry: a SKILL.md object for SkillMd, or a skill package ZIP object for SkillPackage.
+
+## SkillSourceCredentialProviderConfiguration
+### Properties
+* **CredentialProvider**: [SkillSourceCredentialProviderUnion](#skillsourcecredentialproviderunion) (Required): The credential provider details.
+* **CredentialProviderType**: string (Required): The type of the credential provider.
+
+## SkillSourceCredentialProviderUnion
+### Properties
+* **IamCredentialProvider**: [RegistryRecordIamCredentialProvider](#registryrecordiamcredentialprovider): The IAM role that the registry assumes to read the source. For an Amazon S3 source, omit Service or set it to s3, and omit Region or set it to the registry's Region.
 
 ## SourceOnlyDescriptorSource
 ### Properties
@@ -220,6 +281,11 @@
 ## SourceOnlyDescriptorSourceFromUrl
 ### Properties
 * **Url**: string (Required): URL source for descriptor content.
+
+## Tag
+### Properties
+* **Key**: string (Required): The key of the tag.
+* **Value**: string (Required): The value of the tag.
 
 ## Tag
 ### Properties

@@ -1570,6 +1570,74 @@
   },
   {
     "$type": "ObjectType",
+    "name": "AgentAccessConfig",
+    "properties": {
+      "S3BucketArn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The Amazon Resource Name (ARN) of the Amazon S3 bucket where agent screenshots are stored. Required when ScreenshotsUploadEnabled is true."
+      },
+      "ScreenImageFormat": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The image format for agent screen captures."
+      },
+      "ScreenResolution": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The screen resolution for the agent streaming environment."
+      },
+      "ScreenshotsUploadEnabled": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "Indicates whether screenshot uploads to Amazon S3 are enabled for agent sessions."
+      },
+      "Settings": {
+        "type": {
+          "$ref": "#/94"
+        },
+        "flags": 1,
+        "description": "The list of agent access settings that define permissions for each agent action. You must specify at least one setting. Agent actions that aren't listed are disabled, so list only the actions that you enable."
+      },
+      "UserControlMode": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The user control mode for agent sessions. This setting determines how users can interact with agent sessions. Valid values are VIEW_ONLY, VIEW_STOP, and DISABLED."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AgentAccessSetting",
+    "properties": {
+      "AgentAction": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "The agent action to configure. Valid values are COMPUTER_VISION, COMPUTER_INPUT, and FORWARD_MCP_TOOLS. COMPUTER_VISION allows agents to take screenshots of the desktop. COMPUTER_INPUT allows agents to click, type, and scroll on the desktop and requires COMPUTER_VISION to also be enabled. FORWARD_MCP_TOOLS allows agents to interact with applications and the desktop operating system through direct MCP calls rather than using computer use tools."
+      },
+      "Permission": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 1,
+        "description": "Whether the agent action is enabled or disabled."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "DomainJoinInfo",
     "properties": {
       "DirectoryName": {
@@ -1622,16 +1690,22 @@
     "properties": {
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/92"
+          "$ref": "#/95"
         },
         "flags": 0
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/93"
+          "$ref": "#/96"
         },
         "flags": 0
       }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/89"
     }
   },
   {
@@ -1671,7 +1745,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/89"
+      "$ref": "#/91"
     }
   },
   {
@@ -1680,9 +1754,16 @@
     "properties": {
       "AccessEndpoints": {
         "type": {
-          "$ref": "#/95"
+          "$ref": "#/98"
         },
         "flags": 0
+      },
+      "AgentAccessConfig": {
+        "type": {
+          "$ref": "#/88"
+        },
+        "flags": 0,
+        "description": "The configuration for agent access on the image builder. If specified, agent access is enabled for the image builder."
       },
       "AppstreamAgentVersion": {
         "type": {
@@ -1710,7 +1791,7 @@
       },
       "DomainJoinInfo": {
         "type": {
-          "$ref": "#/88"
+          "$ref": "#/90"
         },
         "flags": 0
       },
@@ -1752,19 +1833,19 @@
       },
       "RootVolumeConfig": {
         "type": {
-          "$ref": "#/90"
+          "$ref": "#/92"
         },
         "flags": 0
       },
       "SoftwaresToInstall": {
         "type": {
-          "$ref": "#/96"
+          "$ref": "#/99"
         },
         "flags": 4
       },
       "SoftwaresToUninstall": {
         "type": {
-          "$ref": "#/97"
+          "$ref": "#/100"
         },
         "flags": 4
       },
@@ -1776,13 +1857,13 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/98"
+          "$ref": "#/101"
         },
         "flags": 0
       },
       "VpcConfig": {
         "type": {
-          "$ref": "#/91"
+          "$ref": "#/93"
         },
         "flags": 0
       }
@@ -1808,7 +1889,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/99"
+          "$ref": "#/102"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1819,7 +1900,7 @@
     "$type": "ResourceType",
     "name": "AWS.AppStream/ImageBuilder@default",
     "body": {
-      "$ref": "#/100"
+      "$ref": "#/103"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1848,12 +1929,26 @@
     "$type": "ObjectType",
     "name": "AgentAccessConfig",
     "properties": {
+      "KmsKeyArn": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "The Amazon Resource Name (ARN) of the customer managed symmetric encryption KMS key that encrypts Replay Session artifacts while WorkSpaces Applications processes them. The key must be in the same Region as the stack, and ReplaySessionEnabled must be true. To remove the key, use AttributesToDelete with the AGENT_ACCESS_CONFIG_KMS_KEY_ARN value."
+      },
+      "ReplaySessionEnabled": {
+        "type": {
+          "$ref": "#/22"
+        },
+        "flags": 0,
+        "description": "Indicates whether Replay Session is enabled for agent sessions. WorkSpaces Applications delivers a video combining session screenshots, a transcript, and a report for each session. Requires the COMPUTER_VISION agent action. Setting this attribute to false also removes the KmsKeyArn value from the stack."
+      },
       "S3BucketArn": {
         "type": {
           "$ref": "#/5"
         },
         "flags": 0,
-        "description": "The Amazon Resource Name (ARN) of the Amazon S3 bucket where agent screenshots are stored. Required when ScreenshotsUploadEnabled is true."
+        "description": "The Amazon Resource Name (ARN) of the Amazon S3 bucket where agent screenshots and Replay Session artifacts are stored. Required when ScreenshotsUploadEnabled or ReplaySessionEnabled is true."
       },
       "ScreenImageFormat": {
         "type": {
@@ -1878,7 +1973,7 @@
       },
       "Settings": {
         "type": {
-          "$ref": "#/112"
+          "$ref": "#/115"
         },
         "flags": 1,
         "description": "The list of agent access settings that define permissions for each agent action. You must specify at least one setting."
@@ -1938,7 +2033,7 @@
     "properties": {
       "HostToClient": {
         "type": {
-          "$ref": "#/110"
+          "$ref": "#/113"
         },
         "flags": 0,
         "description": "The URL redirection configuration from the streaming session host to the client."
@@ -1958,7 +2053,7 @@
       },
       "Domains": {
         "type": {
-          "$ref": "#/113"
+          "$ref": "#/116"
         },
         "flags": 0,
         "description": "The names of the domains for the account."
@@ -2011,14 +2106,14 @@
     "properties": {
       "AllowedUrls": {
         "type": {
-          "$ref": "#/114"
+          "$ref": "#/117"
         },
         "flags": 0,
         "description": "The URLs that are allowed for redirection."
       },
       "DeniedUrls": {
         "type": {
-          "$ref": "#/115"
+          "$ref": "#/118"
         },
         "flags": 0,
         "description": "The URLs that are denied for redirection."
@@ -2062,7 +2157,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/104"
+      "$ref": "#/107"
     }
   },
   {
@@ -2090,7 +2185,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/102"
+      "$ref": "#/105"
     }
   },
   {
@@ -2108,19 +2203,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/107"
+      "$ref": "#/110"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/109"
+      "$ref": "#/112"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/111"
+      "$ref": "#/114"
     }
   },
   {
@@ -2129,35 +2224,35 @@
     "properties": {
       "AccessEndpoints": {
         "type": {
-          "$ref": "#/117"
+          "$ref": "#/120"
         },
         "flags": 0,
         "description": "The list of virtual private cloud (VPC) interface endpoint objects. Users of the stack can connect to AppStream 2.0 only through the specified endpoints."
       },
       "AgentAccessConfig": {
         "type": {
-          "$ref": "#/103"
+          "$ref": "#/106"
         },
         "flags": 0,
         "description": "The configuration for agent access on the stack. If specified, agent access is enabled for the stack."
       },
       "ApplicationSettings": {
         "type": {
-          "$ref": "#/105"
+          "$ref": "#/108"
         },
         "flags": 0,
         "description": "The persistent application settings for users of the stack. When these settings are enabled, changes that users make to applications and Windows settings are automatically saved after each session and applied to the next session."
       },
       "AttributesToDelete": {
         "type": {
-          "$ref": "#/118"
+          "$ref": "#/121"
         },
         "flags": 4,
         "description": "The stack attributes to delete."
       },
       "ContentRedirection": {
         "type": {
-          "$ref": "#/106"
+          "$ref": "#/109"
         },
         "flags": 0,
         "description": "The content redirection settings for the stack. These settings control URL redirection between the streaming session and the local device."
@@ -2185,7 +2280,7 @@
       },
       "EmbedHostDomains": {
         "type": {
-          "$ref": "#/119"
+          "$ref": "#/122"
         },
         "flags": 0,
         "description": "The domains where AppStream 2.0 streaming sessions can be embedded in an iframe. You must approve the domains that you want to host embedded AppStream 2.0 streaming sessions."
@@ -2211,30 +2306,37 @@
         "flags": 0,
         "description": "The URL that users are redirected to after their streaming session ends."
       },
+      "StorageConnectorAuthentication": {
+        "type": {
+          "$ref": "#/5"
+        },
+        "flags": 0,
+        "description": "Controls whether stored OneDrive and Google Drive authentication is retained between streaming sessions. Valid values: FORCE_REAUTHENTICATION | REUSE_CREDENTIALS."
+      },
       "StorageConnectors": {
         "type": {
-          "$ref": "#/120"
+          "$ref": "#/123"
         },
         "flags": 0,
         "description": "The storage connectors to enable."
       },
       "StreamingExperienceSettings": {
         "type": {
-          "$ref": "#/108"
+          "$ref": "#/111"
         },
         "flags": 0,
         "description": "The streaming protocol that you want your stack to prefer. This can be UDP or TCP. Currently, UDP is only supported in the Windows native client."
       },
       "Tags": {
         "type": {
-          "$ref": "#/121"
+          "$ref": "#/124"
         },
         "flags": 0,
         "description": "An array of key-value pairs."
       },
       "UserSettings": {
         "type": {
-          "$ref": "#/122"
+          "$ref": "#/125"
         },
         "flags": 0,
         "description": "The actions that are enabled or disabled for users during their streaming sessions. By default, these actions are enabled."
@@ -2261,7 +2363,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/123"
+          "$ref": "#/126"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -2272,7 +2374,7 @@
     "$type": "ResourceType",
     "name": "AWS.AppStream/Stack@default",
     "body": {
-      "$ref": "#/124"
+      "$ref": "#/127"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -2321,7 +2423,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/127"
+          "$ref": "#/130"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2332,7 +2434,7 @@
     "$type": "ResourceType",
     "name": "AWS.AppStream/StackFleetAssociation@default",
     "body": {
-      "$ref": "#/128"
+      "$ref": "#/131"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -2395,7 +2497,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/131"
+          "$ref": "#/134"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2406,7 +2508,7 @@
     "$type": "ResourceType",
     "name": "AWS.AppStream/StackUserAssociation@default",
     "body": {
-      "$ref": "#/132"
+      "$ref": "#/135"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -2483,7 +2585,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/135"
+          "$ref": "#/138"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2494,7 +2596,7 @@
     "$type": "ResourceType",
     "name": "AWS.AppStream/User@default",
     "body": {
-      "$ref": "#/136"
+      "$ref": "#/139"
     },
     "readableScopes": 0,
     "writableScopes": 0

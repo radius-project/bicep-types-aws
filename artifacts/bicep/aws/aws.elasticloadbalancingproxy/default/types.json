@@ -1,0 +1,459 @@
+[
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.ElasticLoadBalancingProxy/CertificateAssociationProperties"
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ElasticLoadBalancingProxy/CertificateAssociationProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "Identifier of the association. The service does not issue an ARN for a certificate association; this value is built from the proxy ARN and the certificate ID so CloudFormation can address the association, and it is not accepted by any service API."
+      },
+      "CertificateArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The ARN of the ACM certificate to associate with the proxy. The certificate must be in the same account and Region as the proxy. A certificate from another account fails as not found."
+      },
+      "CertificateId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The ID of the ACM certificate, taken from the certificate ARN."
+      },
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The time the association was created."
+      },
+      "ProxyArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The ARN of the proxy to associate the certificate with."
+      },
+      "ProxyId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The ID of the proxy, taken from the proxy ARN."
+      },
+      "ProxyName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The name of the proxy, taken from the proxy ARN."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The status of the association."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ElasticLoadBalancingProxy/CertificateAssociation",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.ElasticLoadBalancingProxy/CertificateAssociation@default",
+    "body": {
+      "$ref": "#/3"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Attribute",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of the attribute."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The value of the attribute."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ConfigurationArchive",
+    "properties": {
+      "ConfigurationBytes": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The base64-encoded contents of the proxy configuration archive. The decoded contents must be a valid ZIP archive with at least one entry. The archive can be at most 10 MB (10,485,760 bytes), with at most 50 entries and at most 50 MB (52,428,800 bytes) of uncompressed content."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ConfigurationFile",
+    "properties": {
+      "ConfigurationBytes": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The base64-encoded contents of the proxy configuration file. The decoded contents must be a valid Envoy bootstrap configuration for the requested proxy version, and can be at most 128 KB (131,072 bytes)."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ConfigurationMetadata",
+    "properties": {
+      "ConfigArchiveHash": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The hash of the currently applied configuration archive. Absent when the proxy does not have a configuration archive."
+      },
+      "ConfigArchiveLastUpdatedAt": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The time when the configuration archive was last updated."
+      },
+      "ConfigFileHash": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The hash of the currently applied configuration file."
+      },
+      "ConfigFileLastUpdatedAt": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The time when the configuration file was last updated."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "IpAddressingConfiguration",
+    "properties": {
+      "Ipv4Addressability": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The IPv4 addressability of the proxy."
+      },
+      "Ipv6Addressability": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The IPv6 addressability of the proxy."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SubnetAndZone",
+    "properties": {
+      "SubnetId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The ID of the subnet."
+      },
+      "ZoneId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The ID of the Availability Zone that contains the subnet."
+      },
+      "ZoneName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The name of the Availability Zone that contains the subnet."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The key of the tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The value of the tag."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.ElasticLoadBalancingProxy/ProxyProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/5"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/10"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/11"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ElasticLoadBalancingProxy/ProxyProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the proxy."
+      },
+      "Attributes": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 0,
+        "description": "The configurable attributes of the proxy, as a list of key-value pairs. Attributes you omit are set to their service-assigned defaults, and removing one from your template resets it to its default. Some attributes can be set only at creation; changing one afterward fails and leaves the proxy unchanged. The AWS WAF setup is one such create-time choice: no web ACL is attached unless you set waf.web_acl_arn at creation to a web ACL you own."
+      },
+      "AvailabilityZones": {
+        "type": {
+          "$ref": "#/14"
+        },
+        "flags": 2,
+        "description": "The subnets the proxy is deployed into, together with their Availability Zones."
+      },
+      "ConfigurationArchive": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 4
+      },
+      "ConfigurationFile": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 4
+      },
+      "ConfigurationMetadata": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 2
+      },
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The time when the proxy was created."
+      },
+      "CustomerKmsKeyArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The ARN of a customer managed AWS KMS key used to encrypt the proxy's configuration. Omit it to use a key owned by the service."
+      },
+      "DnsName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The public DNS name of the proxy."
+      },
+      "IpAddressingConfiguration": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 1
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of the proxy. The name must be unique within your account for the Region."
+      },
+      "ProxyVersion": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The version of the proxy software to run."
+      },
+      "RoleArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The Amazon Resource Name (ARN) of the IAM role whose permissions the proxy uses when it calls AWS services. The role's trust policy must allow the ELB for Envoy service to assume the role."
+      },
+      "SecurityGroups": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 1,
+        "description": "The IDs of the security groups associated with the proxy."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The current status of the proxy."
+      },
+      "Subnets": {
+        "type": {
+          "$ref": "#/16"
+        },
+        "flags": 1,
+        "description": "The IDs of the subnets the proxy is deployed into. All subnets must belong to the same VPC and must be in distinct Availability Zones."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/17"
+        },
+        "flags": 0,
+        "description": "The tags assigned to the proxy."
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The type of the proxy."
+      },
+      "VpcId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The ID of the VPC that contains the proxy."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.ElasticLoadBalancingProxy/Proxy",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/18"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.ElasticLoadBalancingProxy/Proxy@default",
+    "body": {
+      "$ref": "#/19"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  }
+]

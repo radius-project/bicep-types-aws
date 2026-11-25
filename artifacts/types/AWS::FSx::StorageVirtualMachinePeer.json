@@ -1,0 +1,213 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-FSx-StorageVirtualMachinePeer",
+  "type": "AWS::FSx::StorageVirtualMachinePeer",
+  "time": "2026-11-24T03:27:22.511Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/StorageVirtualMachinePeerId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/StorageVirtualMachineId",
+      "/properties/PeerSvmName",
+      "/properties/PeerClusterName"
+    ],
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair used to tag the SVM peer relationship.",
+        "properties": {
+          "Key": {
+            "description": "The tag key.",
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+            "type": "string"
+          },
+          "Value": {
+            "description": "The tag value.",
+            "maxLength": 256,
+            "minLength": 0,
+            "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Creates an Amazon FSx for NetApp ONTAP storage virtual machine (SVM) peer relationship. SVM peering lets two SVMs, in the same file system or in peered file systems, use each other for SnapMirror replication and other applications.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "fsx:CreateStorageVirtualMachinePeer",
+          "fsx:DescribeStorageVirtualMachinePeers",
+          "fsx:TagResource"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "fsx:DeleteStorageVirtualMachinePeer",
+          "fsx:DescribeStorageVirtualMachinePeers"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "fsx:DescribeStorageVirtualMachinePeers"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "fsx:DescribeStorageVirtualMachinePeers",
+          "fsx:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "fsx:DescribeStorageVirtualMachinePeers",
+          "fsx:UpdateStorageVirtualMachinePeer",
+          "fsx:TagResource",
+          "fsx:UntagResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/ResourceARN"
+    ],
+    "properties": {
+      "Applications": {
+        "description": "The applications that can use the peer relationship, at least one.",
+        "insertionOrder": false,
+        "items": {
+          "enum": [
+            "SNAPMIRROR",
+            "FILE_COPY",
+            "LUN_COPY",
+            "FLEXCACHE"
+          ],
+          "type": "string"
+        },
+        "maxItems": 4,
+        "minItems": 1,
+        "type": "array",
+        "uniqueItems": true
+      },
+      "FileSystemId": {
+        "description": "The ID of the file system that contains the local SVM.",
+        "maxLength": 21,
+        "minLength": 11,
+        "pattern": "^(fs-[0-9a-f]{8,})$",
+        "type": "string"
+      },
+      "Lifecycle": {
+        "description": "The lifecycle status of the SVM peer relationship.",
+        "enum": [
+          "CREATING",
+          "CREATED",
+          "DELETING",
+          "FAILED"
+        ],
+        "type": "string"
+      },
+      "PeerClusterName": {
+        "description": "The ONTAP name of the peer cluster. Omit to peer with an SVM on the same file system. A cross-cluster peer requires a cluster peer with that cluster.",
+        "maxLength": 44,
+        "minLength": 1,
+        "pattern": "^[^\\u0000\\u0085\\u2028\\u2029\\r\\n]{1,44}$",
+        "type": "string"
+      },
+      "PeerSvmAlias": {
+        "description": "A local alias for the peer SVM. Use an alias when the peer SVM has the same name as a local SVM. After it is set, it can be changed but not removed; removing it from the template leaves the current alias.",
+        "maxLength": 41,
+        "minLength": 1,
+        "pattern": "^[^\\u0000\\u0085\\u2028\\u2029\\r\\n]{1,41}$",
+        "type": "string"
+      },
+      "PeerSvmName": {
+        "description": "The name of the SVM to peer with, as it is known in ONTAP on the peer cluster.",
+        "maxLength": 47,
+        "minLength": 1,
+        "pattern": "^[^\\u0000\\u0085\\u2028\\u2029\\r\\n]{1,47}$",
+        "type": "string"
+      },
+      "ResourceARN": {
+        "description": "The Amazon Resource Name (ARN) of the SVM peer relationship.",
+        "maxLength": 512,
+        "minLength": 8,
+        "pattern": "^arn:(?=[^:]+:fsx:[^:]+:\\d{12}:)((|(?=[a-z0-9-.]{1,63})(?!\\d{1,3}(\\.\\d{1,3}){3})(?![^:]*-{2})(?![^:]*-\\.)(?![^:]*\\.-)[a-z0-9].*(?\u003c!-)):){4}(?!/).{0,1024}$",
+        "type": "string"
+      },
+      "State": {
+        "description": "The state of the peer relationship in ONTAP.",
+        "enum": [
+          "PEERED",
+          "REJECTED",
+          "SUSPENDED",
+          "INITIATED",
+          "PENDING",
+          "INITIALIZING"
+        ],
+        "type": "string"
+      },
+      "StorageVirtualMachineId": {
+        "description": "The ID of the local storage virtual machine (SVM) that initiates the peer relationship.",
+        "maxLength": 21,
+        "minLength": 21,
+        "pattern": "^(svm-[0-9a-f]{17,})$",
+        "type": "string"
+      },
+      "StorageVirtualMachinePeerId": {
+        "description": "The system-generated, unique ID of the SVM peer relationship.",
+        "pattern": "^(svmpeer-[0-9a-f]{17})$",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "A list of tags to apply to the SVM peer relationship, with a maximum of 50 tags.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 50,
+        "type": "array",
+        "uniqueItems": false
+      },
+      "UUID": {
+        "description": "The ONTAP UUID of the SVM peer relationship.",
+        "maxLength": 36,
+        "pattern": "^[^\\u0000\\u0085\\u2028\\u2029\\r\\n]{1,36}$",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/StorageVirtualMachinePeerId",
+      "/properties/ResourceARN",
+      "/properties/FileSystemId",
+      "/properties/State",
+      "/properties/UUID",
+      "/properties/Lifecycle"
+    ],
+    "required": [
+      "StorageVirtualMachineId",
+      "PeerSvmName",
+      "Applications"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "fsx:ListTagsForResource",
+        "fsx:TagResource",
+        "fsx:UntagResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::FSx::StorageVirtualMachinePeer"
+  }
+}

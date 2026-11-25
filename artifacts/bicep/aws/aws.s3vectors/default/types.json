@@ -25,14 +25,14 @@
     "properties": {
       "KmsKeyArn": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/12"
         },
         "flags": 0,
         "description": "AWS Key Management Service (KMS) customer managed key ID to use for the encryption configuration. This parameter is allowed if and only if sseType is set to aws:kms"
       },
       "SseType": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/12"
         },
         "flags": 0,
         "description": "Defines the server-side encryption type for index encryption configuration. Defaults to the parent vector bucket's encryption settings when unspecified."
@@ -55,10 +55,16 @@
     "properties": {
       "NonFilterableMetadataKeys": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/14"
         },
         "flags": 0,
         "description": "Non-filterable metadata keys allow you to enrich vectors with additional context during storage and retrieval. Unlike default metadata keys, these keys cannot be used as query filters. Non-filterable metadata keys can be retrieved but cannot be searched, queried, or filtered. You can access non-filterable metadata keys of your vectors after finding the vectors."
+      },
+      "TextSearchConfigurations": {
+        "type": {
+          "$ref": "#/15"
+        },
+        "flags": 0
       }
     }
   },
@@ -68,17 +74,35 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/12"
         },
         "flags": 1,
         "description": "Tag key must be between 1 to 128 characters in length. Tag key cannot start with 'aws:' and can only contain alphanumeric characters, spaces, _, ., /, =, +, -, and @."
       },
       "Value": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/12"
         },
         "flags": 1,
         "description": "Tag value must be between 0 to 256 characters in length. Tag value can only contain alphanumeric characters, spaces, _, ., /, =, +, -, and @."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "TextSearchConfiguration",
+    "properties": {
+      "Language": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 0
+      },
+      "MetadataKey": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 1
       }
     }
   },
@@ -101,7 +125,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/11"
+      "$ref": "#/12"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/9"
     }
   },
   {
@@ -120,25 +150,25 @@
     "properties": {
       "CreationTime": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/12"
         },
         "flags": 2
       },
       "DataType": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/12"
         },
         "flags": 1
       },
       "Dimension": {
         "type": {
-          "$ref": "#/12"
+          "$ref": "#/13"
         },
         "flags": 1
       },
       "DistanceMetric": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/12"
         },
         "flags": 1
       },
@@ -150,13 +180,13 @@
       },
       "IndexArn": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/12"
         },
         "flags": 18
       },
       "IndexName": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/12"
         },
         "flags": 0
       },
@@ -168,20 +198,20 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/15"
+          "$ref": "#/17"
         },
         "flags": 0,
         "description": "User tags (key-value pairs) to associate with the index."
       },
       "VectorBucketArn": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/12"
         },
         "flags": 0
       },
       "VectorBucketName": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/12"
         },
         "flags": 0
       }
@@ -193,21 +223,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/12"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/12"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/16"
+          "$ref": "#/18"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -218,7 +248,7 @@
     "$type": "ResourceType",
     "name": "AWS.S3Vectors/Index@default",
     "body": {
-      "$ref": "#/17"
+      "$ref": "#/19"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -234,14 +264,14 @@
     "properties": {
       "KmsKeyArn": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/12"
         },
         "flags": 0,
         "description": "AWS Key Management Service (KMS) customer managed key ID to use for the encryption configuration. This parameter is allowed if and only if sseType is set to aws:kms"
       },
       "SseType": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/12"
         },
         "flags": 0,
         "description": "The server-side encryption type to use for the encryption configuration of the vector bucket. By default, if you don't specify, all new vectors in Amazon S3 vector buckets use server-side encryption with Amazon S3 managed keys (SSE-S3), specifically AES256."
@@ -254,14 +284,14 @@
     "properties": {
       "Key": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/12"
         },
         "flags": 1,
         "description": "Tag key must be between 1 to 128 characters in length. Tag key cannot start with 'aws:' and can only contain alphanumeric characters, spaces, _, ., /, =, +, -, and @."
       },
       "Value": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/12"
         },
         "flags": 1,
         "description": "Tag value must be between 0 to 256 characters in length. Tag value can only contain alphanumeric characters, spaces, _, ., /, =, +, -, and @."
@@ -285,7 +315,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/21"
+      "$ref": "#/23"
     }
   },
   {
@@ -294,32 +324,32 @@
     "properties": {
       "CreationTime": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/12"
         },
         "flags": 2
       },
       "EncryptionConfiguration": {
         "type": {
-          "$ref": "#/20"
+          "$ref": "#/22"
         },
         "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/27"
         },
         "flags": 0,
         "description": "User tags (key-value pairs) to associate with the vector bucket."
       },
       "VectorBucketArn": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/12"
         },
         "flags": 18
       },
       "VectorBucketName": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/12"
         },
         "flags": 0
       }
@@ -331,21 +361,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/12"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/12"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/28"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -356,7 +386,7 @@
     "$type": "ResourceType",
     "name": "AWS.S3Vectors/VectorBucket@default",
     "body": {
-      "$ref": "#/27"
+      "$ref": "#/29"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -366,7 +396,7 @@
     "name": "Policy",
     "properties": {},
     "additionalProperties": {
-      "$ref": "#/32"
+      "$ref": "#/34"
     }
   },
   {
@@ -386,10 +416,10 @@
     "$type": "UnionType",
     "elements": [
       {
-        "$ref": "#/29"
+        "$ref": "#/31"
       },
       {
-        "$ref": "#/11"
+        "$ref": "#/12"
       }
     ]
   },
@@ -402,17 +432,17 @@
     "name": "VectorBucketPolicy_Policy",
     "properties": {},
     "additionalProperties": {
-      "$ref": "#/32"
+      "$ref": "#/34"
     }
   },
   {
     "$type": "UnionType",
     "elements": [
       {
-        "$ref": "#/35"
+        "$ref": "#/37"
       },
       {
-        "$ref": "#/11"
+        "$ref": "#/12"
       }
     ]
   },
@@ -422,19 +452,19 @@
     "properties": {
       "Policy": {
         "type": {
-          "$ref": "#/36"
+          "$ref": "#/38"
         },
         "flags": 1
       },
       "VectorBucketArn": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/12"
         },
         "flags": 16
       },
       "VectorBucketName": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/12"
         },
         "flags": 4
       }
@@ -446,21 +476,21 @@
     "properties": {
       "name": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/12"
         },
         "flags": 0,
         "description": "the resource name"
       },
       "alias": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/12"
         },
         "flags": 17,
         "description": "the resource alias"
       },
       "properties": {
         "type": {
-          "$ref": "#/37"
+          "$ref": "#/39"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -471,7 +501,7 @@
     "$type": "ResourceType",
     "name": "AWS.S3Vectors/VectorBucketPolicy@default",
     "body": {
-      "$ref": "#/38"
+      "$ref": "#/40"
     },
     "readableScopes": 0,
     "writableScopes": 0

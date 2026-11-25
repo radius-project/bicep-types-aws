@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-FSx-Volume",
   "type": "AWS::FSx::Volume",
-  "time": "2026-10-13T14:48:30.032Z",
+  "time": "2026-11-21T22:08:47.403Z",
   "schema": {
     "additionalIdentifiers": [
       [
@@ -84,6 +84,26 @@
         ],
         "type": "object"
       },
+      "CloneConfiguration": {
+        "additionalProperties": false,
+        "description": "Creates the volume as an ONTAP FlexClone of an existing volume in the same SVM. After the volume is created, changing or removing CloneConfiguration isn't supported: the update fails and the clone is unchanged.",
+        "properties": {
+          "ParentVolumeId": {
+            "description": "The ID of the volume to clone. It must be in the same storage virtual machine (SVM) as the new volume.",
+            "pattern": "^(fsvol-[0-9a-f]{17,})$",
+            "type": "string"
+          },
+          "SnapshotId": {
+            "description": "The ID of a snapshot of the parent volume to clone from. If you omit it, the clone is created from the parent volume's current state. Required when this volume's OntapVolumeType is DP (the parent volume must then also be DP).",
+            "pattern": "^((fs)?volsnap-[0-9a-f]{8,})$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "ParentVolumeId"
+        ],
+        "type": "object"
+      },
       "NfsExports": {
         "additionalProperties": false,
         "properties": {
@@ -108,6 +128,10 @@
           "AggregateConfiguration": {
             "$ref": "#/definitions/AggregateConfiguration",
             "description": "Used to specify the configuration options for an FSx for ONTAP volume's storage aggregate or aggregates."
+          },
+          "CloneConfiguration": {
+            "$ref": "#/definitions/CloneConfiguration",
+            "description": "Creates the volume as an ONTAP FlexClone of an existing volume. The clone takes SizeInMegabytes and StorageEfficiencyEnabled from the parent volume: omit them, or set them to the parent's values."
           },
           "CopyTagsToBackups": {
             "description": "A boolean flag indicating whether tags for the volume should be copied to backups.",

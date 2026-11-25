@@ -1,0 +1,188 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-APIPortal-ManagedApi",
+  "type": "AWS::APIPortal::ManagedApi",
+  "time": "2026-11-23T07:44:46.519Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/ManagedApiId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/ApiSignature"
+    ],
+    "definitions": {
+      "ApiSignature": {
+        "additionalProperties": false,
+        "description": "Identifies a discovered API by its source resource, method, hostname, port, and path.",
+        "properties": {
+          "Hostname": {
+            "description": "The front-door hostname of the API.",
+            "maxLength": 256,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Method": {
+            "description": "The HTTP method of the API.",
+            "enum": [
+              "GET",
+              "POST",
+              "PUT",
+              "DELETE",
+              "PATCH",
+              "ANY",
+              "HEAD",
+              "OPTIONS"
+            ],
+            "type": "string"
+          },
+          "Path": {
+            "description": "The route path of the API.",
+            "maxLength": 4096,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Port": {
+            "description": "The port the API is served on.",
+            "maximum": 65535,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "ResourceArn": {
+            "description": "ARN of the source-service resource (API Gateway stage, load balancer, or CloudFront distribution).",
+            "maxLength": 2048,
+            "minLength": 20,
+            "pattern": "^arn:aws[a-z\\-]*:[a-z0-9\\-]+:[a-z0-9\\-]*:([0-9]{12})?:.+$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "ResourceArn",
+          "Method",
+          "Hostname",
+          "Port",
+          "Path"
+        ],
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with a resource.",
+        "properties": {
+          "Key": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::APIPortal::ManagedApi. Promotes an API discovered in the API inventory into the managed API list.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "apiportal:CreateManagedApi",
+          "apiportal:GetManagedApi",
+          "apiportal:TagResource"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "apiportal:DeleteManagedApi",
+          "apiportal:GetManagedApi"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "apiportal:ListManagedApis"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "apiportal:GetManagedApi"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "apiportal:GetManagedApi",
+          "apiportal:TagResource",
+          "apiportal:UntagResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/ManagedApiArn"
+    ],
+    "properties": {
+      "ApiSignature": {
+        "$ref": "#/definitions/ApiSignature"
+      },
+      "CreatedAt": {
+        "description": "The timestamp when the managed API was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "ManagedApiArn": {
+        "description": "The ARN of the managed API.",
+        "maxLength": 1011,
+        "minLength": 20,
+        "type": "string"
+      },
+      "ManagedApiId": {
+        "description": "The managed API identifier.",
+        "maxLength": 30,
+        "minLength": 10,
+        "pattern": "^[a-z0-9]+$",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "The tags associated with the managed API.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": false
+      },
+      "UpdatedAt": {
+        "description": "The timestamp when the managed API was last modified.",
+        "format": "date-time",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/ManagedApiArn",
+      "/properties/ManagedApiId",
+      "/properties/CreatedAt",
+      "/properties/UpdatedAt"
+    ],
+    "required": [
+      "ApiSignature"
+    ],
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-apiportal.git",
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "apiportal:TagResource",
+        "apiportal:UntagResource",
+        "apiportal:GetManagedApi"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::APIPortal::ManagedApi"
+  }
+}

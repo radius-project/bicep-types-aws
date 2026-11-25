@@ -1,12 +1,13 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SecurityHub-Connector",
   "type": "AWS::SecurityHub::Connector",
-  "time": "2026-10-20T16:06:44.476Z",
+  "time": "2026-11-19T15:13:06.143Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
       "/properties/Name",
-      "/properties/Provider/Azure/AWSConfigConnectorArn"
+      "/properties/Provider/Azure/AWSConfigConnectorArn",
+      "/properties/Provider/GCP/AWSConfigConnectorArn"
     ],
     "definitions": {
       "AzureProviderConfiguration": {
@@ -77,6 +78,65 @@
         "description": "The enablement status of the connector",
         "type": "string"
       },
+      "GcpProviderConfiguration": {
+        "additionalProperties": false,
+        "description": "",
+        "properties": {
+          "AWSConfigConnectorArn": {
+            "description": "The ARN of the AWS Config connector used for the GCP integration",
+            "type": "string"
+          },
+          "GCPRegions": {
+            "description": "The list of GCP regions to include in the connector scope",
+            "insertionOrder": false,
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 256,
+            "minItems": 1,
+            "type": "array",
+            "uniqueItems": true
+          },
+          "ScopeConfiguration": {
+            "$ref": "#/definitions/GcpScopeConfiguration"
+          }
+        },
+        "required": [
+          "AWSConfigConnectorArn",
+          "ScopeConfiguration",
+          "GCPRegions"
+        ],
+        "type": "object"
+      },
+      "GcpScopeConfiguration": {
+        "additionalProperties": false,
+        "description": "",
+        "properties": {
+          "ScopeType": {
+            "description": "The scope type for the GCP connector",
+            "enum": [
+              "PROJECT",
+              "ORGANIZATION"
+            ],
+            "type": "string"
+          },
+          "ScopeValues": {
+            "description": "The list of scope values for the GCP connector",
+            "insertionOrder": false,
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 100,
+            "minItems": 0,
+            "type": "array",
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "ScopeType"
+        ],
+        "type": "object"
+      },
       "HealthIssue": {
         "additionalProperties": false,
         "description": "Represents a specific health issue detected for a connector.",
@@ -106,16 +166,32 @@
         "type": "string"
       },
       "Provider": {
-        "additionalProperties": false,
-        "description": "",
-        "properties": {
-          "Azure": {
-            "$ref": "#/definitions/AzureProviderConfiguration",
-            "description": ""
+        "description": "The CSPM provider configuration for the connector",
+        "oneOf": [
+          {
+            "additionalProperties": false,
+            "properties": {
+              "Azure": {
+                "$ref": "#/definitions/AzureProviderConfiguration"
+              }
+            },
+            "required": [
+              "Azure"
+            ],
+            "type": "object"
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "GCP": {
+                "$ref": "#/definitions/GcpProviderConfiguration"
+              }
+            },
+            "required": [
+              "GCP"
+            ],
+            "type": "object"
           }
-        },
-        "required": [
-          "Azure"
         ],
         "type": "object"
       },

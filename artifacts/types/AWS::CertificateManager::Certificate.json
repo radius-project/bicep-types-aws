@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-CertificateManager-Certificate",
   "type": "AWS::CertificateManager::Certificate",
-  "time": "2026-10-21T01:57:13.061Z",
+  "time": "2026-11-20T21:03:15.066Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -10,7 +10,9 @@
       "/properties/KeyAlgorithm",
       "/properties/DomainName",
       "/properties/CertificateAuthorityArn",
-      "/properties/CertificateExport"
+      "/properties/CertificateExport",
+      "/properties/RootHierarchyType",
+      "/properties/CertificateUsage"
     ],
     "definitions": {
       "DomainValidationOption": {
@@ -117,6 +119,14 @@
         ],
         "type": "string"
       },
+      "CertificateUsage": {
+        "description": "The extended key usage of an Amazon N2 certificate. Valid only with RootHierarchyType. Defaults to CLIENT_AND_SERVER_AUTH. CLIENT_AUTH_ONLY requires N2_AMAZON_MANAGED.",
+        "enum": [
+          "CLIENT_AND_SERVER_AUTH",
+          "CLIENT_AUTH_ONLY"
+        ],
+        "type": "string"
+      },
       "DomainName": {
         "description": "The fully qualified domain name (FQDN), such as www.example.com, with which you want to secure an ACM certificate",
         "type": "string"
@@ -130,6 +140,14 @@
       },
       "KeyAlgorithm": {
         "description": "Specifies the algorithm of the public and private key pair that your certificate uses to encrypt data.",
+        "type": "string"
+      },
+      "RootHierarchyType": {
+        "description": "The Amazon N2 root hierarchy that issues the certificate. Omit for a public TLS certificate. Amazon N2 roots are not trusted by browsers.",
+        "enum": [
+          "N2_AMAZON_MANAGED",
+          "N2_SFG2_AMAZON_MANAGED"
+        ],
         "type": "string"
       },
       "SubjectAlternativeNames": {

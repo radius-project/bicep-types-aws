@@ -1,0 +1,200 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-WellArchitected-AgentOrganizationalProfile",
+  "type": "AWS::WellArchitected::AgentOrganizationalProfile",
+  "time": "2026-11-25T21:27:54.198Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/Name"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Name"
+    ],
+    "definitions": {
+      "Pillar": {
+        "description": "A Well-Architected pillar the Agent Organizational Profile focuses on.",
+        "enum": [
+          "COST_OPTIMIZATION",
+          "SECURITY",
+          "RESILIENCE",
+          "PERFORMANCE",
+          "OPERATIONAL_EXCELLENCE"
+        ],
+        "type": "string"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with the Agent Organizational Profile.",
+        "properties": {
+          "Key": {
+            "description": "The tag key.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The tag value.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::WellArchitected::AgentOrganizationalProfile. An Agent Organizational Profile is an Agent Profile scoped to an AWS Organization; the organization is inferred from the caller's identity, and the profile does not carry a single-account execution role or aggregation configuration. Only usable in the AWS Organizations management or delegated-admin account.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "wellarchitected:CreateAgentOrganizationalProfile",
+          "wellarchitected:GetAgentProfile",
+          "wellarchitected:TagResource",
+          "wellarchitected:ListTagsForResource"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "wellarchitected:DeleteAgentProfile",
+          "wellarchitected:GetAgentProfile"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "wellarchitected:ListAgentProfiles"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "wellarchitected:GetAgentProfile",
+          "wellarchitected:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "wellarchitected:UpdateAgentOrganizationalProfile",
+          "wellarchitected:GetAgentProfile",
+          "wellarchitected:TagResource",
+          "wellarchitected:UntagResource",
+          "wellarchitected:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the Agent Organizational Profile.",
+        "maxLength": 2048,
+        "minLength": 1,
+        "pattern": "^arn:aws([a-z0-9-]+)?:wellarchitected:[a-z0-9-]{6,64}:[0-9]{12}:agent-profile/([a-zA-Z0-9_-]+)$",
+        "type": "string"
+      },
+      "BusinessOverview": {
+        "description": "A business overview for the organizational profile used to improve recommendation quality.",
+        "maxLength": 512,
+        "type": "string"
+      },
+      "CreatedAt": {
+        "description": "The timestamp when the organizational profile was created.",
+        "format": "date-time",
+        "maxLength": 64,
+        "minLength": 20,
+        "type": "string"
+      },
+      "CreatedBy": {
+        "description": "The identifier of the system or user that created this organizational profile.",
+        "maxLength": 128,
+        "minLength": 1,
+        "type": "string"
+      },
+      "DeletionProtection": {
+        "description": "Whether deletion protection is enabled for the organizational profile. When enabled, the profile cannot be deleted until deletion protection is disabled.",
+        "type": "boolean"
+      },
+      "Description": {
+        "description": "A description of the organizational profile.",
+        "maxLength": 512,
+        "type": "string"
+      },
+      "DisplayName": {
+        "description": "The human-readable display name of the organizational profile.",
+        "maxLength": 128,
+        "minLength": 3,
+        "type": "string"
+      },
+      "LastModifiedAt": {
+        "description": "The timestamp when the organizational profile was last modified.",
+        "format": "date-time",
+        "maxLength": 64,
+        "minLength": 20,
+        "type": "string"
+      },
+      "LastModifiedBy": {
+        "description": "The identifier of the system or user that last modified this organizational profile.",
+        "maxLength": 128,
+        "minLength": 1,
+        "type": "string"
+      },
+      "Name": {
+        "description": "The name of the organizational profile. Unique within the account and used as the last component of the ARN.",
+        "maxLength": 128,
+        "minLength": 3,
+        "pattern": "^[a-zA-Z0-9_-]+$",
+        "type": "string"
+      },
+      "Pillars": {
+        "description": "The list of Well-Architected pillars to focus on.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Pillar"
+        },
+        "maxItems": 5,
+        "minItems": 1,
+        "type": "array",
+        "uniqueItems": true
+      },
+      "Tags": {
+        "description": "Key-value pairs to associate with the Agent Organizational Profile.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 50,
+        "type": "array",
+        "uniqueItems": true
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/CreatedBy",
+      "/properties/CreatedAt",
+      "/properties/LastModifiedBy",
+      "/properties/LastModifiedAt"
+    ],
+    "required": [
+      "Name",
+      "Pillars"
+    ],
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "wellarchitected:TagResource",
+        "wellarchitected:UntagResource",
+        "wellarchitected:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::WellArchitected::AgentOrganizationalProfile"
+  }
+}

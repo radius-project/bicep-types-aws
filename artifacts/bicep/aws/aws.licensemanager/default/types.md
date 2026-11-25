@@ -40,6 +40,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.LicenseManager/LicenseConfigurationProperties](#awslicensemanagerlicenseconfigurationproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.LicenseManager/ReportGenerator@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.LicenseManager/ReportGeneratorProperties](#awslicensemanagerreportgeneratorproperties) (Required, Identifier): properties of the resource
+
 ## AndRuleStatement
 ### Properties
 * **MatchingRuleStatements**: [MatchingRuleStatement](#matchingrulestatement)[]
@@ -107,6 +115,19 @@
 * **Tags**: [Tag](#tag)[]: A list of tags to attach.
 * **Validity**: [ValidityDateFormat](#validitydateformat) (Required)
 * **Version**: string (ReadOnly): The version of the license.
+
+## AWS.LicenseManager/ReportGeneratorProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier): Amazon Resource Name (ARN) of the report generator.
+* **CreateTime**: string (ReadOnly): Time the report was created.
+* **Description**: string: Description of the report generator.
+* **ReportContext**: [ReportContext](#reportcontext) (Required)
+* **ReportCreatorAccount**: string (ReadOnly): The AWS account ID used to create the report generator.
+* **ReportFrequency**: [ReportFrequency](#reportfrequency) (Required)
+* **ReportGeneratorName**: string (Required): Name of the report generator.
+* **ReportType**: string[] (Required): Type of reports to generate. The report type determines the data reported on.
+* **S3Location**: [S3Location](#s3location) (ReadOnly)
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 
 ## BorrowConfiguration
 ### Properties
@@ -194,16 +215,28 @@
 ### Properties
 * **MaxTimeToLiveInMinutes**: int (Required)
 
+## ReportContext
+### Properties
+* **LicenseAssetGroupArns**: string[]: Amazon Resource Names (ARNs) of the license asset groups to include in the report.
+* **LicenseConfigurationArns**: string[]: Amazon Resource Names (ARNs) of the license configurations that this generator reports on.
+* **ReportEndDate**: string: End date for the report data collection period.
+* **ReportStartDate**: string: Start date for the report data collection period.
+
+## ReportFrequency
+### Properties
+* **Period**: string: Time period between each report. The period can be daily, weekly, or monthly.
+* **Value**: int: Number of times within the frequency period that a report is generated. The only supported value is 1.
+
 ## RuleStatement
 ### Properties
 * **InstanceRuleStatement**: [InstanceRuleStatement](#instancerulestatement)
 * **LicenseConfigurationRuleStatement**: [LicenseConfigurationRuleStatement](#licenseconfigurationrulestatement)
 * **LicenseRuleStatement**: [LicenseRuleStatement](#licenserulestatement)
 
-## Tag
+## S3Location
 ### Properties
-* **Key**: string (Required): The key name of the tag.
-* **Value**: string (Required): The value for the tag.
+* **Bucket**: string: Name of the S3 bucket reports are published to.
+* **KeyPrefix**: string: Prefix of the S3 bucket reports are published to.
 
 ## Tag
 ### Properties
@@ -212,8 +245,8 @@
 
 ## Tag
 ### Properties
-* **Key**: string (Required)
-* **Value**: string (Required)
+* **Key**: string (Required): The key name of the tag.
+* **Value**: string (Required): The value for the tag.
 
 ## Tag
 ### Properties
@@ -224,6 +257,16 @@
 ### Properties
 * **Key**: string (Required)
 * **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required): The tag key.
+* **Value**: string (Required): The tag value.
 
 ## ValidityDateFormat
 ### Properties

@@ -170,6 +170,7 @@
 ### Properties
 * **AudioTimelinePattern**: string
 * **AvailabilityStartTimeConfiguration**: [DashAvailabilityStartTimeConfiguration](#dashavailabilitystarttimeconfiguration)
+* **BandwidthReportingMode**: string
 * **BaseUrls**: [DashBaseUrl](#dashbaseurl)[]: <p>The base URL to use for retrieving segments.</p>
 * **Compactness**: string
 * **DrmSignaling**: string

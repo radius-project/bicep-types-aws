@@ -831,6 +831,11 @@
   },
   {
     "$type": "ObjectType",
+    "name": "ConformancePackType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
     "name": "ParameterName",
     "properties": {}
   },
@@ -838,6 +843,39 @@
     "$type": "ObjectType",
     "name": "ParameterValue",
     "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Scope",
+    "properties": {
+      "TagKey": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The tag key of the tag scope. Only resources with this tag key are in scope of the conformance pack."
+      },
+      "TagValue": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The tag value of the tag scope. If omitted, resources are in scope based on the presence of the tag key alone, regardless of its value."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Source",
+    "properties": {
+      "SourceIdentifier": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The identifier specifying which managed conformance pack is being deployed."
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -872,7 +910,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/52"
+      "$ref": "#/55"
     }
   },
   {
@@ -906,7 +944,7 @@
       },
       "ConformancePackInputParameters": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/57"
         },
         "flags": 0,
         "description": "A list of ConformancePackInputParameter objects."
@@ -932,9 +970,21 @@
         "flags": 0,
         "description": "The prefix for delivery S3 bucket."
       },
+      "Scope": {
+        "type": {
+          "$ref": "#/53"
+        },
+        "flags": 0
+      },
+      "Source": {
+        "type": {
+          "$ref": "#/54"
+        },
+        "flags": 0
+      },
       "Tags": {
         "type": {
-          "$ref": "#/55"
+          "$ref": "#/58"
         },
         "flags": 0,
         "description": "The tags for the conformance pack."
@@ -955,10 +1005,16 @@
       },
       "TemplateSSMDocumentDetails": {
         "type": {
-          "$ref": "#/56"
+          "$ref": "#/59"
         },
         "flags": 4,
         "description": "The TemplateSSMDocumentDetails object contains the name of the SSM document and the version of the SSM document."
+      },
+      "Type": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2
       }
     }
   },
@@ -982,7 +1038,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/57"
+          "$ref": "#/60"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -993,7 +1049,7 @@
     "$type": "ResourceType",
     "name": "AWS.Config/ConformancePack@default",
     "body": {
-      "$ref": "#/58"
+      "$ref": "#/61"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1024,10 +1080,44 @@
     "properties": {
       "Azure": {
         "type": {
-          "$ref": "#/60"
+          "$ref": "#/63"
         },
         "flags": 0,
         "description": "The configuration for connecting to Microsoft Azure."
+      },
+      "Gcp": {
+        "type": {
+          "$ref": "#/65"
+        },
+        "flags": 0,
+        "description": "The configuration for connecting to Google Cloud."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "GcpConnectorConfiguration",
+    "properties": {
+      "GcpOrganizationId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The ID of the Google Cloud organization that contains the connector's management project, which is the project of the service account in ServiceAccountEmail. Required if the management project belongs to an organization. A connector needs an organization ID to record an entire organization or more than one project. Omit it only if the management project doesn't belong to an organization. In that case, the connector can record only the management project."
+      },
+      "ServiceAccountEmail": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The email address of the Google Cloud service account that AWS Config uses."
+      },
+      "WorkloadIdentityPoolProvider": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The full resource name of the workload identity pool provider that AWS Config uses to federate into Google Cloud."
       }
     }
   },
@@ -1058,7 +1148,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/62"
+      "$ref": "#/66"
     }
   },
   {
@@ -1074,7 +1164,7 @@
       },
       "ConnectorConfiguration": {
         "type": {
-          "$ref": "#/61"
+          "$ref": "#/64"
         },
         "flags": 1,
         "description": "The configuration for the connector that specifies the third-party cloud provider connection details."
@@ -1095,7 +1185,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/64"
+          "$ref": "#/68"
         },
         "flags": 0,
         "description": "The tags for the connector."
@@ -1122,7 +1212,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/65"
+          "$ref": "#/69"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1133,7 +1223,7 @@
     "$type": "ResourceType",
     "name": "AWS.Config/Connector@default",
     "body": {
-      "$ref": "#/66"
+      "$ref": "#/70"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1161,7 +1251,7 @@
     "properties": {
       "ConfigSnapshotDeliveryProperties": {
         "type": {
-          "$ref": "#/68"
+          "$ref": "#/72"
         },
         "flags": 0,
         "description": "The options for how often AWS Config delivers configuration snapshots to the Amazon S3 bucket."
@@ -1223,7 +1313,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/70"
+          "$ref": "#/74"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1234,7 +1324,7 @@
     "$type": "ResourceType",
     "name": "AWS.Config/DeliveryChannel@default",
     "body": {
-      "$ref": "#/71"
+      "$ref": "#/75"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1245,7 +1335,7 @@
     "properties": {
       "DebugLogDeliveryAccounts": {
         "type": {
-          "$ref": "#/76"
+          "$ref": "#/80"
         },
         "flags": 0,
         "description": "A list of accounts that you can enable debug logging for your organization AWS Config Custom Policy rule. "
@@ -1266,7 +1356,7 @@
       },
       "OrganizationConfigRuleTriggerTypes": {
         "type": {
-          "$ref": "#/77"
+          "$ref": "#/81"
         },
         "flags": 0,
         "description": "The type of notification that initiates AWS Config to run an evaluation for a rule."
@@ -1287,7 +1377,7 @@
       },
       "ResourceTypesScope": {
         "type": {
-          "$ref": "#/78"
+          "$ref": "#/82"
         },
         "flags": 0,
         "description": "The type of the AWS resource that was evaluated."
@@ -1349,7 +1439,7 @@
       },
       "OrganizationConfigRuleTriggerTypes": {
         "type": {
-          "$ref": "#/79"
+          "$ref": "#/83"
         },
         "flags": 1,
         "description": "The type of notification that triggers AWS Config to run an evaluation for a rule. You can specify the following notification types:"
@@ -1363,7 +1453,7 @@
       },
       "ResourceTypesScope": {
         "type": {
-          "$ref": "#/80"
+          "$ref": "#/84"
         },
         "flags": 0,
         "description": "The type of the AWS resource that was evaluated."
@@ -1418,7 +1508,7 @@
       },
       "ResourceTypesScope": {
         "type": {
-          "$ref": "#/81"
+          "$ref": "#/85"
         },
         "flags": 0,
         "description": "The type of the AWS resource that was evaluated."
@@ -1498,7 +1588,7 @@
     "properties": {
       "ExcludedAccounts": {
         "type": {
-          "$ref": "#/83"
+          "$ref": "#/87"
         },
         "flags": 0,
         "description": "A comma-separated list of accounts that you want to exclude from an organization AWS Config rule."
@@ -1519,21 +1609,21 @@
       },
       "OrganizationCustomPolicyRuleMetadata": {
         "type": {
-          "$ref": "#/73"
+          "$ref": "#/77"
         },
         "flags": 0,
         "description": "This object specifies metadata for your organization's AWS Config Custom Policy rule."
       },
       "OrganizationCustomRuleMetadata": {
         "type": {
-          "$ref": "#/74"
+          "$ref": "#/78"
         },
         "flags": 0,
         "description": "This object specifies organization custom rule metadata such as resource type, resource ID of AWS resource, Lambda function ARN, and organization trigger types that trigger AWS Config to evaluate your AWS resources against a rule."
       },
       "OrganizationManagedRuleMetadata": {
         "type": {
-          "$ref": "#/75"
+          "$ref": "#/79"
         },
         "flags": 0,
         "description": "This object specifies organization managed rule metadata such as resource type and ID of AWS resource along with the rule identifier."
@@ -1560,7 +1650,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/84"
+          "$ref": "#/88"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1571,7 +1661,7 @@
     "$type": "ResourceType",
     "name": "AWS.Config/OrganizationConfigRule@default",
     "body": {
-      "$ref": "#/85"
+      "$ref": "#/89"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1636,7 +1726,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/88"
+      "$ref": "#/92"
     }
   },
   {
@@ -1648,7 +1738,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/91"
+      "$ref": "#/95"
     }
   },
   {
@@ -1657,7 +1747,7 @@
     "properties": {
       "ConformancePackInputParameters": {
         "type": {
-          "$ref": "#/93"
+          "$ref": "#/97"
         },
         "flags": 0,
         "description": "A list of ConformancePackInputParameter objects."
@@ -1678,7 +1768,7 @@
       },
       "ExcludedAccounts": {
         "type": {
-          "$ref": "#/94"
+          "$ref": "#/98"
         },
         "flags": 0,
         "description": "A list of AWS accounts to be excluded from an organization conformance pack while deploying a conformance pack."
@@ -1699,7 +1789,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/95"
+          "$ref": "#/99"
         },
         "flags": 0,
         "description": "The tags for the organization conformance pack."
@@ -1740,7 +1830,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/96"
+          "$ref": "#/100"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1751,7 +1841,7 @@
     "$type": "ResourceType",
     "name": "AWS.Config/OrganizationConformancePack@default",
     "body": {
-      "$ref": "#/97"
+      "$ref": "#/101"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1762,7 +1852,7 @@
     "properties": {
       "SsmControls": {
         "type": {
-          "$ref": "#/100"
+          "$ref": "#/104"
         },
         "flags": 0
       }
@@ -1774,13 +1864,13 @@
     "properties": {
       "ConcurrentExecutionRatePercentage": {
         "type": {
-          "$ref": "#/101"
+          "$ref": "#/105"
         },
         "flags": 0
       },
       "ErrorPercentage": {
         "type": {
-          "$ref": "#/101"
+          "$ref": "#/105"
         },
         "flags": 0
       }
@@ -1819,19 +1909,19 @@
       },
       "ExecutionControls": {
         "type": {
-          "$ref": "#/99"
+          "$ref": "#/103"
         },
         "flags": 0
       },
       "MaximumAutomaticAttempts": {
         "type": {
-          "$ref": "#/101"
+          "$ref": "#/105"
         },
         "flags": 0
       },
       "Parameters": {
         "type": {
-          "$ref": "#/103"
+          "$ref": "#/107"
         },
         "flags": 0
       },
@@ -1843,7 +1933,7 @@
       },
       "RetryAttemptSeconds": {
         "type": {
-          "$ref": "#/101"
+          "$ref": "#/105"
         },
         "flags": 0
       },
@@ -1887,7 +1977,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/104"
+          "$ref": "#/108"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1898,7 +1988,7 @@
     "$type": "ResourceType",
     "name": "AWS.Config/RemediationConfiguration@default",
     "body": {
-      "$ref": "#/105"
+      "$ref": "#/109"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1930,7 +2020,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/107"
+      "$ref": "#/111"
     }
   },
   {
@@ -1969,7 +2059,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/109"
+          "$ref": "#/113"
         },
         "flags": 0,
         "description": "The tags for the stored query."
@@ -1996,7 +2086,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/110"
+          "$ref": "#/114"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2007,7 +2097,7 @@
     "$type": "ResourceType",
     "name": "AWS.Config/StoredQuery@default",
     "body": {
-      "$ref": "#/111"
+      "$ref": "#/115"
     },
     "readableScopes": 0,
     "writableScopes": 0
