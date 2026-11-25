@@ -1,0 +1,190 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-CloudFront-FieldLevelEncryptionConfig",
+  "type": "AWS::CloudFront::FieldLevelEncryptionConfig",
+  "time": "2026-11-25T20:40:17.154Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/Id"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/CallerReference"
+    ],
+    "definitions": {
+      "ContentTypeProfile": {
+        "additionalProperties": false,
+        "description": "A content type paired with the field-level encryption profile that encrypts it.",
+        "properties": {
+          "ContentType": {
+            "description": "The content type CloudFront encrypts. The service accepts only application/x-www-form-urlencoded.",
+            "type": "string"
+          },
+          "Format": {
+            "description": "The encryption format CloudFront uses for this content type.",
+            "enum": [
+              "URLEncoded"
+            ],
+            "type": "string"
+          },
+          "ProfileId": {
+            "description": "The identifier of the field-level encryption profile CloudFront uses for this content type. Required, so that it cannot be omitted: the service accepts a content-type profile with the member absent on create and refuses one on update, and an update sends the whole profile list, so a configuration created that way could never be updated again. Supply an empty string to configure a content type and forward it WITHOUT field-level encryption. That mode is available through this resource and round-trips: create, update and read all accept and return the empty string, and it is the service's own encoding for the state -- asked for a content-type list with no items, CloudFront returns one item whose ProfileId is empty. Note that this is not the same as omitting the content type from the configuration, because ForwardWhenContentTypeIsUnknown governs only content types absent from it.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Format",
+          "ContentType",
+          "ProfileId"
+        ],
+        "type": "object"
+      },
+      "ContentTypeProfileConfig": {
+        "additionalProperties": false,
+        "description": "How CloudFront handles content types, including the profile paired with each one.",
+        "properties": {
+          "ContentTypeProfiles": {
+            "description": "The content types paired with a profile. Required, and at least one item, because the service synthesizes one default item when the list is absent or empty, so neither state round-trips.",
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/ContentTypeProfile"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "ForwardWhenContentTypeIsUnknown": {
+            "description": "Whether CloudFront forwards a request when the content type names a profile that does not exist.",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "ForwardWhenContentTypeIsUnknown",
+          "ContentTypeProfiles"
+        ],
+        "type": "object"
+      },
+      "QueryArgProfile": {
+        "additionalProperties": false,
+        "description": "A query argument paired with the field-level encryption profile that encrypts it.",
+        "properties": {
+          "ProfileId": {
+            "description": "The identifier of the field-level encryption profile CloudFront uses for this query argument.",
+            "type": "string"
+          },
+          "QueryArg": {
+            "description": "The query argument that CloudFront encrypts with the paired profile.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "QueryArg",
+          "ProfileId"
+        ],
+        "type": "object"
+      },
+      "QueryArgProfileConfig": {
+        "additionalProperties": false,
+        "description": "How CloudFront handles query arguments, including the profile paired with each one.",
+        "properties": {
+          "ForwardWhenQueryArgProfileIsUnknown": {
+            "description": "Whether CloudFront forwards a request when the query argument names a profile that does not exist.",
+            "type": "boolean"
+          },
+          "QueryArgProfiles": {
+            "description": "The query arguments paired with a profile. Required because the service returns an empty list rather than preserving absence, so an omitted value cannot round-trip. An empty list is accepted and is preserved.",
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/QueryArgProfile"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "ForwardWhenQueryArgProfileIsUnknown",
+          "QueryArgProfiles"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::CloudFront::FieldLevelEncryptionConfig. A field-level encryption configuration, which specifies the query arg profiles and content type profiles CloudFront uses to encrypt sensitive fields in viewer requests.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "cloudfront:CreateFieldLevelEncryptionConfig"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "cloudfront:DeleteFieldLevelEncryptionConfig",
+          "cloudfront:GetFieldLevelEncryption"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "cloudfront:ListFieldLevelEncryptionConfigs"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "cloudfront:GetFieldLevelEncryption"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "cloudfront:UpdateFieldLevelEncryptionConfig",
+          "cloudfront:GetFieldLevelEncryption"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the field-level encryption configuration.",
+        "pattern": "^arn:aws[a-zA-Z0-9-]*:cloudfront::[0-9]{12}:field-level-encryption-config/[^/]+$",
+        "type": "string"
+      },
+      "CallerReference": {
+        "description": "A unique value that identifies the create request. Any string unique within the account works; CloudFront refuses to change it once set, so supplying a different value replaces the configuration. It is also the only value CloudFront returns that identifies a configuration as this stack's, so cleaning up after a failed create depends on the template keeping it.",
+        "type": "string"
+      },
+      "Comment": {
+        "description": "An optional comment describing the field-level encryption configuration. CloudFront stores an omitted comment and an explicitly empty one identically as an empty string, and Read normalizes that empty string back to absent -- so omitting Comment round-trips, while asking for an empty string does not and would report perpetual drift. `minLength: 1` refuses the empty string at template validation; omission is the way to express no comment. The service documents a maximum of 128 characters, and `maxLength` moves that refusal from the API to template validation.",
+        "maxLength": 128,
+        "minLength": 1,
+        "type": "string"
+      },
+      "ContentTypeProfileConfig": {
+        "$ref": "#/definitions/ContentTypeProfileConfig"
+      },
+      "Id": {
+        "description": "The identifier CloudFront assigns to the field-level encryption configuration.",
+        "type": "string"
+      },
+      "LastModifiedTime": {
+        "description": "The time the field-level encryption configuration was last changed.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "QueryArgProfileConfig": {
+        "$ref": "#/definitions/QueryArgProfileConfig"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/Id",
+      "/properties/LastModifiedTime"
+    ],
+    "required": [
+      "CallerReference",
+      "ContentTypeProfileConfig",
+      "QueryArgProfileConfig"
+    ],
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::CloudFront::FieldLevelEncryptionConfig"
+  }
+}

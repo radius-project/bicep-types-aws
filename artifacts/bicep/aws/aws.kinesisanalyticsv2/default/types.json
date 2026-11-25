@@ -807,6 +807,322 @@
   },
   {
     "$type": "ObjectType",
+    "name": "ImportSourceConfiguration",
+    "properties": {
+      "ImportRoleArn": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 1,
+        "description": "The ARN of the IAM role that the service assumes to read the snapshot files from Amazon S3 (and to decrypt them, if they are encrypted with a customer managed key)."
+      },
+      "SourceEncryptionConfiguration": {
+        "type": {
+          "$ref": "#/48"
+        },
+        "flags": 0,
+        "description": "The encryption of the snapshot files in Amazon S3."
+      },
+      "SourceS3PrefixLocation": {
+        "type": {
+          "$ref": "#/47"
+        },
+        "flags": 1,
+        "description": "The Amazon S3 bucket and key prefix that hold the snapshot files, for example the prefix an ExportSnapshot operation wrote them to."
+      },
+      "SourceType": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 1,
+        "description": "The type of storage the snapshot is imported from."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "S3PrefixLocation",
+    "properties": {
+      "BucketARN": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 1,
+        "description": "The ARN of the S3 bucket."
+      },
+      "KeyPrefix": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 1,
+        "description": "The S3 key prefix."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SnapshotEncryptionConfigurationDescription",
+    "properties": {
+      "KeyId": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 0,
+        "description": "The ARN of the customer managed KMS key. Required when KeyType is CUSTOMER_MANAGED_KEY; must be omitted for AWS_OWNED_KEY."
+      },
+      "KeyType": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 1,
+        "description": "The type of KMS key: AWS_OWNED_KEY or CUSTOMER_MANAGED_KEY."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SnapshotSourceDescription",
+    "properties": {
+      "S3PrefixLocation": {
+        "type": {
+          "$ref": "#/55"
+        },
+        "flags": 0
+      },
+      "SourceApplicationDescription": {
+        "type": {
+          "$ref": "#/50"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SourceApplicationDescription",
+    "properties": {
+      "ApplicationCreationTimestamp": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 3,
+        "description": "The time at which the source application was created."
+      },
+      "ApplicationName": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 3,
+        "description": "The name of the source application."
+      },
+      "ApplicationVersionId": {
+        "type": {
+          "$ref": "#/33"
+        },
+        "flags": 3,
+        "description": "The version of the source application captured in the snapshot."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 1,
+        "description": "The key of the tag."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 1,
+        "description": "The value of the tag."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.KinesisAnalyticsV2/SnapshotProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/51"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.KinesisAnalyticsV2/SnapshotProperties",
+    "properties": {
+      "ApplicationName": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 4,
+        "description": "The name of the Managed Service for Apache Flink application to snapshot. Used only at create time to select the source application; immutable after create. Specify either ApplicationName or ImportSourceConfiguration, not both."
+      },
+      "ImportSourceConfiguration": {
+        "type": {
+          "$ref": "#/46"
+        },
+        "flags": 4,
+        "description": "The Amazon S3 location and role to import the snapshot from, with ImportSnapshot. Used only at create time; immutable after create. Specify either ApplicationName or ImportSourceConfiguration, not both."
+      },
+      "RuntimeEnvironment": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 2,
+        "description": "The runtime environment of the source application when the snapshot was taken with ApplicationName (CreateSnapshot), for example FLINK-1_20. Populated by DescribeSnapshot. Not returned for snapshots created with ImportSourceConfiguration (ImportSnapshot), which carry no runtime version."
+      },
+      "SnapshotArn": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the snapshot. Account-scoped: arn:<partition>:kinesisanalytics:<region>:<account>:snapshot/<SnapshotName>. Assigned by the service at create time and used as the resource's primary identifier."
+      },
+      "SnapshotCreationTimestamp": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 2,
+        "description": "The time at which the service created the snapshot, in ISO-8601 format. Populated by DescribeSnapshot."
+      },
+      "SnapshotDescription": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 0,
+        "description": "Optional customer-supplied description of the snapshot. Immutable after create."
+      },
+      "SnapshotEncryptionConfigurationDescription": {
+        "type": {
+          "$ref": "#/48"
+        },
+        "flags": 0,
+        "description": "The encryption of the snapshot. Can be set only with ImportSourceConfiguration (sent as the ImportSnapshot DestinationEncryptionConfiguration; the AWS owned key when omitted). A snapshot taken from ApplicationName uses the application's encryption: DescribeSnapshot returns it for such snapshots, but it must not be set with ApplicationName. Immutable after create."
+      },
+      "SnapshotFormat": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 0,
+        "description": "The format of the snapshot (CANONICAL). Sent to ImportSnapshot with ImportSourceConfiguration; with ApplicationName it may only be CANONICAL, the format CreateSnapshot produces. Returned by DescribeSnapshot. Immutable after create."
+      },
+      "SnapshotInitiator": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 2,
+        "description": "Indicates whether the snapshot was initiated by the customer or by the service. Populated by DescribeSnapshot."
+      },
+      "SnapshotInitiatorOperation": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 2,
+        "description": "The operation that initiated the snapshot. Populated by DescribeSnapshot."
+      },
+      "SnapshotName": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 1,
+        "description": "The customer-chosen name of the snapshot, unique within the account. Immutable after create."
+      },
+      "SnapshotSizeInBytes": {
+        "type": {
+          "$ref": "#/33"
+        },
+        "flags": 2,
+        "description": "The size of the snapshot in bytes. Populated by DescribeSnapshot once the snapshot reaches READY."
+      },
+      "SnapshotSourceDescription": {
+        "type": {
+          "$ref": "#/49"
+        },
+        "flags": 2,
+        "description": "The source of the snapshot: the application it was taken from, or the Amazon S3 location it was imported from. Populated by DescribeSnapshot."
+      },
+      "SnapshotStatus": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 2,
+        "description": "The lifecycle status of the snapshot as reported by the service (CREATING, READY, DELETING, FAILED). Populated by DescribeSnapshot."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/53"
+        },
+        "flags": 0,
+        "description": "Tags to apply to the snapshot. Applied at create time (with CreateSnapshot, or with TagResource right after ImportSnapshot) and updated in place with TagResource and UntagResource. Tag keys must not start with aws:."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "S3PrefixLocation",
+    "properties": {
+      "BucketARN": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 3,
+        "description": "The ARN of the S3 bucket."
+      },
+      "KeyPrefix": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 3,
+        "description": "The S3 key prefix."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.KinesisAnalyticsV2/Snapshot",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/30"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/54"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.KinesisAnalyticsV2/Snapshot@default",
+    "body": {
+      "$ref": "#/56"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
     "name": "CloudWatchLoggingOption",
     "properties": {
       "LogStreamARN": {
@@ -840,7 +1156,7 @@
       },
       "CloudWatchLoggingOption": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/58"
         },
         "flags": 1
       }
@@ -866,7 +1182,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/48"
+          "$ref": "#/60"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -877,7 +1193,7 @@
     "$type": "ResourceType",
     "name": "AWS.KinesisAnalyticsV2/ApplicationCloudWatchLoggingOption@default",
     "body": {
-      "$ref": "#/49"
+      "$ref": "#/61"
     },
     "readableScopes": 0,
     "writableScopes": 0

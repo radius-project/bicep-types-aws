@@ -16,6 +16,7 @@
 * **Endpoint**: string (ReadOnly): The DSQL cluster endpoint.
 * **Identifier**: string (ReadOnly, Identifier): The ID of the created cluster.
 * **KmsEncryptionKey**: string (WriteOnly): The KMS key that encrypts data on the cluster.
+* **MetricGroups**: [MetricGroup](#metricgroup)[]: The Advanced monitoring metric groups to enable on the cluster. Omit to enable none.
 * **MultiRegionProperties**: [Cluster_MultiRegionProperties](#clustermultiregionproperties): The Multi-region properties associated to this cluster.
 * **PolicyDocument**: string: The IAM policy applied to the cluster resource.
 * **PolicyVersion**: string (ReadOnly): The version number of the cluster's resource based policy
@@ -35,6 +36,10 @@
 ### Properties
 * **Clusters**: string[]
 * **WitnessRegion**: string: The witness region in a multi-region cluster.
+
+## MetricGroup
+### Properties
+* **MetricGroup**: string (Required): The name of the metric group. Valid values: STATEMENT_STATISTICS.
 
 ## Tag
 ### Properties

@@ -657,6 +657,20 @@
         },
         "flags": 1
       },
+      "S3AccessRoleArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The ARN for the role the application uses to access its Amazon S3 bucket."
+      },
+      "S3Path": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The path for the Amazon S3 bucket that the application uses for accessing the user-defined schema."
+      },
       "SecretsManagerOracleAsmAccessRoleArn": {
         "type": {
           "$ref": "#/1"
@@ -3843,6 +3857,203 @@
     "$type": "ObjectType",
     "name": "Tag",
     "properties": {
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      },
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.DMS/ReplicationInstanceProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/102"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.DMS/ReplicationInstanceProperties",
+    "properties": {
+      "DnsNameServers": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "ReplicationInstanceIdentifier": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "EngineVersion": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "KmsKeyId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 4
+      },
+      "AvailabilityZone": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "PreferredMaintenanceWindow": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "AutoMinorVersionUpgrade": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      },
+      "ReplicationSubnetGroupIdentifier": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "ReplicationInstancePrivateIpAddresses": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2
+      },
+      "AllocatedStorage": {
+        "type": {
+          "$ref": "#/9"
+        },
+        "flags": 0
+      },
+      "ResourceIdentifier": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "VpcSecurityGroupIds": {
+        "type": {
+          "$ref": "#/104"
+        },
+        "flags": 0
+      },
+      "NetworkType": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0
+      },
+      "AllowMajorVersionUpgrade": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 4
+      },
+      "ReplicationInstanceClass": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1
+      },
+      "PubliclyAccessible": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The replication instance identifier, the same as ReplicationInstanceIdentifier."
+      },
+      "MultiAZ": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0
+      },
+      "ReplicationInstancePublicIpAddresses": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/105"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.DMS/ReplicationInstance",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/106"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.DMS/ReplicationInstance@default",
+    "body": {
+      "$ref": "#/107"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
       "Key": {
         "type": {
           "$ref": "#/1"
@@ -3870,7 +4081,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/102"
+      "$ref": "#/109"
     }
   },
   {
@@ -3893,14 +4104,14 @@
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/104"
+          "$ref": "#/111"
         },
         "flags": 1,
         "description": "One or more subnet IDs to be assigned to the replication subnet group."
       },
       "Tags": {
         "type": {
-          "$ref": "#/105"
+          "$ref": "#/112"
         },
         "flags": 0,
         "description": "One or more tags to be assigned to the replication subnet group"
@@ -3927,7 +4138,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/106"
+          "$ref": "#/113"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -3938,7 +4149,7 @@
     "$type": "ResourceType",
     "name": "AWS.DMS/ReplicationSubnetGroup@default",
     "body": {
-      "$ref": "#/107"
+      "$ref": "#/114"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -3970,7 +4181,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/109"
+      "$ref": "#/116"
     }
   },
   {
@@ -4056,7 +4267,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/111"
+          "$ref": "#/118"
         },
         "flags": 0
       },
@@ -4096,7 +4307,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/112"
+          "$ref": "#/119"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -4107,7 +4318,7 @@
     "$type": "ResourceType",
     "name": "AWS.DMS/ReplicationTask@default",
     "body": {
-      "$ref": "#/113"
+      "$ref": "#/120"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -4142,7 +4353,7 @@
     "properties": {
       "AssessmentProgress": {
         "type": {
-          "$ref": "#/115"
+          "$ref": "#/122"
         },
         "flags": 2
       },
@@ -4238,7 +4449,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/117"
+          "$ref": "#/124"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -4249,206 +4460,9 @@
     "$type": "ResourceType",
     "name": "AWS.DMS/ReplicationTaskAssessmentRun@default",
     "body": {
-      "$ref": "#/118"
-    },
-    "readableScopes": 31,
-    "writableScopes": 0
-  },
-  {
-    "$type": "ObjectType",
-    "name": "Tag",
-    "properties": {
-      "Value": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 1
-      },
-      "Key": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 1
-      }
-    }
-  },
-  {
-    "$type": "StringLiteralType",
-    "value": "AWS.DMS/ReplicationInstanceProperties"
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/1"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/120"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "AWS.DMS/ReplicationInstanceProperties",
-    "properties": {
-      "DnsNameServers": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 0
-      },
-      "ReplicationInstanceIdentifier": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 0
-      },
-      "EngineVersion": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 0
-      },
-      "KmsKeyId": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 4
-      },
-      "AvailabilityZone": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 0
-      },
-      "PreferredMaintenanceWindow": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 0
-      },
-      "AutoMinorVersionUpgrade": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 0
-      },
-      "ReplicationSubnetGroupIdentifier": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 0
-      },
-      "ReplicationInstancePrivateIpAddresses": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 2
-      },
-      "AllocatedStorage": {
-        "type": {
-          "$ref": "#/9"
-        },
-        "flags": 0
-      },
-      "ResourceIdentifier": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 0
-      },
-      "VpcSecurityGroupIds": {
-        "type": {
-          "$ref": "#/122"
-        },
-        "flags": 0
-      },
-      "NetworkType": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 0
-      },
-      "AllowMajorVersionUpgrade": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 4
-      },
-      "ReplicationInstanceClass": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 1
-      },
-      "PubliclyAccessible": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 0
-      },
-      "Id": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 18,
-        "description": "The replication instance identifier, the same as ReplicationInstanceIdentifier."
-      },
-      "MultiAZ": {
-        "type": {
-          "$ref": "#/8"
-        },
-        "flags": 0
-      },
-      "ReplicationInstancePublicIpAddresses": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 2
-      },
-      "Tags": {
-        "type": {
-          "$ref": "#/123"
-        },
-        "flags": 0
-      }
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "AWS.DMS/ReplicationInstance",
-    "properties": {
-      "name": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 0,
-        "description": "the resource name"
-      },
-      "alias": {
-        "type": {
-          "$ref": "#/1"
-        },
-        "flags": 17,
-        "description": "the resource alias"
-      },
-      "properties": {
-        "type": {
-          "$ref": "#/124"
-        },
-        "flags": 17,
-        "description": "properties of the resource"
-      }
-    }
-  },
-  {
-    "$type": "ResourceType",
-    "name": "AWS.DMS/ReplicationInstance@default",
-    "body": {
       "$ref": "#/125"
     },
-    "readableScopes": 0,
+    "readableScopes": 31,
     "writableScopes": 0
   }
 ]

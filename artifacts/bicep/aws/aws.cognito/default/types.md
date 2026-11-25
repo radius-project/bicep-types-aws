@@ -1,5 +1,13 @@
 # AWS.Cognito @ default
 
+## Resource AWS.Cognito/CIMDPolicy@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Cognito/CIMDPolicyProperties](#awscognitocimdpolicyproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.Cognito/IdentityPool@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -64,6 +72,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.Cognito/UserPoolClientProperties](#awscognitouserpoolclientproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.Cognito/UserPoolClientSessionConfigurationAttachment@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Cognito/UserPoolClientSessionConfigurationAttachmentProperties](#awscognitouserpoolclientsessionconfigurationattachmentproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.Cognito/UserPoolDomain@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -119,6 +135,14 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Cognito/UserPoolRiskConfigurationAttachmentProperties](#awscognitouserpoolriskconfigurationattachmentproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.Cognito/UserPoolSessionConfigurationAttachment@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Cognito/UserPoolSessionConfigurationAttachmentProperties](#awscognitouserpoolsessionconfigurationattachmentproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.Cognito/UserPoolUICustomizationAttachment@default
 * **Readable Scope(s)**: None
@@ -194,6 +218,15 @@
 ### Properties
 * **Name**: string
 * **Value**: string
+
+## AWS.Cognito/CIMDPolicyProperties
+### Properties
+* **CacheDuration**: int
+* **CIMDPolicyId**: string (ReadOnly, Identifier)
+* **ClientId**: string (Required, WriteOnly)
+* **PolicyName**: string (Required)
+* **URLPatterns**: string[] (Required)
+* **UserPoolId**: string (Required, Identifier)
 
 ## AWS.Cognito/IdentityPoolPrincipalTagProperties
 ### Properties
@@ -281,6 +314,12 @@
 * **UserPoolId**: string (Required, Identifier)
 * **WriteAttributes**: string[]
 
+## AWS.Cognito/UserPoolClientSessionConfigurationAttachmentProperties
+### Properties
+* **ClientId**: string (Required, Identifier): The ID of the app client.
+* **SSOSession**: [SSOSession](#ssosession) (Required)
+* **UserPoolId**: string (Required, Identifier): The ID of the user pool.
+
 ## AWS.Cognito/UserPoolDomainProperties
 ### Properties
 * **CloudFrontDistribution**: string (ReadOnly)
@@ -314,6 +353,7 @@
 * **AliasAttributes**: string[]
 * **Arn**: string (ReadOnly)
 * **AutoVerifiedAttributes**: string[]
+* **DcrConfiguration**: [DcrConfiguration](#dcrconfiguration)
 * **DeletionProtection**: string
 * **DeviceConfiguration**: [DeviceConfiguration](#deviceconfiguration)
 * **EmailAuthenticationMessage**: string
@@ -375,6 +415,12 @@
 * **CompromisedCredentialsRiskConfiguration**: [CompromisedCredentialsRiskConfigurationType](#compromisedcredentialsriskconfigurationtype)
 * **RiskExceptionConfiguration**: [RiskExceptionConfigurationType](#riskexceptionconfigurationtype)
 * **UserPoolId**: string (Required, Identifier)
+
+## AWS.Cognito/UserPoolSessionConfigurationAttachmentProperties
+### Properties
+* **TokenSession**: [TokenSession](#tokensession) (Required)
+* **UserPoolId**: string (Required, Identifier): The ID of the user pool.
+* **UserSessionTracking**: string (Required): Whether server-side user session tracking is enabled for the user pool. Requires the ESSENTIALS or PLUS feature plan.
 
 ## AWS.Cognito/UserPoolUICustomizationAttachmentProperties
 ### Properties
@@ -448,6 +494,14 @@
 ### Properties
 * **LambdaArn**: string
 * **LambdaVersion**: string
+
+## DcrConfiguration
+### Properties
+* **AllowedScopes**: string[]
+* **AuthenticatedGrantTypes**: string[]
+* **EnableStatus**: string
+* **OpenDcrEnabled**: bool
+* **OpenDcrGrantTypes**: string[]
 
 ## DeviceConfiguration
 ### Properties
@@ -727,6 +781,10 @@
 * **SnsCallerArn**: string
 * **SnsRegion**: string
 
+## SSOSession
+### Properties
+* **MaxValidityMinutes**: int (Required): The maximum time in minutes since the last authentication during which this app client can reuse an existing managed login SSO session without asking the user to sign in again. 0 means the app client always asks the user to sign in.
+
 ## StringAttributeConstraints
 ### Properties
 * **MaxLength**: string
@@ -736,6 +794,10 @@
 ### Properties
 * **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 * **Value**: string (Required): The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+
+## TokenSession
+### Properties
+* **MaxPerUser**: int (Required): The maximum number of concurrent token sessions per user across all app clients. When a new session would exceed this number, the least recently used session ends.
 
 ## TokenValidityUnits
 ### Properties

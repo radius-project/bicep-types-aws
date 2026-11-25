@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-CloudFront-DistributionTenant",
   "type": "AWS::CloudFront::DistributionTenant",
-  "time": "2026-09-24T17:15:22.52Z",
+  "time": "2026-11-20T05:00:02.646Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -38,6 +38,28 @@
         },
         "type": "object"
       },
+      "DomainMapping": {
+        "additionalProperties": false,
+        "description": "",
+        "properties": {
+          "Domain": {
+            "description": "The domain to serve only on the Anycast IP list. Must be lowercase and must also be listed in `Domains`.",
+            "type": "string"
+          },
+          "ServeOn": {
+            "description": "Set to `anycast-ip-list-only` to serve the domain only on the Anycast IP list of the tenant's connection group. To serve a domain normally, on all CloudFront IP addresses, omit it from `DomainMappings`.",
+            "enum": [
+              "anycast-ip-list-only"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "Domain",
+          "ServeOn"
+        ],
+        "type": "object"
+      },
       "DomainResult": {
         "additionalProperties": false,
         "description": "The details about the domain result.",
@@ -46,12 +68,24 @@
             "description": "The specified domain.",
             "type": "string"
           },
+          "ServeOn": {
+            "description": "",
+            "type": "string"
+          },
           "Status": {
             "description": "Whether the domain is active or inactive.",
             "enum": [
               "active",
               "inactive"
             ],
+            "type": "string"
+          },
+          "StatusReason": {
+            "description": "",
+            "type": "string"
+          },
+          "StatusReasonCode": {
+            "description": "",
             "type": "string"
           }
         },
@@ -236,6 +270,15 @@
         "description": "The ID of the multi-tenant distribution.",
         "type": "string"
       },
+      "DomainMappings": {
+        "description": "",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/DomainMapping"
+        },
+        "minItems": 1,
+        "type": "array"
+      },
       "DomainResults": {
         "description": "",
         "items": {
@@ -275,6 +318,14 @@
       },
       "Name": {
         "description": "The name of the distribution tenant.",
+        "type": "string"
+      },
+      "OnDomainTakeover": {
+        "description": "",
+        "enum": [
+          "allow",
+          "reject"
+        ],
         "type": "string"
       },
       "Parameters": {
@@ -326,7 +377,8 @@
     },
     "typeName": "AWS::CloudFront::DistributionTenant",
     "writeOnlyProperties": [
-      "/properties/ManagedCertificateRequest"
+      "/properties/ManagedCertificateRequest",
+      "/properties/OnDomainTakeover"
     ]
   }
 }

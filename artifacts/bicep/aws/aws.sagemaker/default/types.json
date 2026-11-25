@@ -7770,7 +7770,7 @@
       },
       "IncludeInferenceResponseIn": {
         "type": {
-          "$ref": "#/434"
+          "$ref": "#/435"
         },
         "flags": 0,
         "description": "The Amazon SNS topics where you want the inference response to be included."
@@ -7844,14 +7844,14 @@
     "properties": {
       "CsvContentTypes": {
         "type": {
-          "$ref": "#/435"
+          "$ref": "#/436"
         },
         "flags": 0,
         "description": "A list of the CSV content types of the data that the endpoint captures. For the endpoint to capture the data, you must also specify the content type when you invoke the endpoint."
       },
       "JsonContentTypes": {
         "type": {
-          "$ref": "#/436"
+          "$ref": "#/437"
         },
         "flags": 0,
         "description": "A list of the JSON content types of the data that the endpoint captures. For the endpoint to capture the data, you must also specify the content type when you invoke the endpoint."
@@ -7911,14 +7911,14 @@
       },
       "FeatureHeaders": {
         "type": {
-          "$ref": "#/437"
+          "$ref": "#/438"
         },
         "flags": 0,
         "description": "The names of the features. If provided, these are included in the endpoint response payload to help readability of the InvokeEndpoint output."
       },
       "FeatureTypes": {
         "type": {
-          "$ref": "#/438"
+          "$ref": "#/439"
         },
         "flags": 0,
         "description": "A list of data types of the features (optional). Applicable only to NLP explainability. If provided, FeatureTypes must have at least one 'text' string (for example, ['text']). If FeatureTypes is not provided, the explainer infers the feature types based on the baseline data."
@@ -7939,7 +7939,7 @@
       },
       "LabelHeaders": {
         "type": {
-          "$ref": "#/439"
+          "$ref": "#/440"
         },
         "flags": 0,
         "description": "For multiclass classification problems, the label headers are the names of the classes. Otherwise, the label header is the name of the predicted label."
@@ -8091,6 +8091,26 @@
   },
   {
     "$type": "ObjectType",
+    "name": "CrossRegionTrafficConfig",
+    "properties": {
+      "MaxCrossRegionPercentPerEndpoint": {
+        "type": {
+          "$ref": "#/110"
+        },
+        "flags": 1,
+        "description": "The percentage of the endpoint's capacity (MaxInvocationsPerSecondPerInstance multiplied by the number of InService instances) that requests from other Regions can use. Valid values are 1 to 100."
+      },
+      "MaxInvocationsPerSecondPerInstance": {
+        "type": {
+          "$ref": "#/110"
+        },
+        "flags": 1,
+        "description": "The number of invocations per second that one InService instance can serve, used to size the limit on requests from other Regions. One value applies to every production variant, whatever its instance type. Valid values are 1 to 10000."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "DataCaptureConfig",
     "properties": {
       "CaptureContentTypeHeader": {
@@ -8102,7 +8122,7 @@
       },
       "CaptureOptions": {
         "type": {
-          "$ref": "#/440"
+          "$ref": "#/441"
         },
         "flags": 1,
         "description": "Specifies whether the endpoint captures input data to your model, output data from your model, or both."
@@ -8197,7 +8217,7 @@
       },
       "ScaleInPolicy": {
         "type": {
-          "$ref": "#/430"
+          "$ref": "#/431"
         },
         "flags": 0,
         "description": "Configures the scale-in behavior for managed instance scaling."
@@ -8313,7 +8333,7 @@
       },
       "InstancePools": {
         "type": {
-          "$ref": "#/441"
+          "$ref": "#/442"
         },
         "flags": 0,
         "description": "A list of instance pools for the production variant. Each instance pool specifies an instance type and its priority for provisioning. Use instance pools to configure heterogeneous endpoints that deploy models across multiple instance types."
@@ -8327,7 +8347,7 @@
       },
       "ManagedInstanceScaling": {
         "type": {
-          "$ref": "#/425"
+          "$ref": "#/426"
         },
         "flags": 0
       },
@@ -8347,14 +8367,14 @@
       },
       "RoutingConfig": {
         "type": {
-          "$ref": "#/429"
+          "$ref": "#/430"
         },
         "flags": 0,
         "description": "Settings that control how the endpoint routes incoming traffic to the instances that the endpoint hosts."
       },
       "ServerlessConfig": {
         "type": {
-          "$ref": "#/431"
+          "$ref": "#/432"
         },
         "flags": 0,
         "description": "The serverless configuration for an endpoint. Specifies a serverless endpoint configuration instead of an instance-based endpoint configuration."
@@ -8388,7 +8408,7 @@
     "properties": {
       "PrefixAwareRoutingConfig": {
         "type": {
-          "$ref": "#/427"
+          "$ref": "#/428"
         },
         "flags": 0,
         "description": "The configuration for prefix-aware routing. Specify this property only when you set RoutingStrategy to PREFIX_AWARE."
@@ -8482,14 +8502,14 @@
     "properties": {
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/442"
+          "$ref": "#/443"
         },
         "flags": 1,
         "description": "The VPC security group IDs, in the form sg-xxxxxxxx. Specify the security groups for the VPC that is specified in the Subnets field."
       },
       "Subnets": {
         "type": {
-          "$ref": "#/443"
+          "$ref": "#/444"
         },
         "flags": 1,
         "description": "The ID of the subnets in the VPC to which you want to connect your training job or model."
@@ -8541,7 +8561,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/424"
+      "$ref": "#/425"
     }
   },
   {
@@ -8563,19 +8583,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/428"
+      "$ref": "#/429"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/428"
+      "$ref": "#/429"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/432"
+      "$ref": "#/433"
     }
   },
   {
@@ -8589,9 +8609,16 @@
         "flags": 0,
         "description": "Specifies configuration for how an endpoint performs asynchronous inference."
       },
-      "DataCaptureConfig": {
+      "CrossRegionTrafficConfig": {
         "type": {
           "$ref": "#/422"
+        },
+        "flags": 0,
+        "description": "Limits the requests per second that the endpoint accepts from other AWS Regions. The limit is MaxCrossRegionPercentPerEndpoint percent of MaxInvocationsPerSecondPerInstance multiplied by the number of InService instances, shared by all production variants and inference components of the endpoint. Requests from the endpoint's own Region are not counted. Not supported with serverless variants or AsyncInferenceConfig. If you don't specify it, requests from other Regions are not limited."
+      },
+      "DataCaptureConfig": {
+        "type": {
+          "$ref": "#/423"
         },
         "flags": 0,
         "description": "Specifies how to capture endpoint data for model monitor. The data capture configuration applies to all production variants hosted at the endpoint."
@@ -8626,7 +8653,7 @@
       },
       "ExplainerConfig": {
         "type": {
-          "$ref": "#/423"
+          "$ref": "#/424"
         },
         "flags": 0,
         "description": "A parameter to activate explainers."
@@ -8640,35 +8667,35 @@
       },
       "MetricsConfig": {
         "type": {
-          "$ref": "#/426"
+          "$ref": "#/427"
         },
         "flags": 0,
         "description": "Specifies the metrics that the endpoint publishes to Amazon CloudWatch, the frequency of publication, and whether to enable enhanced or detailed observability metrics."
       },
       "ProductionVariants": {
         "type": {
-          "$ref": "#/445"
+          "$ref": "#/446"
         },
         "flags": 1,
         "description": "A list of ProductionVariant objects, one for each model that you want to host at this endpoint."
       },
       "ShadowProductionVariants": {
         "type": {
-          "$ref": "#/446"
+          "$ref": "#/447"
         },
         "flags": 0,
         "description": "Array of ProductionVariant objects. There is one for each model that you want to host at this endpoint in shadow mode with production traffic replicated from the model specified on ProductionVariants. If you use this field, you can only specify one variant for ProductionVariants and one variant for ShadowProductionVariants."
       },
       "Tags": {
         "type": {
-          "$ref": "#/447"
+          "$ref": "#/448"
         },
         "flags": 0,
         "description": "A list of key-value pairs to apply to this resource."
       },
       "VpcConfig": {
         "type": {
-          "$ref": "#/433"
+          "$ref": "#/434"
         },
         "flags": 0,
         "description": "Specifies an Amazon Virtual Private Cloud (VPC) that your SageMaker jobs, hosted models, and compute resources have access to. You can control access to and from your resources by configuring a VPC."
@@ -8695,7 +8722,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/448"
+          "$ref": "#/449"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -8706,7 +8733,85 @@
     "$type": "ResourceType",
     "name": "AWS.SageMaker/EndpointConfig@default",
     "body": {
-      "$ref": "#/449"
+      "$ref": "#/450"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.SageMaker/EndpointPolicyProperties"
+  },
+  {
+    "$type": "AnyType"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "EndpointPolicy_PolicyDocument",
+    "properties": {},
+    "additionalProperties": {
+      "$ref": "#/453"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SageMaker/EndpointPolicyProperties",
+    "properties": {
+      "EndpointArn": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 17,
+        "description": "The Amazon Resource Name (ARN) of the endpoint the policy is attached to. The endpoint must be in the same account and Region as the stack."
+      },
+      "EndpointName": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 2,
+        "description": "The name of the endpoint the policy is attached to."
+      },
+      "PolicyDocument": {
+        "type": {
+          "$ref": "#/454"
+        },
+        "flags": 1,
+        "description": "The resource policy document, as a JSON object. The service returns the document in its canonical form, so specify principals as full ARNs (for example arn:aws:iam::111122223333:root) and keep the form the service returns, to avoid drift."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SageMaker/EndpointPolicy",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/455"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.SageMaker/EndpointPolicy@default",
+    "body": {
+      "$ref": "#/456"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -8738,7 +8843,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/452"
+      "$ref": "#/459"
     }
   },
   {
@@ -8789,7 +8894,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/453"
+          "$ref": "#/460"
         },
         "flags": 0,
         "description": "A list of tags to associate with the experiment."
@@ -8816,7 +8921,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/454"
+          "$ref": "#/461"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -8827,7 +8932,168 @@
     "$type": "ResourceType",
     "name": "AWS.SageMaker/Experiment@default",
     "body": {
-      "$ref": "#/455"
+      "$ref": "#/462"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ExtensionNodeSummary",
+    "properties": {
+      "ActiveCount": {
+        "type": {
+          "$ref": "#/110"
+        },
+        "flags": 1,
+        "description": "The number of cluster nodes that run the requested extension version."
+      },
+      "TotalCount": {
+        "type": {
+          "$ref": "#/110"
+        },
+        "flags": 1,
+        "description": "The number of cluster nodes that the extension applies to."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 1,
+        "description": "The tag key. Each key must be unique for the extension."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 1,
+        "description": "The tag value."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.SageMaker/ExtensionProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/465"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SageMaker/ExtensionProperties",
+    "properties": {
+      "ClusterArn": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 1,
+        "description": "The Amazon Resource Name (ARN) of the Amazon SageMaker HyperPod cluster to install the extension on."
+      },
+      "ConfigurationValues": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0,
+        "description": "The configuration settings for the extension, as a JSON string. The settings must match the configuration schema for the extension version. For each setting that you don't specify, SageMaker HyperPod uses its default value. When you update the stack, SageMaker HyperPod applies the settings in the string to the current configuration. Settings that you leave out keep their current values. To restore the default value of a setting, set it to null. To write the settings as YAML or JSON in your template, use the Fn::ToJsonString intrinsic function with the AWS::LanguageExtensions transform. The JSON string can be up to 10,240 characters long."
+      },
+      "CreationTime": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 2,
+        "description": "The date and time that you created the extension."
+      },
+      "ExtensionArn": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the extension."
+      },
+      "ExtensionName": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 1,
+        "description": "The name of the extension to install, such as sagemaker-observability. You can't install the same extension twice on a cluster."
+      },
+      "ExtensionVersion": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0,
+        "description": "The version of the extension to install, such as 1.0.0. When you create the extension without a version, SageMaker HyperPod installs the latest generally available version. If the extension doesn't have a generally available version, you must specify one. If you remove this property from your template during a stack update, the installed version doesn't change. You can't downgrade an extension. To install an earlier version, delete the extension and create it again."
+      },
+      "LastModifiedTime": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 2,
+        "description": "The date and time of the most recent change to the extension."
+      },
+      "NodeSummary": {
+        "type": {
+          "$ref": "#/464"
+        },
+        "flags": 2
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 2,
+        "description": "The current status of the extension. CloudFormation doesn't wait for the extension to finish installing or updating on the cluster nodes. To check progress, use Status and NodeSummary."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/467"
+        },
+        "flags": 0,
+        "description": "The tags to add to the extension. You can add up to 50 tags."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SageMaker/Extension",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/468"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.SageMaker/Extension@default",
+    "body": {
+      "$ref": "#/469"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -9003,7 +9269,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/458"
+      "$ref": "#/472"
     }
   },
   {
@@ -9012,7 +9278,7 @@
     "properties": {
       "DataCatalogConfig": {
         "type": {
-          "$ref": "#/457"
+          "$ref": "#/471"
         },
         "flags": 0
       },
@@ -9024,7 +9290,7 @@
       },
       "S3StorageConfig": {
         "type": {
-          "$ref": "#/461"
+          "$ref": "#/475"
         },
         "flags": 1
       },
@@ -9048,7 +9314,7 @@
       },
       "SecurityConfig": {
         "type": {
-          "$ref": "#/460"
+          "$ref": "#/474"
         },
         "flags": 0
       },
@@ -9060,7 +9326,7 @@
       },
       "TtlDuration": {
         "type": {
-          "$ref": "#/467"
+          "$ref": "#/481"
         },
         "flags": 0
       }
@@ -9069,7 +9335,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/464"
+      "$ref": "#/478"
     }
   },
   {
@@ -9099,7 +9365,7 @@
       },
       "FeatureDefinitions": {
         "type": {
-          "$ref": "#/471"
+          "$ref": "#/485"
         },
         "flags": 1,
         "description": "An Array of Feature Definition"
@@ -9120,13 +9386,13 @@
       },
       "OfflineStoreConfig": {
         "type": {
-          "$ref": "#/472"
+          "$ref": "#/486"
         },
         "flags": 0
       },
       "OnlineStoreConfig": {
         "type": {
-          "$ref": "#/473"
+          "$ref": "#/487"
         },
         "flags": 0
       },
@@ -9146,14 +9412,14 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/474"
+          "$ref": "#/488"
         },
         "flags": 0,
         "description": "An array of key-value pair to apply to this resource."
       },
       "ThroughputConfig": {
         "type": {
-          "$ref": "#/465"
+          "$ref": "#/479"
         },
         "flags": 0
       }
@@ -9179,7 +9445,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/475"
+          "$ref": "#/489"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -9190,7 +9456,7 @@
     "$type": "ResourceType",
     "name": "AWS.SageMaker/FeatureGroup@default",
     "body": {
-      "$ref": "#/476"
+      "$ref": "#/490"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -9239,7 +9505,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/478"
+      "$ref": "#/492"
     }
   },
   {
@@ -9283,7 +9549,7 @@
       },
       "HubSearchKeywords": {
         "type": {
-          "$ref": "#/480"
+          "$ref": "#/494"
         },
         "flags": 0,
         "description": "The searchable keywords for the hub."
@@ -9304,14 +9570,14 @@
       },
       "S3StorageConfig": {
         "type": {
-          "$ref": "#/481"
+          "$ref": "#/495"
         },
         "flags": 0,
         "description": "The Amazon S3 storage configuration for the hub."
       },
       "Tags": {
         "type": {
-          "$ref": "#/482"
+          "$ref": "#/496"
         },
         "flags": 0,
         "description": "Tags to associate with the hub."
@@ -9338,7 +9604,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/483"
+          "$ref": "#/497"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -9349,7 +9615,7 @@
     "$type": "ResourceType",
     "name": "AWS.SageMaker/Hub@default",
     "body": {
-      "$ref": "#/484"
+      "$ref": "#/498"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -9496,7 +9762,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/487"
+          "$ref": "#/501"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -9507,7 +9773,7 @@
     "$type": "ResourceType",
     "name": "AWS.SageMaker/HubContentVersion@default",
     "body": {
-      "$ref": "#/488"
+      "$ref": "#/502"
     },
     "readableScopes": 31,
     "writableScopes": 0
@@ -9552,7 +9818,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/490"
+      "$ref": "#/504"
     }
   },
   {
@@ -9582,14 +9848,14 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/493"
+          "$ref": "#/507"
         },
         "flags": 0,
         "description": "An array of key-value pairs that contain metadata to help you categorize and organize a human review workflow user interface."
       },
       "UiTemplate": {
         "type": {
-          "$ref": "#/491"
+          "$ref": "#/505"
         },
         "flags": 4,
         "description": "The Liquid template for the worker user interface."
@@ -9616,7 +9882,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/494"
+          "$ref": "#/508"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -9627,7 +9893,7 @@
     "$type": "ResourceType",
     "name": "AWS.SageMaker/HumanTaskUi@default",
     "body": {
-      "$ref": "#/495"
+      "$ref": "#/509"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -9663,7 +9929,7 @@
       },
       "FinalHyperParameterTuningJobObjectiveMetric": {
         "type": {
-          "$ref": "#/499"
+          "$ref": "#/513"
         },
         "flags": 0
       },
@@ -9718,7 +9984,7 @@
       },
       "TunedHyperParameters": {
         "type": {
-          "$ref": "#/515"
+          "$ref": "#/529"
         },
         "flags": 1,
         "description": "The hyperparameters for which you specified ranges to search"
@@ -9789,14 +10055,14 @@
     "properties": {
       "HyperParameterTuningJobObjective": {
         "type": {
-          "$ref": "#/516"
+          "$ref": "#/530"
         },
         "flags": 0,
         "description": "Specifies the metric used to evaluate training jobs"
       },
       "ParameterRanges": {
         "type": {
-          "$ref": "#/509"
+          "$ref": "#/523"
         },
         "flags": 0
       },
@@ -9808,7 +10074,7 @@
       },
       "ResourceLimits": {
         "type": {
-          "$ref": "#/510"
+          "$ref": "#/524"
         },
         "flags": 1
       },
@@ -9821,7 +10087,7 @@
       },
       "StrategyConfig": {
         "type": {
-          "$ref": "#/518"
+          "$ref": "#/532"
         },
         "flags": 0
       },
@@ -9833,7 +10099,7 @@
       },
       "TuningJobCompletionCriteria": {
         "type": {
-          "$ref": "#/521"
+          "$ref": "#/535"
         },
         "flags": 0
       }
@@ -9899,13 +10165,13 @@
       },
       "ObjectiveStatusCounters": {
         "type": {
-          "$ref": "#/507"
+          "$ref": "#/521"
         },
         "flags": 1
       },
       "ResourceLimits": {
         "type": {
-          "$ref": "#/510"
+          "$ref": "#/524"
         },
         "flags": 0
       },
@@ -9918,7 +10184,7 @@
       },
       "TrainingJobStatusCounters": {
         "type": {
-          "$ref": "#/513"
+          "$ref": "#/527"
         },
         "flags": 1
       }
@@ -9930,7 +10196,7 @@
     "properties": {
       "ParentHyperParameterTuningJobs": {
         "type": {
-          "$ref": "#/523"
+          "$ref": "#/537"
         },
         "flags": 1
       },
@@ -9954,7 +10220,7 @@
       },
       "InstanceConfigs": {
         "type": {
-          "$ref": "#/524"
+          "$ref": "#/538"
         },
         "flags": 0
       },
@@ -10032,7 +10298,7 @@
       },
       "FinalHyperParameterTuningJobObjectiveMetric": {
         "type": {
-          "$ref": "#/499"
+          "$ref": "#/513"
         },
         "flags": 0
       },
@@ -10087,7 +10353,7 @@
       },
       "TunedHyperParameters": {
         "type": {
-          "$ref": "#/525"
+          "$ref": "#/539"
         },
         "flags": 1,
         "description": "The hyperparameters for which you specified ranges to search"
@@ -10107,25 +10373,25 @@
     "properties": {
       "AutoParameters": {
         "type": {
-          "$ref": "#/527"
+          "$ref": "#/541"
         },
         "flags": 0
       },
       "CategoricalParameterRanges": {
         "type": {
-          "$ref": "#/530"
+          "$ref": "#/544"
         },
         "flags": 0
       },
       "ContinuousParameterRanges": {
         "type": {
-          "$ref": "#/532"
+          "$ref": "#/546"
         },
         "flags": 0
       },
       "IntegerParameterRanges": {
         "type": {
-          "$ref": "#/534"
+          "$ref": "#/548"
         },
         "flags": 0
       }
@@ -10179,13 +10445,13 @@
     "properties": {
       "AlgorithmSpecification": {
         "type": {
-          "$ref": "#/537"
+          "$ref": "#/551"
         },
         "flags": 1
       },
       "CheckpointConfig": {
         "type": {
-          "$ref": "#/538"
+          "$ref": "#/552"
         },
         "flags": 0
       },
@@ -10215,37 +10481,37 @@
       },
       "Environment": {
         "type": {
-          "$ref": "#/539"
+          "$ref": "#/553"
         },
         "flags": 0
       },
       "HyperParameterRanges": {
         "type": {
-          "$ref": "#/509"
+          "$ref": "#/523"
         },
         "flags": 0
       },
       "InputDataConfig": {
         "type": {
-          "$ref": "#/543"
+          "$ref": "#/557"
         },
         "flags": 0
       },
       "OutputDataConfig": {
         "type": {
-          "$ref": "#/544"
+          "$ref": "#/558"
         },
         "flags": 1
       },
       "ResourceConfig": {
         "type": {
-          "$ref": "#/550"
+          "$ref": "#/564"
         },
         "flags": 0
       },
       "RetryStrategy": {
         "type": {
-          "$ref": "#/551"
+          "$ref": "#/565"
         },
         "flags": 0
       },
@@ -10257,25 +10523,25 @@
       },
       "StaticHyperParameters": {
         "type": {
-          "$ref": "#/552"
+          "$ref": "#/566"
         },
         "flags": 0
       },
       "StoppingCondition": {
         "type": {
-          "$ref": "#/553"
+          "$ref": "#/567"
         },
         "flags": 1
       },
       "TuningObjective": {
         "type": {
-          "$ref": "#/554"
+          "$ref": "#/568"
         },
         "flags": 0
       },
       "VpcConfig": {
         "type": {
-          "$ref": "#/557"
+          "$ref": "#/571"
         },
         "flags": 0
       }
@@ -10387,7 +10653,7 @@
     "properties": {
       "HyperbandStrategyConfig": {
         "type": {
-          "$ref": "#/517"
+          "$ref": "#/531"
         },
         "flags": 0
       }
@@ -10423,13 +10689,13 @@
     "properties": {
       "BestObjectiveNotImproving": {
         "type": {
-          "$ref": "#/519"
+          "$ref": "#/533"
         },
         "flags": 0
       },
       "ConvergenceDetected": {
         "type": {
-          "$ref": "#/520"
+          "$ref": "#/534"
         },
         "flags": 0
       },
@@ -10457,13 +10723,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/522"
+      "$ref": "#/536"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/500"
+      "$ref": "#/514"
     }
   },
   {
@@ -10495,7 +10761,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/526"
+      "$ref": "#/540"
     }
   },
   {
@@ -10516,7 +10782,7 @@
       },
       "Values": {
         "type": {
-          "$ref": "#/528"
+          "$ref": "#/542"
         },
         "flags": 1
       }
@@ -10525,7 +10791,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/529"
+      "$ref": "#/543"
     }
   },
   {
@@ -10561,7 +10827,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/531"
+      "$ref": "#/545"
     }
   },
   {
@@ -10597,7 +10863,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/533"
+      "$ref": "#/547"
     }
   },
   {
@@ -10621,7 +10887,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/535"
+      "$ref": "#/549"
     }
   },
   {
@@ -10636,7 +10902,7 @@
       },
       "MetricDefinitions": {
         "type": {
-          "$ref": "#/536"
+          "$ref": "#/550"
         },
         "flags": 0
       },
@@ -10710,7 +10976,7 @@
     "properties": {
       "S3DataSource": {
         "type": {
-          "$ref": "#/540"
+          "$ref": "#/554"
         },
         "flags": 1
       }
@@ -10728,7 +10994,7 @@
       },
       "DataSource": {
         "type": {
-          "$ref": "#/541"
+          "$ref": "#/555"
         },
         "flags": 1
       }
@@ -10737,7 +11003,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/542"
+      "$ref": "#/556"
     }
   },
   {
@@ -10794,7 +11060,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/545"
+      "$ref": "#/559"
     }
   },
   {
@@ -10818,7 +11084,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/547"
+      "$ref": "#/561"
     }
   },
   {
@@ -10833,7 +11099,7 @@
       },
       "PlacementSpecifications": {
         "type": {
-          "$ref": "#/548"
+          "$ref": "#/562"
         },
         "flags": 0
       }
@@ -10851,13 +11117,13 @@
       },
       "InstanceGroups": {
         "type": {
-          "$ref": "#/546"
+          "$ref": "#/560"
         },
         "flags": 0
       },
       "InstancePlacementConfig": {
         "type": {
-          "$ref": "#/549"
+          "$ref": "#/563"
         },
         "flags": 0
       },
@@ -10973,13 +11239,13 @@
     "properties": {
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/555"
+          "$ref": "#/569"
         },
         "flags": 1
       },
       "Subnets": {
         "type": {
-          "$ref": "#/556"
+          "$ref": "#/570"
         },
         "flags": 1
       }
@@ -10992,13 +11258,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/511"
+      "$ref": "#/525"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/512"
+      "$ref": "#/526"
     }
   },
   {
@@ -11007,7 +11273,7 @@
     "properties": {
       "Autotune": {
         "type": {
-          "$ref": "#/497"
+          "$ref": "#/511"
         },
         "flags": 0
       },
@@ -11025,7 +11291,7 @@
       },
       "HyperParameterTuningJobConfig": {
         "type": {
-          "$ref": "#/501"
+          "$ref": "#/515"
         },
         "flags": 1
       },
@@ -11043,37 +11309,37 @@
       },
       "ObjectiveStatusCounters": {
         "type": {
-          "$ref": "#/507"
+          "$ref": "#/521"
         },
         "flags": 2
       },
       "Tags": {
         "type": {
-          "$ref": "#/559"
+          "$ref": "#/573"
         },
         "flags": 0
       },
       "TrainingJobDefinition": {
         "type": {
-          "$ref": "#/512"
+          "$ref": "#/526"
         },
         "flags": 0
       },
       "TrainingJobDefinitions": {
         "type": {
-          "$ref": "#/560"
+          "$ref": "#/574"
         },
         "flags": 0
       },
       "TrainingJobStatusCounters": {
         "type": {
-          "$ref": "#/513"
+          "$ref": "#/527"
         },
         "flags": 2
       },
       "WarmStartConfig": {
         "type": {
-          "$ref": "#/504"
+          "$ref": "#/518"
         },
         "flags": 0
       }
@@ -11099,7 +11365,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/561"
+          "$ref": "#/575"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -11110,7 +11376,7 @@
     "$type": "ResourceType",
     "name": "AWS.SageMaker/HyperParameterTuningJob@default",
     "body": {
-      "$ref": "#/562"
+      "$ref": "#/576"
     },
     "readableScopes": 31,
     "writableScopes": 0
@@ -11167,7 +11433,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/569"
+      "$ref": "#/583"
     }
   },
   {
@@ -11206,7 +11472,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/571"
+          "$ref": "#/585"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -11233,7 +11499,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/572"
+          "$ref": "#/586"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -11244,7 +11510,7 @@
     "$type": "ResourceType",
     "name": "AWS.SageMaker/Image@default",
     "body": {
-      "$ref": "#/573"
+      "$ref": "#/587"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -11352,7 +11618,7 @@
       },
       "Aliases": {
         "type": {
-          "$ref": "#/592"
+          "$ref": "#/606"
         },
         "flags": 4
       },
@@ -11456,7 +11722,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/593"
+          "$ref": "#/607"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -11467,7 +11733,7 @@
     "$type": "ResourceType",
     "name": "AWS.SageMaker/ImageVersion@default",
     "body": {
-      "$ref": "#/594"
+      "$ref": "#/608"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -11490,7 +11756,7 @@
     "properties": {
       "Alarms": {
         "type": {
-          "$ref": "#/643"
+          "$ref": "#/657"
         },
         "flags": 1
       }
@@ -11522,7 +11788,7 @@
     "properties": {
       "MetricsEndpoints": {
         "type": {
-          "$ref": "#/644"
+          "$ref": "#/658"
         },
         "flags": 1
       }
@@ -11664,19 +11930,19 @@
       },
       "ContainerMetricsConfig": {
         "type": {
-          "$ref": "#/602"
+          "$ref": "#/616"
         },
         "flags": 0
       },
       "DeployedImage": {
         "type": {
-          "$ref": "#/603"
+          "$ref": "#/617"
         },
         "flags": 2
       },
       "Environment": {
         "type": {
-          "$ref": "#/606"
+          "$ref": "#/620"
         },
         "flags": 0
       },
@@ -11700,13 +11966,13 @@
       },
       "ContainerMetricsConfig": {
         "type": {
-          "$ref": "#/602"
+          "$ref": "#/616"
         },
         "flags": 0
       },
       "Environment": {
         "type": {
-          "$ref": "#/606"
+          "$ref": "#/620"
         },
         "flags": 0
       },
@@ -11742,13 +12008,13 @@
     "properties": {
       "AutoRollbackConfiguration": {
         "type": {
-          "$ref": "#/597"
+          "$ref": "#/611"
         },
         "flags": 0
       },
       "RollingUpdatePolicy": {
         "type": {
-          "$ref": "#/621"
+          "$ref": "#/635"
         },
         "flags": 0
       }
@@ -11788,7 +12054,7 @@
     "properties": {
       "MaximumBatchSize": {
         "type": {
-          "$ref": "#/610"
+          "$ref": "#/624"
         },
         "flags": 0
       },
@@ -11800,7 +12066,7 @@
       },
       "RollbackMaximumBatchSize": {
         "type": {
-          "$ref": "#/610"
+          "$ref": "#/624"
         },
         "flags": 0
       },
@@ -11836,7 +12102,7 @@
       },
       "PlacementStatus": {
         "type": {
-          "$ref": "#/645"
+          "$ref": "#/659"
         },
         "flags": 2,
         "description": "The placement status of the inference component across instance types"
@@ -11849,7 +12115,7 @@
     "properties": {
       "AvailabilityZoneBalance": {
         "type": {
-          "$ref": "#/609"
+          "$ref": "#/623"
         },
         "flags": 1
       },
@@ -11873,26 +12139,26 @@
       },
       "ComputeResourceRequirements": {
         "type": {
-          "$ref": "#/612"
+          "$ref": "#/626"
         },
         "flags": 0
       },
       "Container": {
         "type": {
-          "$ref": "#/613"
+          "$ref": "#/627"
         },
         "flags": 0
       },
       "CurrentDataCacheConfig": {
         "type": {
-          "$ref": "#/616"
+          "$ref": "#/630"
         },
         "flags": 2,
         "description": "The data caching configuration actually in effect, including a value the service chose rather than the template: SageMaker enables caching automatically on instance types with more than 232 GiB of local NVMe storage, whether or not DataCacheConfig was set. Returned by Describe and not settable; set DataCacheConfig instead."
       },
       "DataCacheConfig": {
         "type": {
-          "$ref": "#/616"
+          "$ref": "#/630"
         },
         "flags": 4
       },
@@ -11904,13 +12170,13 @@
       },
       "SchedulingConfig": {
         "type": {
-          "$ref": "#/623"
+          "$ref": "#/637"
         },
         "flags": 0
       },
       "StartupParameters": {
         "type": {
-          "$ref": "#/627"
+          "$ref": "#/641"
         },
         "flags": 0
       }
@@ -11922,26 +12188,26 @@
     "properties": {
       "ComputeResourceRequirements": {
         "type": {
-          "$ref": "#/612"
+          "$ref": "#/626"
         },
         "flags": 0
       },
       "Container": {
         "type": {
-          "$ref": "#/614"
+          "$ref": "#/628"
         },
         "flags": 0
       },
       "CurrentDataCacheConfig": {
         "type": {
-          "$ref": "#/616"
+          "$ref": "#/630"
         },
         "flags": 0,
         "description": "The data caching configuration actually in effect for this instance type, including a value the service chose rather than the template: SageMaker enables caching automatically on instance types with more than 232 GiB of local NVMe storage, whether or not DataCacheConfig was set. Returned by Describe and not settable; set DataCacheConfig instead."
       },
       "DataCacheConfig": {
         "type": {
-          "$ref": "#/616"
+          "$ref": "#/630"
         },
         "flags": 0
       },
@@ -11959,13 +12225,13 @@
       },
       "SchedulingConfig": {
         "type": {
-          "$ref": "#/623"
+          "$ref": "#/637"
         },
         "flags": 0
       },
       "StartupParameters": {
         "type": {
-          "$ref": "#/627"
+          "$ref": "#/641"
         },
         "flags": 0
       }
@@ -12102,31 +12368,31 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/596"
+      "$ref": "#/610"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/632"
+      "$ref": "#/646"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/619"
+      "$ref": "#/633"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/625"
+      "$ref": "#/639"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/637"
+      "$ref": "#/651"
     }
   },
   {
@@ -12136,13 +12402,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/652"
+      "$ref": "#/666"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/637"
+      "$ref": "#/651"
     }
   },
   {
@@ -12157,7 +12423,7 @@
       },
       "DeploymentConfig": {
         "type": {
-          "$ref": "#/617"
+          "$ref": "#/631"
         },
         "flags": 4
       },
@@ -12205,25 +12471,25 @@
       },
       "RuntimeConfig": {
         "type": {
-          "$ref": "#/622"
+          "$ref": "#/636"
         },
         "flags": 0
       },
       "Specification": {
         "type": {
-          "$ref": "#/624"
+          "$ref": "#/638"
         },
         "flags": 0
       },
       "Specifications": {
         "type": {
-          "$ref": "#/649"
+          "$ref": "#/663"
         },
         "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/650"
+          "$ref": "#/664"
         },
         "flags": 0
       },
@@ -12241,26 +12507,26 @@
     "properties": {
       "ComputeResourceRequirements": {
         "type": {
-          "$ref": "#/612"
+          "$ref": "#/626"
         },
         "flags": 0
       },
       "Container": {
         "type": {
-          "$ref": "#/653"
+          "$ref": "#/667"
         },
         "flags": 0
       },
       "CurrentDataCacheConfig": {
         "type": {
-          "$ref": "#/616"
+          "$ref": "#/630"
         },
         "flags": 2,
         "description": "The data caching configuration actually in effect for this instance type, including a value the service chose rather than the template: SageMaker enables caching automatically on instance types with more than 232 GiB of local NVMe storage, whether or not DataCacheConfig was set. Returned by Describe and not settable; set DataCacheConfig instead."
       },
       "DataCacheConfig": {
         "type": {
-          "$ref": "#/616"
+          "$ref": "#/630"
         },
         "flags": 4
       },
@@ -12278,13 +12544,13 @@
       },
       "SchedulingConfig": {
         "type": {
-          "$ref": "#/623"
+          "$ref": "#/637"
         },
         "flags": 0
       },
       "StartupParameters": {
         "type": {
-          "$ref": "#/627"
+          "$ref": "#/641"
         },
         "flags": 0
       }
@@ -12302,13 +12568,13 @@
       },
       "ContainerMetricsConfig": {
         "type": {
-          "$ref": "#/602"
+          "$ref": "#/616"
         },
         "flags": 0
       },
       "Environment": {
         "type": {
-          "$ref": "#/606"
+          "$ref": "#/620"
         },
         "flags": 0
       },
@@ -12340,7 +12606,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/651"
+          "$ref": "#/665"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -12351,7 +12617,7 @@
     "$type": "ResourceType",
     "name": "AWS.SageMaker/InferenceComponent@default",
     "body": {
-      "$ref": "#/654"
+      "$ref": "#/668"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -12362,14 +12628,14 @@
     "properties": {
       "CsvContentTypes": {
         "type": {
-          "$ref": "#/667"
+          "$ref": "#/681"
         },
         "flags": 0,
         "description": "The list of all content type headers that SageMaker will treat as CSV and capture accordingly."
       },
       "JsonContentTypes": {
         "type": {
-          "$ref": "#/668"
+          "$ref": "#/682"
         },
         "flags": 0,
         "description": "The list of all content type headers that SageMaker will treat as JSON and capture accordingly."
@@ -12382,7 +12648,7 @@
     "properties": {
       "ContentType": {
         "type": {
-          "$ref": "#/656"
+          "$ref": "#/670"
         },
         "flags": 0
       },
@@ -12466,7 +12732,7 @@
       },
       "RealTimeInferenceConfig": {
         "type": {
-          "$ref": "#/663"
+          "$ref": "#/677"
         },
         "flags": 1
       }
@@ -12478,7 +12744,7 @@
     "properties": {
       "InfrastructureConfig": {
         "type": {
-          "$ref": "#/661"
+          "$ref": "#/675"
         },
         "flags": 1
       },
@@ -12524,7 +12790,7 @@
     "properties": {
       "ShadowModelVariants": {
         "type": {
-          "$ref": "#/669"
+          "$ref": "#/683"
         },
         "flags": 1,
         "description": "List of shadow variant configurations."
@@ -12593,7 +12859,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/665"
+      "$ref": "#/679"
     }
   },
   {
@@ -12603,13 +12869,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/662"
+      "$ref": "#/676"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/666"
+      "$ref": "#/680"
     }
   },
   {
@@ -12632,7 +12898,7 @@
       },
       "DataStorageConfig": {
         "type": {
-          "$ref": "#/657"
+          "$ref": "#/671"
         },
         "flags": 0
       },
@@ -12652,7 +12918,7 @@
       },
       "EndpointMetadata": {
         "type": {
-          "$ref": "#/658"
+          "$ref": "#/672"
         },
         "flags": 2
       },
@@ -12678,7 +12944,7 @@
       },
       "ModelVariants": {
         "type": {
-          "$ref": "#/671"
+          "$ref": "#/685"
         },
         "flags": 1,
         "description": "An array of ModelVariantConfig objects. Each ModelVariantConfig object in the array describes the infrastructure configuration for the corresponding variant."
@@ -12699,13 +12965,13 @@
       },
       "Schedule": {
         "type": {
-          "$ref": "#/660"
+          "$ref": "#/674"
         },
         "flags": 4
       },
       "ShadowModeConfig": {
         "type": {
-          "$ref": "#/664"
+          "$ref": "#/678"
         },
         "flags": 0
       },
@@ -12725,7 +12991,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/672"
+          "$ref": "#/686"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -12759,7 +13025,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/673"
+          "$ref": "#/687"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -12770,7 +13036,270 @@
     "$type": "ResourceType",
     "name": "AWS.SageMaker/InferenceExperiment@default",
     "body": {
-      "$ref": "#/674"
+      "$ref": "#/688"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AsyncInferenceClientConfig",
+    "properties": {
+      "MaxTimeInBacklogSeconds": {
+        "type": {
+          "$ref": "#/110"
+        },
+        "flags": 0,
+        "description": "How long, in seconds, a request can wait for a destination to pick it up before it expires. The default is 900."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AsyncInferenceConfig",
+    "properties": {
+      "ClientConfig": {
+        "type": {
+          "$ref": "#/690"
+        },
+        "flags": 0
+      },
+      "OutputConfig": {
+        "type": {
+          "$ref": "#/693"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AsyncInferenceNotificationConfig",
+    "properties": {
+      "ErrorTopic": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0,
+        "description": "The ARN of a standard (not FIFO) SNS topic to notify when a request fails. It can be in any Region."
+      },
+      "SuccessTopic": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0,
+        "description": "The ARN of a standard (not FIFO) SNS topic to notify when a request succeeds. It can be in any Region."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AsyncInferenceOutputConfig",
+    "properties": {
+      "KmsKeyId": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0,
+        "description": "The AWS KMS key that encrypts the results. If any destination is in a different account or Region from the Inference Router, use a key ARN or an alias ARN."
+      },
+      "NotificationConfig": {
+        "type": {
+          "$ref": "#/692"
+        },
+        "flags": 0
+      },
+      "S3FailurePath": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 1,
+        "description": "The Amazon S3 location for failed requests. It can be in any Region and account."
+      },
+      "S3OutputPath": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 1,
+        "description": "The Amazon S3 location for successful results. It can be in any Region and account."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Destination",
+    "properties": {
+      "ResourceArn": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 1,
+        "description": "The ARN of a SageMaker endpoint or inference component that serves the routing target. It can be in any Region and account within the Inference Router's partition."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RoutingTarget",
+    "properties": {
+      "AsyncInferenceConfig": {
+        "type": {
+          "$ref": "#/691"
+        },
+        "flags": 0
+      },
+      "Destinations": {
+        "type": {
+          "$ref": "#/697"
+        },
+        "flags": 1,
+        "description": "The endpoints and inference components that serve this routing target."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 1,
+        "description": "The logical model name a caller passes at invoke time. Unique within an Inference Router."
+      },
+      "RoutingPreference": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0,
+        "description": "How the router prefers this routing target's destinations. LocalRegionFirst (the default) uses destinations in the router's Region first, then the others, each group in the order listed. InstancePoolOrder, for asynchronous routing targets only, tries destinations in order of the best instance pool they can serve from now. In both, degraded destinations are used after the others. If omitted, LocalRegionFirst is used and returned."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 1,
+        "description": "The tag key. Tag keys must be unique per resource."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 1,
+        "description": "The tag value."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/694"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.SageMaker/InferenceRouterProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/695"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/696"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SageMaker/InferenceRouterProperties",
+    "properties": {
+      "CreationTime": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 2,
+        "description": "The time when the Inference Router was created."
+      },
+      "InferenceRouterArn": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the Inference Router."
+      },
+      "InferenceRouterName": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0,
+        "description": "The name of the Inference Router. Unique per account per Region, case-sensitive. If you don't specify a name, CloudFormation generates one."
+      },
+      "LastModifiedTime": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 2,
+        "description": "The time when the Inference Router was last modified."
+      },
+      "RoutingTargets": {
+        "type": {
+          "$ref": "#/699"
+        },
+        "flags": 1,
+        "description": "The routing targets of the Inference Router. An update replaces the full list."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 2,
+        "description": "Where the Inference Router's most recent configuration write has got to. Writes commit synchronously; propagation to the data plane is asynchronous."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/700"
+        },
+        "flags": 0,
+        "description": "Tags to associate with the Inference Router."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.SageMaker/InferenceRouter",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/701"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.SageMaker/InferenceRouter@default",
+    "body": {
+      "$ref": "#/702"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -12800,7 +13329,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/676"
+      "$ref": "#/704"
     }
   },
   {
@@ -12879,7 +13408,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/678"
+          "$ref": "#/706"
         },
         "flags": 0,
         "description": "Tags to associate with the MLflow App."
@@ -12913,7 +13442,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/679"
+          "$ref": "#/707"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -12924,7 +13453,7 @@
     "$type": "ResourceType",
     "name": "AWS.SageMaker/MlflowApp@default",
     "body": {
-      "$ref": "#/680"
+      "$ref": "#/708"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -12956,7 +13485,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/682"
+      "$ref": "#/710"
     }
   },
   {
@@ -12993,7 +13522,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/684"
+          "$ref": "#/712"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -13048,7 +13577,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/685"
+          "$ref": "#/713"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -13059,7 +13588,7 @@
     "$type": "ResourceType",
     "name": "AWS.SageMaker/MlflowTrackingServer@default",
     "body": {
-      "$ref": "#/686"
+      "$ref": "#/714"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -13077,7 +13606,7 @@
       },
       "Environment": {
         "type": {
-          "$ref": "#/700"
+          "$ref": "#/727"
         },
         "flags": 0,
         "description": "The environment variables to set in the Docker container. Don't include any sensitive data in your environment variables.\n\nThe maximum length of each key and value in the Environment map is 1024 bytes. The maximum length of all keys and values in the map, combined, is 32 KB. If you pass multiple containers to a CreateModel request, then the maximum length of all of their maps, combined, is also 32 KB."
@@ -13091,7 +13620,7 @@
       },
       "ImageConfig": {
         "type": {
-          "$ref": "#/690"
+          "$ref": "#/718"
         },
         "flags": 0
       },
@@ -13111,7 +13640,7 @@
       },
       "ModelDataSource": {
         "type": {
-          "$ref": "#/693"
+          "$ref": "#/721"
         },
         "flags": 0
       },
@@ -13131,7 +13660,7 @@
       },
       "MultiModelConfig": {
         "type": {
-          "$ref": "#/694"
+          "$ref": "#/722"
         },
         "flags": 0
       }
@@ -13163,7 +13692,7 @@
       },
       "RepositoryAuthConfig": {
         "type": {
-          "$ref": "#/695"
+          "$ref": "#/723"
         },
         "flags": 0
       }
@@ -13201,7 +13730,7 @@
     "properties": {
       "S3DataSource": {
         "type": {
-          "$ref": "#/696"
+          "$ref": "#/724"
         },
         "flags": 1
       }
@@ -13246,13 +13775,13 @@
       },
       "HubAccessConfig": {
         "type": {
-          "$ref": "#/689"
+          "$ref": "#/717"
         },
         "flags": 0
       },
       "ModelAccessConfig": {
         "type": {
-          "$ref": "#/692"
+          "$ref": "#/720"
         },
         "flags": 0
       },
@@ -13298,14 +13827,14 @@
     "properties": {
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/701"
+          "$ref": "#/728"
         },
         "flags": 1,
         "description": "The VPC security group IDs, in the form `sg-xxxxxxxx`. Specify the security groups for the VPC that is specified in the `Subnets` field."
       },
       "Subnets": {
         "type": {
-          "$ref": "#/702"
+          "$ref": "#/729"
         },
         "flags": 1,
         "description": "The ID of the subnets in the VPC to which you want to connect your training job or model. For information about the availability of specific instance types, see [Supported Instance Types and Availability Zones](https://docs.aws.amazon.com/sagemaker/latest/dg/instance-types-az.html)."
@@ -13313,14 +13842,11 @@
     }
   },
   {
-    "$type": "AnyType"
-  },
-  {
     "$type": "ObjectType",
     "name": "Model_Environment",
     "properties": {},
     "additionalProperties": {
-      "$ref": "#/699"
+      "$ref": "#/453"
     }
   },
   {
@@ -13342,13 +13868,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/688"
+      "$ref": "#/716"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/697"
+      "$ref": "#/725"
     }
   },
   {
@@ -13357,7 +13883,7 @@
     "properties": {
       "Containers": {
         "type": {
-          "$ref": "#/704"
+          "$ref": "#/731"
         },
         "flags": 0,
         "description": "Specifies the containers in the inference pipeline."
@@ -13378,7 +13904,7 @@
       },
       "InferenceExecutionConfig": {
         "type": {
-          "$ref": "#/691"
+          "$ref": "#/719"
         },
         "flags": 0
       },
@@ -13398,20 +13924,20 @@
       },
       "PrimaryContainer": {
         "type": {
-          "$ref": "#/688"
+          "$ref": "#/716"
         },
         "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/705"
+          "$ref": "#/732"
         },
         "flags": 0,
         "description": "An array of key-value pairs. You can use tags to categorize your AWS resources in different ways, for example, by purpose, owner, or environment. For more information, see [Tagging AWS Resources](https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)."
       },
       "VpcConfig": {
         "type": {
-          "$ref": "#/698"
+          "$ref": "#/726"
         },
         "flags": 0
       }
@@ -13437,7 +13963,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/706"
+          "$ref": "#/733"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -13448,7 +13974,7 @@
     "$type": "ResourceType",
     "name": "AWS.SageMaker/Model@default",
     "body": {
-      "$ref": "#/707"
+      "$ref": "#/734"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -13466,7 +13992,7 @@
       },
       "DatasetFormat": {
         "type": {
-          "$ref": "#/713"
+          "$ref": "#/740"
         },
         "flags": 1
       },
@@ -13600,13 +14126,13 @@
     "properties": {
       "Csv": {
         "type": {
-          "$ref": "#/712"
+          "$ref": "#/739"
         },
         "flags": 0
       },
       "Json": {
         "type": {
-          "$ref": "#/717"
+          "$ref": "#/744"
         },
         "flags": 0
       },
@@ -13728,7 +14254,7 @@
       },
       "Environment": {
         "type": {
-          "$ref": "#/735"
+          "$ref": "#/762"
         },
         "flags": 0,
         "description": "Sets the environment variables in the Docker container"
@@ -13754,7 +14280,7 @@
       },
       "ConstraintsResource": {
         "type": {
-          "$ref": "#/711"
+          "$ref": "#/738"
         },
         "flags": 0
       }
@@ -13766,19 +14292,19 @@
     "properties": {
       "BatchTransformInput": {
         "type": {
-          "$ref": "#/709"
+          "$ref": "#/736"
         },
         "flags": 0
       },
       "EndpointInput": {
         "type": {
-          "$ref": "#/714"
+          "$ref": "#/741"
         },
         "flags": 0
       },
       "GroundTruthS3Input": {
         "type": {
-          "$ref": "#/721"
+          "$ref": "#/748"
         },
         "flags": 1
       }
@@ -13803,7 +14329,7 @@
     "properties": {
       "S3Output": {
         "type": {
-          "$ref": "#/729"
+          "$ref": "#/756"
         },
         "flags": 1
       }
@@ -13822,7 +14348,7 @@
       },
       "MonitoringOutputs": {
         "type": {
-          "$ref": "#/736"
+          "$ref": "#/763"
         },
         "flags": 1,
         "description": "Monitoring outputs for monitoring jobs. This is where the output of the periodic monitoring jobs is uploaded."
@@ -13835,7 +14361,7 @@
     "properties": {
       "ClusterConfig": {
         "type": {
-          "$ref": "#/710"
+          "$ref": "#/737"
         },
         "flags": 1
       }
@@ -13866,7 +14392,7 @@
       },
       "VpcConfig": {
         "type": {
-          "$ref": "#/733"
+          "$ref": "#/760"
         },
         "flags": 0
       }
@@ -13953,14 +14479,14 @@
     "properties": {
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/737"
+          "$ref": "#/764"
         },
         "flags": 1,
         "description": "The VPC security group IDs, in the form sg-xxxxxxxx. Specify the security groups for the VPC that is specified in the Subnets field."
       },
       "Subnets": {
         "type": {
-          "$ref": "#/738"
+          "$ref": "#/765"
         },
         "flags": 1,
         "description": "The ID of the subnets in the VPC to which you want to connect to your monitoring jobs."
@@ -13983,13 +14509,13 @@
     "name": "ModelBiasJobDefinition_Environment",
     "properties": {},
     "additionalProperties": {
-      "$ref": "#/734"
+      "$ref": "#/761"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/722"
+      "$ref": "#/749"
     }
   },
   {
@@ -14011,7 +14537,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/732"
+      "$ref": "#/759"
     }
   },
   {
@@ -14046,37 +14572,37 @@
       },
       "JobResources": {
         "type": {
-          "$ref": "#/724"
+          "$ref": "#/751"
         },
         "flags": 1
       },
       "ModelBiasAppSpecification": {
         "type": {
-          "$ref": "#/718"
+          "$ref": "#/745"
         },
         "flags": 1
       },
       "ModelBiasBaselineConfig": {
         "type": {
-          "$ref": "#/719"
+          "$ref": "#/746"
         },
         "flags": 0
       },
       "ModelBiasJobInput": {
         "type": {
-          "$ref": "#/720"
+          "$ref": "#/747"
         },
         "flags": 1
       },
       "ModelBiasJobOutputConfig": {
         "type": {
-          "$ref": "#/723"
+          "$ref": "#/750"
         },
         "flags": 1
       },
       "NetworkConfig": {
         "type": {
-          "$ref": "#/726"
+          "$ref": "#/753"
         },
         "flags": 0
       },
@@ -14089,13 +14615,13 @@
       },
       "StoppingCondition": {
         "type": {
-          "$ref": "#/731"
+          "$ref": "#/758"
         },
         "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/740"
+          "$ref": "#/767"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -14122,7 +14648,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/741"
+          "$ref": "#/768"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -14133,7 +14659,7 @@
     "$type": "ResourceType",
     "name": "AWS.SageMaker/ModelBiasJobDefinition@default",
     "body": {
-      "$ref": "#/742"
+      "$ref": "#/769"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -14151,7 +14677,7 @@
       },
       "CustomDetails": {
         "type": {
-          "$ref": "#/772"
+          "$ref": "#/799"
         },
         "flags": 0,
         "description": "customer details."
@@ -14199,13 +14725,13 @@
       },
       "Value": {
         "type": {
-          "$ref": "#/775"
+          "$ref": "#/802"
         },
         "flags": 1
       },
       "XAxisName": {
         "type": {
-          "$ref": "#/776"
+          "$ref": "#/803"
         },
         "flags": 0
       },
@@ -14277,43 +14803,43 @@
     "properties": {
       "AdditionalInformation": {
         "type": {
-          "$ref": "#/744"
+          "$ref": "#/771"
         },
         "flags": 0
       },
       "BusinessDetails": {
         "type": {
-          "$ref": "#/748"
+          "$ref": "#/775"
         },
         "flags": 0
       },
       "EvaluationDetails": {
         "type": {
-          "$ref": "#/777"
+          "$ref": "#/804"
         },
         "flags": 0
       },
       "IntendedUses": {
         "type": {
-          "$ref": "#/754"
+          "$ref": "#/781"
         },
         "flags": 0
       },
       "ModelOverview": {
         "type": {
-          "$ref": "#/758"
+          "$ref": "#/785"
         },
         "flags": 0
       },
       "ModelPackageDetails": {
         "type": {
-          "$ref": "#/760"
+          "$ref": "#/787"
         },
         "flags": 0
       },
       "TrainingDetails": {
         "type": {
-          "$ref": "#/768"
+          "$ref": "#/795"
         },
         "flags": 0
       }
@@ -14325,7 +14851,7 @@
     "properties": {
       "Datasets": {
         "type": {
-          "$ref": "#/778"
+          "$ref": "#/805"
         },
         "flags": 0
       },
@@ -14343,14 +14869,14 @@
       },
       "Metadata": {
         "type": {
-          "$ref": "#/779"
+          "$ref": "#/806"
         },
         "flags": 0,
         "description": "additional attributes associated with the evaluation results."
       },
       "MetricGroups": {
         "type": {
-          "$ref": "#/780"
+          "$ref": "#/807"
         },
         "flags": 0
       },
@@ -14373,7 +14899,7 @@
     "properties": {
       "Containers": {
         "type": {
-          "$ref": "#/782"
+          "$ref": "#/809"
         },
         "flags": 1,
         "description": "Contains inference related information which were used to create model package."
@@ -14442,7 +14968,7 @@
       },
       "Value": {
         "type": {
-          "$ref": "#/785"
+          "$ref": "#/812"
         },
         "flags": 1
       },
@@ -14484,19 +15010,19 @@
       },
       "Value": {
         "type": {
-          "$ref": "#/788"
+          "$ref": "#/815"
         },
         "flags": 1
       },
       "XAxisName": {
         "type": {
-          "$ref": "#/789"
+          "$ref": "#/816"
         },
         "flags": 0
       },
       "YAxisName": {
         "type": {
-          "$ref": "#/790"
+          "$ref": "#/817"
         },
         "flags": 0
       }
@@ -14508,7 +15034,7 @@
     "properties": {
       "MetricData": {
         "type": {
-          "$ref": "#/792"
+          "$ref": "#/819"
         },
         "flags": 1
       },
@@ -14533,14 +15059,14 @@
       },
       "InferenceEnvironment": {
         "type": {
-          "$ref": "#/794"
+          "$ref": "#/821"
         },
         "flags": 0,
         "description": "Overview about the inference."
       },
       "ModelArtifact": {
         "type": {
-          "$ref": "#/795"
+          "$ref": "#/822"
         },
         "flags": 0,
         "description": "Location of the model artifact."
@@ -14622,7 +15148,7 @@
       },
       "CreatedBy": {
         "type": {
-          "$ref": "#/759"
+          "$ref": "#/786"
         },
         "flags": 0,
         "description": "Information about the user who created model package."
@@ -14636,7 +15162,7 @@
       },
       "InferenceSpecification": {
         "type": {
-          "$ref": "#/753"
+          "$ref": "#/780"
         },
         "flags": 0,
         "description": "Details about inference jobs that can be run with models based on this model package."
@@ -14692,7 +15218,7 @@
       },
       "SourceAlgorithms": {
         "type": {
-          "$ref": "#/796"
+          "$ref": "#/823"
         },
         "flags": 0,
         "description": "A list of algorithms that were used to create a model package."
@@ -14712,7 +15238,7 @@
     "properties": {
       "Function": {
         "type": {
-          "$ref": "#/797"
+          "$ref": "#/824"
         },
         "flags": 0,
         "description": "objective function that training job is optimized for."
@@ -14767,7 +15293,7 @@
       },
       "Value": {
         "type": {
-          "$ref": "#/798"
+          "$ref": "#/825"
         },
         "flags": 1
       },
@@ -14836,13 +15362,13 @@
     "properties": {
       "ObjectiveFunction": {
         "type": {
-          "$ref": "#/761"
+          "$ref": "#/788"
         },
         "flags": 0
       },
       "TrainingJobDetails": {
         "type": {
-          "$ref": "#/807"
+          "$ref": "#/834"
         },
         "flags": 0
       },
@@ -14945,7 +15471,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/774"
+      "$ref": "#/801"
     }
   },
   {
@@ -14957,7 +15483,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/751"
+      "$ref": "#/778"
     }
   },
   {
@@ -14977,39 +15503,22 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/757"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/751"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/749"
-    }
-  },
-  {
-    "$type": "ObjectType",
-    "name": "ModelCard_Value",
-    "properties": {}
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/783"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
       "$ref": "#/784"
     }
   },
   {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/778"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/776"
+    }
+  },
+  {
     "$type": "ObjectType",
     "name": "ModelCard_Value",
     "properties": {}
@@ -15017,13 +15526,30 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/786"
+      "$ref": "#/810"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/787"
+      "$ref": "#/811"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ModelCard_Value",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/813"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/814"
     }
   },
   {
@@ -15046,7 +15572,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/791"
+      "$ref": "#/818"
     }
   },
   {
@@ -15061,7 +15587,7 @@
     "properties": {
       "ContainerImage": {
         "type": {
-          "$ref": "#/793"
+          "$ref": "#/820"
         },
         "flags": 0,
         "description": "SageMaker inference image uri."
@@ -15077,7 +15603,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/765"
+      "$ref": "#/792"
     }
   },
   {
@@ -15112,13 +15638,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/765"
+      "$ref": "#/792"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/769"
+      "$ref": "#/796"
     }
   },
   {
@@ -15139,7 +15665,7 @@
     "properties": {
       "ContainerImage": {
         "type": {
-          "$ref": "#/802"
+          "$ref": "#/829"
         },
         "flags": 0,
         "description": "SageMaker training image uri."
@@ -15149,19 +15675,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/770"
+      "$ref": "#/797"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/769"
+      "$ref": "#/796"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/770"
+      "$ref": "#/797"
     }
   },
   {
@@ -15170,7 +15696,7 @@
     "properties": {
       "HyperParameters": {
         "type": {
-          "$ref": "#/800"
+          "$ref": "#/827"
         },
         "flags": 0
       },
@@ -15183,32 +15709,32 @@
       },
       "TrainingDatasets": {
         "type": {
-          "$ref": "#/801"
+          "$ref": "#/828"
         },
         "flags": 0,
         "description": "Location of the model datasets."
       },
       "TrainingEnvironment": {
         "type": {
-          "$ref": "#/803"
+          "$ref": "#/830"
         },
         "flags": 0
       },
       "TrainingMetrics": {
         "type": {
-          "$ref": "#/804"
+          "$ref": "#/831"
         },
         "flags": 0
       },
       "UserProvidedHyperParameters": {
         "type": {
-          "$ref": "#/805"
+          "$ref": "#/832"
         },
         "flags": 0
       },
       "UserProvidedTrainingMetrics": {
         "type": {
-          "$ref": "#/806"
+          "$ref": "#/833"
         },
         "flags": 0
       }
@@ -15221,7 +15747,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/767"
+      "$ref": "#/794"
     }
   },
   {
@@ -15230,13 +15756,13 @@
     "properties": {
       "Content": {
         "type": {
-          "$ref": "#/750"
+          "$ref": "#/777"
         },
         "flags": 1
       },
       "CreatedBy": {
         "type": {
-          "$ref": "#/811"
+          "$ref": "#/838"
         },
         "flags": 0,
         "description": "Information about the user who created or modified an experiment, trial, trial component, lineage group, project, or model card."
@@ -15250,7 +15776,7 @@
       },
       "LastModifiedBy": {
         "type": {
-          "$ref": "#/771"
+          "$ref": "#/798"
         },
         "flags": 0,
         "description": "Information about the user who created or modified an experiment, trial, trial component, lineage group, project, or model card."
@@ -15299,13 +15825,13 @@
       },
       "SecurityConfig": {
         "type": {
-          "$ref": "#/763"
+          "$ref": "#/790"
         },
         "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/809"
+          "$ref": "#/836"
         },
         "flags": 0,
         "description": "Key-value pairs used to manage metadata for model cards."
@@ -15359,7 +15885,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/810"
+          "$ref": "#/837"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -15370,7 +15896,7 @@
     "$type": "ResourceType",
     "name": "AWS.SageMaker/ModelCard@default",
     "body": {
-      "$ref": "#/812"
+      "$ref": "#/839"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -15418,7 +15944,7 @@
       },
       "ExportArtifacts": {
         "type": {
-          "$ref": "#/814"
+          "$ref": "#/841"
         },
         "flags": 2,
         "description": "The exported model card artifacts."
@@ -15460,7 +15986,7 @@
       },
       "OutputConfig": {
         "type": {
-          "$ref": "#/815"
+          "$ref": "#/842"
         },
         "flags": 1,
         "description": "The model card output configuration that specifies the Amazon S3 path for exporting."
@@ -15494,7 +16020,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/817"
+          "$ref": "#/844"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -15505,7 +16031,7 @@
     "$type": "ResourceType",
     "name": "AWS.SageMaker/ModelCardExportJob@default",
     "body": {
-      "$ref": "#/818"
+      "$ref": "#/845"
     },
     "readableScopes": 31,
     "writableScopes": 0
@@ -15523,7 +16049,7 @@
       },
       "DatasetFormat": {
         "type": {
-          "$ref": "#/824"
+          "$ref": "#/851"
         },
         "flags": 1
       },
@@ -15637,13 +16163,13 @@
     "properties": {
       "Csv": {
         "type": {
-          "$ref": "#/823"
+          "$ref": "#/850"
         },
         "flags": 0
       },
       "Json": {
         "type": {
-          "$ref": "#/828"
+          "$ref": "#/855"
         },
         "flags": 0
       },
@@ -15745,7 +16271,7 @@
       },
       "Environment": {
         "type": {
-          "$ref": "#/845"
+          "$ref": "#/872"
         },
         "flags": 0,
         "description": "Sets the environment variables in the Docker container"
@@ -15771,7 +16297,7 @@
       },
       "ConstraintsResource": {
         "type": {
-          "$ref": "#/822"
+          "$ref": "#/849"
         },
         "flags": 0
       }
@@ -15783,13 +16309,13 @@
     "properties": {
       "BatchTransformInput": {
         "type": {
-          "$ref": "#/820"
+          "$ref": "#/847"
         },
         "flags": 0
       },
       "EndpointInput": {
         "type": {
-          "$ref": "#/825"
+          "$ref": "#/852"
         },
         "flags": 0
       }
@@ -15801,7 +16327,7 @@
     "properties": {
       "S3Output": {
         "type": {
-          "$ref": "#/839"
+          "$ref": "#/866"
         },
         "flags": 1
       }
@@ -15820,7 +16346,7 @@
       },
       "MonitoringOutputs": {
         "type": {
-          "$ref": "#/846"
+          "$ref": "#/873"
         },
         "flags": 1,
         "description": "Monitoring outputs for monitoring jobs. This is where the output of the periodic monitoring jobs is uploaded."
@@ -15833,7 +16359,7 @@
     "properties": {
       "ClusterConfig": {
         "type": {
-          "$ref": "#/821"
+          "$ref": "#/848"
         },
         "flags": 1
       }
@@ -15864,7 +16390,7 @@
       },
       "VpcConfig": {
         "type": {
-          "$ref": "#/843"
+          "$ref": "#/870"
         },
         "flags": 0
       }
@@ -15951,14 +16477,14 @@
     "properties": {
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/847"
+          "$ref": "#/874"
         },
         "flags": 1,
         "description": "The VPC security group IDs, in the form sg-xxxxxxxx. Specify the security groups for the VPC that is specified in the Subnets field."
       },
       "Subnets": {
         "type": {
-          "$ref": "#/848"
+          "$ref": "#/875"
         },
         "flags": 1,
         "description": "The ID of the subnets in the VPC to which you want to connect to your monitoring jobs."
@@ -15981,13 +16507,13 @@
     "name": "ModelExplainabilityJobDefinition_Environment",
     "properties": {},
     "additionalProperties": {
-      "$ref": "#/844"
+      "$ref": "#/871"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/832"
+      "$ref": "#/859"
     }
   },
   {
@@ -16009,7 +16535,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/842"
+      "$ref": "#/869"
     }
   },
   {
@@ -16044,37 +16570,37 @@
       },
       "JobResources": {
         "type": {
-          "$ref": "#/834"
+          "$ref": "#/861"
         },
         "flags": 1
       },
       "ModelExplainabilityAppSpecification": {
         "type": {
-          "$ref": "#/829"
+          "$ref": "#/856"
         },
         "flags": 1
       },
       "ModelExplainabilityBaselineConfig": {
         "type": {
-          "$ref": "#/830"
+          "$ref": "#/857"
         },
         "flags": 0
       },
       "ModelExplainabilityJobInput": {
         "type": {
-          "$ref": "#/831"
+          "$ref": "#/858"
         },
         "flags": 1
       },
       "ModelExplainabilityJobOutputConfig": {
         "type": {
-          "$ref": "#/833"
+          "$ref": "#/860"
         },
         "flags": 1
       },
       "NetworkConfig": {
         "type": {
-          "$ref": "#/836"
+          "$ref": "#/863"
         },
         "flags": 0
       },
@@ -16087,13 +16613,13 @@
       },
       "StoppingCondition": {
         "type": {
-          "$ref": "#/841"
+          "$ref": "#/868"
         },
         "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/850"
+          "$ref": "#/877"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -16120,7 +16646,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/851"
+          "$ref": "#/878"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -16131,7 +16657,7 @@
     "$type": "ResourceType",
     "name": "AWS.SageMaker/ModelExplainabilityJobDefinition@default",
     "body": {
-      "$ref": "#/852"
+      "$ref": "#/879"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -16142,7 +16668,7 @@
     "properties": {
       "Containers": {
         "type": {
-          "$ref": "#/912"
+          "$ref": "#/939"
         },
         "flags": 1,
         "description": "The Amazon ECR registry path of the Docker image that contains the inference code."
@@ -16163,28 +16689,28 @@
       },
       "SupportedContentTypes": {
         "type": {
-          "$ref": "#/913"
+          "$ref": "#/940"
         },
         "flags": 0,
         "description": "The supported MIME types for the input data."
       },
       "SupportedRealtimeInferenceInstanceTypes": {
         "type": {
-          "$ref": "#/914"
+          "$ref": "#/941"
         },
         "flags": 0,
         "description": "A list of the instance types that are used to generate inferences in real-time"
       },
       "SupportedResponseMIMETypes": {
         "type": {
-          "$ref": "#/915"
+          "$ref": "#/942"
         },
         "flags": 0,
         "description": "The supported MIME types for the output data."
       },
       "SupportedTransformInstanceTypes": {
         "type": {
-          "$ref": "#/916"
+          "$ref": "#/943"
         },
         "flags": 0,
         "description": "A list of the instance types on which a transformation job can be run or on which an endpoint can be deployed."
@@ -16207,19 +16733,19 @@
     "properties": {
       "PostTrainingReport": {
         "type": {
-          "$ref": "#/877"
+          "$ref": "#/904"
         },
         "flags": 0
       },
       "PreTrainingReport": {
         "type": {
-          "$ref": "#/877"
+          "$ref": "#/904"
         },
         "flags": 0
       },
       "Report": {
         "type": {
-          "$ref": "#/877"
+          "$ref": "#/904"
         },
         "flags": 0
       }
@@ -16250,7 +16776,7 @@
     "name": "CustomerMetadataProperties",
     "properties": {},
     "additionalProperties": {
-      "$ref": "#/918"
+      "$ref": "#/945"
     }
   },
   {
@@ -16259,7 +16785,7 @@
     "properties": {
       "S3DataSource": {
         "type": {
-          "$ref": "#/895"
+          "$ref": "#/922"
         },
         "flags": 1
       }
@@ -16276,25 +16802,25 @@
     "properties": {
       "Bias": {
         "type": {
-          "$ref": "#/866"
+          "$ref": "#/893"
         },
         "flags": 0
       },
       "Explainability": {
         "type": {
-          "$ref": "#/867"
+          "$ref": "#/894"
         },
         "flags": 0
       },
       "ModelDataQuality": {
         "type": {
-          "$ref": "#/868"
+          "$ref": "#/895"
         },
         "flags": 0
       },
       "ModelQuality": {
         "type": {
-          "$ref": "#/869"
+          "$ref": "#/896"
         },
         "flags": 0
       }
@@ -16306,19 +16832,19 @@
     "properties": {
       "ConfigFile": {
         "type": {
-          "$ref": "#/872"
+          "$ref": "#/899"
         },
         "flags": 0
       },
       "PostTrainingConstraints": {
         "type": {
-          "$ref": "#/877"
+          "$ref": "#/904"
         },
         "flags": 0
       },
       "PreTrainingConstraints": {
         "type": {
-          "$ref": "#/877"
+          "$ref": "#/904"
         },
         "flags": 0
       }
@@ -16330,13 +16856,13 @@
     "properties": {
       "ConfigFile": {
         "type": {
-          "$ref": "#/872"
+          "$ref": "#/899"
         },
         "flags": 0
       },
       "Constraints": {
         "type": {
-          "$ref": "#/877"
+          "$ref": "#/904"
         },
         "flags": 0
       }
@@ -16348,13 +16874,13 @@
     "properties": {
       "Constraints": {
         "type": {
-          "$ref": "#/877"
+          "$ref": "#/904"
         },
         "flags": 0
       },
       "Statistics": {
         "type": {
-          "$ref": "#/877"
+          "$ref": "#/904"
         },
         "flags": 0
       }
@@ -16366,13 +16892,13 @@
     "properties": {
       "Constraints": {
         "type": {
-          "$ref": "#/877"
+          "$ref": "#/904"
         },
         "flags": 0
       },
       "Statistics": {
         "type": {
-          "$ref": "#/877"
+          "$ref": "#/904"
         },
         "flags": 0
       }
@@ -16392,7 +16918,7 @@
     "properties": {
       "Report": {
         "type": {
-          "$ref": "#/877"
+          "$ref": "#/904"
         },
         "flags": 0
       }
@@ -16436,35 +16962,35 @@
     "properties": {
       "Containers": {
         "type": {
-          "$ref": "#/919"
+          "$ref": "#/946"
         },
         "flags": 1,
         "description": "The Amazon ECR registry path of the Docker image that contains the inference code."
       },
       "SupportedContentTypes": {
         "type": {
-          "$ref": "#/920"
+          "$ref": "#/947"
         },
         "flags": 1,
         "description": "The supported MIME types for the input data."
       },
       "SupportedRealtimeInferenceInstanceTypes": {
         "type": {
-          "$ref": "#/921"
+          "$ref": "#/948"
         },
         "flags": 0,
         "description": "A list of the instance types that are used to generate inferences in real-time"
       },
       "SupportedResponseMIMETypes": {
         "type": {
-          "$ref": "#/922"
+          "$ref": "#/949"
         },
         "flags": 1,
         "description": "The supported MIME types for the output data."
       },
       "SupportedTransformInstanceTypes": {
         "type": {
-          "$ref": "#/923"
+          "$ref": "#/950"
         },
         "flags": 0,
         "description": "A list of the instance types on which a transformation job can be run or on which an endpoint can be deployed."
@@ -16581,13 +17107,13 @@
     "properties": {
       "Constraints": {
         "type": {
-          "$ref": "#/877"
+          "$ref": "#/904"
         },
         "flags": 0
       },
       "Statistics": {
         "type": {
-          "$ref": "#/877"
+          "$ref": "#/904"
         },
         "flags": 0
       }
@@ -16599,7 +17125,7 @@
     "properties": {
       "S3DataSource": {
         "type": {
-          "$ref": "#/896"
+          "$ref": "#/923"
         },
         "flags": 0
       }
@@ -16611,25 +17137,25 @@
     "properties": {
       "Bias": {
         "type": {
-          "$ref": "#/857"
+          "$ref": "#/884"
         },
         "flags": 0
       },
       "Explainability": {
         "type": {
-          "$ref": "#/871"
+          "$ref": "#/898"
         },
         "flags": 0
       },
       "ModelDataQuality": {
         "type": {
-          "$ref": "#/881"
+          "$ref": "#/908"
         },
         "flags": 0
       },
       "ModelQuality": {
         "type": {
-          "$ref": "#/893"
+          "$ref": "#/920"
         },
         "flags": 0
       }
@@ -16653,7 +17179,7 @@
       },
       "Environment": {
         "type": {
-          "$ref": "#/870"
+          "$ref": "#/897"
         },
         "flags": 0
       },
@@ -16687,7 +17213,7 @@
       },
       "ModelDataSource": {
         "type": {
-          "$ref": "#/882"
+          "$ref": "#/909"
         },
         "flags": 0
       },
@@ -16700,7 +17226,7 @@
       },
       "ModelInput": {
         "type": {
-          "$ref": "#/924"
+          "$ref": "#/951"
         },
         "flags": 0
       },
@@ -16739,7 +17265,7 @@
     "properties": {
       "ValidationStatuses": {
         "type": {
-          "$ref": "#/925"
+          "$ref": "#/952"
         },
         "flags": 0
       }
@@ -16783,13 +17309,13 @@
     "properties": {
       "Constraints": {
         "type": {
-          "$ref": "#/877"
+          "$ref": "#/904"
         },
         "flags": 0
       },
       "Statistics": {
         "type": {
-          "$ref": "#/877"
+          "$ref": "#/904"
         },
         "flags": 0
       }
@@ -16833,7 +17359,7 @@
       },
       "ModelAccessConfig": {
         "type": {
-          "$ref": "#/878"
+          "$ref": "#/905"
         },
         "flags": 0
       },
@@ -16902,7 +17428,7 @@
     "properties": {
       "SourceAlgorithms": {
         "type": {
-          "$ref": "#/926"
+          "$ref": "#/953"
         },
         "flags": 1,
         "description": "A list of algorithms that were used to create a model package."
@@ -16959,7 +17485,7 @@
       },
       "DataSource": {
         "type": {
-          "$ref": "#/863"
+          "$ref": "#/890"
         },
         "flags": 1
       },
@@ -16990,7 +17516,7 @@
       },
       "Environment": {
         "type": {
-          "$ref": "#/870"
+          "$ref": "#/897"
         },
         "flags": 0
       },
@@ -17010,19 +17536,19 @@
       },
       "TransformInput": {
         "type": {
-          "$ref": "#/905"
+          "$ref": "#/932"
         },
         "flags": 1
       },
       "TransformOutput": {
         "type": {
-          "$ref": "#/908"
+          "$ref": "#/935"
         },
         "flags": 1
       },
       "TransformResources": {
         "type": {
-          "$ref": "#/909"
+          "$ref": "#/936"
         },
         "flags": 1
       }
@@ -17102,7 +17628,7 @@
       },
       "TransformJobDefinition": {
         "type": {
-          "$ref": "#/907"
+          "$ref": "#/934"
         },
         "flags": 1
       }
@@ -17114,7 +17640,7 @@
     "properties": {
       "ValidationProfiles": {
         "type": {
-          "$ref": "#/927"
+          "$ref": "#/954"
         },
         "flags": 1
       },
@@ -17130,7 +17656,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/885"
+      "$ref": "#/912"
     }
   },
   {
@@ -17160,7 +17686,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/854"
+      "$ref": "#/881"
     }
   },
   {
@@ -17177,7 +17703,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/885"
+      "$ref": "#/912"
     }
   },
   {
@@ -17220,19 +17746,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/891"
+      "$ref": "#/918"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/900"
+      "$ref": "#/927"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/910"
+      "$ref": "#/937"
     }
   },
   {
@@ -17242,19 +17768,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/854"
+      "$ref": "#/881"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/854"
+      "$ref": "#/881"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/903"
+      "$ref": "#/930"
     }
   },
   {
@@ -17263,13 +17789,13 @@
     "properties": {
       "AdditionalInferenceSpecifications": {
         "type": {
-          "$ref": "#/929"
+          "$ref": "#/956"
         },
         "flags": 0
       },
       "AdditionalInferenceSpecificationsToAdd": {
         "type": {
-          "$ref": "#/930"
+          "$ref": "#/957"
         },
         "flags": 4
       },
@@ -17299,7 +17825,7 @@
       },
       "CustomerMetadataProperties": {
         "type": {
-          "$ref": "#/862"
+          "$ref": "#/889"
         },
         "flags": 0
       },
@@ -17311,13 +17837,13 @@
       },
       "DriftCheckBaselines": {
         "type": {
-          "$ref": "#/865"
+          "$ref": "#/892"
         },
         "flags": 0
       },
       "InferenceSpecification": {
         "type": {
-          "$ref": "#/874"
+          "$ref": "#/901"
         },
         "flags": 0
       },
@@ -17329,7 +17855,7 @@
       },
       "MetadataProperties": {
         "type": {
-          "$ref": "#/876"
+          "$ref": "#/903"
         },
         "flags": 0
       },
@@ -17341,13 +17867,13 @@
       },
       "ModelCard": {
         "type": {
-          "$ref": "#/880"
+          "$ref": "#/907"
         },
         "flags": 0
       },
       "ModelMetrics": {
         "type": {
-          "$ref": "#/883"
+          "$ref": "#/910"
         },
         "flags": 0
       },
@@ -17383,7 +17909,7 @@
       },
       "ModelPackageStatusDetails": {
         "type": {
-          "$ref": "#/890"
+          "$ref": "#/917"
         },
         "flags": 0
       },
@@ -17401,7 +17927,7 @@
       },
       "SecurityConfig": {
         "type": {
-          "$ref": "#/898"
+          "$ref": "#/925"
         },
         "flags": 0
       },
@@ -17413,7 +17939,7 @@
       },
       "SourceAlgorithmSpecification": {
         "type": {
-          "$ref": "#/901"
+          "$ref": "#/928"
         },
         "flags": 0
       },
@@ -17425,7 +17951,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/931"
+          "$ref": "#/958"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -17438,7 +17964,7 @@
       },
       "ValidationSpecification": {
         "type": {
-          "$ref": "#/911"
+          "$ref": "#/938"
         },
         "flags": 0
       }
@@ -17464,7 +17990,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/932"
+          "$ref": "#/959"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -17475,7 +18001,7 @@
     "$type": "ResourceType",
     "name": "AWS.SageMaker/ModelPackage@default",
     "body": {
-      "$ref": "#/933"
+      "$ref": "#/960"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -17524,14 +18050,14 @@
     "name": "ModelPackageGroup_ModelPackageGroupPolicy",
     "properties": {},
     "additionalProperties": {
-      "$ref": "#/699"
+      "$ref": "#/453"
     }
   },
   {
     "$type": "UnionType",
     "elements": [
       {
-        "$ref": "#/940"
+        "$ref": "#/967"
       },
       {
         "$ref": "#/7"
@@ -17541,7 +18067,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/938"
+      "$ref": "#/965"
     }
   },
   {
@@ -17575,7 +18101,7 @@
       },
       "ModelPackageGroupPolicy": {
         "type": {
-          "$ref": "#/941"
+          "$ref": "#/968"
         },
         "flags": 0
       },
@@ -17588,7 +18114,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/942"
+          "$ref": "#/969"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -17615,7 +18141,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/943"
+          "$ref": "#/970"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -17626,7 +18152,7 @@
     "$type": "ResourceType",
     "name": "AWS.SageMaker/ModelPackageGroup@default",
     "body": {
-      "$ref": "#/944"
+      "$ref": "#/971"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -17644,7 +18170,7 @@
       },
       "DatasetFormat": {
         "type": {
-          "$ref": "#/950"
+          "$ref": "#/977"
         },
         "flags": 1
       },
@@ -17771,13 +18297,13 @@
     "properties": {
       "Csv": {
         "type": {
-          "$ref": "#/949"
+          "$ref": "#/976"
         },
         "flags": 0
       },
       "Json": {
         "type": {
-          "$ref": "#/954"
+          "$ref": "#/981"
         },
         "flags": 0
       },
@@ -17885,21 +18411,21 @@
     "properties": {
       "ContainerArguments": {
         "type": {
-          "$ref": "#/972"
+          "$ref": "#/999"
         },
         "flags": 0,
         "description": "An array of arguments for the container used to run the monitoring job."
       },
       "ContainerEntrypoint": {
         "type": {
-          "$ref": "#/973"
+          "$ref": "#/1000"
         },
         "flags": 0,
         "description": "Specifies the entrypoint for a container used to run the monitoring job."
       },
       "Environment": {
         "type": {
-          "$ref": "#/975"
+          "$ref": "#/1002"
         },
         "flags": 0,
         "description": "Sets the environment variables in the Docker container"
@@ -17945,7 +18471,7 @@
       },
       "ConstraintsResource": {
         "type": {
-          "$ref": "#/948"
+          "$ref": "#/975"
         },
         "flags": 0
       }
@@ -17957,19 +18483,19 @@
     "properties": {
       "BatchTransformInput": {
         "type": {
-          "$ref": "#/946"
+          "$ref": "#/973"
         },
         "flags": 0
       },
       "EndpointInput": {
         "type": {
-          "$ref": "#/951"
+          "$ref": "#/978"
         },
         "flags": 0
       },
       "GroundTruthS3Input": {
         "type": {
-          "$ref": "#/958"
+          "$ref": "#/985"
         },
         "flags": 1
       }
@@ -17994,7 +18520,7 @@
     "properties": {
       "S3Output": {
         "type": {
-          "$ref": "#/967"
+          "$ref": "#/994"
         },
         "flags": 1
       }
@@ -18013,7 +18539,7 @@
       },
       "MonitoringOutputs": {
         "type": {
-          "$ref": "#/976"
+          "$ref": "#/1003"
         },
         "flags": 1,
         "description": "Monitoring outputs for monitoring jobs. This is where the output of the periodic monitoring jobs is uploaded."
@@ -18026,7 +18552,7 @@
     "properties": {
       "ClusterConfig": {
         "type": {
-          "$ref": "#/947"
+          "$ref": "#/974"
         },
         "flags": 1
       }
@@ -18057,7 +18583,7 @@
       },
       "VpcConfig": {
         "type": {
-          "$ref": "#/971"
+          "$ref": "#/998"
         },
         "flags": 0
       }
@@ -18149,14 +18675,14 @@
     "properties": {
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/977"
+          "$ref": "#/1004"
         },
         "flags": 1,
         "description": "The VPC security group IDs, in the form sg-xxxxxxxx. Specify the security groups for the VPC that is specified in the Subnets field."
       },
       "Subnets": {
         "type": {
-          "$ref": "#/978"
+          "$ref": "#/1005"
         },
         "flags": 1,
         "description": "The ID of the subnets in the VPC to which you want to connect to your monitoring jobs."
@@ -18191,13 +18717,13 @@
     "name": "ModelQualityJobDefinition_Environment",
     "properties": {},
     "additionalProperties": {
-      "$ref": "#/974"
+      "$ref": "#/1001"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/959"
+      "$ref": "#/986"
     }
   },
   {
@@ -18219,7 +18745,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/970"
+      "$ref": "#/997"
     }
   },
   {
@@ -18254,37 +18780,37 @@
       },
       "JobResources": {
         "type": {
-          "$ref": "#/961"
+          "$ref": "#/988"
         },
         "flags": 1
       },
       "ModelQualityAppSpecification": {
         "type": {
-          "$ref": "#/955"
+          "$ref": "#/982"
         },
         "flags": 1
       },
       "ModelQualityBaselineConfig": {
         "type": {
-          "$ref": "#/956"
+          "$ref": "#/983"
         },
         "flags": 0
       },
       "ModelQualityJobInput": {
         "type": {
-          "$ref": "#/957"
+          "$ref": "#/984"
         },
         "flags": 1
       },
       "ModelQualityJobOutputConfig": {
         "type": {
-          "$ref": "#/960"
+          "$ref": "#/987"
         },
         "flags": 1
       },
       "NetworkConfig": {
         "type": {
-          "$ref": "#/963"
+          "$ref": "#/990"
         },
         "flags": 0
       },
@@ -18297,13 +18823,13 @@
       },
       "StoppingCondition": {
         "type": {
-          "$ref": "#/969"
+          "$ref": "#/996"
         },
         "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/980"
+          "$ref": "#/1007"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -18330,7 +18856,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/981"
+          "$ref": "#/1008"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -18341,7 +18867,7 @@
     "$type": "ResourceType",
     "name": "AWS.SageMaker/ModelQualityJobDefinition@default",
     "body": {
-      "$ref": "#/982"
+      "$ref": "#/1009"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -18352,13 +18878,13 @@
     "properties": {
       "ConstraintsResource": {
         "type": {
-          "$ref": "#/987"
+          "$ref": "#/1014"
         },
         "flags": 0
       },
       "StatisticsResource": {
         "type": {
-          "$ref": "#/1011"
+          "$ref": "#/1038"
         },
         "flags": 0
       }
@@ -18377,7 +18903,7 @@
       },
       "DatasetFormat": {
         "type": {
-          "$ref": "#/991"
+          "$ref": "#/1018"
         },
         "flags": 1
       },
@@ -18487,13 +19013,13 @@
     "properties": {
       "Csv": {
         "type": {
-          "$ref": "#/989"
+          "$ref": "#/1016"
         },
         "flags": 0
       },
       "Json": {
         "type": {
-          "$ref": "#/994"
+          "$ref": "#/1021"
         },
         "flags": 0
       },
@@ -18569,14 +19095,14 @@
     "properties": {
       "ContainerArguments": {
         "type": {
-          "$ref": "#/1015"
+          "$ref": "#/1042"
         },
         "flags": 0,
         "description": "An array of arguments for the container used to run the monitoring job."
       },
       "ContainerEntrypoint": {
         "type": {
-          "$ref": "#/1016"
+          "$ref": "#/1043"
         },
         "flags": 0,
         "description": "Specifies the entrypoint for a container used to run the monitoring job."
@@ -18670,13 +19196,13 @@
     "properties": {
       "BatchTransformInput": {
         "type": {
-          "$ref": "#/985"
+          "$ref": "#/1012"
         },
         "flags": 0
       },
       "EndpointInput": {
         "type": {
-          "$ref": "#/992"
+          "$ref": "#/1019"
         },
         "flags": 0
       }
@@ -18693,44 +19219,44 @@
     "properties": {
       "BaselineConfig": {
         "type": {
-          "$ref": "#/984"
+          "$ref": "#/1011"
         },
         "flags": 0
       },
       "Environment": {
         "type": {
-          "$ref": "#/1019"
+          "$ref": "#/1046"
         },
         "flags": 0,
         "description": "Sets the environment variables in the Docker container"
       },
       "MonitoringAppSpecification": {
         "type": {
-          "$ref": "#/995"
+          "$ref": "#/1022"
         },
         "flags": 1
       },
       "MonitoringInputs": {
         "type": {
-          "$ref": "#/1020"
+          "$ref": "#/1047"
         },
         "flags": 1
       },
       "MonitoringOutputConfig": {
         "type": {
-          "$ref": "#/1001"
+          "$ref": "#/1028"
         },
         "flags": 1
       },
       "MonitoringResources": {
         "type": {
-          "$ref": "#/1002"
+          "$ref": "#/1029"
         },
         "flags": 1
       },
       "NetworkConfig": {
         "type": {
-          "$ref": "#/1006"
+          "$ref": "#/1033"
         },
         "flags": 0
       },
@@ -18743,7 +19269,7 @@
       },
       "StoppingCondition": {
         "type": {
-          "$ref": "#/1012"
+          "$ref": "#/1039"
         },
         "flags": 0
       }
@@ -18755,7 +19281,7 @@
     "properties": {
       "S3Output": {
         "type": {
-          "$ref": "#/1008"
+          "$ref": "#/1035"
         },
         "flags": 1
       }
@@ -18774,7 +19300,7 @@
       },
       "MonitoringOutputs": {
         "type": {
-          "$ref": "#/1021"
+          "$ref": "#/1048"
         },
         "flags": 1,
         "description": "Monitoring outputs for monitoring jobs. This is where the output of the periodic monitoring jobs is uploaded."
@@ -18787,7 +19313,7 @@
     "properties": {
       "ClusterConfig": {
         "type": {
-          "$ref": "#/986"
+          "$ref": "#/1013"
         },
         "flags": 1
       }
@@ -18799,7 +19325,7 @@
     "properties": {
       "MonitoringJobDefinition": {
         "type": {
-          "$ref": "#/999"
+          "$ref": "#/1026"
         },
         "flags": 0
       },
@@ -18818,7 +19344,7 @@
       },
       "ScheduleConfig": {
         "type": {
-          "$ref": "#/1010"
+          "$ref": "#/1037"
         },
         "flags": 0
       }
@@ -18854,7 +19380,7 @@
       },
       "VpcConfig": {
         "type": {
-          "$ref": "#/1014"
+          "$ref": "#/1041"
         },
         "flags": 0
       }
@@ -18976,14 +19502,14 @@
     "properties": {
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/1022"
+          "$ref": "#/1049"
         },
         "flags": 1,
         "description": "The VPC security group IDs, in the form sg-xxxxxxxx. Specify the security groups for the VPC that is specified in the Subnets field."
       },
       "Subnets": {
         "type": {
-          "$ref": "#/1023"
+          "$ref": "#/1050"
         },
         "flags": 1,
         "description": "The ID of the subnets in the VPC to which you want to connect to your monitoring jobs."
@@ -19005,7 +19531,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/997"
+      "$ref": "#/1024"
     }
   },
   {
@@ -19024,19 +19550,19 @@
     "name": "MonitoringSchedule_Environment",
     "properties": {},
     "additionalProperties": {
-      "$ref": "#/1018"
+      "$ref": "#/1045"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/997"
+      "$ref": "#/1024"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1000"
+      "$ref": "#/1027"
     }
   },
   {
@@ -19058,7 +19584,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1013"
+      "$ref": "#/1040"
     }
   },
   {
@@ -19094,7 +19620,7 @@
       },
       "LastMonitoringExecutionSummary": {
         "type": {
-          "$ref": "#/996"
+          "$ref": "#/1023"
         },
         "flags": 0,
         "description": "Describes metadata on the last execution to run, if there was one."
@@ -19108,7 +19634,7 @@
       },
       "MonitoringScheduleConfig": {
         "type": {
-          "$ref": "#/1003"
+          "$ref": "#/1030"
         },
         "flags": 1
       },
@@ -19127,7 +19653,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/1025"
+          "$ref": "#/1052"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -19154,7 +19680,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/1026"
+          "$ref": "#/1053"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -19165,7 +19691,7 @@
     "$type": "ResourceType",
     "name": "AWS.SageMaker/MonitoringSchedule@default",
     "body": {
-      "$ref": "#/1027"
+      "$ref": "#/1054"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -19189,7 +19715,7 @@
     "properties": {
       "ModelDashboardIndicator": {
         "type": {
-          "$ref": "#/1029"
+          "$ref": "#/1056"
         },
         "flags": 0
       }
@@ -19205,7 +19731,7 @@
     "properties": {
       "Actions": {
         "type": {
-          "$ref": "#/1030"
+          "$ref": "#/1057"
         },
         "flags": 2,
         "description": "A list of alert actions taken in response to an alert going into InAlert status."
@@ -19288,7 +19814,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/1032"
+          "$ref": "#/1059"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -19299,7 +19825,7 @@
     "$type": "ResourceType",
     "name": "AWS.SageMaker/MonitoringScheduleAlert@default",
     "body": {
-      "$ref": "#/1033"
+      "$ref": "#/1060"
     },
     "readableScopes": 31,
     "writableScopes": 0
@@ -19362,7 +19888,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1036"
+      "$ref": "#/1063"
     }
   },
   {
@@ -19371,14 +19897,14 @@
     "properties": {
       "AcceleratorTypes": {
         "type": {
-          "$ref": "#/1038"
+          "$ref": "#/1065"
         },
         "flags": 0,
         "description": "A list of Amazon Elastic Inference (EI) instance types to associate with the notebook instance. Currently, only one instance type can be associated with a notebook instance."
       },
       "AdditionalCodeRepositories": {
         "type": {
-          "$ref": "#/1039"
+          "$ref": "#/1066"
         },
         "flags": 0,
         "description": "An array of up to three Git repositories associated with the notebook instance. These can be either the names of Git repositories stored as resources in your account, or the URL of Git repositories in AWS CodeCommit or in any other Git repository. These repositories are cloned at the same level as the default repository of your notebook instance."
@@ -19399,7 +19925,7 @@
       },
       "InstanceMetadataServiceConfiguration": {
         "type": {
-          "$ref": "#/1035"
+          "$ref": "#/1062"
         },
         "flags": 0,
         "description": "Information on the IMDS configuration of the notebook instance."
@@ -19462,7 +19988,7 @@
       },
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/1040"
+          "$ref": "#/1067"
         },
         "flags": 0,
         "description": "The VPC security group IDs, in the form sg-xxxxxxxx. The security groups must be for the same VPC as specified in the subnet."
@@ -19476,7 +20002,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/1041"
+          "$ref": "#/1068"
         },
         "flags": 0,
         "description": "A list of key-value pairs to apply to this resource."
@@ -19510,7 +20036,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/1042"
+          "$ref": "#/1069"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -19521,7 +20047,7 @@
     "$type": "ResourceType",
     "name": "AWS.SageMaker/NotebookInstance@default",
     "body": {
-      "$ref": "#/1043"
+      "$ref": "#/1070"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -19565,19 +20091,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1045"
+      "$ref": "#/1072"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1045"
+      "$ref": "#/1072"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1046"
+      "$ref": "#/1073"
     }
   },
   {
@@ -19600,21 +20126,21 @@
       },
       "OnCreate": {
         "type": {
-          "$ref": "#/1048"
+          "$ref": "#/1075"
         },
         "flags": 0,
         "description": "A shell script that runs only once, when you create a notebook instance. The shell script must be a base64-encoded string."
       },
       "OnStart": {
         "type": {
-          "$ref": "#/1049"
+          "$ref": "#/1076"
         },
         "flags": 0,
         "description": "A shell script that runs every time you start a notebook instance, including when you create the notebook instance. The shell script must be a base64-encoded string."
       },
       "Tags": {
         "type": {
-          "$ref": "#/1050"
+          "$ref": "#/1077"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
@@ -19641,7 +20167,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/1051"
+          "$ref": "#/1078"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -19652,7 +20178,7 @@
     "$type": "ResourceType",
     "name": "AWS.SageMaker/NotebookInstanceLifecycleConfig@default",
     "body": {
-      "$ref": "#/1052"
+      "$ref": "#/1079"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -19670,7 +20196,7 @@
       },
       "OverrideEnvironment": {
         "type": {
-          "$ref": "#/1064"
+          "$ref": "#/1091"
         },
         "flags": 0,
         "description": "Environment variables that override the default ones in the model container."
@@ -19690,7 +20216,7 @@
       },
       "OverrideEnvironment": {
         "type": {
-          "$ref": "#/1065"
+          "$ref": "#/1092"
         },
         "flags": 0,
         "description": "Environment variables that override the default ones in the model container."
@@ -19710,7 +20236,7 @@
       },
       "OverrideEnvironment": {
         "type": {
-          "$ref": "#/1066"
+          "$ref": "#/1093"
         },
         "flags": 0,
         "description": "Environment variables that override the default ones in the model container."
@@ -19723,19 +20249,19 @@
     "properties": {
       "ModelCompilationConfig": {
         "type": {
-          "$ref": "#/1054"
+          "$ref": "#/1081"
         },
         "flags": 0
       },
       "ModelQuantizationConfig": {
         "type": {
-          "$ref": "#/1055"
+          "$ref": "#/1082"
         },
         "flags": 0
       },
       "ModelShardingConfig": {
         "type": {
-          "$ref": "#/1056"
+          "$ref": "#/1083"
         },
         "flags": 0
       }
@@ -19747,7 +20273,7 @@
     "properties": {
       "S3": {
         "type": {
-          "$ref": "#/1059"
+          "$ref": "#/1086"
         },
         "flags": 0
       }
@@ -19792,14 +20318,14 @@
     "properties": {
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/1067"
+          "$ref": "#/1094"
         },
         "flags": 1,
         "description": "The VPC security group IDs."
       },
       "Subnets": {
         "type": {
-          "$ref": "#/1068"
+          "$ref": "#/1095"
         },
         "flags": 1,
         "description": "The ID of the subnets in the VPC to which you want to connect your optimization job."
@@ -19882,7 +20408,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1057"
+      "$ref": "#/1084"
     }
   },
   {
@@ -19896,7 +20422,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1063"
+      "$ref": "#/1090"
     }
   },
   {
@@ -19926,20 +20452,20 @@
       },
       "ModelSource": {
         "type": {
-          "$ref": "#/1058"
+          "$ref": "#/1085"
         },
         "flags": 1
       },
       "OptimizationConfigs": {
         "type": {
-          "$ref": "#/1070"
+          "$ref": "#/1097"
         },
         "flags": 1,
         "description": "A list of optimization configurations associated with the optimization job."
       },
       "OptimizationEnvironment": {
         "type": {
-          "$ref": "#/1071"
+          "$ref": "#/1098"
         },
         "flags": 0,
         "description": "The environment variables to set in the model container."
@@ -19967,7 +20493,7 @@
       },
       "OutputConfig": {
         "type": {
-          "$ref": "#/1060"
+          "$ref": "#/1087"
         },
         "flags": 1
       },
@@ -19980,20 +20506,20 @@
       },
       "StoppingCondition": {
         "type": {
-          "$ref": "#/1062"
+          "$ref": "#/1089"
         },
         "flags": 1
       },
       "Tags": {
         "type": {
-          "$ref": "#/1072"
+          "$ref": "#/1099"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
       },
       "VpcConfig": {
         "type": {
-          "$ref": "#/1061"
+          "$ref": "#/1088"
         },
         "flags": 0
       }
@@ -20019,7 +20545,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/1073"
+          "$ref": "#/1100"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -20030,7 +20556,7 @@
     "$type": "ResourceType",
     "name": "AWS.SageMaker/OptimizationJob@default",
     "body": {
-      "$ref": "#/1074"
+      "$ref": "#/1101"
     },
     "readableScopes": 31,
     "writableScopes": 0
@@ -20046,14 +20572,14 @@
     "properties": {
       "AdminUsers": {
         "type": {
-          "$ref": "#/1080"
+          "$ref": "#/1107"
         },
         "flags": 0,
         "description": "A list of users with administrator privileges for the PartnerApp."
       },
       "Arguments": {
         "type": {
-          "$ref": "#/1081"
+          "$ref": "#/1108"
         },
         "flags": 0,
         "description": "A list of arguments to pass to the PartnerApp."
@@ -20112,7 +20638,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1079"
+      "$ref": "#/1106"
     }
   },
   {
@@ -20128,7 +20654,7 @@
       },
       "ApplicationConfig": {
         "type": {
-          "$ref": "#/1077"
+          "$ref": "#/1104"
         },
         "flags": 0,
         "description": "A collection of settings that specify the maintenance schedule for the PartnerApp."
@@ -20198,7 +20724,7 @@
       },
       "MaintenanceConfig": {
         "type": {
-          "$ref": "#/1078"
+          "$ref": "#/1105"
         },
         "flags": 0,
         "description": "A collection of settings that specify the maintenance schedule for the PartnerApp."
@@ -20212,7 +20738,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/1083"
+          "$ref": "#/1110"
         },
         "flags": 0,
         "description": "A list of tags to apply to the PartnerApp."
@@ -20253,7 +20779,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/1084"
+          "$ref": "#/1111"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -20264,7 +20790,7 @@
     "$type": "ResourceType",
     "name": "AWS.SageMaker/PartnerApp@default",
     "body": {
-      "$ref": "#/1085"
+      "$ref": "#/1112"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -20346,7 +20872,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1088"
+      "$ref": "#/1115"
     }
   },
   {
@@ -20355,13 +20881,13 @@
     "properties": {
       "ParallelismConfiguration": {
         "type": {
-          "$ref": "#/1090"
+          "$ref": "#/1117"
         },
         "flags": 0
       },
       "PipelineDefinition": {
         "type": {
-          "$ref": "#/1091"
+          "$ref": "#/1118"
         },
         "flags": 1
       },
@@ -20395,7 +20921,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/1092"
+          "$ref": "#/1119"
         },
         "flags": 0
       }
@@ -20421,7 +20947,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/1093"
+          "$ref": "#/1120"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -20432,7 +20958,7 @@
     "$type": "ResourceType",
     "name": "AWS.SageMaker/Pipeline@default",
     "body": {
-      "$ref": "#/1094"
+      "$ref": "#/1121"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -20503,7 +21029,7 @@
     "properties": {
       "IamIdentity": {
         "type": {
-          "$ref": "#/1096"
+          "$ref": "#/1123"
         },
         "flags": 0
       }
@@ -20516,7 +21042,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1098"
+      "$ref": "#/1125"
     }
   },
   {
@@ -20525,7 +21051,7 @@
     "properties": {
       "CreatedBy": {
         "type": {
-          "$ref": "#/1099"
+          "$ref": "#/1126"
         },
         "flags": 2,
         "description": "Information about the user who created the pipeline execution."
@@ -20539,7 +21065,7 @@
       },
       "LastModifiedBy": {
         "type": {
-          "$ref": "#/1099"
+          "$ref": "#/1126"
         },
         "flags": 2,
         "description": "Information about the user who last modified the pipeline execution."
@@ -20553,7 +21079,7 @@
       },
       "ParallelismConfiguration": {
         "type": {
-          "$ref": "#/1097"
+          "$ref": "#/1124"
         },
         "flags": 2
       },
@@ -20615,7 +21141,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/1101"
+          "$ref": "#/1128"
         },
         "flags": 2,
         "description": "Tags associated with the pipeline execution."
@@ -20642,7 +21168,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/1102"
+          "$ref": "#/1129"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -20653,7 +21179,7 @@
     "$type": "ResourceType",
     "name": "AWS.SageMaker/PipelineExecution@default",
     "body": {
-      "$ref": "#/1103"
+      "$ref": "#/1130"
     },
     "readableScopes": 31,
     "writableScopes": 0
@@ -20664,14 +21190,14 @@
     "properties": {
       "ContainerArguments": {
         "type": {
-          "$ref": "#/1123"
+          "$ref": "#/1150"
         },
         "flags": 0,
         "description": "The arguments for a container used to run a processing job."
       },
       "ContainerEntrypoint": {
         "type": {
-          "$ref": "#/1124"
+          "$ref": "#/1151"
         },
         "flags": 0,
         "description": "The entrypoint for a container used to run a processing job."
@@ -20787,7 +21313,7 @@
     "properties": {
       "AthenaDatasetDefinition": {
         "type": {
-          "$ref": "#/1106"
+          "$ref": "#/1133"
         },
         "flags": 0
       },
@@ -20814,7 +21340,7 @@
       },
       "RedshiftDatasetDefinition": {
         "type": {
-          "$ref": "#/1117"
+          "$ref": "#/1144"
         },
         "flags": 0
       }
@@ -20895,7 +21421,7 @@
       },
       "VpcConfig": {
         "type": {
-          "$ref": "#/1122"
+          "$ref": "#/1149"
         },
         "flags": 0
       }
@@ -20914,7 +21440,7 @@
       },
       "DatasetDefinition": {
         "type": {
-          "$ref": "#/1108"
+          "$ref": "#/1135"
         },
         "flags": 0
       },
@@ -20927,7 +21453,7 @@
       },
       "S3Input": {
         "type": {
-          "$ref": "#/1118"
+          "$ref": "#/1145"
         },
         "flags": 0
       }
@@ -20946,7 +21472,7 @@
       },
       "Outputs": {
         "type": {
-          "$ref": "#/1125"
+          "$ref": "#/1152"
         },
         "flags": 1,
         "description": "An array of outputs configuring the data to upload from the processing container."
@@ -20966,7 +21492,7 @@
       },
       "FeatureStoreOutput": {
         "type": {
-          "$ref": "#/1111"
+          "$ref": "#/1138"
         },
         "flags": 0
       },
@@ -20979,7 +21505,7 @@
       },
       "S3Output": {
         "type": {
-          "$ref": "#/1119"
+          "$ref": "#/1146"
         },
         "flags": 0
       }
@@ -20991,7 +21517,7 @@
     "properties": {
       "ClusterConfig": {
         "type": {
-          "$ref": "#/1107"
+          "$ref": "#/1134"
         },
         "flags": 1
       }
@@ -21180,14 +21706,14 @@
     "properties": {
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/1126"
+          "$ref": "#/1153"
         },
         "flags": 1,
         "description": "The VPC security group IDs, in the form 'sg-xxxxxxxx'. Specify the security groups for the VPC that is specified in the 'Subnets' field."
       },
       "Subnets": {
         "type": {
-          "$ref": "#/1127"
+          "$ref": "#/1154"
         },
         "flags": 1,
         "description": "The ID of the subnets in the VPC to which you want to connect your training job or model. For information about the availability of specific instance types, see https://docs.aws.amazon.com/sagemaker/latest/dg/regions-quotas.html"
@@ -21209,7 +21735,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1115"
+      "$ref": "#/1142"
     }
   },
   {
@@ -21231,13 +21757,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1113"
+      "$ref": "#/1140"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1121"
+      "$ref": "#/1148"
     }
   },
   {
@@ -21246,7 +21772,7 @@
     "properties": {
       "AppSpecification": {
         "type": {
-          "$ref": "#/1105"
+          "$ref": "#/1132"
         },
         "flags": 1
       },
@@ -21266,7 +21792,7 @@
       },
       "Environment": {
         "type": {
-          "$ref": "#/1109"
+          "$ref": "#/1136"
         },
         "flags": 0
       },
@@ -21279,7 +21805,7 @@
       },
       "ExperimentConfig": {
         "type": {
-          "$ref": "#/1110"
+          "$ref": "#/1137"
         },
         "flags": 0
       },
@@ -21306,7 +21832,7 @@
       },
       "NetworkConfig": {
         "type": {
-          "$ref": "#/1112"
+          "$ref": "#/1139"
         },
         "flags": 0
       },
@@ -21319,7 +21845,7 @@
       },
       "ProcessingInputs": {
         "type": {
-          "$ref": "#/1129"
+          "$ref": "#/1156"
         },
         "flags": 0,
         "description": "An array of inputs configuring the data to download into the processing container."
@@ -21347,13 +21873,13 @@
       },
       "ProcessingOutputConfig": {
         "type": {
-          "$ref": "#/1114"
+          "$ref": "#/1141"
         },
         "flags": 0
       },
       "ProcessingResources": {
         "type": {
-          "$ref": "#/1116"
+          "$ref": "#/1143"
         },
         "flags": 1
       },
@@ -21373,13 +21899,13 @@
       },
       "StoppingCondition": {
         "type": {
-          "$ref": "#/1120"
+          "$ref": "#/1147"
         },
         "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/1130"
+          "$ref": "#/1157"
         },
         "flags": 0,
         "description": "(Optional) An array of key-value pairs. For more information, see Using Cost Allocation Tags(https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#allocation-whatURL) in the AWS Billing and Cost Management User Guide."
@@ -21413,7 +21939,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/1131"
+          "$ref": "#/1158"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -21424,7 +21950,7 @@
     "$type": "ResourceType",
     "name": "AWS.SageMaker/ProcessingJob@default",
     "body": {
-      "$ref": "#/1132"
+      "$ref": "#/1159"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -21460,7 +21986,7 @@
     "properties": {
       "Parameters": {
         "type": {
-          "$ref": "#/1149"
+          "$ref": "#/1176"
         },
         "flags": 0
       },
@@ -21573,7 +22099,7 @@
     "properties": {
       "CfnTemplateProviderDetail": {
         "type": {
-          "$ref": "#/1136"
+          "$ref": "#/1163"
         },
         "flags": 1
       }
@@ -21582,13 +22108,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1134"
+      "$ref": "#/1161"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1134"
+      "$ref": "#/1161"
     }
   },
   {
@@ -21616,7 +22142,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1145"
+      "$ref": "#/1172"
     }
   },
   {
@@ -21643,7 +22169,7 @@
       },
       "ProvisioningParameters": {
         "type": {
-          "$ref": "#/1152"
+          "$ref": "#/1179"
         },
         "flags": 0,
         "description": "Parameters specified by the administrator that are required for provisioning the product."
@@ -21653,13 +22179,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1146"
+      "$ref": "#/1173"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1147"
+      "$ref": "#/1174"
     }
   },
   {
@@ -21706,28 +22232,28 @@
       },
       "ServiceCatalogProvisionedProductDetails": {
         "type": {
-          "$ref": "#/1151"
+          "$ref": "#/1178"
         },
         "flags": 0,
         "description": "Provisioned ServiceCatalog  Details"
       },
       "ServiceCatalogProvisioningDetails": {
         "type": {
-          "$ref": "#/1153"
+          "$ref": "#/1180"
         },
         "flags": 0,
         "description": "Input ServiceCatalog Provisioning Details"
       },
       "Tags": {
         "type": {
-          "$ref": "#/1154"
+          "$ref": "#/1181"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
       },
       "TemplateProviderDetails": {
         "type": {
-          "$ref": "#/1155"
+          "$ref": "#/1182"
         },
         "flags": 0,
         "description": "An array of template providers associated with the project."
@@ -21754,7 +22280,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/1156"
+          "$ref": "#/1183"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -21765,7 +22291,7 @@
     "$type": "ResourceType",
     "name": "AWS.SageMaker/Project@default",
     "body": {
-      "$ref": "#/1157"
+      "$ref": "#/1184"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -21794,19 +22320,19 @@
     "properties": {
       "EFSFileSystem": {
         "type": {
-          "$ref": "#/1164"
+          "$ref": "#/1191"
         },
         "flags": 0
       },
       "FSxLustreFileSystem": {
         "type": {
-          "$ref": "#/1166"
+          "$ref": "#/1193"
         },
         "flags": 0
       },
       "S3FileSystem": {
         "type": {
-          "$ref": "#/1172"
+          "$ref": "#/1199"
         },
         "flags": 0
       }
@@ -21887,13 +22413,13 @@
     "properties": {
       "DefaultResourceSpec": {
         "type": {
-          "$ref": "#/1171"
+          "$ref": "#/1198"
         },
         "flags": 0
       },
       "LifecycleConfigArns": {
         "type": {
-          "$ref": "#/1185"
+          "$ref": "#/1212"
         },
         "flags": 0,
         "description": "A list of LifecycleConfigArns available for use with JupyterServer apps."
@@ -21906,21 +22432,21 @@
     "properties": {
       "CustomImages": {
         "type": {
-          "$ref": "#/1186"
+          "$ref": "#/1213"
         },
         "flags": 0,
         "description": "A list of custom SageMaker images that are configured to run as a KernelGateway app."
       },
       "DefaultResourceSpec": {
         "type": {
-          "$ref": "#/1171"
+          "$ref": "#/1198"
         },
         "flags": 0,
         "description": "The default instance type and the Amazon Resource Name (ARN) of the default SageMaker image used by the KernelGateway app."
       },
       "LifecycleConfigArns": {
         "type": {
-          "$ref": "#/1187"
+          "$ref": "#/1214"
         },
         "flags": 0,
         "description": "A list of LifecycleConfigArns available for use with KernelGateway apps."
@@ -22003,7 +22529,7 @@
     "properties": {
       "IdleSettings": {
         "type": {
-          "$ref": "#/1176"
+          "$ref": "#/1203"
         },
         "flags": 0
       }
@@ -22015,13 +22541,13 @@
     "properties": {
       "AppLifecycleManagement": {
         "type": {
-          "$ref": "#/1173"
+          "$ref": "#/1200"
         },
         "flags": 0
       },
       "DefaultResourceSpec": {
         "type": {
-          "$ref": "#/1171"
+          "$ref": "#/1198"
         },
         "flags": 0
       }
@@ -22051,20 +22577,20 @@
     "properties": {
       "AppLifecycleManagement": {
         "type": {
-          "$ref": "#/1173"
+          "$ref": "#/1200"
         },
         "flags": 0
       },
       "CodeRepositories": {
         "type": {
-          "$ref": "#/1188"
+          "$ref": "#/1215"
         },
         "flags": 0,
         "description": "A list of CodeRepositories available for use with JupyterLab apps."
       },
       "DefaultResourceSpec": {
         "type": {
-          "$ref": "#/1171"
+          "$ref": "#/1198"
         },
         "flags": 0
       }
@@ -22087,34 +22613,34 @@
       },
       "CodeEditorAppSettings": {
         "type": {
-          "$ref": "#/1174"
+          "$ref": "#/1201"
         },
         "flags": 0,
         "description": "The CodeEditor app settings."
       },
       "CustomFileSystems": {
         "type": {
-          "$ref": "#/1189"
+          "$ref": "#/1216"
         },
         "flags": 0
       },
       "JupyterLabAppSettings": {
         "type": {
-          "$ref": "#/1177"
+          "$ref": "#/1204"
         },
         "flags": 0,
         "description": "The JupyterLab app settings."
       },
       "JupyterServerAppSettings": {
         "type": {
-          "$ref": "#/1167"
+          "$ref": "#/1194"
         },
         "flags": 0,
         "description": "The Jupyter server's app settings."
       },
       "KernelGatewayAppSettings": {
         "type": {
-          "$ref": "#/1168"
+          "$ref": "#/1195"
         },
         "flags": 0,
         "description": "The kernel gateway app settings."
@@ -22135,7 +22661,7 @@
       },
       "SpaceStorageSettings": {
         "type": {
-          "$ref": "#/1181"
+          "$ref": "#/1208"
         },
         "flags": 0,
         "description": "Default storage settings for a space."
@@ -22160,7 +22686,7 @@
     "properties": {
       "EbsStorageSettings": {
         "type": {
-          "$ref": "#/1165"
+          "$ref": "#/1192"
         },
         "flags": 0
       }
@@ -22192,7 +22718,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1161"
+      "$ref": "#/1188"
     }
   },
   {
@@ -22204,7 +22730,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1163"
+      "$ref": "#/1190"
     }
   },
   {
@@ -22216,13 +22742,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1160"
+      "$ref": "#/1187"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1161"
+      "$ref": "#/1188"
     }
   },
   {
@@ -22232,7 +22758,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1183"
+      "$ref": "#/1210"
     }
   },
   {
@@ -22248,7 +22774,7 @@
       },
       "OwnershipSettings": {
         "type": {
-          "$ref": "#/1169"
+          "$ref": "#/1196"
         },
         "flags": 0
       },
@@ -22274,20 +22800,20 @@
       },
       "SpaceSettings": {
         "type": {
-          "$ref": "#/1179"
+          "$ref": "#/1206"
         },
         "flags": 4,
         "description": "A collection of settings."
       },
       "SpaceSharingSettings": {
         "type": {
-          "$ref": "#/1180"
+          "$ref": "#/1207"
         },
         "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/1191"
+          "$ref": "#/1218"
         },
         "flags": 0,
         "description": "A list of tags to apply to the space."
@@ -22320,7 +22846,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/1192"
+          "$ref": "#/1219"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -22331,7 +22857,7 @@
     "$type": "ResourceType",
     "name": "AWS.SageMaker/Space@default",
     "body": {
-      "$ref": "#/1193"
+      "$ref": "#/1220"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -22361,7 +22887,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1195"
+      "$ref": "#/1222"
     }
   },
   {
@@ -22398,7 +22924,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/1197"
+          "$ref": "#/1224"
         },
         "flags": 0,
         "description": "Tags to be associated with the Lifecycle Configuration. Each tag consists of a key and an optional value. Tag keys must be unique per resource. Tags are searchable using the Search API."
@@ -22425,7 +22951,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/1198"
+          "$ref": "#/1225"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -22436,7 +22962,7 @@
     "$type": "ResourceType",
     "name": "AWS.SageMaker/StudioLifecycleConfig@default",
     "body": {
-      "$ref": "#/1199"
+      "$ref": "#/1226"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -22454,14 +22980,14 @@
       },
       "ContainerArguments": {
         "type": {
-          "$ref": "#/1228"
+          "$ref": "#/1255"
         },
         "flags": 0,
         "description": "The arguments for the training container."
       },
       "ContainerEntrypoint": {
         "type": {
-          "$ref": "#/1229"
+          "$ref": "#/1256"
         },
         "flags": 0,
         "description": "The entrypoint for the training container."
@@ -22475,7 +23001,7 @@
       },
       "MetricDefinitions": {
         "type": {
-          "$ref": "#/1230"
+          "$ref": "#/1257"
         },
         "flags": 0,
         "description": "A list of metric definition objects."
@@ -22489,7 +23015,7 @@
       },
       "TrainingImageConfig": {
         "type": {
-          "$ref": "#/1225"
+          "$ref": "#/1252"
         },
         "flags": 0
       },
@@ -22527,7 +23053,7 @@
       },
       "DataSource": {
         "type": {
-          "$ref": "#/1205"
+          "$ref": "#/1232"
         },
         "flags": 1
       },
@@ -22545,7 +23071,7 @@
       },
       "ShuffleConfig": {
         "type": {
-          "$ref": "#/1221"
+          "$ref": "#/1248"
         },
         "flags": 0
       }
@@ -22581,7 +23107,7 @@
       },
       "CollectionParameters": {
         "type": {
-          "$ref": "#/1231"
+          "$ref": "#/1258"
         },
         "flags": 0
       }
@@ -22593,13 +23119,13 @@
     "properties": {
       "FileSystemDataSource": {
         "type": {
-          "$ref": "#/1209"
+          "$ref": "#/1236"
         },
         "flags": 0
       },
       "S3DataSource": {
         "type": {
-          "$ref": "#/1219"
+          "$ref": "#/1246"
         },
         "flags": 0
       }
@@ -22611,13 +23137,13 @@
     "properties": {
       "CollectionConfigurations": {
         "type": {
-          "$ref": "#/1232"
+          "$ref": "#/1259"
         },
         "flags": 0
       },
       "HookParameters": {
         "type": {
-          "$ref": "#/1233"
+          "$ref": "#/1260"
         },
         "flags": 0
       },
@@ -22665,7 +23191,7 @@
       },
       "RuleParameters": {
         "type": {
-          "$ref": "#/1234"
+          "$ref": "#/1261"
         },
         "flags": 0
       },
@@ -22841,7 +23367,7 @@
       },
       "ProfilingParameters": {
         "type": {
-          "$ref": "#/1235"
+          "$ref": "#/1262"
         },
         "flags": 0
       },
@@ -22883,7 +23409,7 @@
       },
       "RuleParameters": {
         "type": {
-          "$ref": "#/1236"
+          "$ref": "#/1263"
         },
         "flags": 0
       },
@@ -22926,7 +23452,7 @@
       },
       "InstanceGroups": {
         "type": {
-          "$ref": "#/1237"
+          "$ref": "#/1264"
         },
         "flags": 0
       },
@@ -22978,13 +23504,13 @@
     "properties": {
       "AttributeNames": {
         "type": {
-          "$ref": "#/1238"
+          "$ref": "#/1265"
         },
         "flags": 0
       },
       "InstanceGroupNames": {
         "type": {
-          "$ref": "#/1239"
+          "$ref": "#/1266"
         },
         "flags": 0
       },
@@ -23131,7 +23657,7 @@
       },
       "TrainingRepositoryAuthConfig": {
         "type": {
-          "$ref": "#/1226"
+          "$ref": "#/1253"
         },
         "flags": 0
       }
@@ -23155,13 +23681,13 @@
     "properties": {
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/1240"
+          "$ref": "#/1267"
         },
         "flags": 1
       },
       "Subnets": {
         "type": {
-          "$ref": "#/1241"
+          "$ref": "#/1268"
         },
         "flags": 1
       }
@@ -23182,7 +23708,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1212"
+      "$ref": "#/1239"
     }
   },
   {
@@ -23196,7 +23722,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1204"
+      "$ref": "#/1231"
     }
   },
   {
@@ -23234,7 +23760,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1211"
+      "$ref": "#/1238"
     }
   },
   {
@@ -23268,7 +23794,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1207"
+      "$ref": "#/1234"
     }
   },
   {
@@ -23290,25 +23816,25 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1202"
+      "$ref": "#/1229"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1215"
+      "$ref": "#/1242"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1220"
+      "$ref": "#/1247"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1223"
+      "$ref": "#/1250"
     }
   },
   {
@@ -23317,7 +23843,7 @@
     "properties": {
       "AlgorithmSpecification": {
         "type": {
-          "$ref": "#/1201"
+          "$ref": "#/1228"
         },
         "flags": 1
       },
@@ -23330,7 +23856,7 @@
       },
       "CheckpointConfig": {
         "type": {
-          "$ref": "#/1203"
+          "$ref": "#/1230"
         },
         "flags": 0
       },
@@ -23343,13 +23869,13 @@
       },
       "DebugHookConfig": {
         "type": {
-          "$ref": "#/1206"
+          "$ref": "#/1233"
         },
         "flags": 0
       },
       "DebugRuleConfigurations": {
         "type": {
-          "$ref": "#/1243"
+          "$ref": "#/1270"
         },
         "flags": 0
       },
@@ -23376,33 +23902,33 @@
       },
       "Environment": {
         "type": {
-          "$ref": "#/1244"
+          "$ref": "#/1271"
         },
         "flags": 0,
         "description": "The environment variables to set in the Docker container."
       },
       "ExperimentConfig": {
         "type": {
-          "$ref": "#/1208"
+          "$ref": "#/1235"
         },
         "flags": 0
       },
       "HyperParameters": {
         "type": {
-          "$ref": "#/1245"
+          "$ref": "#/1272"
         },
         "flags": 0,
         "description": "Algorithm-specific parameters that influence the quality of the model."
       },
       "InfraCheckConfig": {
         "type": {
-          "$ref": "#/1210"
+          "$ref": "#/1237"
         },
         "flags": 0
       },
       "InputDataConfig": {
         "type": {
-          "$ref": "#/1246"
+          "$ref": "#/1273"
         },
         "flags": 0,
         "description": "An array of Channel objects that describes each data input channel."
@@ -23416,19 +23942,19 @@
       },
       "OutputDataConfig": {
         "type": {
-          "$ref": "#/1213"
+          "$ref": "#/1240"
         },
         "flags": 1
       },
       "ProfilerConfig": {
         "type": {
-          "$ref": "#/1214"
+          "$ref": "#/1241"
         },
         "flags": 0
       },
       "ProfilerRuleConfigurations": {
         "type": {
-          "$ref": "#/1247"
+          "$ref": "#/1274"
         },
         "flags": 0
       },
@@ -23441,19 +23967,19 @@
       },
       "RemoteDebugConfig": {
         "type": {
-          "$ref": "#/1216"
+          "$ref": "#/1243"
         },
         "flags": 0
       },
       "ResourceConfig": {
         "type": {
-          "$ref": "#/1217"
+          "$ref": "#/1244"
         },
         "flags": 1
       },
       "RetryStrategy": {
         "type": {
-          "$ref": "#/1218"
+          "$ref": "#/1245"
         },
         "flags": 0
       },
@@ -23473,27 +23999,27 @@
       },
       "SecondaryStatusTransitions": {
         "type": {
-          "$ref": "#/1248"
+          "$ref": "#/1275"
         },
         "flags": 2,
         "description": "A history of all of the secondary statuses that the training job has transitioned through."
       },
       "StoppingCondition": {
         "type": {
-          "$ref": "#/1222"
+          "$ref": "#/1249"
         },
         "flags": 1
       },
       "Tags": {
         "type": {
-          "$ref": "#/1249"
+          "$ref": "#/1276"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource."
       },
       "TensorBoardOutputConfig": {
         "type": {
-          "$ref": "#/1224"
+          "$ref": "#/1251"
         },
         "flags": 0
       },
@@ -23527,7 +24053,7 @@
       },
       "VpcConfig": {
         "type": {
-          "$ref": "#/1227"
+          "$ref": "#/1254"
         },
         "flags": 0
       }
@@ -23553,7 +24079,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/1250"
+          "$ref": "#/1277"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -23564,7 +24090,7 @@
     "$type": "ResourceType",
     "name": "AWS.SageMaker/TrainingJob@default",
     "body": {
-      "$ref": "#/1251"
+      "$ref": "#/1278"
     },
     "readableScopes": 31,
     "writableScopes": 0
@@ -23705,7 +24231,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1259"
+      "$ref": "#/1286"
     }
   },
   {
@@ -23734,7 +24260,7 @@
     "properties": {
       "S3DataSource": {
         "type": {
-          "$ref": "#/1261"
+          "$ref": "#/1288"
         },
         "flags": 1,
         "description": "The S3 location of the data source."
@@ -23761,7 +24287,7 @@
       },
       "DataSource": {
         "type": {
-          "$ref": "#/1262"
+          "$ref": "#/1289"
         },
         "flags": 1,
         "description": "Describes the location of the channel data."
@@ -23856,28 +24382,28 @@
       },
       "DataCaptureConfig": {
         "type": {
-          "$ref": "#/1254"
+          "$ref": "#/1281"
         },
         "flags": 0,
         "description": "Configuration to control how SageMaker captures inference data."
       },
       "DataProcessing": {
         "type": {
-          "$ref": "#/1255"
+          "$ref": "#/1282"
         },
         "flags": 0,
         "description": "The data structure used to specify the data to be used for inference in a batch transform job."
       },
       "Environment": {
         "type": {
-          "$ref": "#/1256"
+          "$ref": "#/1283"
         },
         "flags": 0,
         "description": "The environment variables to set in the Docker container."
       },
       "ExperimentConfig": {
         "type": {
-          "$ref": "#/1257"
+          "$ref": "#/1284"
         },
         "flags": 0,
         "description": "Associates a SageMaker job as a trial component with an experiment and trial."
@@ -23898,7 +24424,7 @@
       },
       "ModelClientConfig": {
         "type": {
-          "$ref": "#/1258"
+          "$ref": "#/1285"
         },
         "flags": 0,
         "description": "Configures the timeout and maximum number of retries for processing a transform job invocation."
@@ -23912,7 +24438,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/1260"
+          "$ref": "#/1287"
         },
         "flags": 0,
         "description": "An array of key-value pairs."
@@ -23926,7 +24452,7 @@
       },
       "TransformInput": {
         "type": {
-          "$ref": "#/1263"
+          "$ref": "#/1290"
         },
         "flags": 1,
         "description": "Describes the input source and the way the transform job consumes it."
@@ -23942,7 +24468,7 @@
         "type": {
           "$ref": "#/7"
         },
-        "flags": 3,
+        "flags": 2,
         "description": "The name of the transform job. The name must be unique within an AWS Region in an AWS account."
       },
       "TransformJobStatus": {
@@ -23954,14 +24480,14 @@
       },
       "TransformOutput": {
         "type": {
-          "$ref": "#/1264"
+          "$ref": "#/1291"
         },
         "flags": 1,
         "description": "Describes the results of the transform job."
       },
       "TransformResources": {
         "type": {
-          "$ref": "#/1265"
+          "$ref": "#/1292"
         },
         "flags": 1,
         "description": "Describes the resources, including ML instance types and ML instance count, to use for the transform job."
@@ -23995,7 +24521,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/1266"
+          "$ref": "#/1293"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -24006,7 +24532,7 @@
     "$type": "ResourceType",
     "name": "AWS.SageMaker/TransformJob@default",
     "body": {
-      "$ref": "#/1267"
+      "$ref": "#/1294"
     },
     "readableScopes": 31,
     "writableScopes": 0
@@ -24114,7 +24640,7 @@
     "name": "TrialComponent_InputArtifacts",
     "properties": {},
     "additionalProperties": {
-      "$ref": "#/1270"
+      "$ref": "#/1297"
     }
   },
   {
@@ -24122,7 +24648,7 @@
     "name": "TrialComponent_OutputArtifacts",
     "properties": {},
     "additionalProperties": {
-      "$ref": "#/1270"
+      "$ref": "#/1297"
     }
   },
   {
@@ -24130,7 +24656,7 @@
     "name": "TrialComponent_Parameters",
     "properties": {},
     "additionalProperties": {
-      "$ref": "#/1271"
+      "$ref": "#/1298"
     }
   },
   {
@@ -24156,7 +24682,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1277"
+      "$ref": "#/1304"
     }
   },
   {
@@ -24179,7 +24705,7 @@
       },
       "InputArtifacts": {
         "type": {
-          "$ref": "#/1274"
+          "$ref": "#/1301"
         },
         "flags": 0,
         "description": "The input artifacts for the component."
@@ -24200,33 +24726,33 @@
       },
       "MetadataProperties": {
         "type": {
-          "$ref": "#/1269"
+          "$ref": "#/1296"
         },
         "flags": 0
       },
       "OutputArtifacts": {
         "type": {
-          "$ref": "#/1275"
+          "$ref": "#/1302"
         },
         "flags": 0,
         "description": "The output artifacts for the component."
       },
       "Parameters": {
         "type": {
-          "$ref": "#/1276"
+          "$ref": "#/1303"
         },
         "flags": 0,
         "description": "The hyperparameters for the component."
       },
       "Status": {
         "type": {
-          "$ref": "#/1272"
+          "$ref": "#/1299"
         },
         "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/1278"
+          "$ref": "#/1305"
         },
         "flags": 0,
         "description": "A list of tags to associate with the trial component."
@@ -24267,7 +24793,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/1279"
+          "$ref": "#/1306"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -24278,7 +24804,7 @@
     "$type": "ResourceType",
     "name": "AWS.SageMaker/TrialComponent@default",
     "body": {
-      "$ref": "#/1280"
+      "$ref": "#/1307"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -24294,7 +24820,7 @@
     "properties": {
       "IdleSettings": {
         "type": {
-          "$ref": "#/1296"
+          "$ref": "#/1323"
         },
         "flags": 0
       }
@@ -24311,7 +24837,7 @@
     "properties": {
       "AppLifecycleManagement": {
         "type": {
-          "$ref": "#/1283"
+          "$ref": "#/1310"
         },
         "flags": 0
       },
@@ -24324,21 +24850,21 @@
       },
       "CustomImages": {
         "type": {
-          "$ref": "#/1314"
+          "$ref": "#/1341"
         },
         "flags": 0,
         "description": "A list of custom images for use for CodeEditor apps."
       },
       "DefaultResourceSpec": {
         "type": {
-          "$ref": "#/1306"
+          "$ref": "#/1333"
         },
         "flags": 0,
         "description": "The default instance type and the Amazon Resource Name (ARN) of the default SageMaker image used by the CodeEditor app."
       },
       "LifecycleConfigArns": {
         "type": {
-          "$ref": "#/1315"
+          "$ref": "#/1342"
         },
         "flags": 0,
         "description": "A list of LifecycleConfigArns available for use with CodeEditor apps."
@@ -24364,19 +24890,19 @@
     "properties": {
       "EFSFileSystemConfig": {
         "type": {
-          "$ref": "#/1292"
+          "$ref": "#/1319"
         },
         "flags": 0
       },
       "FSxLustreFileSystemConfig": {
         "type": {
-          "$ref": "#/1294"
+          "$ref": "#/1321"
         },
         "flags": 0
       },
       "S3FileSystemConfig": {
         "type": {
-          "$ref": "#/1307"
+          "$ref": "#/1334"
         },
         "flags": 0
       }
@@ -24453,7 +24979,7 @@
     "properties": {
       "DefaultEbsStorageSettings": {
         "type": {
-          "$ref": "#/1290"
+          "$ref": "#/1317"
         },
         "flags": 0
       }
@@ -24483,14 +25009,14 @@
     "properties": {
       "AssumableRoleArns": {
         "type": {
-          "$ref": "#/1316"
+          "$ref": "#/1343"
         },
         "flags": 0,
         "description": "An array of Amazon Resource Names (ARNs) of the IAM roles that the execution role of SageMaker can assume."
       },
       "ExecutionRoleArns": {
         "type": {
-          "$ref": "#/1317"
+          "$ref": "#/1344"
         },
         "flags": 0,
         "description": "An array of ARNs of IAM roles used by EMR cluster instances or job execution environments."
@@ -24528,7 +25054,7 @@
       },
       "VersionAliases": {
         "type": {
-          "$ref": "#/1318"
+          "$ref": "#/1345"
         },
         "flags": 0
       }
@@ -24575,7 +25101,7 @@
     "properties": {
       "AppLifecycleManagement": {
         "type": {
-          "$ref": "#/1283"
+          "$ref": "#/1310"
         },
         "flags": 0
       },
@@ -24588,35 +25114,35 @@
       },
       "CodeRepositories": {
         "type": {
-          "$ref": "#/1319"
+          "$ref": "#/1346"
         },
         "flags": 0,
         "description": "A list of CodeRepositories available for use with JupyterLab apps."
       },
       "CustomImages": {
         "type": {
-          "$ref": "#/1320"
+          "$ref": "#/1347"
         },
         "flags": 0,
         "description": "A list of custom images available for use for JupyterLab apps"
       },
       "DefaultResourceSpec": {
         "type": {
-          "$ref": "#/1306"
+          "$ref": "#/1333"
         },
         "flags": 0,
         "description": "The default instance type and the Amazon Resource Name (ARN) of the default SageMaker image used by the JupyterLab app."
       },
       "EmrSettings": {
         "type": {
-          "$ref": "#/1293"
+          "$ref": "#/1320"
         },
         "flags": 0,
         "description": "The configuration parameters for EMR settings."
       },
       "LifecycleConfigArns": {
         "type": {
-          "$ref": "#/1321"
+          "$ref": "#/1348"
         },
         "flags": 0,
         "description": "A list of LifecycleConfigArns available for use with JupyterLab apps."
@@ -24629,13 +25155,13 @@
     "properties": {
       "DefaultResourceSpec": {
         "type": {
-          "$ref": "#/1306"
+          "$ref": "#/1333"
         },
         "flags": 0
       },
       "LifecycleConfigArns": {
         "type": {
-          "$ref": "#/1322"
+          "$ref": "#/1349"
         },
         "flags": 0,
         "description": "A list of LifecycleConfigArns available for use with JupyterServer apps."
@@ -24648,21 +25174,21 @@
     "properties": {
       "CustomImages": {
         "type": {
-          "$ref": "#/1323"
+          "$ref": "#/1350"
         },
         "flags": 0,
         "description": "A list of custom SageMaker images that are configured to run as a KernelGateway app."
       },
       "DefaultResourceSpec": {
         "type": {
-          "$ref": "#/1306"
+          "$ref": "#/1333"
         },
         "flags": 0,
         "description": "The default instance type and the Amazon Resource Name (ARN) of the default SageMaker image used by the KernelGateway app."
       },
       "LifecycleConfigArns": {
         "type": {
-          "$ref": "#/1324"
+          "$ref": "#/1351"
         },
         "flags": 0,
         "description": "A list of LifecycleConfigArns available for use with KernelGateway apps."
@@ -24810,28 +25336,28 @@
     "properties": {
       "HiddenAppTypes": {
         "type": {
-          "$ref": "#/1325"
+          "$ref": "#/1352"
         },
         "flags": 0,
         "description": "Applications supported in Studio that are hidden from the Studio left navigation pane."
       },
       "HiddenInstanceTypes": {
         "type": {
-          "$ref": "#/1326"
+          "$ref": "#/1353"
         },
         "flags": 0,
         "description": "The instance types you are hiding from the Studio user interface."
       },
       "HiddenMlTools": {
         "type": {
-          "$ref": "#/1327"
+          "$ref": "#/1354"
         },
         "flags": 0,
         "description": "The machine learning tools that are hidden from the Studio left navigation pane."
       },
       "HiddenSageMakerImageVersionAliases": {
         "type": {
-          "$ref": "#/1328"
+          "$ref": "#/1355"
         },
         "flags": 0,
         "description": "The version aliases you are hiding from the Studio user interface."
@@ -24869,19 +25395,19 @@
       },
       "CodeEditorAppSettings": {
         "type": {
-          "$ref": "#/1285"
+          "$ref": "#/1312"
         },
         "flags": 0
       },
       "CustomFileSystemConfigs": {
         "type": {
-          "$ref": "#/1329"
+          "$ref": "#/1356"
         },
         "flags": 0
       },
       "CustomPosixUserConfig": {
         "type": {
-          "$ref": "#/1289"
+          "$ref": "#/1316"
         },
         "flags": 0
       },
@@ -24901,47 +25427,47 @@
       },
       "JupyterLabAppSettings": {
         "type": {
-          "$ref": "#/1298"
+          "$ref": "#/1325"
         },
         "flags": 0
       },
       "JupyterServerAppSettings": {
         "type": {
-          "$ref": "#/1299"
+          "$ref": "#/1326"
         },
         "flags": 0,
         "description": "The Jupyter server's app settings."
       },
       "KernelGatewayAppSettings": {
         "type": {
-          "$ref": "#/1300"
+          "$ref": "#/1327"
         },
         "flags": 0,
         "description": "The kernel gateway app settings."
       },
       "RStudioServerProAppSettings": {
         "type": {
-          "$ref": "#/1305"
+          "$ref": "#/1332"
         },
         "flags": 0
       },
       "SecurityGroups": {
         "type": {
-          "$ref": "#/1330"
+          "$ref": "#/1357"
         },
         "flags": 0,
         "description": "The security groups for the Amazon Virtual Private Cloud (VPC) that Studio uses for communication."
       },
       "SharingSettings": {
         "type": {
-          "$ref": "#/1308"
+          "$ref": "#/1335"
         },
         "flags": 0,
         "description": "The sharing settings."
       },
       "SpaceStorageSettings": {
         "type": {
-          "$ref": "#/1291"
+          "$ref": "#/1318"
         },
         "flags": 0
       },
@@ -24954,7 +25480,7 @@
       },
       "StudioWebPortalSettings": {
         "type": {
-          "$ref": "#/1311"
+          "$ref": "#/1338"
         },
         "flags": 0
       }
@@ -24963,7 +25489,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1288"
+      "$ref": "#/1315"
     }
   },
   {
@@ -24993,31 +25519,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1286"
+      "$ref": "#/1313"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1288"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/7"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/7"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/1288"
+      "$ref": "#/1315"
     }
   },
   {
@@ -25035,6 +25543,18 @@
   {
     "$type": "ArrayType",
     "itemType": {
+      "$ref": "#/1315"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/7"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
       "$ref": "#/7"
     }
   },
@@ -25047,13 +25567,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1295"
+      "$ref": "#/7"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1287"
+      "$ref": "#/1322"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1314"
     }
   },
   {
@@ -25069,7 +25595,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1312"
+      "$ref": "#/1339"
     }
   },
   {
@@ -25099,7 +25625,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/1332"
+          "$ref": "#/1359"
         },
         "flags": 0,
         "description": "A list of tags to apply to the user profile."
@@ -25120,7 +25646,7 @@
       },
       "UserSettings": {
         "type": {
-          "$ref": "#/1313"
+          "$ref": "#/1340"
         },
         "flags": 0,
         "description": "A collection of settings."
@@ -25147,7 +25673,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/1333"
+          "$ref": "#/1360"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -25158,7 +25684,7 @@
     "$type": "ResourceType",
     "name": "AWS.SageMaker/UserProfile@default",
     "body": {
-      "$ref": "#/1334"
+      "$ref": "#/1361"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -25189,7 +25715,7 @@
     "properties": {
       "AuthenticationRequestExtraParams": {
         "type": {
-          "$ref": "#/1341"
+          "$ref": "#/1368"
         },
         "flags": 0,
         "description": "A string to string map of identifiers specific to the custom identity provider (IdP) being used."
@@ -25265,7 +25791,7 @@
     "properties": {
       "Cidrs": {
         "type": {
-          "$ref": "#/1342"
+          "$ref": "#/1369"
         },
         "flags": 1,
         "description": "A list of one to ten Classless Inter-Domain Routing (CIDR) values."
@@ -25298,14 +25824,14 @@
     "properties": {
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/1343"
+          "$ref": "#/1370"
         },
         "flags": 0,
         "description": "The VPC security group IDs."
       },
       "Subnets": {
         "type": {
-          "$ref": "#/1344"
+          "$ref": "#/1371"
         },
         "flags": 0,
         "description": "The VPC subnets."
@@ -25352,7 +25878,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1339"
+      "$ref": "#/1366"
     }
   },
   {
@@ -25361,7 +25887,7 @@
     "properties": {
       "CognitoConfig": {
         "type": {
-          "$ref": "#/1336"
+          "$ref": "#/1363"
         },
         "flags": 0
       },
@@ -25374,13 +25900,13 @@
       },
       "OidcConfig": {
         "type": {
-          "$ref": "#/1337"
+          "$ref": "#/1364"
         },
         "flags": 0
       },
       "SourceIpConfig": {
         "type": {
-          "$ref": "#/1338"
+          "$ref": "#/1365"
         },
         "flags": 0
       },
@@ -25393,7 +25919,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/1346"
+          "$ref": "#/1373"
         },
         "flags": 0,
         "description": "An array of key-value pairs."
@@ -25414,7 +25940,7 @@
       },
       "WorkforceVpcConfig": {
         "type": {
-          "$ref": "#/1340"
+          "$ref": "#/1367"
         },
         "flags": 0
       }
@@ -25440,7 +25966,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/1347"
+          "$ref": "#/1374"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -25451,7 +25977,7 @@
     "$type": "ResourceType",
     "name": "AWS.SageMaker/Workforce@default",
     "body": {
-      "$ref": "#/1348"
+      "$ref": "#/1375"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -25489,14 +26015,14 @@
     "properties": {
       "CognitoMemberDefinition": {
         "type": {
-          "$ref": "#/1350"
+          "$ref": "#/1377"
         },
         "flags": 0,
         "description": "The Amazon Cognito user group that is part of the work team"
       },
       "OidcMemberDefinition": {
         "type": {
-          "$ref": "#/1353"
+          "$ref": "#/1380"
         },
         "flags": 0,
         "description": "A list user groups that exist in your OIDC Identity Provider (IdP)."
@@ -25522,7 +26048,7 @@
     "properties": {
       "OidcGroups": {
         "type": {
-          "$ref": "#/1355"
+          "$ref": "#/1382"
         },
         "flags": 1,
         "description": "A list of OIDC group names whose members will be part of this workteam"
@@ -25562,13 +26088,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1351"
+      "$ref": "#/1378"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1354"
+      "$ref": "#/1381"
     }
   },
   {
@@ -25584,21 +26110,21 @@
       },
       "MemberDefinitions": {
         "type": {
-          "$ref": "#/1357"
+          "$ref": "#/1384"
         },
         "flags": 1,
         "description": "A list of MemberDefinition objects that contains objects that identify the workers that make up the work team."
       },
       "NotificationConfiguration": {
         "type": {
-          "$ref": "#/1352"
+          "$ref": "#/1379"
         },
         "flags": 0,
         "description": "Configures SNS notifications of available or expiring work items for work teams."
       },
       "Tags": {
         "type": {
-          "$ref": "#/1358"
+          "$ref": "#/1385"
         },
         "flags": 0,
         "description": "An array of key-value pairs."
@@ -25646,7 +26172,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/1359"
+          "$ref": "#/1386"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -25657,7 +26183,7 @@
     "$type": "ResourceType",
     "name": "AWS.SageMaker/Workteam@default",
     "body": {
-      "$ref": "#/1360"
+      "$ref": "#/1387"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -25735,7 +26261,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/1363"
+      "$ref": "#/1390"
     }
   },
   {
@@ -25744,7 +26270,7 @@
     "properties": {
       "Status": {
         "type": {
-          "$ref": "#/1362"
+          "$ref": "#/1389"
         },
         "flags": 0
       },
@@ -25799,13 +26325,13 @@
       },
       "MetadataProperties": {
         "type": {
-          "$ref": "#/1364"
+          "$ref": "#/1391"
         },
         "flags": 0
       },
       "Tags": {
         "type": {
-          "$ref": "#/1366"
+          "$ref": "#/1393"
         },
         "flags": 0
       },
@@ -25837,7 +26363,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/1367"
+          "$ref": "#/1394"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -25848,7 +26374,7 @@
     "$type": "ResourceType",
     "name": "AWS.SageMaker/ExperimentTrialComponent@default",
     "body": {
-      "$ref": "#/1368"
+      "$ref": "#/1395"
     },
     "readableScopes": 0,
     "writableScopes": 0

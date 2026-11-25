@@ -1,0 +1,242 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-FSx-SnapmirrorRelationship",
+  "type": "AWS::FSx::SnapmirrorRelationship",
+  "time": "2026-11-21T19:53:25.594Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/SnapmirrorRelationshipId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Source",
+      "/properties/Destination"
+    ],
+    "definitions": {
+      "Destination": {
+        "additionalProperties": false,
+        "description": "The destination of the SnapMirror relationship.",
+        "properties": {
+          "Path": {
+            "description": "The destination volume, as \u003csvm-name\u003e:\u003cvolume-name\u003e.",
+            "maxLength": 512,
+            "minLength": 1,
+            "pattern": "^[^\\u0000\\u0085\\u2028\\u2029\\r\\n]{1,512}$",
+            "type": "string"
+          },
+          "VolumeId": {
+            "description": "The ID of the destination volume. It must be a data-protection (DP) volume.",
+            "maxLength": 23,
+            "minLength": 23,
+            "pattern": "^(fsvol-[0-9a-f]{17,})$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "VolumeId"
+        ],
+        "type": "object"
+      },
+      "Source": {
+        "additionalProperties": false,
+        "description": "The source of the SnapMirror relationship.",
+        "properties": {
+          "Path": {
+            "description": "The source volume, as \u003csvm-name\u003e:\u003cvolume-name\u003e. For a source on the destination SVM, use that SVM's name. For a source on a peered SVM, use the peer SVM name or its local alias, as seen from the destination SVM.",
+            "maxLength": 512,
+            "minLength": 1,
+            "pattern": "^[^\\u0000\\u0085\\u2028\\u2029\\r\\n]{1,512}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Path"
+        ],
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair used to tag the SnapMirror relationship.",
+        "properties": {
+          "Key": {
+            "description": "The tag key.",
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+            "type": "string"
+          },
+          "Value": {
+            "description": "The tag value.",
+            "maxLength": 256,
+            "minLength": 0,
+            "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Creates an Amazon FSx for NetApp ONTAP SnapMirror relationship that replicates a source volume to a destination data-protection (DP) volume. The source volume can be on the destination SVM, or on an SVM that the destination SVM is peered with.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "fsx:CreateSnapmirrorRelationship",
+          "fsx:DescribeSnapmirrorRelationships",
+          "fsx:TagResource"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "fsx:DeleteSnapmirrorRelationship",
+          "fsx:DescribeSnapmirrorRelationships"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "fsx:DescribeSnapmirrorRelationships"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "fsx:DescribeSnapmirrorRelationships",
+          "fsx:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "fsx:DescribeSnapmirrorRelationships",
+          "fsx:UpdateSnapmirrorRelationship",
+          "fsx:TagResource",
+          "fsx:UntagResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/ResourceARN"
+    ],
+    "properties": {
+      "Destination": {
+        "$ref": "#/definitions/Destination"
+      },
+      "FileSystemId": {
+        "description": "The ID of the file system that contains the destination volume.",
+        "maxLength": 21,
+        "minLength": 11,
+        "pattern": "^(fs-[0-9a-f]{8,})$",
+        "type": "string"
+      },
+      "Healthy": {
+        "description": "Whether the relationship is healthy in ONTAP.",
+        "type": "boolean"
+      },
+      "LagTimeInMinutes": {
+        "description": "How far the destination lags behind the source, in minutes, as reported by ONTAP.",
+        "format": "int64",
+        "type": "integer"
+      },
+      "Lifecycle": {
+        "description": "The lifecycle status of the SnapMirror relationship.",
+        "enum": [
+          "CREATING",
+          "CREATED",
+          "DELETING",
+          "FAILED"
+        ],
+        "type": "string"
+      },
+      "PolicyId": {
+        "description": "The ID of the SnapMirror policy for the relationship. Omit to use the ONTAP default policy for the destination. After it is set, it can be changed but not removed; removing it from the template leaves the current policy.",
+        "pattern": "^(snapmirrorpol-[0-9a-f]{17})$",
+        "type": "string"
+      },
+      "ResourceARN": {
+        "description": "The Amazon Resource Name (ARN) of the SnapMirror relationship.",
+        "maxLength": 512,
+        "minLength": 8,
+        "pattern": "^arn:(?=[^:]+:fsx:[^:]+:\\d{12}:)((|(?=[a-z0-9-.]{1,63})(?!\\d{1,3}(\\.\\d{1,3}){3})(?![^:]*-{2})(?![^:]*-\\.)(?![^:]*\\.-)[a-z0-9].*(?\u003c!-)):){4}(?!/).{0,1024}$",
+        "type": "string"
+      },
+      "SnapmirrorRelationshipId": {
+        "description": "The system-generated, unique ID of the SnapMirror relationship.",
+        "pattern": "^(snapmirror-[0-9a-f]{17})$",
+        "type": "string"
+      },
+      "Source": {
+        "$ref": "#/definitions/Source"
+      },
+      "State": {
+        "description": "The state of the relationship in ONTAP.",
+        "enum": [
+          "UNINITIALIZED",
+          "TRANSFERRING",
+          "SNAPMIRRORED",
+          "PAUSED",
+          "BROKEN_OFF"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "A list of tags to apply to the SnapMirror relationship, with a maximum of 50 tags.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 50,
+        "type": "array",
+        "uniqueItems": false
+      },
+      "ThrottleInKbps": {
+        "description": "The maximum transfer throughput in kilobytes per second. 0 means unlimited. Removing it from the template sets it back to 0 (unlimited).",
+        "format": "int64",
+        "minimum": 0,
+        "type": "integer"
+      },
+      "TransferSchedule": {
+        "description": "The name of the ONTAP job schedule for transfers. Overrides the policy transfer schedule. After it is set, it can be changed but not removed; removing it from the template leaves the current schedule.",
+        "maxLength": 256,
+        "minLength": 0,
+        "pattern": "^[a-zA-Z0-9_:.-]{0,256}$",
+        "type": "string"
+      },
+      "UUID": {
+        "description": "The ONTAP UUID of the SnapMirror relationship.",
+        "maxLength": 36,
+        "pattern": "^[^\\u0000\\u0085\\u2028\\u2029\\r\\n]{1,36}$",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/SnapmirrorRelationshipId",
+      "/properties/ResourceARN",
+      "/properties/FileSystemId",
+      "/properties/Destination/Path",
+      "/properties/State",
+      "/properties/Healthy",
+      "/properties/LagTimeInMinutes",
+      "/properties/UUID",
+      "/properties/Lifecycle"
+    ],
+    "required": [
+      "Source",
+      "Destination"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "fsx:ListTagsForResource",
+        "fsx:TagResource",
+        "fsx:UntagResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::FSx::SnapmirrorRelationship"
+  }
+}

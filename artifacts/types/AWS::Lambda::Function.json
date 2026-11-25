@@ -1,11 +1,12 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Lambda-Function",
   "type": "AWS::Lambda::Function",
-  "time": "2026-10-20T10:59:10.185Z",
+  "time": "2026-11-23T12:21:11.652Z",
   "schema": {
     "additionalProperties": false,
     "conditionalCreateOnlyProperties": [
-      "/properties/DurableConfig"
+      "/properties/DurableConfig",
+      "/properties/AcceleratorConfig"
     ],
     "createOnlyProperties": [
       "/properties/FunctionName",
@@ -13,6 +14,20 @@
       "/properties/TenancyConfig"
     ],
     "definitions": {
+      "AcceleratorConfig": {
+        "additionalProperties": false,
+        "description": "",
+        "properties": {
+          "AcceleratorMemorySize": {
+            "description": "The minimum amount of memory (in GB) of each accelerator device exposed to the execution environment. Lambda might allocate more, depending on the accelerator instance types available. Valid values: 3, 6, 12, 16, 24, 48.",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "AcceleratorMemorySize"
+        ],
+        "type": "object"
+      },
       "CapacityProviderConfig": {
         "additionalProperties": false,
         "description": "Configuration for the capacity provider that manages compute resources for Lambda functions.",
@@ -302,6 +317,29 @@
         ],
         "type": "string"
       },
+      "RuntimeConfig": {
+        "additionalProperties": false,
+        "description": "",
+        "properties": {
+          "RuntimeAlias": {
+            "description": "The name of the runtime alias that controls the function's runtime update cadence (for example, stable or latest).",
+            "maxLength": 128,
+            "pattern": "^[A-Za-z0-9_]([A-Za-z0-9_.-]{0,126}[A-Za-z0-9_])?$",
+            "type": "string"
+          },
+          "RuntimeArn": {
+            "description": "The Amazon Resource Name (ARN) of the runtime that the function uses.",
+            "maxLength": 2048,
+            "pattern": "^arn:[a-z-]+:lambda:[a-z0-9-]+:\\d{12}:runtime/.+$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "RuntimeArn",
+          "RuntimeAlias"
+        ],
+        "type": "object"
+      },
       "RuntimeManagementConfig": {
         "additionalProperties": false,
         "description": "Sets the runtime management configuration for a function's version. For more information, see [Runtime updates](https://docs.aws.amazon.com/lambda/latest/dg/runtimes-update.html).",
@@ -496,7 +534,9 @@
           "lambda:GetFunctionRecursionConfig",
           "lambda:PutFunctionScalingConfig",
           "lambda:PassCapacityProvider",
-          "lambda:AssociateRuntimeAlias"
+          "lambda:AssociateRuntimeAlias",
+          "ecr:BatchGetImage",
+          "ecr:GetDownloadUrlForLayer"
         ]
       },
       "delete": {
@@ -553,7 +593,9 @@
           "lambda:PutFunctionScalingConfig",
           "lambda:PublishVersion",
           "lambda:PassCapacityProvider",
-          "lambda:AssociateRuntimeAlias"
+          "lambda:AssociateRuntimeAlias",
+          "ecr:BatchGetImage",
+          "ecr:GetDownloadUrlForLayer"
         ],
         "timeoutInMinutes": 180
       }
@@ -562,6 +604,10 @@
       "/properties/FunctionName"
     ],
     "properties": {
+      "AcceleratorConfig": {
+        "$ref": "#/definitions/AcceleratorConfig",
+        "description": ""
+      },
       "Architectures": {
         "description": "The instruction set architecture that the function supports. Enter a string array with one of the valid values (arm64 or x86_64). The default value is ``x86_64``.",
         "items": {
@@ -691,6 +737,10 @@
       "Runtime": {
         "description": "The identifier of the function's [runtime](https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html). Runtime is required if the deployment package is a .zip file archive. Specifying a runtime results in an error if you're deploying a function using a container image.\n The following list includes deprecated runtimes. Lambda blocks creating new functions and updating existing functions shortly after each runtime is deprecated. For more information, see [Runtime use after deprecation](https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html#runtime-deprecation-levels).\n For a list of all currently supported runtimes, see [Supported runtimes](https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html#runtimes-supported).",
         "type": "string"
+      },
+      "RuntimeConfig": {
+        "$ref": "#/definitions/RuntimeConfig",
+        "description": ""
       },
       "RuntimeManagementConfig": {
         "$ref": "#/definitions/RuntimeManagementConfig",

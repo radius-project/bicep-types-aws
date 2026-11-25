@@ -40,6 +40,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.Athena/SessionProperties](#awsathenasessionproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.Athena/SystemTables@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Athena/SystemTablesProperties](#awsathenasystemtablesproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.Athena/WorkGroup@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -99,6 +107,14 @@
 * **ExecutionRole**: string: The ARN of the execution role used to access user resources for Spark sessions and Identity Center enabled workgroups.
 * **SessionId**: string (ReadOnly): The session ID.
 * **WorkGroup**: string (Required): The workgroup to which the session belongs.
+
+## AWS.Athena/SystemTablesProperties
+### Properties
+* **CreatedAt**: string (ReadOnly): The time the configuration was created, set by the service.
+* **KmsKeyArn**: string: The ARN of the customer managed AWS KMS key used to encrypt the system table data. Specify a key ARN (not an alias); the key must be in the same account and Region. The encryption choice is permanent for the account and Region: it cannot be changed or removed after creation, and it persists after this resource is deleted.
+* **LastModifiedAt**: string (ReadOnly): The time the configuration was last modified, set by the service.
+* **TableName**: string (Required, Identifier): The reserved keyword identifying the account-level System Tables configuration. The only accepted value is ALL, which enables all system tables for the account. This is the resource's primary identifier.
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to the system tables configuration.
 
 ## AWS.Athena/WorkGroupProperties
 ### Properties
@@ -244,6 +260,11 @@
 ### Properties
 * **Key**: string (Required)
 * **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required): The tag key.
+* **Value**: string (Required): The tag value.
 
 ## Tag
 ### Properties

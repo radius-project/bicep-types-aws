@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-AppStream-Fleet",
   "type": "AWS::AppStream::Fleet",
-  "time": "2026-10-22T00:02:48.045Z",
+  "time": "2026-11-18T21:28:07.345Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -145,7 +145,8 @@
           "iam:PassRole",
           "s3:ListBucket",
           "s3:GetObject"
-        ]
+        ],
+        "timeoutInMinutes": 190
       }
     },
     "primaryIdentifier": [
@@ -205,7 +206,7 @@
         "type": "string"
       },
       "IamRoleArn": {
-        "pattern": "^arn:aws(?:\\-cn|\\-iso\\-b|\\-iso|\\-us\\-gov)?:iam::[0-9]{12}:role/.+$",
+        "pattern": "^arn:aws(?:\\-cn|\\-iso\\-b|\\-iso|\\-us\\-gov)?:[A-Za-z0-9][A-Za-z0-9_/.-]{0,62}:[A-Za-z0-9_/.-]{0,63}:[A-Za-z0-9_/.-]{0,63}:[A-Za-z0-9][A-Za-z0-9:_/+=,@.-]{0,1023}$",
         "type": "string"
       },
       "IdleDisconnectTimeoutInSeconds": {
@@ -215,7 +216,6 @@
       },
       "ImageArn": {
         "maxLength": 1024,
-        "pattern": "^arn:[a-z-]+:[a-z-]+:(([a-z]+-)+[0-9])?:([0-9]{12})?:.+$",
         "type": "string"
       },
       "ImageName": {

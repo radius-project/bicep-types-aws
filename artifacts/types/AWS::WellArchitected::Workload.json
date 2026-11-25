@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-WellArchitected-Workload",
   "type": "AWS::WellArchitected::Workload",
-  "time": "2026-10-21T21:44:02.611Z",
+  "time": "2026-11-25T20:52:09.498Z",
   "schema": {
     "additionalIdentifiers": [
       [
@@ -10,7 +10,8 @@
     ],
     "additionalProperties": false,
     "createOnlyProperties": [
-      "/properties/Lenses"
+      "/properties/Lenses",
+      "/properties/ProfileArns"
     ],
     "description": "Definition of AWS::WellArchitected::Workload Resource Type",
     "handlers": {
@@ -167,6 +168,27 @@
         "description": "The notes associated with the workload.",
         "maxLength": 2084,
         "type": "string"
+      },
+      "PillarPriorities": {
+        "description": "The priorities of the pillars, which are used to order items in the improvement plan. Each pillar is represented by its pillar ID.",
+        "items": {
+          "maxLength": 64,
+          "minLength": 1,
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "ProfileArns": {
+        "description": "The list of profile ARNs associated with the workload.",
+        "items": {
+          "maxLength": 2084,
+          "minLength": 0,
+          "pattern": "^arn:aws[-a-z]*:wellarchitected:[a-z]{2}(-gov)?-[a-z]+-\\d:\\d{12}:profile/[a-z0-9]+$",
+          "type": "string"
+        },
+        "maxItems": 1,
+        "minItems": 0,
+        "type": "array"
       },
       "ReviewOwner": {
         "description": "The review owner of the workload.",

@@ -1,10 +1,27 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-DSQL-Cluster",
   "type": "AWS::DSQL::Cluster",
-  "time": "2026-10-19T18:53:20.627Z",
+  "time": "2026-11-21T13:13:20.548Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
+      "MetricGroup": {
+        "additionalProperties": false,
+        "description": "An Advanced monitoring metric group.",
+        "properties": {
+          "MetricGroup": {
+            "description": "The name of the metric group. Valid values: STATEMENT_STATISTICS.",
+            "enum": [
+              "STATEMENT_STATISTICS"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "MetricGroup"
+        ],
+        "type": "object"
+      },
       "Tag": {
         "additionalProperties": false,
         "description": "A map of key and value pairs to use to tag your cluster.",
@@ -34,16 +51,20 @@
       "create": {
         "permissions": [
           "dsql:CreateCluster",
+          "dsql:CreateClusterFromSource",
           "dsql:UpdateCluster",
+          "dsql:UpdateClusterRecoveryConfiguration",
           "dsql:GetCluster",
           "dsql:GetClusterPolicy",
           "dsql:TagResource",
+          "dsql:UntagResource",
           "dsql:GetVpcEndpointServiceName",
           "dsql:ListTagsForResource",
           "iam:CreateServiceLinkedRole",
           "dsql:PutMultiRegionProperties",
           "dsql:AddPeerCluster",
           "dsql:PutClusterPolicy",
+          "dsql:DeleteClusterPolicy",
           "dsql:PutWitnessRegion",
           "kms:Decrypt",
           "kms:Encrypt",
@@ -75,6 +96,7 @@
       "update": {
         "permissions": [
           "dsql:UpdateCluster",
+          "dsql:UpdateClusterRecoveryConfiguration",
           "dsql:GetCluster",
           "dsql:GetClusterPolicy",
           "dsql:UntagResource",
@@ -136,6 +158,16 @@
       "KmsEncryptionKey": {
         "description": "The KMS key that encrypts data on the cluster.",
         "type": "string"
+      },
+      "MetricGroups": {
+        "description": "The Advanced monitoring metric groups to enable on the cluster. Omit to enable none.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/MetricGroup"
+        },
+        "maxItems": 20,
+        "type": "array",
+        "uniqueItems": true
       },
       "MultiRegionProperties": {
         "additionalProperties": false,

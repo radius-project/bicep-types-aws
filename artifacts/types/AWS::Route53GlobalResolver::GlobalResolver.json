@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Route53GlobalResolver-GlobalResolver",
   "type": "AWS::Route53GlobalResolver::GlobalResolver",
-  "time": "2026-10-19T19:30:33.862Z",
+  "time": "2026-11-17T23:02:52.081Z",
   "schema": {
     "additionalIdentifiers": [
       [
@@ -39,6 +39,14 @@
         "maxLength": 39,
         "minLength": 1,
         "pattern": "(?:[A-Fa-f0-9]{1,4}:){7}[A-Fa-f0-9]{1,4}",
+        "type": "string"
+      },
+      "PublicIpStatus": {
+        "enum": [
+          "ENABLED_RESERVED",
+          "DISABLED_RESERVED",
+          "DISABLED_RELEASED"
+        ],
         "type": "string"
       },
       "Region": {
@@ -114,7 +122,8 @@
           "route53globalresolver:GetGlobalResolver",
           "route53globalresolver:TagResource",
           "route53globalresolver:UntagResource",
-          "route53globalresolver:ListTagsForResource"
+          "route53globalresolver:ListTagsForResource",
+          "networkmanager:GetCoreNetwork"
         ],
         "timeoutInMinutes": 120
       }
@@ -169,6 +178,10 @@
       },
       "ObservabilityRegion": {
         "$ref": "#/definitions/Region"
+      },
+      "PublicIpStatus": {
+        "$ref": "#/definitions/PublicIpStatus",
+        "description": "Whether the Global Resolver's public IP addresses are enabled and reserved. Change it one step at a time: ENABLED_RESERVED \u003c-\u003e DISABLED_RESERVED, DISABLED_RESERVED -\u003e DISABLED_RELEASED, DISABLED_RELEASED -\u003e ENABLED_RESERVED (new public IP addresses). DISABLED_RELEASED gives the public IP addresses back and cannot be undone. DISABLED_RESERVED is not allowed at create."
       },
       "Regions": {
         "description": "The list of regions the Global Resolver exists in. Regions can be added or removed on update; the order of this list is not significant.",

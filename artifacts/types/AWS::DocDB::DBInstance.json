@@ -1,0 +1,135 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-DocDB-DBInstance",
+  "type": "AWS::DocDB::DBInstance",
+  "time": "2026-11-25T10:23:43.648Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/DBClusterIdentifier",
+      "/properties/AvailabilityZone",
+      "/properties/DBInstanceIdentifier"
+    ],
+    "definitions": {
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "type": "string"
+          },
+          "Value": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "Value",
+          "Key"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::DocDB::DBInstance",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "rds:CreateDBInstance",
+          "rds:AddTagsToResource",
+          "rds:DescribeDBInstances"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "rds:DeleteDBInstance",
+          "rds:DescribeDBInstances"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "rds:DescribeDBInstances"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "rds:DescribeDBInstances"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "rds:ModifyDBInstance",
+          "rds:ListTagsForResource",
+          "rds:DescribeDBInstances",
+          "rds:AddTagsToResource",
+          "rds:RemoveTagsFromResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/DBInstanceIdentifier"
+    ],
+    "properties": {
+      "AutoMinorVersionUpgrade": {
+        "type": "boolean"
+      },
+      "AvailabilityZone": {
+        "type": "string"
+      },
+      "CACertificateIdentifier": {
+        "type": "string"
+      },
+      "CertificateRotationRestart": {
+        "type": "boolean"
+      },
+      "DBClusterIdentifier": {
+        "type": "string"
+      },
+      "DBInstanceClass": {
+        "type": "string"
+      },
+      "DBInstanceIdentifier": {
+        "type": "string"
+      },
+      "EnablePerformanceInsights": {
+        "type": "boolean"
+      },
+      "Endpoint": {
+        "type": "string"
+      },
+      "Port": {
+        "type": "string"
+      },
+      "PreferredMaintenanceWindow": {
+        "type": "string"
+      },
+      "Tags": {
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": false
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Port",
+      "/properties/Endpoint"
+    ],
+    "required": [
+      "DBInstanceClass",
+      "DBClusterIdentifier"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "rds:AddTagsToResource",
+        "rds:ListTagsForResource",
+        "rds:RemoveTagsFromResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::DocDB::DBInstance",
+    "writeOnlyProperties": [
+      "/properties/CertificateRotationRestart"
+    ]
+  }
+}

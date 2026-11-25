@@ -130,6 +130,10 @@
 * **RegistryId**: string (ReadOnly, Identifier): 12-digit AWS account ID of the ECR registry.
 * **Rules**: [Rule](#rule)[] (Required): Array of signing rules that define which repositories should be signed and with which signing profiles.
 
+## DeleteReplication
+### Properties
+* **Enabled**: bool (Required): Whether image deletions and image tag removals in the source registry are replicated to the replication destinations.
+
 ## EncryptionConfiguration
 ### Properties
 * **EncryptionType**: string (Required): The encryption type to use.
@@ -183,6 +187,7 @@
 
 ## ReplicationRule
 ### Properties
+* **DeleteReplication**: [DeleteReplication](#deletereplication)
 * **Destinations**: [ReplicationDestination](#replicationdestination)[] (Required): An array of objects representing the destination for a replication rule.
 * **RepositoryFilters**: [RepositoryFilter](#repositoryfilter)[]: An array of objects representing the filters for a replication rule. Specifying a repository filter for a replication rule provides a method for controlling which repositories in a private registry are replicated.
 

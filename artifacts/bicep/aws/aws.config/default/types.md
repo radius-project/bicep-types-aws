@@ -142,10 +142,13 @@
 * **ConformancePackName**: string (Required, Identifier): Name of the conformance pack which will be assigned as the unique identifier.
 * **DeliveryS3Bucket**: string: AWS Config stores intermediate files while processing conformance pack template.
 * **DeliveryS3KeyPrefix**: string: The prefix for delivery S3 bucket.
+* **Scope**: [Scope](#scope)
+* **Source**: [Source](#source)
 * **Tags**: [Tag](#tag)[]: The tags for the conformance pack.
 * **TemplateBody**: string (WriteOnly): A string containing full conformance pack template body. You can only specify one of the template body or template S3Uri fields.
 * **TemplateS3Uri**: string (WriteOnly): Location of file containing the template body which points to the conformance pack template that is located in an Amazon S3 bucket. You can only specify one of the template body or template S3Uri fields.
 * **TemplateSSMDocumentDetails**: [ConformancePack_TemplateSSMDocumentDetails](#conformancepacktemplatessmdocumentdetails) (WriteOnly): The TemplateSSMDocumentDetails object contains the name of the SSM document and the version of the SSM document.
+* **Type**: string (ReadOnly)
 
 ## AWS.Config/ConnectorProperties
 ### Properties
@@ -238,6 +241,7 @@
 ## ConnectorConfiguration
 ### Properties
 * **Azure**: [AzureConnectorConfiguration](#azureconnectorconfiguration): The configuration for connecting to Microsoft Azure.
+* **Gcp**: [GcpConnectorConfiguration](#gcpconnectorconfiguration): The configuration for connecting to Google Cloud.
 
 ## CustomPolicyDetails
 ### Properties
@@ -256,6 +260,12 @@
 ## ExecutionControls
 ### Properties
 * **SsmControls**: [SsmControls](#ssmcontrols)
+
+## GcpConnectorConfiguration
+### Properties
+* **GcpOrganizationId**: string: The ID of the Google Cloud organization that contains the connector's management project, which is the project of the service account in ServiceAccountEmail. Required if the management project belongs to an organization. A connector needs an organization ID to record an entire organization or more than one project. Omit it only if the management project doesn't belong to an organization. In that case, the connector can record only the management project.
+* **ServiceAccountEmail**: string (Required): The email address of the Google Cloud service account that AWS Config uses.
+* **WorkloadIdentityPoolProvider**: string (Required): The full resource name of the workload identity pool provider that AWS Config uses to federate into Google Cloud.
 
 ## OrganizationAggregationSource
 ### Properties
@@ -336,6 +346,11 @@
 * **TagKey**: string: The tag key that is applied to only those AWS resources that you want to trigger an evaluation for the rule.
 * **TagValue**: string: The tag value applied to only those AWS resources that you want to trigger an evaluation for the rule. If you specify a value for ``TagValue``, you must also specify a value for ``TagKey``.
 
+## Scope
+### Properties
+* **TagKey**: string (Required): The tag key of the tag scope. Only resources with this tag key are in scope of the conformance pack.
+* **TagValue**: string: The tag value of the tag scope. If omitted, resources are in scope based on the presence of the tag key alone, regardless of its value.
+
 ## Source
 ### Properties
 * **CustomPolicyDetails**: [CustomPolicyDetails](#custompolicydetails): Provides the runtime system, policy definition, and whether debug logging is enabled. Required when owner is set to ``CUSTOM_POLICY``.
@@ -347,6 +362,10 @@
 * **SourceIdentifier**: string: For CC Managed rules, a predefined identifier from a list. For example, ``IAM_PASSWORD_POLICY`` is a managed rule. To reference a managed rule, see [List of Managed Rules](https://docs.aws.amazon.com/config/latest/developerguide/managed-rules-by-aws-config.html).
  For CC Custom Lambda rules, the identifier is the Amazon Resource Name (ARN) of the rule's LAMlong function, such as ``arn:aws:lambda:us-east-2:123456789012:function:custom_rule_name``.
  For CC Custom Policy rules, this field will be ignored.
+
+## Source
+### Properties
+* **SourceIdentifier**: string (Required): The identifier specifying which managed conformance pack is being deployed.
 
 ## SourceDetail
 ### Properties

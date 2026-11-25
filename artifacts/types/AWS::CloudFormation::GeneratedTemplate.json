@@ -1,9 +1,12 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-CloudFormation-GeneratedTemplate",
   "type": "AWS::CloudFormation::GeneratedTemplate",
-  "time": "2026-10-21T22:40:35.51Z",
+  "time": "2026-11-25T20:53:23.526Z",
   "schema": {
     "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/StackId"
+    ],
     "definitions": {
       "TemplateConfiguration": {
         "additionalProperties": false,
@@ -57,7 +60,9 @@
       "create": {
         "permissions": [
           "cloudformation:CreateGeneratedTemplate",
-          "cloudformation:DescribeGeneratedTemplate"
+          "cloudformation:DescribeGeneratedTemplate",
+          "cloudformation:DescribeStacks",
+          "cloudformation:GetTemplate"
         ]
       },
       "delete": {
@@ -111,6 +116,11 @@
       },
       "Progress": {
         "$ref": "#/definitions/TemplateProgress"
+      },
+      "StackId": {
+        "description": "The Amazon Resource Name (ARN) of the stack to use as the base stack for the generated template.",
+        "pattern": "^arn:aws[a-zA-Z-]*:cloudformation:[a-z0-9-]+:[0-9]{12}:stack/[a-zA-Z][-a-zA-Z0-9]*/[-a-zA-Z0-9]+$",
+        "type": "string"
       },
       "Status": {
         "description": "The status of the template generation.",

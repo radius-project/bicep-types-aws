@@ -54,7 +54,7 @@
         "type": {
           "$ref": "#/1"
         },
-        "flags": 1,
+        "flags": 0,
         "description": "The ID of the file system to back up."
       },
       "Lifecycle": {
@@ -109,7 +109,7 @@
         "type": {
           "$ref": "#/4"
         },
-        "flags": 17,
+        "flags": 16,
         "description": "properties of the resource"
       }
     }
@@ -125,11 +125,205 @@
   },
   {
     "$type": "ObjectType",
+    "name": "AuthenticationStatus",
+    "properties": {
+      "InUse": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The authentication method in use, for example ok."
+      },
+      "State": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The authentication state, for example ok."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The tag key."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The tag value."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.FSx/ClusterPeerProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/8"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.FSx/ClusterPeerProperties",
+    "properties": {
+      "AllowedSvmIds": {
+        "type": {
+          "$ref": "#/10"
+        },
+        "flags": 0,
+        "description": "The local SVMs the peer cluster may peer with automatically, when AllowedSvmMode is SPECIFIED."
+      },
+      "AllowedSvmMode": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "Which local SVMs the peer cluster may peer with automatically: ALL, NONE, or SPECIFIED (the SVMs in AllowedSvmIds)."
+      },
+      "AuthenticationStatus": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 2
+      },
+      "ClusterPeerId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The system-generated, unique ID of the cluster peer relationship."
+      },
+      "FileSystemId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The ID of the local file system."
+      },
+      "Lifecycle": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The lifecycle status of the cluster peer relationship."
+      },
+      "PassphraseSecretArn": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 4,
+        "description": "The ARN of an AWS Secrets Manager secret whose plain-text value is the cluster peering passphrase. Required when you create the cluster peer. Both sides of the relationship must use the same passphrase. The secret must allow FSx to read it."
+      },
+      "PeerAddresses": {
+        "type": {
+          "$ref": "#/11"
+        },
+        "flags": 1,
+        "description": "The intercluster IP addresses of the peer cluster, at least one."
+      },
+      "PeerClusterName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The ONTAP name of the peer cluster. After it is set, it can be changed but not removed; removing it from the template leaves the current name."
+      },
+      "ResourceARN": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the cluster peer relationship."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The ONTAP availability of the peer relationship, for example available or unavailable."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/12"
+        },
+        "flags": 0,
+        "description": "A list of tags to apply to the cluster peer relationship, with a maximum of 50 tags."
+      },
+      "UUID": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The ONTAP UUID of the cluster peer relationship."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.FSx/ClusterPeer",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/13"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.FSx/ClusterPeer@default",
+    "body": {
+      "$ref": "#/14"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
     "name": "AutoExportPolicy",
     "properties": {
       "Events": {
         "type": {
-          "$ref": "#/13"
+          "$ref": "#/22"
         },
         "flags": 1
       }
@@ -141,7 +335,7 @@
     "properties": {
       "Events": {
         "type": {
-          "$ref": "#/14"
+          "$ref": "#/23"
         },
         "flags": 1
       }
@@ -163,13 +357,13 @@
     "properties": {
       "AutoExportPolicy": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/16"
         },
         "flags": 0
       },
       "AutoImportPolicy": {
         "type": {
-          "$ref": "#/8"
+          "$ref": "#/17"
         },
         "flags": 0
       }
@@ -226,7 +420,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/12"
+      "$ref": "#/21"
     }
   },
   {
@@ -242,7 +436,7 @@
       },
       "BatchImportMetaDataOnCreate": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/26"
         },
         "flags": 0,
         "description": "A boolean flag indicating whether an import data repository task to import metadata should run after the data repository association is created. The task runs if this flag is set to true."
@@ -270,7 +464,7 @@
       },
       "ImportedFileChunkSize": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/27"
         },
         "flags": 0,
         "description": "For files imported from a data repository, this value determines the stripe count and maximum amount of data per file (in MiB) stored on a single physical disk. The maximum number of disks that a single file can be striped across is limited by the total number of disks that make up the file system."
@@ -284,14 +478,14 @@
       },
       "S3": {
         "type": {
-          "$ref": "#/11"
+          "$ref": "#/20"
         },
         "flags": 0,
         "description": "The configuration for an Amazon S3 data repository linked to an Amazon FSx Lustre file system with a data repository association. The configuration defines which file events (new, changed, or deleted files or directories) are automatically imported from the linked data repository to the file system or automatically exported from the file system to the data repository."
       },
       "Tags": {
         "type": {
-          "$ref": "#/19"
+          "$ref": "#/28"
         },
         "flags": 0,
         "description": "A list of Tag values, with a maximum of 50 elements."
@@ -318,7 +512,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/20"
+          "$ref": "#/29"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -329,7 +523,7 @@
     "$type": "ResourceType",
     "name": "AWS.FSx/DataRepositoryAssociation@default",
     "body": {
-      "$ref": "#/21"
+      "$ref": "#/30"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -382,13 +576,13 @@
       },
       "LogConfiguration": {
         "type": {
-          "$ref": "#/24"
+          "$ref": "#/33"
         },
         "flags": 2
       },
       "MetadataConfiguration": {
         "type": {
-          "$ref": "#/26"
+          "$ref": "#/35"
         },
         "flags": 1
       },
@@ -400,7 +594,7 @@
       },
       "PerUnitStorageThroughput": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/27"
         },
         "flags": 1
       },
@@ -418,7 +612,7 @@
     "properties": {
       "StorageCapacity": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/27"
         },
         "flags": 1
       }
@@ -455,7 +649,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/23"
+      "$ref": "#/32"
     }
   },
   {
@@ -479,7 +673,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/27"
+      "$ref": "#/36"
     }
   },
   {
@@ -488,7 +682,7 @@
     "properties": {
       "CopyTagsToDataRepositoryAssociations": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/26"
         },
         "flags": 4,
         "description": "Whether tags should be copied to data repository associations"
@@ -509,14 +703,14 @@
       },
       "DataRepositoryAssociationIds": {
         "type": {
-          "$ref": "#/29"
+          "$ref": "#/38"
         },
         "flags": 2,
         "description": "A list of IDs of data repository associations that are associated with this cache"
       },
       "DataRepositoryAssociations": {
         "type": {
-          "$ref": "#/30"
+          "$ref": "#/39"
         },
         "flags": 4,
         "description": "Data repository associations for the cache"
@@ -558,14 +752,14 @@
       },
       "LustreConfiguration": {
         "type": {
-          "$ref": "#/25"
+          "$ref": "#/34"
         },
         "flags": 0,
         "description": "The Lustre configuration for the file cache"
       },
       "NetworkInterfaceIds": {
         "type": {
-          "$ref": "#/31"
+          "$ref": "#/40"
         },
         "flags": 2,
         "description": "Network interface IDs for the cache"
@@ -586,28 +780,28 @@
       },
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/32"
+          "$ref": "#/41"
         },
         "flags": 4,
         "description": "A list of security group IDs for the cache"
       },
       "StorageCapacity": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/27"
         },
         "flags": 1,
         "description": "The storage capacity of the cache in gibibytes (GiB)"
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/33"
+          "$ref": "#/42"
         },
         "flags": 1,
         "description": "A list of subnet IDs for the cache"
       },
       "Tags": {
         "type": {
-          "$ref": "#/34"
+          "$ref": "#/43"
         },
         "flags": 0,
         "description": "Tags to associate with the file cache"
@@ -641,7 +835,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/35"
+          "$ref": "#/44"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -652,7 +846,7 @@
     "$type": "ResourceType",
     "name": "AWS.FSx/FileCache@default",
     "body": {
-      "$ref": "#/36"
+      "$ref": "#/45"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -663,7 +857,7 @@
     "properties": {
       "Gid": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/27"
         },
         "flags": 1,
         "description": "The GID of the file system user."
@@ -683,14 +877,14 @@
       },
       "UnixUser": {
         "type": {
-          "$ref": "#/40"
+          "$ref": "#/49"
         },
         "flags": 0,
         "description": "Specifies the properties of the file system UNIX user."
       },
       "WindowsUser": {
         "type": {
-          "$ref": "#/41"
+          "$ref": "#/50"
         },
         "flags": 0,
         "description": "Specifies the properties of the file system Windows user."
@@ -729,7 +923,7 @@
     "properties": {
       "PosixUser": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/52"
         },
         "flags": 1,
         "description": "Specifies the UID and GIDs of the file system POSIX user."
@@ -749,21 +943,21 @@
     "properties": {
       "Gid": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/27"
         },
         "flags": 1,
         "description": "The GID of the file system user."
       },
       "SecondaryGids": {
         "type": {
-          "$ref": "#/48"
+          "$ref": "#/57"
         },
         "flags": 0,
         "description": "The list of secondary GIDs for the file system user."
       },
       "Uid": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/27"
         },
         "flags": 1,
         "description": "The UID of the file system user."
@@ -783,7 +977,7 @@
       },
       "Policy": {
         "type": {
-          "$ref": "#/51"
+          "$ref": "#/60"
         },
         "flags": 4,
         "description": "The S3 access point's policy."
@@ -797,7 +991,7 @@
       },
       "VpcConfiguration": {
         "type": {
-          "$ref": "#/47"
+          "$ref": "#/56"
         },
         "flags": 0,
         "description": "The S3 access point's virtual private cloud (VPC) configuration."
@@ -810,7 +1004,7 @@
     "properties": {
       "FileSystemIdentity": {
         "type": {
-          "$ref": "#/39"
+          "$ref": "#/48"
         },
         "flags": 1,
         "description": "The file system identity used to authorize file access requests made using the S3 access point."
@@ -830,7 +1024,7 @@
     "properties": {
       "FileSystemIdentity": {
         "type": {
-          "$ref": "#/42"
+          "$ref": "#/51"
         },
         "flags": 1,
         "description": "The file system identity used to authorize file access requests made using the S3 access point."
@@ -860,7 +1054,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/38"
+      "$ref": "#/47"
     }
   },
   {
@@ -871,14 +1065,14 @@
     "name": "S3AccessPointAttachment_Policy",
     "properties": {},
     "additionalProperties": {
-      "$ref": "#/49"
+      "$ref": "#/58"
     }
   },
   {
     "$type": "UnionType",
     "elements": [
       {
-        "$ref": "#/50"
+        "$ref": "#/59"
       },
       {
         "$ref": "#/1"
@@ -909,21 +1103,21 @@
       },
       "OntapConfiguration": {
         "type": {
-          "$ref": "#/45"
+          "$ref": "#/54"
         },
         "flags": 0,
         "description": "The OntapConfiguration of the S3 access point attachment."
       },
       "OpenZFSConfiguration": {
         "type": {
-          "$ref": "#/46"
+          "$ref": "#/55"
         },
         "flags": 0,
         "description": "The OpenZFSConfiguration of the S3 access point attachment."
       },
       "S3AccessPoint": {
         "type": {
-          "$ref": "#/44"
+          "$ref": "#/53"
         },
         "flags": 0,
         "description": "The S3 access point configuration of the S3 access point attachment."
@@ -957,7 +1151,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/62"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -968,7 +1162,411 @@
     "$type": "ResourceType",
     "name": "AWS.FSx/S3AccessPointAttachment@default",
     "body": {
-      "$ref": "#/54"
+      "$ref": "#/63"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "RetentionRule",
+    "properties": {
+      "Count": {
+        "type": {
+          "$ref": "#/27"
+        },
+        "flags": 1,
+        "description": "The number of snapshots with this label to retain on the destination."
+      },
+      "CreationSchedule": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The name of an ONTAP job schedule that creates snapshots with this label on the destination."
+      },
+      "Label": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The SnapMirror label of the snapshots this rule retains."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The tag key."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The tag value."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.FSx/SnapmirrorPolicyProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/65"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/66"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.FSx/SnapmirrorPolicyProperties",
+    "properties": {
+      "FileSystemId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The ID of the file system the SnapMirror policy is scoped to. Specify either FileSystemId or StorageVirtualMachineId."
+      },
+      "Lifecycle": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The lifecycle status of the SnapMirror policy."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of the SnapMirror policy. Names must be unique within the policy scope."
+      },
+      "NetworkCompressionEnabled": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 0,
+        "description": "Whether SnapMirror compresses data sent over the network. After it is set, it can be changed but not removed; removing it from the template leaves the current setting."
+      },
+      "ResourceARN": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the SnapMirror policy."
+      },
+      "RetentionRules": {
+        "type": {
+          "$ref": "#/68"
+        },
+        "flags": 0,
+        "description": "Rules that retain labeled snapshots on the destination, up to 10. After they are set, they can be changed but not removed; removing them from the template, or setting an empty list, leaves the current rules."
+      },
+      "Scope": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "Whether the policy is scoped to a file system (FILESYSTEM) or to an SVM (SVM)."
+      },
+      "SnapmirrorPolicyId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The system-generated, unique ID of the SnapMirror policy."
+      },
+      "SnapshotCopyMode": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Which snapshots SnapMirror copies. COPY_ALL_SOURCE_SNAPSHOTS and COPY_LATEST_SOURCE_SNAPSHOT create mirror policies and do not allow RetentionRules. NO_CREATE_SNAPSHOT_ON_SOURCE creates a vault policy and requires RetentionRules. Omit for a mirror-vault policy."
+      },
+      "StorageVirtualMachineId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The ID of the storage virtual machine (SVM) the SnapMirror policy is scoped to. Specify either FileSystemId or StorageVirtualMachineId."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/69"
+        },
+        "flags": 0,
+        "description": "A list of tags to apply to the SnapMirror policy, with a maximum of 50 tags."
+      },
+      "ThrottleInKbps": {
+        "type": {
+          "$ref": "#/27"
+        },
+        "flags": 0,
+        "description": "The maximum transfer throughput in kilobytes per second. 0 means unlimited. After it is set, it can be changed but not removed; removing it from the template leaves the current throttle."
+      },
+      "TransferSchedule": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The name of the ONTAP job schedule for SnapMirror transfers. Omit for no schedule."
+      },
+      "UUID": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The ONTAP UUID of the SnapMirror policy."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.FSx/SnapmirrorPolicy",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/70"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.FSx/SnapmirrorPolicy@default",
+    "body": {
+      "$ref": "#/71"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Destination",
+    "properties": {
+      "Path": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The destination volume, as <svm-name>:<volume-name>."
+      },
+      "VolumeId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The ID of the destination volume. It must be a data-protection (DP) volume."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Source",
+    "properties": {
+      "Path": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The source volume, as <svm-name>:<volume-name>. For a source on the destination SVM, use that SVM's name. For a source on a peered SVM, use the peer SVM name or its local alias, as seen from the destination SVM."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The tag key."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The tag value."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.FSx/SnapmirrorRelationshipProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/75"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.FSx/SnapmirrorRelationshipProperties",
+    "properties": {
+      "Destination": {
+        "type": {
+          "$ref": "#/73"
+        },
+        "flags": 1
+      },
+      "FileSystemId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The ID of the file system that contains the destination volume."
+      },
+      "Healthy": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 2,
+        "description": "Whether the relationship is healthy in ONTAP."
+      },
+      "LagTimeInMinutes": {
+        "type": {
+          "$ref": "#/27"
+        },
+        "flags": 2,
+        "description": "How far the destination lags behind the source, in minutes, as reported by ONTAP."
+      },
+      "Lifecycle": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The lifecycle status of the SnapMirror relationship."
+      },
+      "PolicyId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The ID of the SnapMirror policy for the relationship. Omit to use the ONTAP default policy for the destination. After it is set, it can be changed but not removed; removing it from the template leaves the current policy."
+      },
+      "ResourceARN": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the SnapMirror relationship."
+      },
+      "SnapmirrorRelationshipId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The system-generated, unique ID of the SnapMirror relationship."
+      },
+      "Source": {
+        "type": {
+          "$ref": "#/74"
+        },
+        "flags": 1
+      },
+      "State": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The state of the relationship in ONTAP."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/77"
+        },
+        "flags": 0,
+        "description": "A list of tags to apply to the SnapMirror relationship, with a maximum of 50 tags."
+      },
+      "ThrottleInKbps": {
+        "type": {
+          "$ref": "#/27"
+        },
+        "flags": 0,
+        "description": "The maximum transfer throughput in kilobytes per second. 0 means unlimited. Removing it from the template sets it back to 0 (unlimited)."
+      },
+      "TransferSchedule": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The name of the ONTAP job schedule for transfers. Overrides the policy transfer schedule. After it is set, it can be changed but not removed; removing it from the template leaves the current schedule."
+      },
+      "UUID": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The ONTAP UUID of the SnapMirror relationship."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.FSx/SnapmirrorRelationship",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/78"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.FSx/SnapmirrorRelationship@default",
+    "body": {
+      "$ref": "#/79"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1000,7 +1598,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/56"
+      "$ref": "#/81"
     }
   },
   {
@@ -1030,7 +1628,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/58"
+          "$ref": "#/83"
         },
         "flags": 0,
         "description": "A list of Tag values, with a maximum of 50 elements."
@@ -1064,7 +1662,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/59"
+          "$ref": "#/84"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1075,7 +1673,222 @@
     "$type": "ResourceType",
     "name": "AWS.FSx/Snapshot@default",
     "body": {
-      "$ref": "#/60"
+      "$ref": "#/85"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SnapshotPolicyRetentionPeriod",
+    "properties": {
+      "Type": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The unit of the retention period, or INFINITE to retain snapshots indefinitely."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/27"
+        },
+        "flags": 0,
+        "description": "The length of the retention period, in the unit given by Type."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "SnapshotPolicySchedule",
+    "properties": {
+      "Count": {
+        "type": {
+          "$ref": "#/27"
+        },
+        "flags": 1,
+        "description": "The maximum number of snapshots to retain for this schedule."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of the ONTAP job schedule that triggers snapshot creation, for example hourly, daily, or weekly."
+      },
+      "Prefix": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The prefix applied to the names of snapshots created by this schedule."
+      },
+      "RetentionPeriod": {
+        "type": {
+          "$ref": "#/87"
+        },
+        "flags": 0
+      },
+      "SnapmirrorLabel": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The SnapMirror label applied to snapshots created by this schedule. SnapMirror policies use this label to select snapshots to replicate."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The tag key."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The tag value."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.FSx/SnapshotPolicyProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/88"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/89"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.FSx/SnapshotPolicyProperties",
+    "properties": {
+      "Enabled": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 0,
+        "description": "Whether the snapshot policy is enabled. A disabled policy doesn't create snapshots. If you remove this property from the template, a stack update keeps the current value."
+      },
+      "FileSystemId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The ID of the FSx for ONTAP file system on which to create a file system-scoped snapshot policy. Specify exactly one of FileSystemId or StorageVirtualMachineId."
+      },
+      "Lifecycle": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The lifecycle status of the snapshot policy."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of the snapshot policy."
+      },
+      "ResourceARN": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the snapshot policy."
+      },
+      "Schedules": {
+        "type": {
+          "$ref": "#/91"
+        },
+        "flags": 1,
+        "description": "The schedules of the snapshot policy. Each schedule creates snapshots on a named ONTAP job schedule and retains a maximum number of them."
+      },
+      "Scope": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "Whether the snapshot policy is scoped to a file system or to an SVM."
+      },
+      "SnapshotPolicyId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The system-generated, unique ID of the snapshot policy."
+      },
+      "StorageVirtualMachineId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The ID of the storage virtual machine (SVM) on which to create an SVM-scoped snapshot policy. Specify exactly one of FileSystemId or StorageVirtualMachineId."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/92"
+        },
+        "flags": 0,
+        "description": "A list of tags to apply to the snapshot policy, with a maximum of 50 tags."
+      },
+      "UUID": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The UUID of the snapshot policy in ONTAP."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.FSx/SnapshotPolicy",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/93"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.FSx/SnapshotPolicy@default",
+    "body": {
+      "$ref": "#/94"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1093,7 +1906,7 @@
       },
       "SelfManagedActiveDirectoryConfiguration": {
         "type": {
-          "$ref": "#/63"
+          "$ref": "#/97"
         },
         "flags": 0,
         "description": "The configuration that Amazon FSx uses to join the ONTAP storage virtual machine (SVM) to your self-managed (including on-premises) Microsoft Active Directory directory."
@@ -1106,7 +1919,7 @@
     "properties": {
       "DnsIps": {
         "type": {
-          "$ref": "#/65"
+          "$ref": "#/99"
         },
         "flags": 0,
         "description": "A list of IP addresses of DNS servers or domain controllers in the self-managed AD directory. Minimum: 1. Maximum: 3."
@@ -1186,7 +1999,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/64"
+      "$ref": "#/98"
     }
   },
   {
@@ -1195,7 +2008,7 @@
     "properties": {
       "ActiveDirectoryConfiguration": {
         "type": {
-          "$ref": "#/62"
+          "$ref": "#/96"
         },
         "flags": 0,
         "description": "Describes the Microsoft Active Directory configuration to which the SVM is joined, if applicable."
@@ -1244,7 +2057,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/67"
+          "$ref": "#/101"
         },
         "flags": 0,
         "description": "A list of Tag values, with a maximum of 50 elements."
@@ -1278,7 +2091,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/68"
+          "$ref": "#/102"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1289,7 +2102,169 @@
     "$type": "ResourceType",
     "name": "AWS.FSx/StorageVirtualMachine@default",
     "body": {
-      "$ref": "#/69"
+      "$ref": "#/103"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The tag key."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The tag value."
+      }
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.FSx/StorageVirtualMachinePeerProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/105"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.FSx/StorageVirtualMachinePeerProperties",
+    "properties": {
+      "Applications": {
+        "type": {
+          "$ref": "#/107"
+        },
+        "flags": 1,
+        "description": "The applications that can use the peer relationship, at least one."
+      },
+      "FileSystemId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The ID of the file system that contains the local SVM."
+      },
+      "Lifecycle": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The lifecycle status of the SVM peer relationship."
+      },
+      "PeerClusterName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The ONTAP name of the peer cluster. Omit to peer with an SVM on the same file system. A cross-cluster peer requires a cluster peer with that cluster."
+      },
+      "PeerSvmAlias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "A local alias for the peer SVM. Use an alias when the peer SVM has the same name as a local SVM. After it is set, it can be changed but not removed; removing it from the template leaves the current alias."
+      },
+      "PeerSvmName": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The name of the SVM to peer with, as it is known in ONTAP on the peer cluster."
+      },
+      "ResourceARN": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the SVM peer relationship."
+      },
+      "State": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The state of the peer relationship in ONTAP."
+      },
+      "StorageVirtualMachineId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The ID of the local storage virtual machine (SVM) that initiates the peer relationship."
+      },
+      "StorageVirtualMachinePeerId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The system-generated, unique ID of the SVM peer relationship."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/108"
+        },
+        "flags": 0,
+        "description": "A list of tags to apply to the SVM peer relationship, with a maximum of 50 tags."
+      },
+      "UUID": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The ONTAP UUID of the SVM peer relationship."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.FSx/StorageVirtualMachinePeer",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/109"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.FSx/StorageVirtualMachinePeer@default",
+    "body": {
+      "$ref": "#/110"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1300,7 +2275,7 @@
     "properties": {
       "Enabled": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/26"
         },
         "flags": 1,
         "description": "Set to True to generate a CompletionReport when the task completes."
@@ -1341,7 +2316,7 @@
       },
       "Value": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/27"
         },
         "flags": 0,
         "description": "An integer that represents the minimum amount of time (in days) since a file was last accessed."
@@ -1354,7 +2329,7 @@
     "properties": {
       "DurationSinceLastAccess": {
         "type": {
-          "$ref": "#/72"
+          "$ref": "#/113"
         },
         "flags": 0
       }
@@ -1393,7 +2368,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/74"
+      "$ref": "#/115"
     }
   },
   {
@@ -1430,20 +2405,20 @@
       },
       "Paths": {
         "type": {
-          "$ref": "#/76"
+          "$ref": "#/117"
         },
         "flags": 0,
         "description": "A list of paths for the data repository task to use when the task is processed."
       },
       "ReleaseConfiguration": {
         "type": {
-          "$ref": "#/73"
+          "$ref": "#/114"
         },
         "flags": 0
       },
       "Report": {
         "type": {
-          "$ref": "#/71"
+          "$ref": "#/112"
         },
         "flags": 0
       },
@@ -1456,7 +2431,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/77"
+          "$ref": "#/118"
         },
         "flags": 0,
         "description": "Tags associated with the data repository task."
@@ -1497,7 +2472,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/78"
+          "$ref": "#/119"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1508,7 +2483,7 @@
     "$type": "ResourceType",
     "name": "AWS.FSx/Task@default",
     "body": {
-      "$ref": "#/79"
+      "$ref": "#/120"
     },
     "readableScopes": 31,
     "writableScopes": 0
@@ -1519,14 +2494,14 @@
     "properties": {
       "Aggregates": {
         "type": {
-          "$ref": "#/94"
+          "$ref": "#/136"
         },
         "flags": 0,
         "description": "The list of aggregates that this volume resides on. Aggregates are storage pools which make up your primary storage tier."
       },
       "ConstituentsPerAggregate": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/27"
         },
         "flags": 4,
         "description": "Used to explicitly set the number of constituents within the FlexGroup per storage aggregate. This field is optional when creating a FlexGroup volume. If unspecified, the default value will be 8. This field cannot be provided when creating a FlexVol volume."
@@ -1546,7 +2521,7 @@
       },
       "Value": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/27"
         },
         "flags": 0,
         "description": "Defines the amount of time for the autocommit period of a file in an FSx for ONTAP SnapLock volume."
@@ -1566,10 +2541,30 @@
       },
       "Options": {
         "type": {
-          "$ref": "#/95"
+          "$ref": "#/137"
         },
         "flags": 1,
         "description": "The configuration object for mounting a Network File System (NFS) file system."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CloneConfiguration",
+    "properties": {
+      "ParentVolumeId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The ID of the volume to clone. It must be in the same storage virtual machine (SVM) as the new volume."
+      },
+      "SnapshotId": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "The ID of a snapshot of the parent volume to clone from. If you omit it, the clone is created from the parent volume's current state. Required when this volume's OntapVolumeType is DP (the parent volume must then also be DP)."
       }
     }
   },
@@ -1579,7 +2574,7 @@
     "properties": {
       "ClientConfigurations": {
         "type": {
-          "$ref": "#/96"
+          "$ref": "#/138"
         },
         "flags": 1,
         "description": "The configuration object for mounting a Network File System (NFS) file system."
@@ -1592,10 +2587,17 @@
     "properties": {
       "AggregateConfiguration": {
         "type": {
-          "$ref": "#/81"
+          "$ref": "#/122"
         },
         "flags": 0,
         "description": "Used to specify the configuration options for an FSx for ONTAP volume's storage aggregate or aggregates."
+      },
+      "CloneConfiguration": {
+        "type": {
+          "$ref": "#/125"
+        },
+        "flags": 0,
+        "description": "Creates the volume as an ONTAP FlexClone of an existing volume. The clone takes SizeInMegabytes and StorageEfficiencyEnabled from the parent volume: omit them, or set them to the parent's values."
       },
       "CopyTagsToBackups": {
         "type": {
@@ -1641,7 +2643,7 @@
       },
       "SnaplockConfiguration": {
         "type": {
-          "$ref": "#/89"
+          "$ref": "#/131"
         },
         "flags": 0,
         "description": "The SnapLock configuration object for an FSx for ONTAP SnapLock volume."
@@ -1669,7 +2671,7 @@
       },
       "TieringPolicy": {
         "type": {
-          "$ref": "#/92"
+          "$ref": "#/134"
         },
         "flags": 0,
         "description": "Describes the data tiering policy for an ONTAP volume."
@@ -1689,7 +2691,7 @@
     "properties": {
       "CopyTagsToSnapshots": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/26"
         },
         "flags": 0,
         "description": "A Boolean value indicating whether tags for the volume should be copied to snapshots. This value defaults to false. If this value is set to true, and you do not specify any tags, all tags for the original volume are copied over to snapshots. If this value is set to true, and you do specify one or more tags, only the specified tags for the original volume are copied over to snapshots. If you specify one or more tags when creating a new snapshot, no tags are copied over from the original volume, regardless of this value."
@@ -1703,21 +2705,21 @@
       },
       "NfsExports": {
         "type": {
-          "$ref": "#/97"
+          "$ref": "#/139"
         },
         "flags": 0,
         "description": "The configuration object for mounting a Network File System (NFS) file system."
       },
       "Options": {
         "type": {
-          "$ref": "#/98"
+          "$ref": "#/140"
         },
         "flags": 4,
         "description": "The configuration object for mounting a Network File System (NFS) file system."
       },
       "OriginSnapshot": {
         "type": {
-          "$ref": "#/87"
+          "$ref": "#/129"
         },
         "flags": 0,
         "description": "The configuration of an Amazon FSx for OpenZFS volume."
@@ -1731,35 +2733,35 @@
       },
       "ReadOnly": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/26"
         },
         "flags": 0,
         "description": "A Boolean value indicating whether the volume is read-only."
       },
       "RecordSizeKiB": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/27"
         },
         "flags": 0,
         "description": "Specifies the suggested block size for a volume in a ZFS dataset, in kibibytes (KiB)."
       },
       "StorageCapacityQuotaGiB": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/27"
         },
         "flags": 0,
         "description": "Sets the maximum storage size in gibibytes (GiB) for the volume. You can specify a quota that is larger than the storage on the parent volume. A volume quota limits the amount of storage that the volume can consume to the configured amount, but does not guarantee the space will be available on the parent volume. To guarantee quota space, you must also set StorageCapacityReservationGiB. To not specify a storage capacity quota, set this to -1."
       },
       "StorageCapacityReservationGiB": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/27"
         },
         "flags": 0,
         "description": "Specifies the amount of storage in gibibytes (GiB) to reserve from the parent volume. Setting StorageCapacityReservationGiB guarantees that the specified amount of storage space on the parent volume will always be available for the volume. You can't reserve more storage than the parent volume has. To not specify a storage capacity reservation, set this to 0 or -1. For more information, see Volume properties in the Amazon FSx for OpenZFS User Guide."
       },
       "UserAndGroupQuotas": {
         "type": {
-          "$ref": "#/99"
+          "$ref": "#/141"
         },
         "flags": 0,
         "description": "Configures how much storage users and groups can use on the volume."
@@ -1799,7 +2801,7 @@
       },
       "Value": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/27"
         },
         "flags": 0,
         "description": "Defines the amount of time for the retention period of an FSx for ONTAP SnapLock volume. You can't set a value for INFINITE or UNSPECIFIED."
@@ -1819,7 +2821,7 @@
       },
       "AutocommitPeriod": {
         "type": {
-          "$ref": "#/82"
+          "$ref": "#/123"
         },
         "flags": 0,
         "description": "The configuration object for setting the autocommit period of files in an FSx for ONTAP SnapLock volume."
@@ -1833,7 +2835,7 @@
       },
       "RetentionPeriod": {
         "type": {
-          "$ref": "#/90"
+          "$ref": "#/132"
         },
         "flags": 0,
         "description": "Specifies the retention period of an FSx for ONTAP SnapLock volume."
@@ -1860,21 +2862,21 @@
     "properties": {
       "DefaultRetention": {
         "type": {
-          "$ref": "#/88"
+          "$ref": "#/130"
         },
         "flags": 1,
         "description": "The retention period assigned to a write once, read many (WORM) file by default if an explicit retention period is not set for an FSx for ONTAP SnapLock volume."
       },
       "MaximumRetention": {
         "type": {
-          "$ref": "#/88"
+          "$ref": "#/130"
         },
         "flags": 1,
         "description": "The longest retention period that can be assigned to a WORM file on an FSx for ONTAP SnapLock volume."
       },
       "MinimumRetention": {
         "type": {
-          "$ref": "#/88"
+          "$ref": "#/130"
         },
         "flags": 1,
         "description": "The shortest retention period that can be assigned to a WORM file on an FSx for ONTAP SnapLock volume."
@@ -1907,7 +2909,7 @@
     "properties": {
       "CoolingPeriod": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/27"
         },
         "flags": 0,
         "description": "Specifies the number of days that user data in a volume must remain inactive before it is considered \"cold\" and moved to the capacity pool."
@@ -1927,14 +2929,14 @@
     "properties": {
       "Id": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/27"
         },
         "flags": 1,
         "description": "The ID of the user or group that the quota applies to."
       },
       "StorageCapacityQuotaGiB": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/27"
         },
         "flags": 1,
         "description": "The user or group's storage quota, in gibibytes (GiB)."
@@ -1963,13 +2965,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/83"
+      "$ref": "#/124"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/84"
+      "$ref": "#/126"
     }
   },
   {
@@ -1981,7 +2983,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/93"
+      "$ref": "#/135"
     }
   },
   {
@@ -1991,7 +2993,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/91"
+      "$ref": "#/133"
     }
   },
   {
@@ -2014,14 +3016,14 @@
       },
       "OntapConfiguration": {
         "type": {
-          "$ref": "#/85"
+          "$ref": "#/127"
         },
         "flags": 0,
         "description": "The configuration of an Amazon FSx for NetApp ONTAP volume."
       },
       "OpenZFSConfiguration": {
         "type": {
-          "$ref": "#/86"
+          "$ref": "#/128"
         },
         "flags": 0,
         "description": "The configuration of an Amazon FSx for OpenZFS volume."
@@ -2035,7 +3037,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/101"
+          "$ref": "#/143"
         },
         "flags": 0,
         "description": "One or more tags."
@@ -2083,7 +3085,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/102"
+          "$ref": "#/144"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2094,7 +3096,7 @@
     "$type": "ResourceType",
     "name": "AWS.FSx/Volume@default",
     "body": {
-      "$ref": "#/103"
+      "$ref": "#/145"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -2135,7 +3137,7 @@
       },
       "DnsIps": {
         "type": {
-          "$ref": "#/122"
+          "$ref": "#/164"
         },
         "flags": 0
       },
@@ -2189,13 +3191,13 @@
       },
       "EfaEnabled": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/26"
         },
         "flags": 0
       },
       "ImportedFileChunkSize": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/27"
         },
         "flags": 0
       },
@@ -2207,13 +3209,13 @@
       },
       "ThroughputCapacity": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/27"
         },
         "flags": 0
       },
       "LogConfiguration": {
         "type": {
-          "$ref": "#/109"
+          "$ref": "#/151"
         },
         "flags": 0
       },
@@ -2225,7 +3227,7 @@
       },
       "DataReadCacheConfiguration": {
         "type": {
-          "$ref": "#/114"
+          "$ref": "#/156"
         },
         "flags": 0
       },
@@ -2243,7 +3245,7 @@
       },
       "MetadataConfiguration": {
         "type": {
-          "$ref": "#/116"
+          "$ref": "#/158"
         },
         "flags": 0
       },
@@ -2255,7 +3257,7 @@
       },
       "CopyTagsToBackups": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/26"
         },
         "flags": 0
       },
@@ -2267,13 +3269,13 @@
       },
       "PerUnitStorageThroughput": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/27"
         },
         "flags": 0
       },
       "AutomaticBackupRetentionDays": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/27"
         },
         "flags": 0
       }
@@ -2285,7 +3287,7 @@
     "properties": {
       "HAPairs": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/27"
         },
         "flags": 0
       },
@@ -2297,7 +3299,7 @@
       },
       "ThroughputCapacityPerHAPair": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/27"
         },
         "flags": 0
       },
@@ -2309,7 +3311,7 @@
       },
       "ThroughputCapacity": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/27"
         },
         "flags": 0
       },
@@ -2321,7 +3323,7 @@
       },
       "RouteTableIds": {
         "type": {
-          "$ref": "#/123"
+          "$ref": "#/165"
         },
         "flags": 0
       },
@@ -2333,7 +3335,7 @@
       },
       "DiskIopsConfiguration": {
         "type": {
-          "$ref": "#/115"
+          "$ref": "#/157"
         },
         "flags": 0
       },
@@ -2345,7 +3347,7 @@
       },
       "AutomaticBackupRetentionDays": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/27"
         },
         "flags": 0
       },
@@ -2387,7 +3389,7 @@
     "properties": {
       "ReadOnly": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/26"
         },
         "flags": 0
       },
@@ -2399,25 +3401,25 @@
       },
       "NfsExports": {
         "type": {
-          "$ref": "#/124"
+          "$ref": "#/166"
         },
         "flags": 0
       },
       "CopyTagsToSnapshots": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/26"
         },
         "flags": 0
       },
       "RecordSizeKiB": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/27"
         },
         "flags": 0
       },
       "UserAndGroupQuotas": {
         "type": {
-          "$ref": "#/125"
+          "$ref": "#/167"
         },
         "flags": 0
       }
@@ -2429,13 +3431,13 @@
     "properties": {
       "SelfManagedActiveDirectoryConfiguration": {
         "type": {
-          "$ref": "#/105"
+          "$ref": "#/147"
         },
         "flags": 0
       },
       "AuditLogConfiguration": {
         "type": {
-          "$ref": "#/106"
+          "$ref": "#/148"
         },
         "flags": 0
       },
@@ -2453,13 +3455,13 @@
       },
       "Aliases": {
         "type": {
-          "$ref": "#/126"
+          "$ref": "#/168"
         },
         "flags": 0
       },
       "ThroughputCapacity": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/27"
         },
         "flags": 1
       },
@@ -2471,13 +3473,13 @@
       },
       "DiskIopsConfiguration": {
         "type": {
-          "$ref": "#/115"
+          "$ref": "#/157"
         },
         "flags": 0
       },
       "CopyTagsToBackups": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/26"
         },
         "flags": 0
       },
@@ -2489,13 +3491,13 @@
       },
       "AutomaticBackupRetentionDays": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/27"
         },
         "flags": 0
       },
       "FsrmConfiguration": {
         "type": {
-          "$ref": "#/120"
+          "$ref": "#/162"
         },
         "flags": 0
       },
@@ -2513,13 +3515,13 @@
     "properties": {
       "Options": {
         "type": {
-          "$ref": "#/127"
+          "$ref": "#/169"
         },
         "flags": 4
       },
       "CopyTagsToVolumes": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/26"
         },
         "flags": 0
       },
@@ -2531,13 +3533,13 @@
       },
       "ThroughputCapacity": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/27"
         },
         "flags": 0
       },
       "RootVolumeConfiguration": {
         "type": {
-          "$ref": "#/110"
+          "$ref": "#/152"
         },
         "flags": 4
       },
@@ -2549,13 +3551,13 @@
       },
       "ReadCacheConfiguration": {
         "type": {
-          "$ref": "#/113"
+          "$ref": "#/155"
         },
         "flags": 0
       },
       "RouteTableIds": {
         "type": {
-          "$ref": "#/128"
+          "$ref": "#/170"
         },
         "flags": 0
       },
@@ -2567,7 +3569,7 @@
       },
       "DiskIopsConfiguration": {
         "type": {
-          "$ref": "#/115"
+          "$ref": "#/157"
         },
         "flags": 0
       },
@@ -2579,13 +3581,13 @@
       },
       "CopyTagsToBackups": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/26"
         },
         "flags": 0
       },
       "AutomaticBackupRetentionDays": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/27"
         },
         "flags": 0
       },
@@ -2615,7 +3617,7 @@
       },
       "SizeGiB": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/27"
         },
         "flags": 0
       }
@@ -2633,7 +3635,7 @@
       },
       "SizeGiB": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/27"
         },
         "flags": 0
       }
@@ -2651,7 +3653,7 @@
       },
       "Iops": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/27"
         },
         "flags": 0
       }
@@ -2669,7 +3671,7 @@
       },
       "Iops": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/27"
         },
         "flags": 0
       }
@@ -2681,7 +3683,7 @@
     "properties": {
       "ClientConfigurations": {
         "type": {
-          "$ref": "#/129"
+          "$ref": "#/171"
         },
         "flags": 0
       }
@@ -2699,7 +3701,7 @@
       },
       "Options": {
         "type": {
-          "$ref": "#/130"
+          "$ref": "#/172"
         },
         "flags": 0
       }
@@ -2729,7 +3731,7 @@
     "properties": {
       "FsrmServiceEnabled": {
         "type": {
-          "$ref": "#/17"
+          "$ref": "#/26"
         },
         "flags": 1
       },
@@ -2753,13 +3755,13 @@
       },
       "Id": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/27"
         },
         "flags": 16
       },
       "StorageCapacityQuotaGiB": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/27"
         },
         "flags": 0
       }
@@ -2780,19 +3782,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/117"
+      "$ref": "#/159"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/121"
-    }
-  },
-  {
-    "$type": "ArrayType",
-    "itemType": {
-      "$ref": "#/1"
+      "$ref": "#/163"
     }
   },
   {
@@ -2810,7 +3806,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/118"
+      "$ref": "#/1"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/160"
     }
   },
   {
@@ -2838,7 +3840,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/119"
+      "$ref": "#/161"
     }
   },
   {
@@ -2859,7 +3861,7 @@
       },
       "StorageCapacity": {
         "type": {
-          "$ref": "#/18"
+          "$ref": "#/27"
         },
         "flags": 0
       },
@@ -2871,7 +3873,7 @@
       },
       "LustreConfiguration": {
         "type": {
-          "$ref": "#/107"
+          "$ref": "#/149"
         },
         "flags": 0
       },
@@ -2883,7 +3885,7 @@
       },
       "OntapConfiguration": {
         "type": {
-          "$ref": "#/108"
+          "$ref": "#/150"
         },
         "flags": 0
       },
@@ -2895,19 +3897,19 @@
       },
       "SubnetIds": {
         "type": {
-          "$ref": "#/132"
+          "$ref": "#/174"
         },
         "flags": 1
       },
       "SecurityGroupIds": {
         "type": {
-          "$ref": "#/133"
+          "$ref": "#/175"
         },
         "flags": 4
       },
       "WindowsConfiguration": {
         "type": {
-          "$ref": "#/111"
+          "$ref": "#/153"
         },
         "flags": 0
       },
@@ -2919,7 +3921,7 @@
       },
       "OpenZFSConfiguration": {
         "type": {
-          "$ref": "#/112"
+          "$ref": "#/154"
         },
         "flags": 0
       },
@@ -2956,7 +3958,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/134"
+          "$ref": "#/176"
         },
         "flags": 0
       }
@@ -2982,7 +3984,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/135"
+          "$ref": "#/177"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2993,7 +3995,7 @@
     "$type": "ResourceType",
     "name": "AWS.FSx/FileSystem@default",
     "body": {
-      "$ref": "#/136"
+      "$ref": "#/178"
     },
     "readableScopes": 0,
     "writableScopes": 0

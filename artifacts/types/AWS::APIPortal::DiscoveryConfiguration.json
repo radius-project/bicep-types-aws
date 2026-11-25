@@ -1,0 +1,181 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-APIPortal-DiscoveryConfiguration",
+  "type": "AWS::APIPortal::DiscoveryConfiguration",
+  "time": "2026-11-23T07:44:45.895Z",
+  "schema": {
+    "additionalProperties": false,
+    "definitions": {
+      "DiscoveryFeature": {
+        "description": "An optional discovery capability.",
+        "enum": [
+          "AI_DISCOVERY"
+        ],
+        "type": "string"
+      },
+      "DiscoverySource": {
+        "description": "An AWS service whose resources are scanned to discover APIs.",
+        "enum": [
+          "API_GATEWAY",
+          "ELB",
+          "CLOUDFRONT"
+        ],
+        "type": "string"
+      },
+      "ResourceArn": {
+        "description": "ARN of a discovered resource.",
+        "maxLength": 2048,
+        "minLength": 20,
+        "pattern": "^arn:aws[a-z\\-]*:[a-z0-9\\-]+:[a-z0-9\\-]*:([0-9]{12})?:.+$",
+        "type": "string"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with a resource.",
+        "properties": {
+          "Key": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::APIPortal::DiscoveryConfiguration. Represents an API discovery configuration that controls how APIs are discovered in the account",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "apiportal:PutDiscoveryConfiguration",
+          "apiportal:GetDiscoveryConfiguration",
+          "apiportal:TagResource",
+          "iam:CreateServiceLinkedRole"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "apiportal:DeleteDiscoveryConfiguration",
+          "apiportal:GetDiscoveryConfiguration"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "apiportal:GetDiscoveryConfiguration"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "apiportal:GetDiscoveryConfiguration"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "apiportal:PutDiscoveryConfiguration",
+          "apiportal:GetDiscoveryConfiguration",
+          "apiportal:TagResource",
+          "apiportal:UntagResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The ARN of the discovery configuration.",
+        "maxLength": 1011,
+        "minLength": 20,
+        "pattern": "^arn:aws[a-z\\-]*:apiportal:[a-z0-9\\-]*:[0-9]{12}:discoveryconfiguration$",
+        "type": "string"
+      },
+      "CreatedAt": {
+        "description": "The timestamp when the discovery configuration was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "DiscoveryConfigurationStatus": {
+        "description": "The status of the discovery configuration.",
+        "enum": [
+          "DISABLED",
+          "ENABLED",
+          "UPDATING"
+        ],
+        "type": "string"
+      },
+      "DiscoveryFeatures": {
+        "description": "Optional discovery capabilities to enable.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/DiscoveryFeature"
+        },
+        "type": "array",
+        "uniqueItems": true
+      },
+      "DiscoverySources": {
+        "description": "The AWS services whose resources are scanned to discover APIs.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/DiscoverySource"
+        },
+        "minItems": 1,
+        "type": "array",
+        "uniqueItems": true
+      },
+      "ExcludedResources": {
+        "description": "ARNs of resources to exclude from discovery.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/ResourceArn"
+        },
+        "maxItems": 50,
+        "type": "array",
+        "uniqueItems": true
+      },
+      "Tags": {
+        "description": "The tags associated with the discovery configuration.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": false
+      },
+      "UpdatedAt": {
+        "description": "The timestamp when the discovery configuration was last modified.",
+        "format": "date-time",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/DiscoveryConfigurationStatus",
+      "/properties/CreatedAt",
+      "/properties/UpdatedAt"
+    ],
+    "required": [
+      "DiscoverySources"
+    ],
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-apiportal.git",
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "apiportal:TagResource",
+        "apiportal:UntagResource",
+        "apiportal:GetDiscoveryConfiguration"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::APIPortal::DiscoveryConfiguration"
+  }
+}

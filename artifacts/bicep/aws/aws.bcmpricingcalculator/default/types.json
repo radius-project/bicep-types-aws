@@ -1,6 +1,191 @@
 [
   {
     "$type": "ObjectType",
+    "name": "BillEstimateStatus",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "BillInterval",
+    "properties": {
+      "End": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0
+      },
+      "Start": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "GroupSharingPreference",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "StringType"
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.BcmPricingCalculator/BillEstimateProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/3"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.BcmPricingCalculator/BillEstimateProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the bill estimate."
+      },
+      "BillInterval": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 2,
+        "description": "The time period covered by the bill estimate"
+      },
+      "BillScenarioId": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 4,
+        "description": "The unique identifier of the bill scenario this estimate is based on"
+      },
+      "CostCategoryGroupSharingPreferenceArn": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "The ARN of the cost category group sharing preference"
+      },
+      "CostCategoryGroupSharingPreferenceEffectiveDate": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "The effective date of the cost category group sharing preference"
+      },
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "The timestamp when the bill estimate was created"
+      },
+      "ExpiresAt": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The timestamp when the bill estimate expires"
+      },
+      "GroupSharingPreference": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "The group sharing preference for the bill estimate"
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "The unique identifier of the bill estimate"
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1,
+        "description": "The name of the bill estimate"
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "The status of the bill estimate"
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/6"
+        },
+        "flags": 0,
+        "description": "An array of key-value pairs to apply to this resource"
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.BcmPricingCalculator/BillEstimate",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/7"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.BcmPricingCalculator/BillEstimate@default",
+    "body": {
+      "$ref": "#/8"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
     "name": "BillInterval",
     "properties": {
       "End": {
@@ -46,16 +231,13 @@
     }
   },
   {
-    "$type": "StringType"
-  },
-  {
     "$type": "StringLiteralType",
     "value": "AWS.BcmPricingCalculator/BillScenarioProperties"
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/3"
+      "$ref": "#/13"
     }
   },
   {
@@ -71,7 +253,7 @@
       },
       "BillInterval": {
         "type": {
-          "$ref": "#/0"
+          "$ref": "#/10"
         },
         "flags": 2,
         "description": "The time period covered by the bill scenario"
@@ -134,7 +316,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/6"
+          "$ref": "#/15"
         },
         "flags": 0,
         "description": "An array of key-value pairs to apply to this resource"
@@ -161,7 +343,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/7"
+          "$ref": "#/16"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -172,7 +354,179 @@
     "$type": "ResourceType",
     "name": "AWS.BcmPricingCalculator/BillScenario@default",
     "body": {
-      "$ref": "#/8"
+      "$ref": "#/17"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "CurrencyCode",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "WorkloadEstimateRateType",
+    "properties": {}
+  },
+  {
+    "$type": "ObjectType",
+    "name": "WorkloadEstimateStatus",
+    "properties": {}
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.BcmPricingCalculator/WorkloadEstimateProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/20"
+    }
+  },
+  {
+    "$type": "IntegerType"
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.BcmPricingCalculator/WorkloadEstimateProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 18,
+        "description": "The Amazon Resource Name (ARN) of the workload estimate."
+      },
+      "CostCurrency": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "The currency of the estimated cost."
+      },
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "The timestamp when the workload estimate was created."
+      },
+      "ExpiresAt": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The timestamp when the workload estimate will expire."
+      },
+      "FailureMessage": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "An error message if the workload estimate failed."
+      },
+      "Id": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "The unique identifier of the workload estimate."
+      },
+      "Name": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 1,
+        "description": "The name of the workload estimate."
+      },
+      "RateTimestamp": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "The timestamp of the pricing rates used for the estimate."
+      },
+      "RateType": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "The type of pricing rates used for the estimate."
+      },
+      "Status": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 2,
+        "description": "The current status of the workload estimate."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/24"
+        },
+        "flags": 0,
+        "description": "An array of key-value pairs to apply to this resource."
+      },
+      "TotalCost": {
+        "type": {
+          "$ref": "#/25"
+        },
+        "flags": 2,
+        "description": "The total estimated cost for the workload."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.BcmPricingCalculator/WorkloadEstimate",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/26"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.BcmPricingCalculator/WorkloadEstimate@default",
+    "body": {
+      "$ref": "#/27"
     },
     "readableScopes": 0,
     "writableScopes": 0

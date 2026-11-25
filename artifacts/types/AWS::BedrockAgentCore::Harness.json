@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-BedrockAgentCore-Harness",
   "type": "AWS::BedrockAgentCore::Harness",
-  "time": "2026-10-20T23:44:05.967Z",
+  "time": "2026-11-25T06:24:37.694Z",
   "schema": {
     "additionalIdentifiers": [
       [
@@ -913,6 +913,10 @@
             },
             "type": "object"
           },
+          "OutboundAuth": {
+            "$ref": "#/definitions/HarnessRemoteMcpOutboundAuth",
+            "description": "How the harness authenticates to this MCP endpoint. Defaults to None if omitted."
+          },
           "Url": {
             "maxLength": 16383,
             "minLength": 1,
@@ -922,6 +926,34 @@
         "required": [
           "Url"
         ],
+        "type": "object"
+      },
+      "HarnessRemoteMcpOutboundAuth": {
+        "additionalProperties": false,
+        "description": "Authentication method for calling a remote MCP server.",
+        "oneOf": [
+          {
+            "required": [
+              "AwsIam"
+            ]
+          },
+          {
+            "required": [
+              "None"
+            ]
+          }
+        ],
+        "properties": {
+          "AwsIam": {
+            "$ref": "#/definitions/IamCredentialProvider",
+            "description": "SigV4-sign requests using the harness execution role. Region defaults to the harness Region if omitted."
+          },
+          "None": {
+            "additionalProperties": false,
+            "description": "No authentication.",
+            "type": "object"
+          }
+        },
         "type": "object"
       },
       "HarnessSkill": {
@@ -1177,16 +1209,42 @@
         },
         "type": "object"
       },
+      "IamCredentialProvider": {
+        "additionalProperties": false,
+        "description": "IAM credentials used to SigV4-sign requests.",
+        "properties": {
+          "Region": {
+            "description": "The AWS Region used for SigV4 signing.",
+            "maxLength": 32,
+            "minLength": 1,
+            "pattern": "^[a-zA-Z0-9-]+$",
+            "type": "string"
+          },
+          "Service": {
+            "description": "The AWS service name used for SigV4 signing.",
+            "maxLength": 64,
+            "minLength": 1,
+            "pattern": "^[a-zA-Z0-9._-]+$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Service"
+        ],
+        "type": "object"
+      },
       "LifecycleConfiguration": {
         "additionalProperties": false,
         "properties": {
           "IdleRuntimeSessionTimeout": {
-            "maximum": 1209600,
+            "description": "Timeout in seconds for idle runtime sessions. When a session remains idle for this duration, it will be automatically terminated. Valid range: 60 to 28800 seconds (8 hours), and must be less than or equal to MaxLifetime. Default: 900 seconds (15 minutes).",
+            "maximum": 28800,
             "minimum": 60,
             "type": "integer"
           },
           "MaxLifetime": {
-            "maximum": 1209600,
+            "description": "Maximum lifetime for the instance in seconds. Once reached, instances will be automatically terminated and replaced. Valid range: 60 to 28800 seconds (8 hours). Default: 28800 seconds (8 hours).",
+            "maximum": 28800,
             "minimum": 60,
             "type": "integer"
           }
@@ -1293,7 +1351,8 @@
           "GrantType": {
             "enum": [
               "CLIENT_CREDENTIALS",
-              "AUTHORIZATION_CODE"
+              "AUTHORIZATION_CODE",
+              "TOKEN_EXCHANGE"
             ],
             "type": "string"
           },
@@ -1473,6 +1532,15 @@
           "bedrock-agentcore:TagResource",
           "bedrock-agentcore:UpdateAgentRuntime",
           "bedrock-agentcore:UpdateAgentRuntimeEndpoint",
+          "ec2:AssignIpv6Addresses",
+          "ec2:CreateNetworkInterface",
+          "ec2:CreateNetworkInterfacePermission",
+          "ec2:DescribeNetworkInterfaces",
+          "vpc-lattice:GetResourceConfiguration",
+          "vpc-lattice:CreateServiceNetworkResourceAssociation",
+          "vpc-lattice:GetServiceNetworkResourceAssociation",
+          "vpc-lattice:ListServiceNetworkResourceAssociations",
+          "vpc-lattice:AssociateViaAWSService",
           "iam:CreateServiceLinkedRole",
           "iam:PassRole"
         ]
@@ -1527,6 +1595,15 @@
           "bedrock-agentcore:UpdateAgentRuntime",
           "bedrock-agentcore:UpdateAgentRuntimeEndpoint",
           "bedrock-agentcore:UpdateHarness",
+          "ec2:AssignIpv6Addresses",
+          "ec2:CreateNetworkInterface",
+          "ec2:CreateNetworkInterfacePermission",
+          "ec2:DescribeNetworkInterfaces",
+          "vpc-lattice:GetResourceConfiguration",
+          "vpc-lattice:CreateServiceNetworkResourceAssociation",
+          "vpc-lattice:GetServiceNetworkResourceAssociation",
+          "vpc-lattice:ListServiceNetworkResourceAssociations",
+          "vpc-lattice:AssociateViaAWSService",
           "iam:CreateServiceLinkedRole",
           "iam:PassRole"
         ]

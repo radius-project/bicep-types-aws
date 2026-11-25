@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-DevOpsAgent-Association",
   "type": "AWS::DevOpsAgent::Association",
-  "time": "2026-10-14T13:51:53.64Z",
+  "time": "2026-11-18T03:12:38.017Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -100,6 +100,17 @@
         "minLength": 1,
         "type": "string"
       },
+      "AutomatedTestingCapabilityConfiguration": {
+        "additionalProperties": false,
+        "description": "Configuration of the code change risk analysis automated testing capability. This capability does not support trigger filter groups.",
+        "properties": {
+          "Enabled": {
+            "description": "Whether the capability is enabled for this association",
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
       "AzureConfiguration": {
         "additionalProperties": false,
         "description": "Azure subscription integration configuration",
@@ -112,6 +123,43 @@
         "required": [
           "SubscriptionId"
         ],
+        "type": "object"
+      },
+      "Capabilities": {
+        "additionalProperties": false,
+        "description": "Automated AWS DevOps Agent capabilities for the repository in this association. Code change risk analysis analyzes pull requests and merge requests for deployment risk, and automated testing extends that analysis by running tests against the change. Capabilities are supported for GitHub and GitLab associations. When this property is set, it fully defines both capabilities below: a capability omitted here is removed from the association. Removing this property from a template that previously set it disables both capabilities. Capabilities configured outside CloudFormation are left unchanged only while this property has never been set. On rollback, both capabilities are restored to the previous template's values, not to settings made outside CloudFormation. Other capabilities on the association are not affected. Updates read and rewrite the association's full capability set, so a capability change made outside CloudFormation while a stack update is in progress may be overwritten.",
+        "minProperties": 1,
+        "properties": {
+          "CodeChangeRiskAnalysis": {
+            "$ref": "#/definitions/CapabilityConfiguration",
+            "description": "Configuration for code change risk analysis, in which AWS DevOps Agent automatically analyzes pull requests and merge requests for deployment risk."
+          },
+          "CodeChangeRiskAnalysisAutomatedTesting": {
+            "$ref": "#/definitions/AutomatedTestingCapabilityConfiguration",
+            "description": "Configuration for code change risk analysis automated testing, in which AWS DevOps Agent also runs tests against the change during the analysis."
+          }
+        },
+        "type": "object"
+      },
+      "CapabilityConfiguration": {
+        "additionalProperties": false,
+        "description": "Configuration of a single capability",
+        "properties": {
+          "Enabled": {
+            "description": "Whether the capability is enabled for this association",
+            "type": "boolean"
+          },
+          "TriggerFilterGroups": {
+            "description": "Filter groups controlling when the capability triggers automatically. The capability triggers when any group matches. When omitted, all applicable events trigger the capability. Retained while the capability is disabled.",
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/TriggerFilterGroup"
+            },
+            "maxItems": 5,
+            "minItems": 1,
+            "type": "array"
+          }
+        },
         "type": "object"
       },
       "DynatraceConfiguration": {
@@ -166,6 +214,12 @@
             ],
             "type": "string"
           },
+          "ReleaseManagementAssociationId": {
+            "description": "The ID of the release management association that this repository uses for automated testing",
+            "maxLength": 255,
+            "minLength": 1,
+            "type": "string"
+          },
           "RepoId": {
             "description": "Associated Github repo ID",
             "type": "string"
@@ -201,6 +255,12 @@
           },
           "ProjectPath": {
             "description": "Full GitLab project path (e.g., namespace/project-name)",
+            "type": "string"
+          },
+          "ReleaseManagementAssociationId": {
+            "description": "The ID of the release management association that this project uses for automated testing",
+            "maxLength": 255,
+            "minLength": 1,
             "type": "string"
           }
         },
@@ -428,6 +488,23 @@
         },
         "type": "object"
       },
+      "NetworkAccessConfiguration": {
+        "description": "Specifies how AWS DevOps Agent reaches your application using a release management environment. Exactly one access type must be specified.",
+        "oneOf": [
+          {
+            "additionalProperties": false,
+            "properties": {
+              "PrivateAccess": {
+                "$ref": "#/definitions/PrivateNetworkAccess"
+              }
+            },
+            "required": [
+              "PrivateAccess"
+            ]
+          }
+        ],
+        "type": "object"
+      },
       "PagerDutyConfiguration": {
         "additionalProperties": false,
         "description": "PagerDuty integration configuration",
@@ -451,6 +528,76 @@
         "required": [
           "Services",
           "CustomerEmail"
+        ],
+        "type": "object"
+      },
+      "PatternFilter": {
+        "additionalProperties": false,
+        "description": "A regex-based match condition. Passes when the value matches any pattern.",
+        "properties": {
+          "Patterns": {
+            "description": "Anchored full-match regex patterns, for example 'main' or 'release/.*'",
+            "insertionOrder": false,
+            "items": {
+              "maxLength": 256,
+              "minLength": 1,
+              "pattern": "^[^\\x00-\\x1F\\x7F-\\x9F]+$",
+              "type": "string"
+            },
+            "maxItems": 20,
+            "minItems": 1,
+            "type": "array"
+          }
+        },
+        "required": [
+          "Patterns"
+        ],
+        "type": "object"
+      },
+      "PrivateNetworkAccess": {
+        "additionalProperties": false,
+        "description": "Private network access to your application inside a VPC, reached through a private connection",
+        "properties": {
+          "PrivateConnectionName": {
+            "description": "Name of the private connection that supplies the VPC configuration for this release management environment",
+            "maxLength": 30,
+            "minLength": 3,
+            "pattern": "^[a-z0-9]([a-z0-9-]*[a-z0-9])?$",
+            "type": "string"
+          },
+          "RuntimeRoleArn": {
+            "description": "Role ARN that AWS DevOps Agent assumes at runtime to connect to your VPC",
+            "maxLength": 255,
+            "minLength": 1,
+            "pattern": "^arn:(aws|aws-cn|aws-us-gov):iam::\\d{12}:role/[a-zA-Z0-9+=,.@_/-]+$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "PrivateConnectionName",
+          "RuntimeRoleArn"
+        ],
+        "type": "object"
+      },
+      "ReleaseManagementConfiguration": {
+        "additionalProperties": false,
+        "description": "Configuration for a release management environment. A release management environment defines how AWS DevOps Agent reaches your application, and other associations reference it to run automatic verification testing against that application.",
+        "properties": {
+          "Name": {
+            "description": "The name for this release management environment",
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{S}\\p{Z}]+$",
+            "type": "string"
+          },
+          "NetworkAccess": {
+            "$ref": "#/definitions/NetworkAccessConfiguration",
+            "description": "Specifies how AWS DevOps Agent reaches your application using this release management environment"
+          }
+        },
+        "required": [
+          "Name",
+          "NetworkAccess"
         ],
         "type": "object"
       },
@@ -632,6 +779,17 @@
             "required": [
               "MCPServerSigV4"
             ]
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "ReleaseManagement": {
+                "$ref": "#/definitions/ReleaseManagementConfiguration"
+              }
+            },
+            "required": [
+              "ReleaseManagement"
+            ]
           }
         ],
         "type": "object"
@@ -777,6 +935,33 @@
           "AssumableRoleArn"
         ],
         "type": "object"
+      },
+      "TriggerFilterGroup": {
+        "additionalProperties": false,
+        "description": "A group of trigger conditions. The group matches when all present conditions pass. At least one condition must be present.",
+        "minProperties": 1,
+        "properties": {
+          "Events": {
+            "description": "Passes when the webhook event is one of the listed events",
+            "insertionOrder": false,
+            "items": {
+              "enum": [
+                "PULL_REQUEST_READY_FOR_REVIEW",
+                "PULL_REQUEST_DRAFT"
+              ],
+              "type": "string"
+            },
+            "maxItems": 10,
+            "minItems": 1,
+            "type": "array",
+            "uniqueItems": true
+          },
+          "TargetBranches": {
+            "$ref": "#/definitions/PatternFilter",
+            "description": "Passes when the change request target branch matches"
+          }
+        },
+        "type": "object"
       }
     },
     "description": "Resource Type definition for AWS::DevOpsAgent::Association defining how the AgentSpace interacts with external services like GitHub, Slack, AWS accounts, and others.",
@@ -842,6 +1027,10 @@
       "AssociationId": {
         "$ref": "#/definitions/AssociationId",
         "description": "The unique identifier of the association"
+      },
+      "Capabilities": {
+        "$ref": "#/definitions/Capabilities",
+        "description": "Automated AWS DevOps Agent capabilities enabled for this association, such as code change risk analysis"
       },
       "Configuration": {
         "$ref": "#/definitions/ServiceConfiguration",

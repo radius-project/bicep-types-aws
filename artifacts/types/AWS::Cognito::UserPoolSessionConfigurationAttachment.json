@@ -1,0 +1,106 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Cognito-UserPoolSessionConfigurationAttachment",
+  "type": "AWS::Cognito::UserPoolSessionConfigurationAttachment",
+  "time": "2026-11-22T03:28:47.027Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/UserPoolId"
+    ],
+    "definitions": {
+      "TokenSession": {
+        "additionalProperties": false,
+        "description": "Token session settings that apply to every app client in the user pool.",
+        "properties": {
+          "MaxPerUser": {
+            "description": "The maximum number of concurrent token sessions per user across all app clients. When a new session would exceed this number, the least recently used session ends.",
+            "maximum": 100,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "MaxPerUser"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::Cognito::UserPoolSessionConfigurationAttachment. Manages the session configuration of a user pool: whether user session tracking is enabled and the maximum number of concurrent token sessions per user. The service default (UserSessionTracking DISABLED with TokenSession MaxPerUser 20) cannot be declared; remove the resource to return the user pool to the default.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "cognito-idp:SetUserPoolSessionConfiguration",
+          "cognito-idp:GetUserPoolSessionConfiguration"
+        ],
+        "timeoutInMinutes": 5
+      },
+      "delete": {
+        "permissions": [
+          "cognito-idp:SetUserPoolSessionConfiguration",
+          "cognito-idp:GetUserPoolSessionConfiguration"
+        ],
+        "timeoutInMinutes": 5
+      },
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "UserPoolId": {
+              "$ref": "resource-schema.json#/properties/UserPoolId"
+            }
+          },
+          "required": [
+            "UserPoolId"
+          ]
+        },
+        "permissions": [
+          "cognito-idp:GetUserPoolSessionConfiguration"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "cognito-idp:GetUserPoolSessionConfiguration"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "cognito-idp:SetUserPoolSessionConfiguration",
+          "cognito-idp:GetUserPoolSessionConfiguration"
+        ],
+        "timeoutInMinutes": 5
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/UserPoolId"
+    ],
+    "properties": {
+      "TokenSession": {
+        "$ref": "#/definitions/TokenSession"
+      },
+      "UserPoolId": {
+        "description": "The ID of the user pool.",
+        "type": "string"
+      },
+      "UserSessionTracking": {
+        "description": "Whether server-side user session tracking is enabled for the user pool. Requires the ESSENTIALS or PLUS feature plan.",
+        "enum": [
+          "ENABLED",
+          "DISABLED"
+        ],
+        "type": "string"
+      }
+    },
+    "required": [
+      "UserPoolId",
+      "UserSessionTracking",
+      "TokenSession"
+    ],
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "tagOnCreate": false,
+      "tagUpdatable": false,
+      "taggable": false
+    },
+    "typeName": "AWS::Cognito::UserPoolSessionConfigurationAttachment"
+  }
+}

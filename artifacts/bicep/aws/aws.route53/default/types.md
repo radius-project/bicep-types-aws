@@ -32,6 +32,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.Route53/HealthCheckProperties](#awsroute53healthcheckproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.Route53/HealthCheckSource@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Route53/HealthCheckSourceProperties](#awsroute53healthchecksourceproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.Route53/HostedZone@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -48,6 +56,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.Route53/KeySigningKeyProperties](#awsroute53keysigningkeyproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.Route53/QueryLoggingConfig@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Route53/QueryLoggingConfigProperties](#awsroute53queryloggingconfigproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.Route53/RecordSet@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -56,6 +72,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.Route53/RecordSetProperties](#awsroute53recordsetproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.Route53/RecordSetProtection@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Route53/RecordSetProtectionProperties](#awsroute53recordsetprotectionproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.Route53/TrafficPolicy@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -63,6 +87,14 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.Route53/TrafficPolicyProperties](#awsroute53trafficpolicyproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.Route53/TrafficPolicyInstance@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Route53/TrafficPolicyInstanceProperties](#awsroute53trafficpolicyinstanceproperties) (Required, Identifier): properties of the resource
 
 ## AlarmIdentifier
 ### Properties
@@ -99,6 +131,41 @@
 * **HealthCheckId**: string (ReadOnly, Identifier)
 * **HealthCheckTags**: [HealthCheckTag](#healthchecktag)[]: An array of key-value pairs to apply to this resource.
 
+## AWS.Route53/HealthCheckSourceProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the resource.
+* **HealthCheckSourceConfig**: [HealthCheckSourceConfig](#healthchecksourceconfig) (Required): <p>The VPC, subnets, and security groups for the health check source.</p>
+* **HealthCheckSourceId**: string (ReadOnly): <p>The ID of the health check source. Route 53 assigns this ID when it creates the source.</p>
+* **HealthCheckSourceStatus**: string (ReadOnly): <p>The current status of the health check source. The health check source status can have one of the following values:</p>
+         <dl>
+            <dt>CREATE_PENDING, CREATE_IN_PROGRESS</dt>
+            <dd>
+               <p>Route 53 is creating the source. Health checks that reference the source don't send requests yet.</p>
+            </dd>
+            <dt>CREATE_COMPLETED</dt>
+            <dd>
+               <p>The source is ready to use.</p>
+            </dd>
+            <dt>CREATE_FAILED</dt>
+            <dd>
+               <p>Route 53 couldn't create the source. <code>StatusReasonCode</code> and <code>StatusReason</code> explain why.</p>
+            </dd>
+            <dt>DELETE_PENDING, DELETE_IN_PROGRESS</dt>
+            <dd>
+               <p>Route 53 is deleting the source.</p>
+            </dd>
+            <dt>DELETE_COMPLETED</dt>
+            <dd>
+               <p>Route 53 has deleted the source.</p>
+            </dd>
+            <dt>DELETE_FAILED</dt>
+            <dd>
+               <p>Route 53 couldn't delete the source. <code>StatusReasonCode</code> and <code>StatusReason</code> explain why.</p>
+            </dd>
+         </dl>
+         <p>If the status is <code>CREATE_FAILED</code>, delete the source and create a new one. If the status is <code>DELETE_FAILED</code>, retry the <code>DeleteHealthCheckSource</code> request.</p>
+* **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+
 ## AWS.Route53/HostedZoneProperties
 ### Properties
 * **DelegationSetId**: string
@@ -129,9 +196,17 @@
 * **Name**: string (Required, Identifier): An alphanumeric string used to identify a key signing key (KSK). Name must be unique for each key signing key in the same hosted zone.
 * **Status**: string (Required): A string specifying the initial status of the key signing key (KSK). You can set the value to ACTIVE or INACTIVE.
 
+## AWS.Route53/QueryLoggingConfigProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the query logging configuration.
+* **CloudWatchLogsLogGroupArn**: string (Required): The Amazon Resource Name (ARN) of the CloudWatch Logs log group in us-east-1 that Amazon Route 53 publishes query logs to.
+* **HostedZoneId**: string (Required): The ID of the public hosted zone that Amazon Route 53 logs queries for.
+* **Id**: string (ReadOnly): The ID that Amazon Route 53 assigns to the configuration for DNS query logging.
+
 ## AWS.Route53/RecordSetProperties
 ### Properties
 * **AliasTarget**: [AliasTarget](#aliastarget): Alias resource record sets only: Information about the AWS resource, such as a CloudFront distribution or an Amazon S3 bucket, that you want to route traffic to.
+* **AZAffinity**: [AZAffinity](#azaffinity): AZ affinity resource record sets only: the source location (Availability Zone, Availability Zone group, Region, partition, or global) of the DNS queries that this record set's answers apply to.
 * **CidrRoutingConfig**: [CidrRoutingConfig](#cidrroutingconfig): The object that is specified in resource record set object when you are linking a resource record set to a CIDR location.
 * **Comment**: string (WriteOnly): Optional: Any comments you want to include about a change batch request.
 * **Failover**: string: To configure failover, you add the Failover element to two resource record sets. For one resource record set, you specify PRIMARY as the value for Failover; for the other resource record set, you specify SECONDARY. In addition, you include the HealthCheckId element and specify the health check that you want Amazon Route 53 to perform for each resource record set.
@@ -148,6 +223,25 @@
 * **Type**: string (Required, Identifier): The DNS record type.
 * **Weight**: int: Among resource record sets that have the same combination of DNS name and type, a value that determines the proportion of DNS queries that Amazon Route 53 responds to using the current resource record set. Route 53 calculates the sum of the weights for the resource record sets that have the same combination of DNS name and type. Route 53 then responds to queries based on the ratio of a resource's weight to the total.
 
+## AWS.Route53/RecordSetProtectionProperties
+### Properties
+* **Comment**: string: A comment that describes the protection.
+* **HostedZoneId**: string (Required, Identifier): The ID of the hosted zone that contains the record set to protect.
+* **RecordName**: string (Required, Identifier): The name of the record set to protect.
+* **RecordType**: string (Required, Identifier): The DNS record type of the record set to protect.
+
+## AWS.Route53/TrafficPolicyInstanceProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the traffic policy instance.
+* **HostedZoneId**: string (Required): The ID of the hosted zone that Amazon Route 53 creates the resource record sets in. The bare ID as Route 53 returns it, without a /hostedzone/ prefix.
+* **Id**: string (ReadOnly): The ID that Amazon Route 53 assigned to the traffic policy instance when it was created.
+* **Name**: string (Required): The domain name, or subdomain name, for which Amazon Route 53 answers DNS queries by using the resource record sets it creates for this traffic policy instance. Must be lower-case and end with a trailing dot, which is the form Route 53 returns: Route 53 normalizes DNS names, so admitting another form would neither round-trip through Read nor guarantee that a change to this property changes the resource's identity.
+* **State**: string (ReadOnly): The current state of the traffic policy instance. A steady-state instance is Applied.
+* **TrafficPolicyId**: string (Required): The ID of the traffic policy that Amazon Route 53 uses to create resource record sets in the specified hosted zone. Lower-case, as Route 53 returns it.
+* **TrafficPolicyType**: string (ReadOnly): The DNS type that Amazon Route 53 assigned to all of the resource record sets that it created for this traffic policy instance. Route 53 derives it from the referenced traffic policy.
+* **TrafficPolicyVersion**: int (Required): The version of the traffic policy that Amazon Route 53 uses to create resource record sets in the specified hosted zone.
+* **TTL**: int (Required): The TTL that Amazon Route 53 assigns to all of the resource record sets that it creates in the specified hosted zone.
+
 ## AWS.Route53/TrafficPolicyProperties
 ### Properties
 * **Arn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the traffic policy.
@@ -157,6 +251,21 @@
 * **Name**: string (Required): The name of the traffic policy.
 * **Type**: string (ReadOnly): The DNS type of the resource record sets that Amazon Route 53 creates when the traffic policy is used to create a traffic policy instance.
 * **Version**: int (ReadOnly): The version number that Amazon Route 53 assigned to the traffic policy.
+
+## AZAffinity
+### Properties
+* **LocationId**: string (Required): The ID of the location, for example an Availability Zone ID such as use1-az1, or a Region such as us-east-1.
+* **LocationType**: string (Required): The type of the source location that the record set's answers apply to.
+
+## ChangeGuardrail
+### Properties
+* **Name**: string (Required): The name of the Change Guardrail.
+* **Status**: string (Required): The status of the Change Guardrail. ENABLED makes Route 53 block the corresponding destructive change; DISABLED turns the guardrail off.
+
+## ChangeHistory
+### Properties
+* **RetentionStartsAt**: string: The earliest time the hosted zone's change history can be read from, as an ISO 8601 timestamp. Present only when Status is ENABLED.
+* **Status**: string: Whether change history is enabled for the hosted zone.
 
 ## CidrRoutingConfig
 ### Properties
@@ -174,8 +283,10 @@
 * **AlarmIdentifier**: [AlarmIdentifier](#alarmidentifier)
 * **ChildHealthChecks**: string[]
 * **EnableSNI**: bool
+* **EndpointType**: string: Whether the health check targets a public endpoint or a private endpoint inside a VPC. Defaults to PUBLIC. Adding this property to an existing health check's template replaces the health check; leave it unset for existing public health checks.
 * **FailureThreshold**: int
 * **FullyQualifiedDomainName**: string
+* **HealthCheckSourceId**: string: The ID of the health check source that Route 53 uses to reach a private endpoint. Required when EndpointType is PRIVATE.
 * **HealthThreshold**: int
 * **InsufficientDataHealthStatus**: string
 * **Inverted**: bool
@@ -189,6 +300,11 @@
 * **SearchString**: string
 * **Type**: string (Required)
 
+## HealthCheckSourceConfig
+### Properties
+* **SubnetConfigurationList**: [SubnetConfiguration](#subnetconfiguration)[] (Required): <p>A complex type that contains one <code>SubnetConfiguration</code> element for each Availability Zone that Route 53 uses for private endpoint health checks in the Amazon Web Services Region. Each element must be in a different Availability Zone. Most Regions require three elements. Regions that have only two such Availability Zones, such as US West (N. California), require two elements. Route 53 creates network interfaces in each subnet and sends health check requests from all of them.</p>
+* **VpcId**: string (Required): <p>The ID of the VPC that contains the subnets for the health check source. All subnets in <code>SubnetConfigurationList</code> must belong to this VPC.</p>
+
 ## HealthCheckTag
 ### Properties
 * **Key**: string (Required): The key name of the tag.
@@ -197,10 +313,14 @@
 ## HostedZoneConfig
 ### Properties
 * **Comment**: string: Any comments that you want to include about the hosted zone.
+* **HostedZoneTier**: string
 
 ## HostedZoneFeatures
 ### Properties
+* **ChangeGuardrails**: [ChangeGuardrail](#changeguardrail)[]
+* **ChangeHistory**: [ChangeHistory](#changehistory) (ReadOnly)
 * **EnableAcceleratedRecovery**: bool
+* **EnablePublicDNSFallback**: bool
 
 ## HostedZoneTag
 ### Properties
@@ -221,6 +341,17 @@
 ## QueryLoggingConfig
 ### Properties
 * **CloudWatchLogsLogGroupArn**: string (Required): The Amazon Resource Name (ARN) of the CloudWatch Logs log group that Amazon Route 53 is publishing logs to.
+
+## SubnetConfiguration
+### Properties
+* **AvailabilityZoneId**: string (Required): <p>The ID of the Availability Zone that contains the subnet, for example <code>use1-az1</code>. Specify the Availability Zone ID, not the Availability Zone name. Each subnet in a health check source must be in a different Availability Zone.</p>
+* **SecurityGroupIdList**: string[] (Required): <p>The IDs of one to ten security groups in the same VPC to associate with the network interfaces that Route 53 creates in this subnet. The security groups must allow outbound traffic to the endpoints that the health checks monitor.</p>
+* **SubnetId**: string (Required): <p>The ID of the subnet. The subnet must have free IP addresses for the network interfaces that Route 53 creates.</p>
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag.
+* **Value**: string (Required): The value for the tag.
 
 ## VPC
 ### Properties

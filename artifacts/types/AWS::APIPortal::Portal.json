@@ -1,0 +1,461 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-APIPortal-Portal",
+  "type": "AWS::APIPortal::Portal",
+  "time": "2026-11-23T07:44:35.717Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/PortalId"
+      ]
+    ],
+    "additionalProperties": false,
+    "definitions": {
+      "ACMManaged": {
+        "additionalProperties": false,
+        "description": "Represents a domain name and certificate for a portal.",
+        "properties": {
+          "CertificateArn": {
+            "description": "The certificate ARN.",
+            "maxLength": 2048,
+            "minLength": 10,
+            "type": "string"
+          },
+          "DomainName": {
+            "description": "The domain name.",
+            "maxLength": 256,
+            "minLength": 3,
+            "type": "string"
+          }
+        },
+        "required": [
+          "CertificateArn",
+          "DomainName"
+        ],
+        "type": "object"
+      },
+      "Authorization": {
+        "additionalProperties": false,
+        "description": "Represents an authorization configuration for a portal.",
+        "properties": {
+          "AuthorizationConfig": {
+            "$ref": "#/definitions/AuthorizationConfig"
+          },
+          "FineGrainedAccessControl": {
+            "description": "Whether fine-grained access control is enforced for the portal. No default: the template states the posture explicitly.",
+            "enum": [
+              "ENABLED",
+              "DISABLED"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "AuthorizationConfig",
+          "FineGrainedAccessControl"
+        ],
+        "type": "object"
+      },
+      "AuthorizationConfig": {
+        "additionalProperties": false,
+        "description": "Exactly one of the members is set: None for no authorization, or CognitoConfig for Amazon Cognito.",
+        "oneOf": [
+          {
+            "required": [
+              "CognitoConfig"
+            ]
+          },
+          {
+            "required": [
+              "None"
+            ]
+          }
+        ],
+        "properties": {
+          "CognitoConfig": {
+            "$ref": "#/definitions/CognitoConfig"
+          },
+          "None": {
+            "$ref": "#/definitions/None"
+          }
+        },
+        "type": "object"
+      },
+      "CognitoConfig": {
+        "additionalProperties": false,
+        "description": "The configuration for using Amazon Cognito user pools to control access to your portal.",
+        "properties": {
+          "AppClientId": {
+            "description": "The app client ID.",
+            "maxLength": 256,
+            "minLength": 1,
+            "type": "string"
+          },
+          "UserPoolArn": {
+            "description": "The user pool ARN.",
+            "maxLength": 2048,
+            "minLength": 20,
+            "type": "string"
+          },
+          "UserPoolDomain": {
+            "description": "The user pool domain.",
+            "maxLength": 2048,
+            "minLength": 20,
+            "type": "string"
+          }
+        },
+        "required": [
+          "UserPoolArn",
+          "UserPoolDomain",
+          "AppClientId"
+        ],
+        "type": "object"
+      },
+      "CustomColors": {
+        "additionalProperties": false,
+        "description": "Represents custom colors for a published portal.",
+        "properties": {
+          "AccentColor": {
+            "maxLength": 16,
+            "minLength": 1,
+            "type": "string"
+          },
+          "BackgroundColor": {
+            "maxLength": 16,
+            "minLength": 1,
+            "type": "string"
+          },
+          "ErrorValidationColor": {
+            "maxLength": 16,
+            "minLength": 1,
+            "type": "string"
+          },
+          "HeaderColor": {
+            "maxLength": 16,
+            "minLength": 1,
+            "type": "string"
+          },
+          "NavigationColor": {
+            "maxLength": 16,
+            "minLength": 1,
+            "type": "string"
+          },
+          "TextColor": {
+            "maxLength": 16,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "AccentColor",
+          "BackgroundColor",
+          "ErrorValidationColor",
+          "HeaderColor",
+          "NavigationColor",
+          "TextColor"
+        ],
+        "type": "object"
+      },
+      "EndpointConfiguration": {
+        "additionalProperties": false,
+        "description": "Represents an endpoint configuration for a portal.",
+        "properties": {
+          "ACMManaged": {
+            "$ref": "#/definitions/ACMManaged"
+          },
+          "CertificateArn": {
+            "description": "The ARN of the ACM certificate.",
+            "maxLength": 2048,
+            "minLength": 10,
+            "type": "string"
+          },
+          "DomainName": {
+            "description": "The domain name.",
+            "maxLength": 256,
+            "minLength": 3,
+            "type": "string"
+          },
+          "None": {
+            "$ref": "#/definitions/None"
+          },
+          "PortalDefaultDomainName": {
+            "description": "The portal default domain name. Generated and managed by API Portal.",
+            "maxLength": 256,
+            "minLength": 3,
+            "type": "string"
+          },
+          "PortalDomainHostedZoneId": {
+            "description": "The portal domain hosted zone identifier.",
+            "maxLength": 64,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "None": {
+        "additionalProperties": false,
+        "description": "Provide no authorization for your portal. This makes your portal publicly accessible on the web.",
+        "type": "object"
+      },
+      "PortalContent": {
+        "additionalProperties": false,
+        "description": "Contains the content that is visible to portal consumers including the themes, display names, and description.",
+        "properties": {
+          "Description": {
+            "description": "A description of the portal.",
+            "maxLength": 1024,
+            "minLength": 0,
+            "type": "string"
+          },
+          "DisplayName": {
+            "description": "The display name for the portal.",
+            "maxLength": 255,
+            "minLength": 3,
+            "type": "string"
+          },
+          "Theme": {
+            "$ref": "#/definitions/PortalTheme"
+          }
+        },
+        "required": [
+          "DisplayName",
+          "Theme"
+        ],
+        "type": "object"
+      },
+      "PortalTheme": {
+        "additionalProperties": false,
+        "description": "Defines the theme for a portal.",
+        "properties": {
+          "CustomColors": {
+            "$ref": "#/definitions/CustomColors"
+          },
+          "LogoUploadedAt": {
+            "description": "The timestamp when the logo was last uploaded.",
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "required": [
+          "CustomColors"
+        ],
+        "type": "object"
+      },
+      "StatusException": {
+        "additionalProperties": false,
+        "description": "Failure detail for the portal's publish status.",
+        "properties": {
+          "Exception": {
+            "description": "The reason the portal's last publish or disable failed.",
+            "enum": [
+              "INTERNAL_FAILURE",
+              "UNSHARED_PRODUCT_EXCEPTION",
+              "CLOUDFRONT_DOMAIN_IN_USE",
+              "MISSING_CLOUDFRONT_PERMISSIONS"
+            ],
+            "type": "string"
+          },
+          "Message": {
+            "maxLength": 2048,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with a resource.",
+        "properties": {
+          "Key": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::APIPortal::Portal",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "apiportal:CreatePortal",
+          "apiportal:GetPortal",
+          "apiportal:GetProduct",
+          "apiportal:TagResource",
+          "acm:DescribeCertificate",
+          "cognito-identity:DescribeIdentityPool",
+          "cognito-idp:DescribeUserPool",
+          "s3:GetObject"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "apiportal:DeletePortal",
+          "apiportal:GetPortal"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "apiportal:ListPortals"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "apiportal:GetPortal"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "apiportal:UpdatePortal",
+          "apiportal:GetPortal",
+          "apiportal:GetProduct",
+          "apiportal:TagResource",
+          "apiportal:UntagResource",
+          "acm:DescribeCertificate",
+          "cognito-identity:DescribeIdentityPool",
+          "cognito-idp:DescribeUserPool",
+          "s3:GetObject"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/PortalArn"
+    ],
+    "properties": {
+      "Authorization": {
+        "$ref": "#/definitions/Authorization"
+      },
+      "EndpointConfiguration": {
+        "$ref": "#/definitions/EndpointConfiguration"
+      },
+      "IncludedProductArns": {
+        "description": "The ARNs of the products included in the portal.",
+        "items": {
+          "maxLength": 2048,
+          "minLength": 20,
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "LogoUri": {
+        "description": "The logo URI",
+        "maxLength": 1092,
+        "minLength": 0,
+        "type": "string"
+      },
+      "PortalArn": {
+        "description": "The ARN of the portal.",
+        "maxLength": 2048,
+        "minLength": 20,
+        "type": "string"
+      },
+      "PortalContent": {
+        "$ref": "#/definitions/PortalContent"
+      },
+      "PortalId": {
+        "description": "The portal identifier.",
+        "maxLength": 30,
+        "minLength": 10,
+        "pattern": "^[a-z0-9]+$",
+        "type": "string"
+      },
+      "PublishDescription": {
+        "description": "A user-written description of the changes made in the last published version of the portal.",
+        "maxLength": 1024,
+        "minLength": 0,
+        "type": "string"
+      },
+      "PublishStatus": {
+        "description": "The current publishing status of the portal.",
+        "enum": [
+          "PUBLISHED",
+          "PUBLISH_IN_PROGRESS",
+          "PUBLISH_FAILED",
+          "DISABLE_IN_PROGRESS",
+          "DISABLE_FAILED",
+          "DISABLED"
+        ],
+        "type": "string"
+      },
+      "PublishedAt": {
+        "description": "The timestamp when the portal was last published.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "RumAppMonitorName": {
+        "description": "The name of the Amazon CloudWatch RUM app monitor.",
+        "maxLength": 255,
+        "minLength": 0,
+        "type": "string"
+      },
+      "StatusException": {
+        "$ref": "#/definitions/StatusException"
+      },
+      "Tags": {
+        "description": "The tags associated with a portal.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": false
+      },
+      "UpdatedAt": {
+        "description": "The timestamp when the portal configuration was last modified.",
+        "format": "date-time",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/PortalArn",
+      "/properties/PortalId",
+      "/properties/EndpointConfiguration/CertificateArn",
+      "/properties/EndpointConfiguration/DomainName",
+      "/properties/EndpointConfiguration/PortalDefaultDomainName",
+      "/properties/EndpointConfiguration/PortalDomainHostedZoneId",
+      "/properties/PublishStatus",
+      "/properties/StatusException",
+      "/properties/StatusException/Exception",
+      "/properties/StatusException/Message",
+      "/properties/PublishedAt",
+      "/properties/PublishDescription",
+      "/properties/PortalContent/Theme/LogoUploadedAt",
+      "/properties/UpdatedAt"
+    ],
+    "required": [
+      "Authorization",
+      "EndpointConfiguration",
+      "PortalContent"
+    ],
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-apiportal.git",
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "apiportal:TagResource",
+        "apiportal:UntagResource",
+        "apiportal:GetPortal"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::APIPortal::Portal",
+    "writeOnlyProperties": [
+      "/properties/EndpointConfiguration/ACMManaged",
+      "/properties/EndpointConfiguration/None",
+      "/properties/LogoUri"
+    ]
+  }
+}

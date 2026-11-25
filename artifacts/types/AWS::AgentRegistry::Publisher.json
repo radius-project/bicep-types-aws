@@ -1,0 +1,165 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-AgentRegistry-Publisher",
+  "type": "AWS::AgentRegistry::Publisher",
+  "time": "2026-11-25T20:54:37.468Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Value"
+    ],
+    "definitions": {
+      "Identifier": {
+        "additionalProperties": false,
+        "description": "The identifier value. Exactly one member is set.",
+        "properties": {
+          "Domain": {
+            "description": "The fully qualified domain name (RFC 1035/1123) with at least two labels, in lowercase. The service stores domain names in lowercase, so specify the value in lowercase to avoid drift.",
+            "maxLength": 253,
+            "minLength": 1,
+            "pattern": "^([a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?\\.)+[a-z]{2,63}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Domain"
+        ],
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A tag to assign to the Publisher.",
+        "properties": {
+          "Key": {
+            "description": "The key of the tag.",
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^[a-zA-Z0-9\\s._:/=+@-]*$",
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value of the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "pattern": "^[a-zA-Z0-9\\s._:/=+@-]*$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      },
+      "VerificationStatus": {
+        "description": "The verification status of the Publisher.",
+        "enum": [
+          "ACTION_REQUIRED",
+          "ACTIVE",
+          "FAILED",
+          "SUSPENDED",
+          "DELETING"
+        ],
+        "type": "string"
+      }
+    },
+    "description": "Definition of AWS::AgentRegistry::Publisher Resource Type. A Publisher is a domain that an AWS account proves ownership of. While creation is in progress, retrieve the DNS challenge through the Agent Registry ListPublishers and GetPublisher APIs. The resource reaches CREATE_COMPLETE after the domain is verified and the Publisher status is ACTIVE.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "agent-registry:CreatePublisher",
+          "agent-registry:GetPublisher",
+          "agent-registry:TagResource",
+          "agent-registry:ListTagsForResource"
+        ],
+        "timeoutInMinutes": 2160
+      },
+      "delete": {
+        "permissions": [
+          "agent-registry:DeletePublisher",
+          "agent-registry:GetPublisher"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "agent-registry:ListPublishers"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "agent-registry:GetPublisher",
+          "agent-registry:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "agent-registry:TagResource",
+          "agent-registry:UntagResource",
+          "agent-registry:GetPublisher",
+          "agent-registry:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/PublisherArn"
+    ],
+    "properties": {
+      "CreatedAt": {
+        "description": "The timestamp when the Publisher was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "PublisherArn": {
+        "description": "The Amazon Resource Name (ARN) of the Publisher. The Publisher is a global resource, so the ARN has no Region.",
+        "maxLength": 2048,
+        "minLength": 1,
+        "pattern": "^arn:(aws|aws-cn|aws-us-gov):agent-registry::[0-9]{12}:publisher/.+$",
+        "type": "string"
+      },
+      "Status": {
+        "$ref": "#/definitions/VerificationStatus",
+        "description": "The verification status of the Publisher."
+      },
+      "Tags": {
+        "description": "Tags to assign to the Publisher.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 50,
+        "type": "array",
+        "uniqueItems": true
+      },
+      "UpdatedAt": {
+        "description": "The timestamp when the Publisher was last updated.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Value": {
+        "$ref": "#/definitions/Identifier",
+        "description": "The identifier that this Publisher proves ownership of."
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/PublisherArn",
+      "/properties/Status",
+      "/properties/CreatedAt",
+      "/properties/UpdatedAt"
+    ],
+    "required": [
+      "Value"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "agent-registry:TagResource",
+        "agent-registry:UntagResource",
+        "agent-registry:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::AgentRegistry::Publisher"
+  }
+}

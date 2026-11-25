@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Route53GlobalResolver-AccessSource",
   "type": "AWS::Route53GlobalResolver::AccessSource",
-  "time": "2026-10-14T20:09:07.023Z",
+  "time": "2026-11-17T21:32:51.23Z",
   "schema": {
     "additionalIdentifiers": [
       [
@@ -11,7 +11,9 @@
     "additionalProperties": false,
     "createOnlyProperties": [
       "/properties/DnsViewId",
-      "/properties/ClientToken"
+      "/properties/ClientToken",
+      "/properties/CoreNetworkEndpointId",
+      "/properties/Segment"
     ],
     "definitions": {
       "CRResourceStatus": {
@@ -26,6 +28,12 @@
       "Cidr": {
         "maxLength": 42,
         "minLength": 1,
+        "type": "string"
+      },
+      "CoreNetworkEndpointId": {
+        "maxLength": 64,
+        "minLength": 1,
+        "pattern": "^[-.a-zA-Z0-9]+$",
         "type": "string"
       },
       "DnsProtocol": {
@@ -47,6 +55,11 @@
         "maxLength": 64,
         "minLength": 1,
         "pattern": "(?!^[0-9]+$)([a-zA-Z0-9-_' ']+)",
+        "type": "string"
+      },
+      "SegmentName": {
+        "maxLength": 256,
+        "minLength": 1,
         "type": "string"
       },
       "Tag": {
@@ -133,12 +146,17 @@
         "type": "string"
       },
       "Cidr": {
-        "$ref": "#/definitions/Cidr"
+        "$ref": "#/definitions/Cidr",
+        "description": "The IP address range (CIDR) whose traffic this access source admits. Required unless the access source uses a core network endpoint."
       },
       "ClientToken": {
         "maxLength": 256,
         "minLength": 1,
         "type": "string"
+      },
+      "CoreNetworkEndpointId": {
+        "$ref": "#/definitions/CoreNetworkEndpointId",
+        "description": "The ID of the core network endpoint whose Cloud WAN segment traffic this access source admits. Use together with Segment instead of Cidr. The core network endpoint must be OPERATIONAL."
       },
       "CreatedAt": {
         "type": "string"
@@ -156,6 +174,10 @@
       },
       "Protocol": {
         "$ref": "#/definitions/DnsProtocol"
+      },
+      "Segment": {
+        "$ref": "#/definitions/SegmentName",
+        "description": "The name of the Cloud WAN segment of the core network endpoint, or * for all of its segments. Requires CoreNetworkEndpointId."
       },
       "Status": {
         "$ref": "#/definitions/CRResourceStatus"
@@ -179,7 +201,6 @@
       "/properties/Status"
     ],
     "required": [
-      "Cidr",
       "DnsViewId",
       "Protocol"
     ],

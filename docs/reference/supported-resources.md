@@ -5,6 +5,18 @@
 | **[AWS::ACMPCA::CertificateAuthorityActivation](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.acmpca/default/types.md)** |  |
 | **[AWS::ACMPCA::Permission](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.acmpca/default/types.md)** | This resource type can only be created and deleted. See [here](https://github.com/radius-project/bicep-types-aws/blob/main/docs/reference/limitations.md#create-and-delete-only-resource-types) for more information. |
 | **[AWS::AIOps::InvestigationGroup](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.aiops/default/types.md)** |  |
+| **[AWS::APIPortal::DiscoveryConfiguration](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.apiportal/default/types.md)** |  |
+| **[AWS::APIPortal::DiscoveryEnablement](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.apiportal/default/types.md)** | This resource type can only be created and deleted. See [here](https://github.com/radius-project/bicep-types-aws/blob/main/docs/reference/limitations.md#create-and-delete-only-resource-types) for more information. |
+| **[AWS::APIPortal::ManagedApi](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.apiportal/default/types.md)** |  |
+| **[AWS::APIPortal::OrganizationDiscoveryConfiguration](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.apiportal/default/types.md)** |  |
+| **[AWS::APIPortal::Portal](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.apiportal/default/types.md)** |  |
+| **[AWS::APIPortal::PortalPublication](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.apiportal/default/types.md)** |  |
+| **[AWS::APIPortal::Product](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.apiportal/default/types.md)** |  |
+| **[AWS::APIPortal::ProductApiPage](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.apiportal/default/types.md)** |  |
+| **[AWS::APIPortal::ProductDisplayOrder](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.apiportal/default/types.md)** |  |
+| **[AWS::APIPortal::ProductManagedApiAssociation](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.apiportal/default/types.md)** |  |
+| **[AWS::APIPortal::ProductPage](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.apiportal/default/types.md)** |  |
+| **[AWS::APIPortal::ProductSharingPolicy](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.apiportal/default/types.md)** |  |
 | **[AWS::APS::AnomalyDetector](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.aps/default/types.md)** |  |
 | **[AWS::APS::ResourcePolicy](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.aps/default/types.md)** |  |
 | **[AWS::APS::RuleGroupsNamespace](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.aps/default/types.md)** |  |
@@ -18,6 +30,7 @@
 | **[AWS::AccessAnalyzer::ArchiveRule](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.accessanalyzer/default/types.md)** |  |
 | **[AWS::AccountAccess::Application](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.accountaccess/default/types.md)** |  |
 | **[AWS::AccountAccess::Entitlement](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.accountaccess/default/types.md)** | This resource type can only be created and deleted. See [here](https://github.com/radius-project/bicep-types-aws/blob/main/docs/reference/limitations.md#create-and-delete-only-resource-types) for more information. |
+| **[AWS::AgentRegistry::Publisher](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.agentregistry/default/types.md)** |  |
 | **[AWS::AgentRegistry::Registry](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.agentregistry/default/types.md)** |  |
 | **[AWS::AgentRegistry::RegistryRecord](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.agentregistry/default/types.md)** |  |
 | **[AWS::AmazonMQ::Broker](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.amazonmq/default/types.md)** |  |
@@ -98,7 +111,7 @@
 | **[AWS::AppStream::Entitlement](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.appstream/default/types.md)** |  |
 | **[AWS::AppStream::Fleet](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.appstream/default/types.md)** |  |
 | **[AWS::AppStream::Image](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.appstream/default/types.md)** | This resource type is read-only. Reference it with `existing`. See [here](https://github.com/radius-project/bicep-types-aws/blob/main/docs/reference/limitations.md#read-only-resource-types) for more information. |
-| **[AWS::AppStream::ImageBuilder](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.appstream/default/types.md)** | This resource type can only be created and deleted. See [here](https://github.com/radius-project/bicep-types-aws/blob/main/docs/reference/limitations.md#create-and-delete-only-resource-types) for more information. |
+| **[AWS::AppStream::ImageBuilder](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.appstream/default/types.md)** |  |
 | **[AWS::AppStream::Stack](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.appstream/default/types.md)** |  |
 | **[AWS::AppStream::StackFleetAssociation](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.appstream/default/types.md)** |  |
 | **[AWS::AppStream::StackUserAssociation](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.appstream/default/types.md)** | This resource type can only be created and deleted. See [here](https://github.com/radius-project/bicep-types-aws/blob/main/docs/reference/limitations.md#create-and-delete-only-resource-types) for more information. |
@@ -130,6 +143,7 @@
 | **[AWS::Athena::NamedQuery](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.athena/default/types.md)** | This resource type can only be created and deleted. See [here](https://github.com/radius-project/bicep-types-aws/blob/main/docs/reference/limitations.md#create-and-delete-only-resource-types) for more information. |
 | **[AWS::Athena::PreparedStatement](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.athena/default/types.md)** |  |
 | **[AWS::Athena::Session](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.athena/default/types.md)** | This resource type is read-only. Reference it with `existing`. See [here](https://github.com/radius-project/bicep-types-aws/blob/main/docs/reference/limitations.md#read-only-resource-types) for more information. |
+| **[AWS::Athena::SystemTables](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.athena/default/types.md)** |  |
 | **[AWS::Athena::WorkGroup](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.athena/default/types.md)** |  |
 | **[AWS::AuditManager::Assessment](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.auditmanager/default/types.md)** |  |
 | **[AWS::AutoScaling::AutoScalingGroup](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.autoscaling/default/types.md)** |  |
@@ -172,7 +186,9 @@
 | **[AWS::Batch::QuotaShare](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.batch/default/types.md)** |  |
 | **[AWS::Batch::SchedulingPolicy](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.batch/default/types.md)** |  |
 | **[AWS::Batch::ServiceEnvironment](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.batch/default/types.md)** |  |
+| **[AWS::BcmPricingCalculator::BillEstimate](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.bcmpricingcalculator/default/types.md)** |  |
 | **[AWS::BcmPricingCalculator::BillScenario](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.bcmpricingcalculator/default/types.md)** |  |
+| **[AWS::BcmPricingCalculator::WorkloadEstimate](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.bcmpricingcalculator/default/types.md)** |  |
 | **[AWS::Bedrock::Agent](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.bedrock/default/types.md)** |  |
 | **[AWS::Bedrock::AgentAlias](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.bedrock/default/types.md)** |  |
 | **[AWS::Bedrock::ApplicationInferenceProfile](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.bedrock/default/types.md)** |  |
@@ -319,6 +335,8 @@
 | **[AWS::CloudFront::ContinuousDeploymentPolicy](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.cloudfront/default/types.md)** |  |
 | **[AWS::CloudFront::Distribution](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.cloudfront/default/types.md)** |  |
 | **[AWS::CloudFront::DistributionTenant](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.cloudfront/default/types.md)** |  |
+| **[AWS::CloudFront::FieldLevelEncryptionConfig](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.cloudfront/default/types.md)** |  |
+| **[AWS::CloudFront::FieldLevelEncryptionProfile](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.cloudfront/default/types.md)** |  |
 | **[AWS::CloudFront::Function](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.cloudfront/default/types.md)** |  |
 | **[AWS::CloudFront::KeyGroup](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.cloudfront/default/types.md)** |  |
 | **[AWS::CloudFront::KeyValueStore](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.cloudfront/default/types.md)** |  |
@@ -331,6 +349,7 @@
 | **[AWS::CloudFront::TrustStore](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.cloudfront/default/types.md)** |  |
 | **[AWS::CloudFront::VpcOrigin](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.cloudfront/default/types.md)** |  |
 | **[AWS::CloudHSM::Cluster](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.cloudhsm/default/types.md)** |  |
+| **[AWS::CloudHSMV2::Backup](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.cloudhsmv2/default/types.md)** | This resource type is read-only. Reference it with `existing`. See [here](https://github.com/radius-project/bicep-types-aws/blob/main/docs/reference/limitations.md#read-only-resource-types) for more information. |
 | **[AWS::CloudTrail::Channel](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.cloudtrail/default/types.md)** |  |
 | **[AWS::CloudTrail::Dashboard](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.cloudtrail/default/types.md)** |  |
 | **[AWS::CloudTrail::EventDataStore](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.cloudtrail/default/types.md)** |  |
@@ -340,6 +359,7 @@
 | **[AWS::CloudWatch::AccessProfile](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.cloudwatch/default/types.md)** |  |
 | **[AWS::CloudWatch::Alarm](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.cloudwatch/default/types.md)** |  |
 | **[AWS::CloudWatch::AlarmMuteRule](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.cloudwatch/default/types.md)** |  |
+| **[AWS::CloudWatch::Alert](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.cloudwatch/default/types.md)** |  |
 | **[AWS::CloudWatch::AnomalyDetector](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.cloudwatch/default/types.md)** |  |
 | **[AWS::CloudWatch::CompositeAlarm](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.cloudwatch/default/types.md)** |  |
 | **[AWS::CloudWatch::Dashboard](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.cloudwatch/default/types.md)** |  |
@@ -349,6 +369,7 @@
 | **[AWS::CloudWatch::InsightRule](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.cloudwatch/default/types.md)** |  |
 | **[AWS::CloudWatch::Integration](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.cloudwatch/default/types.md)** |  |
 | **[AWS::CloudWatch::LogAlarm](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.cloudwatch/default/types.md)** |  |
+| **[AWS::CloudWatch::MetricDataQueryDefinition](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.cloudwatch/default/types.md)** |  |
 | **[AWS::CloudWatch::MetricStream](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.cloudwatch/default/types.md)** |  |
 | **[AWS::CloudWatch::OTelEnrichment](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.cloudwatch/default/types.md)** |  |
 | **[AWS::CloudWatch::OmniDashboard](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.cloudwatch/default/types.md)** |  |
@@ -382,6 +403,7 @@
 | **[AWS::CodeStarConnections::RepositoryLink](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.codestarconnections/default/types.md)** |  |
 | **[AWS::CodeStarConnections::SyncConfiguration](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.codestarconnections/default/types.md)** |  |
 | **[AWS::CodeStarNotifications::NotificationRule](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.codestarnotifications/default/types.md)** |  |
+| **[AWS::Cognito::CIMDPolicy](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.cognito/default/types.md)** |  |
 | **[AWS::Cognito::IdentityPool](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.cognito/default/types.md)** |  |
 | **[AWS::Cognito::IdentityPoolPrincipalTag](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.cognito/default/types.md)** |  |
 | **[AWS::Cognito::IdentityPoolRoleAttachment](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.cognito/default/types.md)** |  |
@@ -390,6 +412,7 @@
 | **[AWS::Cognito::Terms](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.cognito/default/types.md)** |  |
 | **[AWS::Cognito::UserPool](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.cognito/default/types.md)** |  |
 | **[AWS::Cognito::UserPoolClient](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.cognito/default/types.md)** |  |
+| **[AWS::Cognito::UserPoolClientSessionConfigurationAttachment](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.cognito/default/types.md)** |  |
 | **[AWS::Cognito::UserPoolDomain](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.cognito/default/types.md)** |  |
 | **[AWS::Cognito::UserPoolGroup](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.cognito/default/types.md)** |  |
 | **[AWS::Cognito::UserPoolIdentityProvider](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.cognito/default/types.md)** |  |
@@ -397,6 +420,7 @@
 | **[AWS::Cognito::UserPoolReplica](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.cognito/default/types.md)** |  |
 | **[AWS::Cognito::UserPoolResourceServer](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.cognito/default/types.md)** |  |
 | **[AWS::Cognito::UserPoolRiskConfigurationAttachment](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.cognito/default/types.md)** |  |
+| **[AWS::Cognito::UserPoolSessionConfigurationAttachment](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.cognito/default/types.md)** |  |
 | **[AWS::Cognito::UserPoolUICustomizationAttachment](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.cognito/default/types.md)** |  |
 | **[AWS::Cognito::UserPoolUser](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.cognito/default/types.md)** | This resource type can only be created and deleted. See [here](https://github.com/radius-project/bicep-types-aws/blob/main/docs/reference/limitations.md#create-and-delete-only-resource-types) for more information. |
 | **[AWS::Cognito::UserPoolUserToGroupAttachment](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.cognito/default/types.md)** | This resource type can only be created and deleted. See [here](https://github.com/radius-project/bicep-types-aws/blob/main/docs/reference/limitations.md#create-and-delete-only-resource-types) for more information. |
@@ -482,6 +506,7 @@
 | **[AWS::CustomerProfiles::Integration](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.customerprofiles/default/types.md)** |  |
 | **[AWS::CustomerProfiles::ObjectType](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.customerprofiles/default/types.md)** |  |
 | **[AWS::CustomerProfiles::Recommender](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.customerprofiles/default/types.md)** |  |
+| **[AWS::CustomerProfiles::RecommenderFilter](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.customerprofiles/default/types.md)** |  |
 | **[AWS::CustomerProfiles::RecommenderSchema](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.customerprofiles/default/types.md)** |  |
 | **[AWS::CustomerProfiles::SegmentDefinition](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.customerprofiles/default/types.md)** |  |
 | **[AWS::DAX::Cluster](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.dax/default/types.md)** |  |
@@ -632,6 +657,8 @@
 | **[AWS::EC2::EnclaveCertificateIamRoleAssociation](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.ec2/default/types.md)** | This resource type can only be created and deleted. See [here](https://github.com/radius-project/bicep-types-aws/blob/main/docs/reference/limitations.md#create-and-delete-only-resource-types) for more information. |
 | **[AWS::EC2::ExportImageTask](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.ec2/default/types.md)** | This resource type is read-only. Reference it with `existing`. See [here](https://github.com/radius-project/bicep-types-aws/blob/main/docs/reference/limitations.md#read-only-resource-types) for more information. |
 | **[AWS::EC2::ExportInstanceTask](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.ec2/default/types.md)** | This resource type is read-only. Reference it with `existing`. See [here](https://github.com/radius-project/bicep-types-aws/blob/main/docs/reference/limitations.md#read-only-resource-types) for more information. |
+| **[AWS::EC2::FcaPolicy](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.ec2/default/types.md)** |  |
+| **[AWS::EC2::FcaPolicyAssociation](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.ec2/default/types.md)** | This resource type can only be created and deleted. See [here](https://github.com/radius-project/bicep-types-aws/blob/main/docs/reference/limitations.md#create-and-delete-only-resource-types) for more information. |
 | **[AWS::EC2::FlowLog](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.ec2/default/types.md)** |  |
 | **[AWS::EC2::FpgaImage](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.ec2/default/types.md)** |  |
 | **[AWS::EC2::GatewayRouteTableAssociation](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.ec2/default/types.md)** |  |
@@ -718,6 +745,7 @@
 | **[AWS::EC2::TransitGatewayMulticastDomainAssociation](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.ec2/default/types.md)** | This resource type can only be created and deleted. See [here](https://github.com/radius-project/bicep-types-aws/blob/main/docs/reference/limitations.md#create-and-delete-only-resource-types) for more information. |
 | **[AWS::EC2::TransitGatewayMulticastGroupMember](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.ec2/default/types.md)** | This resource type can only be created and deleted. See [here](https://github.com/radius-project/bicep-types-aws/blob/main/docs/reference/limitations.md#create-and-delete-only-resource-types) for more information. |
 | **[AWS::EC2::TransitGatewayMulticastGroupSource](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.ec2/default/types.md)** | This resource type can only be created and deleted. See [here](https://github.com/radius-project/bicep-types-aws/blob/main/docs/reference/limitations.md#create-and-delete-only-resource-types) for more information. |
+| **[AWS::EC2::TransitGatewayNetworkFunctionAttachment](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.ec2/default/types.md)** |  |
 | **[AWS::EC2::TransitGatewayPeeringAttachment](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.ec2/default/types.md)** |  |
 | **[AWS::EC2::TransitGatewayPolicyTable](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.ec2/default/types.md)** |  |
 | **[AWS::EC2::TransitGatewayPolicyTableAssociation](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.ec2/default/types.md)** | This resource type can only be created and deleted. See [here](https://github.com/radius-project/bicep-types-aws/blob/main/docs/reference/limitations.md#create-and-delete-only-resource-types) for more information. |
@@ -826,6 +854,8 @@
 | **[AWS::ElasticBeanstalk::ConfigurationTemplate](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.elasticbeanstalk/default/types.md)** |  |
 | **[AWS::ElasticBeanstalk::Environment](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.elasticbeanstalk/default/types.md)** |  |
 | **[AWS::ElasticLoadBalancing::LoadBalancer](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.elasticloadbalancing/default/types.md)** |  |
+| **[AWS::ElasticLoadBalancingProxy::CertificateAssociation](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.elasticloadbalancingproxy/default/types.md)** | This resource type can only be created and deleted. See [here](https://github.com/radius-project/bicep-types-aws/blob/main/docs/reference/limitations.md#create-and-delete-only-resource-types) for more information. |
+| **[AWS::ElasticLoadBalancingProxy::Proxy](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.elasticloadbalancingproxy/default/types.md)** |  |
 | **[AWS::ElasticLoadBalancingV2::Listener](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.elasticloadbalancingv2/default/types.md)** |  |
 | **[AWS::ElasticLoadBalancingV2::ListenerCertificate](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.elasticloadbalancingv2/default/types.md)** |  |
 | **[AWS::ElasticLoadBalancingV2::ListenerRule](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.elasticloadbalancingv2/default/types.md)** |  |
@@ -833,6 +863,7 @@
 | **[AWS::ElasticLoadBalancingV2::TargetGroup](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.elasticloadbalancingv2/default/types.md)** |  |
 | **[AWS::ElasticLoadBalancingV2::TrustStore](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.elasticloadbalancingv2/default/types.md)** |  |
 | **[AWS::ElasticLoadBalancingV2::TrustStoreRevocation](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.elasticloadbalancingv2/default/types.md)** | This resource type can only be created and deleted. See [here](https://github.com/radius-project/bicep-types-aws/blob/main/docs/reference/limitations.md#create-and-delete-only-resource-types) for more information. |
+| **[AWS::Elasticsearch::Domain](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.elasticsearch/default/types.md)** |  |
 | **[AWS::ElementalInference::Dictionary](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.elementalinference/default/types.md)** |  |
 | **[AWS::ElementalInference::Feed](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.elementalinference/default/types.md)** |  |
 | **[AWS::EntityResolution::IdMappingWorkflow](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.entityresolution/default/types.md)** |  |
@@ -873,12 +904,17 @@
 | **[AWS::FMS::ProtocolsList](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.fms/default/types.md)** |  |
 | **[AWS::FMS::ResourceSet](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.fms/default/types.md)** |  |
 | **[AWS::FSx::Backup](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.fsx/default/types.md)** |  |
+| **[AWS::FSx::ClusterPeer](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.fsx/default/types.md)** |  |
 | **[AWS::FSx::DataRepositoryAssociation](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.fsx/default/types.md)** |  |
 | **[AWS::FSx::FileCache](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.fsx/default/types.md)** |  |
 | **[AWS::FSx::FileSystem](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.fsx/default/types.md)** |  |
 | **[AWS::FSx::S3AccessPointAttachment](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.fsx/default/types.md)** | This resource type can only be created and deleted. See [here](https://github.com/radius-project/bicep-types-aws/blob/main/docs/reference/limitations.md#create-and-delete-only-resource-types) for more information. |
+| **[AWS::FSx::SnapmirrorPolicy](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.fsx/default/types.md)** |  |
+| **[AWS::FSx::SnapmirrorRelationship](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.fsx/default/types.md)** |  |
 | **[AWS::FSx::Snapshot](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.fsx/default/types.md)** |  |
+| **[AWS::FSx::SnapshotPolicy](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.fsx/default/types.md)** |  |
 | **[AWS::FSx::StorageVirtualMachine](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.fsx/default/types.md)** |  |
+| **[AWS::FSx::StorageVirtualMachinePeer](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.fsx/default/types.md)** |  |
 | **[AWS::FSx::Task](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.fsx/default/types.md)** | This resource type is read-only. Reference it with `existing`. See [here](https://github.com/radius-project/bicep-types-aws/blob/main/docs/reference/limitations.md#read-only-resource-types) for more information. |
 | **[AWS::FSx::Volume](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.fsx/default/types.md)** |  |
 | **[AWS::FinSpace::Environment](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.finspace/default/types.md)** |  |
@@ -1101,11 +1137,13 @@
 | **[AWS::Kendra::Thesaurus](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.kendra/default/types.md)** |  |
 | **[AWS::KendraRanking::ExecutionPlan](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.kendraranking/default/types.md)** |  |
 | **[AWS::Kinesis::Channel](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.kinesis/default/types.md)** |  |
+| **[AWS::Kinesis::Queue](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.kinesis/default/types.md)** |  |
 | **[AWS::Kinesis::ResourcePolicy](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.kinesis/default/types.md)** |  |
 | **[AWS::Kinesis::Stream](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.kinesis/default/types.md)** |  |
 | **[AWS::Kinesis::StreamConsumer](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.kinesis/default/types.md)** | This resource type can only be created and deleted. See [here](https://github.com/radius-project/bicep-types-aws/blob/main/docs/reference/limitations.md#create-and-delete-only-resource-types) for more information. |
 | **[AWS::KinesisAnalyticsV2::Application](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.kinesisanalyticsv2/default/types.md)** |  |
 | **[AWS::KinesisAnalyticsV2::ApplicationCloudWatchLoggingOption](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.kinesisanalyticsv2/default/types.md)** |  |
+| **[AWS::KinesisAnalyticsV2::Snapshot](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.kinesisanalyticsv2/default/types.md)** |  |
 | **[AWS::KinesisFirehose::DeliveryStream](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.kinesisfirehose/default/types.md)** |  |
 | **[AWS::KinesisVideo::SignalingChannel](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.kinesisvideo/default/types.md)** |  |
 | **[AWS::KinesisVideo::Stream](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.kinesisvideo/default/types.md)** |  |
@@ -1129,6 +1167,9 @@
 | **[AWS::Lambda::NetworkConnector](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.lambda/default/types.md)** |  |
 | **[AWS::Lambda::Permission](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.lambda/default/types.md)** | This resource type can only be created and deleted. See [here](https://github.com/radius-project/bicep-types-aws/blob/main/docs/reference/limitations.md#create-and-delete-only-resource-types) for more information. |
 | **[AWS::Lambda::ResourcePolicy](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.lambda/default/types.md)** |  |
+| **[AWS::Lambda::Runtime](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.lambda/default/types.md)** |  |
+| **[AWS::Lambda::RuntimeAlias](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.lambda/default/types.md)** |  |
+| **[AWS::Lambda::RuntimeVersion](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.lambda/default/types.md)** |  |
 | **[AWS::Lambda::Url](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.lambda/default/types.md)** |  |
 | **[AWS::Lambda::Version](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.lambda/default/types.md)** |  |
 | **[AWS::Lambda::WebFunction](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.lambda/default/types.md)** |  |
@@ -1144,6 +1185,7 @@
 | **[AWS::LicenseManager::LicenseAssetGroup](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.licensemanager/default/types.md)** |  |
 | **[AWS::LicenseManager::LicenseAssetRuleSet](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.licensemanager/default/types.md)** |  |
 | **[AWS::LicenseManager::LicenseConfiguration](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.licensemanager/default/types.md)** |  |
+| **[AWS::LicenseManager::ReportGenerator](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.licensemanager/default/types.md)** |  |
 | **[AWS::LicenseManagerLinuxSubscriptions::SubscriptionProvider](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.licensemanagerlinuxsubscriptions/default/types.md)** |  |
 | **[AWS::LicenseManagerUserSubscriptions::LicenseServerEndpoint](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.licensemanagerusersubscriptions/default/types.md)** |  |
 | **[AWS::Lightsail::Alarm](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.lightsail/default/types.md)** |  |
@@ -1307,10 +1349,13 @@
 | **[AWS::NetworkFirewall::TLSInspectionConfiguration](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.networkfirewall/default/types.md)** |  |
 | **[AWS::NetworkFirewall::VpcEndpointAssociation](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.networkfirewall/default/types.md)** |  |
 | **[AWS::NetworkFlowMonitor::Monitor](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.networkflowmonitor/default/types.md)** |  |
+| **[AWS::NetworkFlowMonitor::PerformanceMonitor](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.networkflowmonitor/default/types.md)** |  |
 | **[AWS::NetworkFlowMonitor::Scope](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.networkflowmonitor/default/types.md)** |  |
 | **[AWS::NetworkManager::ConnectAttachment](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.networkmanager/default/types.md)** |  |
 | **[AWS::NetworkManager::ConnectPeer](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.networkmanager/default/types.md)** |  |
 | **[AWS::NetworkManager::Connection](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.networkmanager/default/types.md)** |  |
+| **[AWS::NetworkManager::ContextStore](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.networkmanager/default/types.md)** |  |
+| **[AWS::NetworkManager::ContextStoreAssociation](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.networkmanager/default/types.md)** | This resource type can only be created and deleted. See [here](https://github.com/radius-project/bicep-types-aws/blob/main/docs/reference/limitations.md#create-and-delete-only-resource-types) for more information. |
 | **[AWS::NetworkManager::CoreNetwork](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.networkmanager/default/types.md)** |  |
 | **[AWS::NetworkManager::CoreNetworkPrefixListAssociation](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.networkmanager/default/types.md)** | This resource type can only be created and deleted. See [here](https://github.com/radius-project/bicep-types-aws/blob/main/docs/reference/limitations.md#create-and-delete-only-resource-types) for more information. |
 | **[AWS::NetworkManager::CustomerGatewayAssociation](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.networkmanager/default/types.md)** | This resource type can only be created and deleted. See [here](https://github.com/radius-project/bicep-types-aws/blob/main/docs/reference/limitations.md#create-and-delete-only-resource-types) for more information. |
@@ -1327,6 +1372,7 @@
 | **[AWS::NetworkManager::VpcAttachment](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.networkmanager/default/types.md)** |  |
 | **[AWS::NetworkMonitor::Monitor](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.networkmonitor/default/types.md)** |  |
 | **[AWS::NetworkMonitor::Probe](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.networkmonitor/default/types.md)** |  |
+| **[AWS::NetworkSecurityManager::Deployment](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.networksecuritymanager/default/types.md)** |  |
 | **[AWS::NetworkSecurityManager::Policy](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.networksecuritymanager/default/types.md)** |  |
 | **[AWS::NetworkSecurityManager::Rule](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.networksecuritymanager/default/types.md)** |  |
 | **[AWS::NetworkSecurityManager::Scope](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.networksecuritymanager/default/types.md)** |  |
@@ -1363,6 +1409,7 @@
 | **[AWS::Omics::Workflow](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.omics/default/types.md)** |  |
 | **[AWS::Omics::WorkflowVersion](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.omics/default/types.md)** |  |
 | **[AWS::OpenSearch::DataSource](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.opensearch/default/types.md)** |  |
+| **[AWS::OpenSearchMemory::Space](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.opensearchmemory/default/types.md)** |  |
 | **[AWS::OpenSearchServerless::AccessPolicy](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.opensearchserverless/default/types.md)** |  |
 | **[AWS::OpenSearchServerless::Collection](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.opensearchserverless/default/types.md)** |  |
 | **[AWS::OpenSearchServerless::CollectionGroup](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.opensearchserverless/default/types.md)** |  |
@@ -1374,6 +1421,7 @@
 | **[AWS::OpenSearchServerless::VpcEndpoint](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.opensearchserverless/default/types.md)** |  |
 | **[AWS::OpenSearchService::Application](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.opensearchservice/default/types.md)** |  |
 | **[AWS::OpenSearchService::Domain](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.opensearchservice/default/types.md)** |  |
+| **[AWS::OpenSearchService::ReplicationPeer](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.opensearchservice/default/types.md)** | This resource type can only be created and deleted. See [here](https://github.com/radius-project/bicep-types-aws/blob/main/docs/reference/limitations.md#create-and-delete-only-resource-types) for more information. |
 | **[AWS::Organizations::Account](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.organizations/default/types.md)** |  |
 | **[AWS::Organizations::Organization](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.organizations/default/types.md)** |  |
 | **[AWS::Organizations::OrganizationalUnit](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.organizations/default/types.md)** |  |
@@ -1543,12 +1591,17 @@
 | **[AWS::Route53::DNSSEC](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.route53/default/types.md)** | This resource type can only be created and deleted. See [here](https://github.com/radius-project/bicep-types-aws/blob/main/docs/reference/limitations.md#create-and-delete-only-resource-types) for more information. |
 | **[AWS::Route53::DelegationSet](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.route53/default/types.md)** | This resource type can only be created and deleted. See [here](https://github.com/radius-project/bicep-types-aws/blob/main/docs/reference/limitations.md#create-and-delete-only-resource-types) for more information. |
 | **[AWS::Route53::HealthCheck](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.route53/default/types.md)** |  |
+| **[AWS::Route53::HealthCheckSource](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.route53/default/types.md)** |  |
 | **[AWS::Route53::HostedZone](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.route53/default/types.md)** |  |
 | **[AWS::Route53::KeySigningKey](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.route53/default/types.md)** |  |
+| **[AWS::Route53::QueryLoggingConfig](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.route53/default/types.md)** | This resource type can only be created and deleted. See [here](https://github.com/radius-project/bicep-types-aws/blob/main/docs/reference/limitations.md#create-and-delete-only-resource-types) for more information. |
 | **[AWS::Route53::RecordSet](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.route53/default/types.md)** |  |
+| **[AWS::Route53::RecordSetProtection](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.route53/default/types.md)** | This resource type can only be created and deleted. See [here](https://github.com/radius-project/bicep-types-aws/blob/main/docs/reference/limitations.md#create-and-delete-only-resource-types) for more information. |
 | **[AWS::Route53::TrafficPolicy](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.route53/default/types.md)** |  |
+| **[AWS::Route53::TrafficPolicyInstance](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.route53/default/types.md)** |  |
 | **[AWS::Route53GlobalResolver::AccessSource](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.route53globalresolver/default/types.md)** |  |
 | **[AWS::Route53GlobalResolver::AccessToken](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.route53globalresolver/default/types.md)** |  |
+| **[AWS::Route53GlobalResolver::CoreNetworkEndpoint](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.route53globalresolver/default/types.md)** |  |
 | **[AWS::Route53GlobalResolver::DnsView](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.route53globalresolver/default/types.md)** |  |
 | **[AWS::Route53GlobalResolver::FirewallDomainList](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.route53globalresolver/default/types.md)** |  |
 | **[AWS::Route53GlobalResolver::FirewallRule](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.route53globalresolver/default/types.md)** |  |
@@ -1651,6 +1704,7 @@
 | **[AWS::SSM::Association](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.ssm/default/types.md)** |  |
 | **[AWS::SSM::AutomationExecution](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.ssm/default/types.md)** | This resource type is read-only. Reference it with `existing`. See [here](https://github.com/radius-project/bicep-types-aws/blob/main/docs/reference/limitations.md#read-only-resource-types) for more information. |
 | **[AWS::SSM::CloudConnector](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.ssm/default/types.md)** |  |
+| **[AWS::SSM::DefaultHostManagementConfiguration](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.ssm/default/types.md)** |  |
 | **[AWS::SSM::Document](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.ssm/default/types.md)** |  |
 | **[AWS::SSM::MaintenanceWindow](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.ssm/default/types.md)** |  |
 | **[AWS::SSM::MaintenanceWindowTarget](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.ssm/default/types.md)** |  |
@@ -1700,8 +1754,10 @@
 | **[AWS::SageMaker::Domain](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.sagemaker/default/types.md)** |  |
 | **[AWS::SageMaker::Endpoint](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.sagemaker/default/types.md)** |  |
 | **[AWS::SageMaker::EndpointConfig](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.sagemaker/default/types.md)** |  |
+| **[AWS::SageMaker::EndpointPolicy](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.sagemaker/default/types.md)** |  |
 | **[AWS::SageMaker::Experiment](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.sagemaker/default/types.md)** |  |
 | **[AWS::SageMaker::ExperimentTrialComponent](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.sagemaker/default/types.md)** |  |
+| **[AWS::SageMaker::Extension](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.sagemaker/default/types.md)** |  |
 | **[AWS::SageMaker::FeatureGroup](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.sagemaker/default/types.md)** |  |
 | **[AWS::SageMaker::Hub](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.sagemaker/default/types.md)** |  |
 | **[AWS::SageMaker::HubContentVersion](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.sagemaker/default/types.md)** | This resource type is read-only. Reference it with `existing`. See [here](https://github.com/radius-project/bicep-types-aws/blob/main/docs/reference/limitations.md#read-only-resource-types) for more information. |
@@ -1711,6 +1767,7 @@
 | **[AWS::SageMaker::ImageVersion](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.sagemaker/default/types.md)** |  |
 | **[AWS::SageMaker::InferenceComponent](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.sagemaker/default/types.md)** |  |
 | **[AWS::SageMaker::InferenceExperiment](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.sagemaker/default/types.md)** |  |
+| **[AWS::SageMaker::InferenceRouter](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.sagemaker/default/types.md)** |  |
 | **[AWS::SageMaker::MlflowApp](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.sagemaker/default/types.md)** |  |
 | **[AWS::SageMaker::MlflowTrackingServer](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.sagemaker/default/types.md)** |  |
 | **[AWS::SageMaker::Model](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.sagemaker/default/types.md)** |  |
@@ -1739,6 +1796,7 @@
 | **[AWS::SageMaker::UserProfile](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.sagemaker/default/types.md)** |  |
 | **[AWS::SageMaker::Workforce](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.sagemaker/default/types.md)** |  |
 | **[AWS::SageMaker::Workteam](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.sagemaker/default/types.md)** |  |
+| **[AWS::SavingsPlans::SavingsPlan](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.savingsplans/default/types.md)** | This resource type is read-only. Reference it with `existing`. See [here](https://github.com/radius-project/bicep-types-aws/blob/main/docs/reference/limitations.md#read-only-resource-types) for more information. |
 | **[AWS::Scheduler::Schedule](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.scheduler/default/types.md)** |  |
 | **[AWS::Scheduler::ScheduleGroup](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.scheduler/default/types.md)** |  |
 | **[AWS::SecretsManager::ResourcePolicy](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.secretsmanager/default/types.md)** |  |
@@ -1835,6 +1893,7 @@
 | **[AWS::Textract::Adapter](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.textract/default/types.md)** |  |
 | **[AWS::ThinClient::SoftwareSet](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.thinclient/default/types.md)** | This resource type is read-only. Reference it with `existing`. See [here](https://github.com/radius-project/bicep-types-aws/blob/main/docs/reference/limitations.md#read-only-resource-types) for more information. |
 | **[AWS::Timestream::Database](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.timestream/default/types.md)** |  |
+| **[AWS::Timestream::InfluxDBBackup](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.timestream/default/types.md)** |  |
 | **[AWS::Timestream::InfluxDBCluster](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.timestream/default/types.md)** |  |
 | **[AWS::Timestream::InfluxDBInstance](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.timestream/default/types.md)** |  |
 | **[AWS::Timestream::InfluxDBParameterGroup](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.timestream/default/types.md)** | This resource type is read-only. Reference it with `existing`. See [here](https://github.com/radius-project/bicep-types-aws/blob/main/docs/reference/limitations.md#read-only-resource-types) for more information. |
@@ -1891,7 +1950,9 @@
 | **[AWS::WAFv2::WebACLAssociation](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.wafv2/default/types.md)** |  |
 | **[AWS::WellArchitected::AgentContext](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.wellarchitected/default/types.md)** |  |
 | **[AWS::WellArchitected::AgentGoal](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.wellarchitected/default/types.md)** |  |
+| **[AWS::WellArchitected::AgentOrganizationalProfile](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.wellarchitected/default/types.md)** |  |
 | **[AWS::WellArchitected::AgentProfile](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.wellarchitected/default/types.md)** |  |
+| **[AWS::WellArchitected::AgentProfilePolicy](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.wellarchitected/default/types.md)** |  |
 | **[AWS::WellArchitected::Lens](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.wellarchitected/default/types.md)** |  |
 | **[AWS::WellArchitected::Profile](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.wellarchitected/default/types.md)** |  |
 | **[AWS::WellArchitected::ReviewTemplate](https://github.com/radius-project/bicep-types-aws/blob/main/artifacts/bicep/aws/aws.wellarchitected/default/types.md)** |  |

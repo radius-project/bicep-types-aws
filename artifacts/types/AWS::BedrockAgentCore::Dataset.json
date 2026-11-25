@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-BedrockAgentCore-Dataset",
   "type": "AWS::BedrockAgentCore::Dataset",
-  "time": "2026-10-21T20:59:10.417Z",
+  "time": "2026-11-25T21:11:42.778Z",
   "schema": {
     "additionalIdentifiers": [
       [
@@ -11,7 +11,6 @@
     "additionalProperties": false,
     "createOnlyProperties": [
       "/properties/DatasetName",
-      "/properties/SchemaType",
       "/properties/KmsKeyArn",
       "/properties/Source"
     ],
@@ -34,7 +33,7 @@
         "description": "Inline examples provided directly in the request body.",
         "properties": {
           "Examples": {
-            "description": "Examples to add. Each example is a free-form JSON document validated against the declared schemaType.",
+            "description": "Examples to add. Each example is a free-form JSON document validated against the scenario rules.",
             "items": {
               "type": "object"
             },
@@ -84,6 +83,9 @@
         "type": "object"
       }
     },
+    "deprecatedProperties": [
+      "/properties/SchemaType"
+    ],
     "description": "Definition of AWS::BedrockAgentCore::Dataset Resource Type",
     "handlers": {
       "create": {
@@ -173,7 +175,7 @@
         "type": "string"
       },
       "SchemaType": {
-        "description": "Versioned schema type governing the structure of examples. Immutable after creation.",
+        "description": "Deprecated. This property is ignored by the service; whether an example is predefined or simulated is inferred from its fields. Versioned schema type governing the structure of examples.",
         "enum": [
           "AGENTCORE_EVALUATION_PREDEFINED_V1",
           "AGENTCORE_EVALUATION_SIMULATED_V1",
@@ -222,8 +224,7 @@
       "/properties/UpdatedAt"
     ],
     "required": [
-      "DatasetName",
-      "SchemaType"
+      "DatasetName"
     ],
     "tagging": {
       "cloudFormationSystemTags": false,
@@ -239,6 +240,7 @@
     },
     "typeName": "AWS::BedrockAgentCore::Dataset",
     "writeOnlyProperties": [
+      "/properties/SchemaType",
       "/properties/Source"
     ]
   }

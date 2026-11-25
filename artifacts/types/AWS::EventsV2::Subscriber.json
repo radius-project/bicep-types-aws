@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EventsV2-Subscriber",
   "type": "AWS::EventsV2::Subscriber",
-  "time": "2026-10-14T12:31:50.874Z",
+  "time": "2026-11-22T17:23:10.423Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -176,6 +176,14 @@
               }
             }
           },
+          "MskParameters": {
+            "$comment": "MskParameters is accepted only when TargetArn is an Amazon MSK cluster. Mirrors EventBridgeNexusFrontEndService SubscriberRequestValidator.validateTargetParameters over EventBridgeNexusCommon TargetProtocolResolver (classification by ARN service segment and events resource type); nothing fails the build if the two drift.",
+            "properties": {
+              "TargetArn": {
+                "pattern": "^arn:[^:]*:kafka:"
+              }
+            }
+          },
           "SnsParameters": {
             "$comment": "SnsParameters is accepted only when TargetArn is an SNS topic. Mirrors EventBridgeNexusFrontEndService SubscriberRequestValidator.validateTargetParameters over EventBridgeNexusCommon TargetProtocolResolver (classification by ARN service segment and events resource type); nothing fails the build if the two drift.",
             "properties": {
@@ -317,6 +325,70 @@
                 "type": "string"
               }
             },
+            "type": "object"
+          },
+          "MskParameters": {
+            "additionalProperties": false,
+            "description": "Parameters for producing events to an Amazon Managed Streaming for Apache Kafka (Amazon MSK) cluster, used when TargetArn is an Amazon MSK cluster ARN.",
+            "properties": {
+              "Acks": {
+                "description": "Producer acknowledgement mode. ALL waits for all in-sync replicas. LEADER waits for the partition leader only. Defaults to ALL.",
+                "enum": [
+                  "ALL",
+                  "LEADER"
+                ],
+                "type": "string"
+              },
+              "ClientId": {
+                "description": "Producer client.id passed to the Kafka broker. A literal, not a JSONata expression.",
+                "maxLength": 255,
+                "minLength": 1,
+                "type": "string"
+              },
+              "Compression": {
+                "description": "Producer compression codec applied to the record batch. Defaults to NONE.",
+                "enum": [
+                  "NONE",
+                  "GZIP",
+                  "SNAPPY",
+                  "LZ4",
+                  "ZSTD"
+                ],
+                "type": "string"
+              },
+              "Connectivity": {
+                "description": "Specifies how the service connects to the Amazon MSK cluster. PUBLIC connects through the cluster's public access. PRIVATE connects through the cluster's multi-VPC private connectivity. You must turn on the chosen connectivity path, with IAM access control, on the cluster.",
+                "enum": [
+                  "PUBLIC",
+                  "PRIVATE"
+                ],
+                "type": "string"
+              },
+              "Headers": {
+                "description": "Kafka record headers attached to each produced record.",
+                "insertionOrder": true,
+                "items": {
+                  "$ref": "#/definitions/MskHeader"
+                },
+                "maxItems": 100,
+                "type": "array"
+              },
+              "PartitionKey": {
+                "description": "Kafka record key. Accepts a literal or a JSONata expression; the resolved value selects the destination partition.",
+                "maxLength": 8192,
+                "type": "string"
+              },
+              "TopicName": {
+                "description": "Name of the Kafka topic events are produced to. Accepts a literal or a JSONata expression.",
+                "maxLength": 8192,
+                "minLength": 1,
+                "type": "string"
+              }
+            },
+            "required": [
+              "TopicName",
+              "Connectivity"
+            ],
             "type": "object"
           },
           "RoleArn": {
@@ -512,6 +584,24 @@
         ],
         "type": "object"
       },
+      "MskHeader": {
+        "additionalProperties": false,
+        "description": "A single Kafka record header. Key and Value each accept a literal or a JSONata expression.",
+        "properties": {
+          "Key": {
+            "maxLength": 8192,
+            "type": "string"
+          },
+          "Value": {
+            "maxLength": 8192,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key"
+        ],
+        "type": "object"
+      },
       "OnFailureConfiguration": {
         "additionalProperties": false,
         "description": "The destination for events that could not be delivered.",
@@ -651,7 +741,7 @@
           "events:TagResource",
           "iam:PassRole"
         ],
-        "timeoutInMinutes": 30
+        "timeoutInMinutes": 120
       },
       "delete": {
         "permissions": [
@@ -678,7 +768,7 @@
           "events:UntagResource",
           "iam:PassRole"
         ],
-        "timeoutInMinutes": 45
+        "timeoutInMinutes": 120
       }
     },
     "primaryIdentifier": [

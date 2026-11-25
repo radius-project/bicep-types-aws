@@ -26,11 +26,17 @@
 
 ## Application_ApplicationSourceConfig
 ### Properties
-* **ExternalUrlConfig**: [ExternalUrlConfig](#externalurlconfig) (Required)
+* **ExternalUrlConfig**: [ExternalUrlConfig](#externalurlconfig)
 
 ## ApplicationConfig
 ### Properties
 * **ContactHandling**: [ContactHandling](#contacthandling)
+
+## AuthConfig
+### Properties
+* **AudienceOverride**: string
+* **AuthType**: string (Required)
+* **CredentialProviderIdentifier**: string
 
 ## AWS.AppIntegrations/ApplicationProperties
 ### Properties
@@ -38,11 +44,14 @@
 * **ApplicationConfig**: [ApplicationConfig](#applicationconfig): The application configuration. Cannot be used when IsService is true.
 * **ApplicationSourceConfig**: [Application_ApplicationSourceConfig](#applicationapplicationsourceconfig) (Required): Application source config
 * **ApplicationType**: string: The type of application
+* **AuthConfig**: [AuthConfig](#authconfig): The authentication configuration. Required when ApplicationType is A2A_SERVER.
 * **Description**: string: The application description.
 * **Id**: string (ReadOnly): The id of the application.
 * **IframeConfig**: [IframeConfig](#iframeconfig): The iframe configuration
 * **InitializationTimeout**: int: The initialization timeout in milliseconds. Required when IsService is true.
 * **IsService**: bool: Indicates if the application is a service
+* **LastModifiedRegion**: string (ReadOnly): The region in which the application was last modified.
+* **LastModifiedTime**: string (ReadOnly): The time when the application was last modified.
 * **Name**: string (Required): The name of the application.
 * **Namespace**: string (Required): The namespace of the application.
 * **Permissions**: string[]: The configuration of events or requests that the application has access to.
@@ -72,7 +81,7 @@
 
 ## ContactHandling
 ### Properties
-* **Scope**: string (Required)
+* **Scope**: string
 
 ## DataIntegration_additionalProperties
 ### Properties

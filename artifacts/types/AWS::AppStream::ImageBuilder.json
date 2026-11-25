@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-AppStream-ImageBuilder",
   "type": "AWS::AppStream::ImageBuilder",
-  "time": "2026-10-26T21:40:08.997Z",
+  "time": "2026-11-19T04:28:10.79Z",
   "schema": {
     "additionalProperties": false,
     "anyOf": [
@@ -17,7 +17,20 @@
       }
     ],
     "createOnlyProperties": [
-      "/properties/Name"
+      "/properties/Name",
+      "/properties/InstanceType",
+      "/properties/ImageArn",
+      "/properties/ImageName",
+      "/properties/IamRoleArn",
+      "/properties/EnableDefaultInternetAccess",
+      "/properties/AppstreamAgentVersion",
+      "/properties/VpcConfig",
+      "/properties/DomainJoinInfo",
+      "/properties/AccessEndpoints",
+      "/properties/SoftwaresToInstall",
+      "/properties/SoftwaresToUninstall",
+      "/properties/RootVolumeConfig",
+      "/properties/DisableIMDSV1"
     ],
     "definitions": {
       "AccessEndpoint": {
@@ -33,6 +46,67 @@
         "required": [
           "EndpointType",
           "VpceId"
+        ],
+        "type": "object"
+      },
+      "AgentAccessConfig": {
+        "additionalProperties": false,
+        "description": "The configuration for agent access on an image builder. Agent access enables AI agents to interact with the image builder desktop.",
+        "properties": {
+          "S3BucketArn": {
+            "description": "The Amazon Resource Name (ARN) of the Amazon S3 bucket where agent screenshots are stored. Required when ScreenshotsUploadEnabled is true.",
+            "type": "string"
+          },
+          "ScreenImageFormat": {
+            "description": "The image format for agent screen captures.",
+            "type": "string"
+          },
+          "ScreenResolution": {
+            "description": "The screen resolution for the agent streaming environment.",
+            "type": "string"
+          },
+          "ScreenshotsUploadEnabled": {
+            "description": "Indicates whether screenshot uploads to Amazon S3 are enabled for agent sessions.",
+            "type": "boolean"
+          },
+          "Settings": {
+            "description": "The list of agent access settings that define permissions for each agent action. You must specify at least one setting. Agent actions that aren't listed are disabled, so list only the actions that you enable.",
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/AgentAccessSetting"
+            },
+            "minItems": 1,
+            "type": "array",
+            "uniqueItems": false
+          },
+          "UserControlMode": {
+            "description": "The user control mode for agent sessions. This setting determines how users can interact with agent sessions. Valid values are VIEW_ONLY, VIEW_STOP, and DISABLED.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Settings",
+          "ScreenResolution",
+          "ScreenImageFormat"
+        ],
+        "type": "object"
+      },
+      "AgentAccessSetting": {
+        "additionalProperties": false,
+        "description": "A permission setting for an agent action. Each setting specifies an agent action and whether it is enabled or disabled.",
+        "properties": {
+          "AgentAction": {
+            "description": "The agent action to configure. Valid values are COMPUTER_VISION, COMPUTER_INPUT, and FORWARD_MCP_TOOLS. COMPUTER_VISION allows agents to take screenshots of the desktop. COMPUTER_INPUT allows agents to click, type, and scroll on the desktop and requires COMPUTER_VISION to also be enabled. FORWARD_MCP_TOOLS allows agents to interact with applications and the desktop operating system through direct MCP calls rather than using computer use tools.",
+            "type": "string"
+          },
+          "Permission": {
+            "description": "Whether the agent action is enabled or disabled.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "AgentAction",
+          "Permission"
         ],
         "type": "object"
       },
@@ -142,6 +216,21 @@
           "iam:DeleteServiceLinkedRole",
           "iam:GetServiceLinkedRoleDeletionStatus"
         ]
+      },
+      "update": {
+        "permissions": [
+          "appstream:CreateImageBuilderStreamingURL",
+          "appstream:DescribeImageBuilders",
+          "appstream:ListTagsForResource",
+          "appstream:StartImageBuilder",
+          "appstream:StopImageBuilder",
+          "appstream:TagResource",
+          "appstream:UntagResource",
+          "appstream:UpdateImageBuilder",
+          "iam:CreateServiceLinkedRole",
+          "iam:DeleteServiceLinkedRole",
+          "iam:GetServiceLinkedRoleDeletionStatus"
+        ]
       }
     },
     "primaryIdentifier": [
@@ -154,6 +243,10 @@
         },
         "type": "array",
         "uniqueItems": false
+      },
+      "AgentAccessConfig": {
+        "$ref": "#/definitions/AgentAccessConfig",
+        "description": "The configuration for agent access on the image builder. If specified, agent access is enabled for the image builder."
       },
       "AppstreamAgentVersion": {
         "type": "string"
@@ -233,7 +326,7 @@
       ],
       "tagOnCreate": true,
       "tagProperty": "/properties/Tags",
-      "tagUpdatable": false,
+      "tagUpdatable": true,
       "taggable": true
     },
     "typeName": "AWS::AppStream::ImageBuilder",

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Connect-EvaluationForm",
   "type": "AWS::Connect::EvaluationForm",
-  "time": "2026-10-21T05:48:15.11Z",
+  "time": "2026-11-23T05:02:28.793Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
@@ -28,6 +28,22 @@
         },
         "type": "object"
       },
+      "EvaluationFormAiMetricsField": {
+        "description": "The AI metrics field used by an AI_METRICS enablement source.",
+        "enum": [
+          "AI_SESSION_IS_HANDED_OFF",
+          "AI_SESSION_SELF_SERVICE_DURATION",
+          "AI_SESSION_GOAL_SUCCESS_RATE",
+          "AI_SESSION_COMPLETENESS_SCORE",
+          "AI_SESSION_FAITHFULNESS_SCORE",
+          "AI_AGENT_MAX_PROMPT_LATENCY",
+          "AI_TOOL_MAX_LATENCY",
+          "AI_TOOL_SELECTION_ACCURACY",
+          "AI_TOOL_PARAMETER_ACCURACY",
+          "AI_TOOL_UTILIZATION_ACCURACY"
+        ],
+        "type": "string"
+      },
       "EvaluationFormBaseItem": {
         "additionalProperties": false,
         "description": "An item at the root level. All items must be sections.",
@@ -41,6 +57,40 @@
           "Section"
         ],
         "type": "object"
+      },
+      "EvaluationFormContactField": {
+        "description": "The contact field used by a CONTACT enablement source.",
+        "enum": [
+          "CATEGORIES",
+          "AGENT_ARN",
+          "QUEUE_ARN",
+          "ROUTING_PROFILE_ARN",
+          "CHANNEL",
+          "INITIATION_METHOD",
+          "IS_QUEUED",
+          "OVERALL_CUSTOMER_SENTIMENT_SCORE",
+          "OVERALL_AGENT_SENTIMENT_SCORE",
+          "CUSTOMER_SENTIMENT_SCORE_WITHOUT_AGENT",
+          "CUSTOMER_SENTIMENT_SCORE_WITH_AGENT",
+          "NON_TALK_TIME",
+          "NON_TALK_TIME_PERCENTAGE",
+          "NUMBER_OF_INTERRUPTIONS",
+          "CONTACT_DURATION",
+          "AGENT_INTERACTION_DURATION",
+          "CUSTOMER_HOLD_TIME",
+          "LONGEST_HOLD_DURATION",
+          "NUMBER_OF_HOLDS",
+          "AGENT_INTERACTION_AND_HOLD_DURATION",
+          "RECORDING_MEDIA_STREAM_TYPES"
+        ],
+        "type": "string"
+      },
+      "EvaluationFormEvaluationMetadataField": {
+        "description": "The evaluation metadata field used by an EVALUATION_METADATA enablement source.",
+        "enum": [
+          "EVALUATION_TYPE"
+        ],
+        "type": "string"
       },
       "EvaluationFormItem": {
         "additionalProperties": false,
@@ -88,6 +138,10 @@
         "additionalProperties": false,
         "description": "An operand of the enablement condition.",
         "properties": {
+          "Condition": {
+            "$ref": "#/definitions/EvaluationFormItemEnablementCondition",
+            "description": ""
+          },
           "Expression": {
             "$ref": "#/definitions/EvaluationFormItemEnablementExpression",
             "description": "An expression of the enablement condition."
@@ -136,7 +190,13 @@
               "IN",
               "NOT_IN",
               "ALL_IN",
-              "EXACT"
+              "EXACT",
+              "GREATER_THAN",
+              "LESS_THAN",
+              "GREATER_THAN_OR_EQUAL_TO",
+              "LESS_THAN_OR_EQUAL_TO",
+              "EQUAL_TO",
+              "NOT_EQUAL_TO"
             ],
             "type": "string"
           },
@@ -165,14 +225,41 @@
         "additionalProperties": false,
         "description": "An enablement expression source item.",
         "properties": {
+          "AiMetricsField": {
+            "$ref": "#/definitions/EvaluationFormAiMetricsField",
+            "description": ""
+          },
+          "ContactAttributeKey": {
+            "description": "",
+            "maxLength": 32767,
+            "minLength": 1,
+            "type": "string"
+          },
+          "ContactField": {
+            "$ref": "#/definitions/EvaluationFormContactField",
+            "description": ""
+          },
+          "EvaluationMetadataField": {
+            "$ref": "#/definitions/EvaluationFormEvaluationMetadataField",
+            "description": ""
+          },
           "RefId": {
             "$ref": "#/definitions/RefId",
             "description": "A referenceId of the source item."
           },
+          "SegmentAttributeKey": {
+            "description": "",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
           "Type": {
             "description": "A type of source item.",
             "enum": [
-              "QUESTION_REF_ID"
+              "QUESTION_REF_ID",
+              "CONTACT",
+              "EVALUATION_METADATA",
+              "AI_METRICS"
             ],
             "type": "string"
           }
@@ -186,14 +273,31 @@
         "additionalProperties": false,
         "description": "An enablement expression source value.",
         "properties": {
+          "BooleanValue": {
+            "description": "",
+            "type": "boolean"
+          },
+          "NumericValue": {
+            "description": "",
+            "type": "number"
+          },
           "RefId": {
             "$ref": "#/definitions/RefId",
             "description": "A referenceId of the source value."
           },
+          "StringValue": {
+            "description": "",
+            "maxLength": 512,
+            "minLength": 0,
+            "type": "string"
+          },
           "Type": {
             "description": "A type of source item value.",
             "enum": [
-              "OPTION_REF_ID"
+              "OPTION_REF_ID",
+              "STRING_VALUE",
+              "NUMERIC_VALUE",
+              "BOOLEAN_VALUE"
             ],
             "type": "string"
           }
@@ -216,7 +320,103 @@
               "ja-JP",
               "ko-KR",
               "zh-CN",
-              "ms-MY"
+              "ms-MY",
+              "af-ZA",
+              "sq-AL",
+              "am-ET",
+              "ar-AE",
+              "ar-SA",
+              "hy-AM",
+              "eu-ES",
+              "be-BY",
+              "bs-BA",
+              "bg-BG",
+              "ca-ES",
+              "ckb-IR",
+              "ckb-IQ",
+              "zh-TW",
+              "hr-HR",
+              "cs-CZ",
+              "da-DK",
+              "nl-BE",
+              "nl-NL",
+              "en-AU",
+              "en-IN",
+              "en-IE",
+              "en-NZ",
+              "en-AB",
+              "en-SG",
+              "en-ZA",
+              "en-GB",
+              "en-WL",
+              "fa-IR",
+              "fa-AF",
+              "fi-FI",
+              "fr-BE",
+              "fr-CA",
+              "ga-IE",
+              "gl-ES",
+              "ka-GE",
+              "de-AT",
+              "de-CH",
+              "el-GR",
+              "gu-IN",
+              "ht-HT",
+              "he-IL",
+              "hi-IN",
+              "hu-HU",
+              "is-IS",
+              "id-ID",
+              "jv-ID",
+              "km-KH",
+              "kn-IN",
+              "kk-KZ",
+              "lo-LA",
+              "lv-LV",
+              "lt-LT",
+              "mk-MK",
+              "ml-IN",
+              "mr-IN",
+              "ne-NP",
+              "no-NO",
+              "or-IN",
+              "ps-AF",
+              "pl-PL",
+              "pt-PT",
+              "pa-IN",
+              "ro-RO",
+              "ru-RU",
+              "sr-RS",
+              "si-LK",
+              "sk-SK",
+              "sl-SI",
+              "es-MX",
+              "es-US",
+              "su-ID",
+              "sw-BI",
+              "sw-KE",
+              "sw-RW",
+              "sw-TZ",
+              "sw-UG",
+              "sv-SE",
+              "tl-PH",
+              "ta-IN",
+              "te-IN",
+              "th-TH",
+              "tr-TR",
+              "uk-UA",
+              "uz-UZ",
+              "vi-VN",
+              "zu-ZA",
+              "my-MM",
+              "so-SO",
+              "yue-HK",
+              "et-EE",
+              "hmn",
+              "lg-UG",
+              "cy-GB",
+              "xh-ZA",
+              "bn-BD"
             ],
             "type": "string"
           }
@@ -899,7 +1099,16 @@
               "NUMBER_OF_HOLDS",
               "AGENT_INTERACTION_AND_HOLD_DURATION",
               "CUSTOMER_SENTIMENT_SCORE_WITHOUT_AGENT",
-              "CUSTOMER_SENTIMENT_SCORE_WITH_AGENT"
+              "CUSTOMER_SENTIMENT_SCORE_WITH_AGENT",
+              "AI_SESSION_SELF_SERVICE_DURATION",
+              "AI_SESSION_GOAL_SUCCESS_RATE",
+              "AI_SESSION_COMPLETENESS_SCORE",
+              "AI_SESSION_FAITHFULNESS_SCORE",
+              "AI_AGENT_MAX_PROMPT_LATENCY",
+              "AI_TOOL_MAX_LATENCY",
+              "AI_TOOL_SELECTION_ACCURACY",
+              "AI_TOOL_PARAMETER_ACCURACY",
+              "AI_TOOL_UTILIZATION_ACCURACY"
             ],
             "type": "string"
           }

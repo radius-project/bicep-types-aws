@@ -6,7 +6,15 @@
 ### Properties
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
-* **properties**: [AWS.FSx/BackupProperties](#awsfsxbackupproperties) (Required, Identifier): properties of the resource
+* **properties**: [AWS.FSx/BackupProperties](#awsfsxbackupproperties) (Identifier): properties of the resource
+
+## Resource AWS.FSx/ClusterPeer@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.FSx/ClusterPeerProperties](#awsfsxclusterpeerproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.FSx/DataRepositoryAssociation@default
 * **Readable Scope(s)**: None
@@ -40,6 +48,22 @@
 * **name**: string: the resource name
 * **properties**: [AWS.FSx/S3AccessPointAttachmentProperties](#awsfsxs3accesspointattachmentproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.FSx/SnapmirrorPolicy@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.FSx/SnapmirrorPolicyProperties](#awsfsxsnapmirrorpolicyproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.FSx/SnapmirrorRelationship@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.FSx/SnapmirrorRelationshipProperties](#awsfsxsnapmirrorrelationshipproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.FSx/Snapshot@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -48,6 +72,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.FSx/SnapshotProperties](#awsfsxsnapshotproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.FSx/SnapshotPolicy@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.FSx/SnapshotPolicyProperties](#awsfsxsnapshotpolicyproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.FSx/StorageVirtualMachine@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -55,6 +87,14 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.FSx/StorageVirtualMachineProperties](#awsfsxstoragevirtualmachineproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.FSx/StorageVirtualMachinePeer@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.FSx/StorageVirtualMachinePeerProperties](#awsfsxstoragevirtualmachinepeerproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.FSx/Task@default
 * **Readable Scope(s)**: Tenant, ManagementGroup, Subscription, ResourceGroup, Extension
@@ -88,6 +128,11 @@
 * **FileAccessAuditLogLevel**: string (Required)
 * **FileShareAccessAuditLogLevel**: string (Required)
 
+## AuthenticationStatus
+### Properties
+* **InUse**: string: The authentication method in use, for example ok.
+* **State**: string: The authentication state, for example ok.
+
 ## AutocommitPeriod
 ### Properties
 * **Type**: string (Required): Defines the type of time for the autocommit period of a file in an FSx for ONTAP SnapLock volume. Setting this value to NONE disables autocommit. The default value is NONE.
@@ -105,11 +150,27 @@
 ### Properties
 * **BackupId**: string (ReadOnly): The ID of the backup.
 * **CreationTime**: string (ReadOnly): The time when the backup was created.
-* **FileSystemId**: string (Required): The ID of the file system to back up.
+* **FileSystemId**: string: The ID of the file system to back up.
 * **Lifecycle**: string (ReadOnly): The lifecycle status of the backup.
 * **ResourceARN**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the backup.
 * **Tags**: [Tag](#tag)[]: The tags to apply to the backup at backup creation.
 * **Type**: string (ReadOnly): The type of the backup.
+
+## AWS.FSx/ClusterPeerProperties
+### Properties
+* **AllowedSvmIds**: string[]: The local SVMs the peer cluster may peer with automatically, when AllowedSvmMode is SPECIFIED.
+* **AllowedSvmMode**: string (Required): Which local SVMs the peer cluster may peer with automatically: ALL, NONE, or SPECIFIED (the SVMs in AllowedSvmIds).
+* **AuthenticationStatus**: [AuthenticationStatus](#authenticationstatus) (ReadOnly)
+* **ClusterPeerId**: string (ReadOnly): The system-generated, unique ID of the cluster peer relationship.
+* **FileSystemId**: string (Required): The ID of the local file system.
+* **Lifecycle**: string (ReadOnly): The lifecycle status of the cluster peer relationship.
+* **PassphraseSecretArn**: string (WriteOnly): The ARN of an AWS Secrets Manager secret whose plain-text value is the cluster peering passphrase. Required when you create the cluster peer. Both sides of the relationship must use the same passphrase. The secret must allow FSx to read it.
+* **PeerAddresses**: string[] (Required): The intercluster IP addresses of the peer cluster, at least one.
+* **PeerClusterName**: string: The ONTAP name of the peer cluster. After it is set, it can be changed but not removed; removing it from the template leaves the current name.
+* **ResourceARN**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the cluster peer relationship.
+* **Status**: string (ReadOnly): The ONTAP availability of the peer relationship, for example available or unavailable.
+* **Tags**: [Tag](#tag)[]: A list of tags to apply to the cluster peer relationship, with a maximum of 50 tags.
+* **UUID**: string (ReadOnly): The ONTAP UUID of the cluster peer relationship.
 
 ## AWS.FSx/DataRepositoryAssociationProperties
 ### Properties
@@ -176,6 +237,54 @@
 * **S3AccessPoint**: [S3AccessPoint](#s3accesspoint): The S3 access point configuration of the S3 access point attachment.
 * **Type**: string (Required): The type of Amazon FSx volume that the S3 access point is attached to.
 
+## AWS.FSx/SnapmirrorPolicyProperties
+### Properties
+* **FileSystemId**: string: The ID of the file system the SnapMirror policy is scoped to. Specify either FileSystemId or StorageVirtualMachineId.
+* **Lifecycle**: string (ReadOnly): The lifecycle status of the SnapMirror policy.
+* **Name**: string (Required): The name of the SnapMirror policy. Names must be unique within the policy scope.
+* **NetworkCompressionEnabled**: bool: Whether SnapMirror compresses data sent over the network. After it is set, it can be changed but not removed; removing it from the template leaves the current setting.
+* **ResourceARN**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the SnapMirror policy.
+* **RetentionRules**: [RetentionRule](#retentionrule)[]: Rules that retain labeled snapshots on the destination, up to 10. After they are set, they can be changed but not removed; removing them from the template, or setting an empty list, leaves the current rules.
+* **Scope**: string (ReadOnly): Whether the policy is scoped to a file system (FILESYSTEM) or to an SVM (SVM).
+* **SnapmirrorPolicyId**: string (ReadOnly): The system-generated, unique ID of the SnapMirror policy.
+* **SnapshotCopyMode**: string: Which snapshots SnapMirror copies. COPY_ALL_SOURCE_SNAPSHOTS and COPY_LATEST_SOURCE_SNAPSHOT create mirror policies and do not allow RetentionRules. NO_CREATE_SNAPSHOT_ON_SOURCE creates a vault policy and requires RetentionRules. Omit for a mirror-vault policy.
+* **StorageVirtualMachineId**: string: The ID of the storage virtual machine (SVM) the SnapMirror policy is scoped to. Specify either FileSystemId or StorageVirtualMachineId.
+* **Tags**: [Tag](#tag)[]: A list of tags to apply to the SnapMirror policy, with a maximum of 50 tags.
+* **ThrottleInKbps**: int: The maximum transfer throughput in kilobytes per second. 0 means unlimited. After it is set, it can be changed but not removed; removing it from the template leaves the current throttle.
+* **TransferSchedule**: string: The name of the ONTAP job schedule for SnapMirror transfers. Omit for no schedule.
+* **UUID**: string (ReadOnly): The ONTAP UUID of the SnapMirror policy.
+
+## AWS.FSx/SnapmirrorRelationshipProperties
+### Properties
+* **Destination**: [Destination](#destination) (Required)
+* **FileSystemId**: string (ReadOnly): The ID of the file system that contains the destination volume.
+* **Healthy**: bool (ReadOnly): Whether the relationship is healthy in ONTAP.
+* **LagTimeInMinutes**: int (ReadOnly): How far the destination lags behind the source, in minutes, as reported by ONTAP.
+* **Lifecycle**: string (ReadOnly): The lifecycle status of the SnapMirror relationship.
+* **PolicyId**: string: The ID of the SnapMirror policy for the relationship. Omit to use the ONTAP default policy for the destination. After it is set, it can be changed but not removed; removing it from the template leaves the current policy.
+* **ResourceARN**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the SnapMirror relationship.
+* **SnapmirrorRelationshipId**: string (ReadOnly): The system-generated, unique ID of the SnapMirror relationship.
+* **Source**: [Source](#source) (Required)
+* **State**: string (ReadOnly): The state of the relationship in ONTAP.
+* **Tags**: [Tag](#tag)[]: A list of tags to apply to the SnapMirror relationship, with a maximum of 50 tags.
+* **ThrottleInKbps**: int: The maximum transfer throughput in kilobytes per second. 0 means unlimited. Removing it from the template sets it back to 0 (unlimited).
+* **TransferSchedule**: string: The name of the ONTAP job schedule for transfers. Overrides the policy transfer schedule. After it is set, it can be changed but not removed; removing it from the template leaves the current schedule.
+* **UUID**: string (ReadOnly): The ONTAP UUID of the SnapMirror relationship.
+
+## AWS.FSx/SnapshotPolicyProperties
+### Properties
+* **Enabled**: bool: Whether the snapshot policy is enabled. A disabled policy doesn't create snapshots. If you remove this property from the template, a stack update keeps the current value.
+* **FileSystemId**: string: The ID of the FSx for ONTAP file system on which to create a file system-scoped snapshot policy. Specify exactly one of FileSystemId or StorageVirtualMachineId.
+* **Lifecycle**: string (ReadOnly): The lifecycle status of the snapshot policy.
+* **Name**: string (Required): The name of the snapshot policy.
+* **ResourceARN**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the snapshot policy.
+* **Schedules**: [SnapshotPolicySchedule](#snapshotpolicyschedule)[] (Required): The schedules of the snapshot policy. Each schedule creates snapshots on a named ONTAP job schedule and retains a maximum number of them.
+* **Scope**: string (ReadOnly): Whether the snapshot policy is scoped to a file system or to an SVM.
+* **SnapshotPolicyId**: string (ReadOnly): The system-generated, unique ID of the snapshot policy.
+* **StorageVirtualMachineId**: string: The ID of the storage virtual machine (SVM) on which to create an SVM-scoped snapshot policy. Specify exactly one of FileSystemId or StorageVirtualMachineId.
+* **Tags**: [Tag](#tag)[]: A list of tags to apply to the snapshot policy, with a maximum of 50 tags.
+* **UUID**: string (ReadOnly): The UUID of the snapshot policy in ONTAP.
+
 ## AWS.FSx/SnapshotProperties
 ### Properties
 * **Id**: string (ReadOnly, Identifier): The ID of the snapshot.
@@ -183,6 +292,21 @@
 * **ResourceARN**: string (ReadOnly): Returns the snapshot's Amazon Resource Name (ARN).
 * **Tags**: [Tag](#tag)[]: A list of Tag values, with a maximum of 50 elements.
 * **VolumeId**: string (Required): The ID of the volume that the snapshot is of.
+
+## AWS.FSx/StorageVirtualMachinePeerProperties
+### Properties
+* **Applications**: string[] (Required): The applications that can use the peer relationship, at least one.
+* **FileSystemId**: string (ReadOnly): The ID of the file system that contains the local SVM.
+* **Lifecycle**: string (ReadOnly): The lifecycle status of the SVM peer relationship.
+* **PeerClusterName**: string: The ONTAP name of the peer cluster. Omit to peer with an SVM on the same file system. A cross-cluster peer requires a cluster peer with that cluster.
+* **PeerSvmAlias**: string: A local alias for the peer SVM. Use an alias when the peer SVM has the same name as a local SVM. After it is set, it can be changed but not removed; removing it from the template leaves the current alias.
+* **PeerSvmName**: string (Required): The name of the SVM to peer with, as it is known in ONTAP on the peer cluster.
+* **ResourceARN**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the SVM peer relationship.
+* **State**: string (ReadOnly): The state of the peer relationship in ONTAP.
+* **StorageVirtualMachineId**: string (Required): The ID of the local storage virtual machine (SVM) that initiates the peer relationship.
+* **StorageVirtualMachinePeerId**: string (ReadOnly): The system-generated, unique ID of the SVM peer relationship.
+* **Tags**: [Tag](#tag)[]: A list of tags to apply to the SVM peer relationship, with a maximum of 50 tags.
+* **UUID**: string (ReadOnly): The ONTAP UUID of the SVM peer relationship.
 
 ## AWS.FSx/StorageVirtualMachineProperties
 ### Properties
@@ -232,6 +356,11 @@
 * **Clients**: string (Required): A value that specifies who can mount the file system. You can provide a wildcard character (*), an IP address (0.0.0.0), or a CIDR address (192.0.2.0/24). By default, Amazon FSx uses the wildcard character when specifying the client.
 * **Options**: string[] (Required): The configuration object for mounting a Network File System (NFS) file system.
 
+## CloneConfiguration
+### Properties
+* **ParentVolumeId**: string (Required): The ID of the volume to clone. It must be in the same storage virtual machine (SVM) as the new volume.
+* **SnapshotId**: string: The ID of a snapshot of the parent volume to clone from. If you omit it, the clone is created from the parent volume's current state. Required when this volume's OntapVolumeType is DP (the parent volume must then also be DP).
+
 ## CompletionReport
 ### Properties
 * **Enabled**: bool (Required): Set to True to generate a CompletionReport when the task completes.
@@ -248,6 +377,11 @@
 ### Properties
 * **DataRepositoryPath**: string (Required)
 * **FileCachePath**: string (Required)
+
+## Destination
+### Properties
+* **Path**: string (ReadOnly): The destination volume, as <svm-name>:<volume-name>.
+* **VolumeId**: string (Required): The ID of the destination volume. It must be a data-protection (DP) volume.
 
 ## DiskIopsConfiguration
 ### Properties
@@ -343,6 +477,7 @@
 ## OntapConfiguration
 ### Properties
 * **AggregateConfiguration**: [AggregateConfiguration](#aggregateconfiguration): Used to specify the configuration options for an FSx for ONTAP volume's storage aggregate or aggregates.
+* **CloneConfiguration**: [CloneConfiguration](#cloneconfiguration): Creates the volume as an ONTAP FlexClone of an existing volume. The clone takes SizeInMegabytes and StorageEfficiencyEnabled from the parent volume: omit them, or set them to the parent's values.
 * **CopyTagsToBackups**: string: A boolean flag indicating whether tags for the volume should be copied to backups.
 * **JunctionPath**: string: Specifies the location in the SVM's namespace where the volume is mounted. This parameter is required. The JunctionPath must have a leading forward slash, such as /vol3.
 * **OntapVolumeType**: string: Specifies the type of volume you are creating. Valid values are the following: RW or DP
@@ -432,6 +567,12 @@
 * **Type**: string (Required): Defines the type of time for the retention period of an FSx for ONTAP SnapLock volume. Set it to one of the valid types. If you set it to INFINITE, the files are retained forever. If you set it to UNSPECIFIED, the files are retained until you set an explicit retention period.
 * **Value**: int: Defines the amount of time for the retention period of an FSx for ONTAP SnapLock volume. You can't set a value for INFINITE or UNSPECIFIED.
 
+## RetentionRule
+### Properties
+* **Count**: int (Required): The number of snapshots with this label to retain on the destination.
+* **CreationSchedule**: string: The name of an ONTAP job schedule that creates snapshots with this label on the destination.
+* **Label**: string (Required): The SnapMirror label of the snapshots this rule retains.
+
 ## RootVolumeConfiguration
 ### Properties
 * **CopyTagsToSnapshots**: bool
@@ -502,6 +643,28 @@
 * **MaximumRetention**: [RetentionPeriod](#retentionperiod) (Required): The longest retention period that can be assigned to a WORM file on an FSx for ONTAP SnapLock volume.
 * **MinimumRetention**: [RetentionPeriod](#retentionperiod) (Required): The shortest retention period that can be assigned to a WORM file on an FSx for ONTAP SnapLock volume.
 
+## SnapshotPolicyRetentionPeriod
+### Properties
+* **Type**: string (Required): The unit of the retention period, or INFINITE to retain snapshots indefinitely.
+* **Value**: int: The length of the retention period, in the unit given by Type.
+
+## SnapshotPolicySchedule
+### Properties
+* **Count**: int (Required): The maximum number of snapshots to retain for this schedule.
+* **Name**: string (Required): The name of the ONTAP job schedule that triggers snapshot creation, for example hourly, daily, or weekly.
+* **Prefix**: string: The prefix applied to the names of snapshots created by this schedule.
+* **RetentionPeriod**: [SnapshotPolicyRetentionPeriod](#snapshotpolicyretentionperiod)
+* **SnapmirrorLabel**: string: The SnapMirror label applied to snapshots created by this schedule. SnapMirror policies use this label to select snapshots to replicate.
+
+## Source
+### Properties
+* **Path**: string (Required): The source volume, as <svm-name>:<volume-name>. For a source on the destination SVM, use that SVM's name. For a source on a peered SVM, use the peer SVM name or its local alias, as seen from the destination SVM.
+
+## Tag
+### Properties
+* **Key**: string (Required): The tag key.
+* **Value**: string (Required): The tag value.
+
 ## Tag
 ### Properties
 * **Key**: string (Required): The tag key.
@@ -524,13 +687,33 @@
 
 ## Tag
 ### Properties
+* **Key**: string (Required): The tag key.
+* **Value**: string (Required): The tag value.
+
+## Tag
+### Properties
+* **Key**: string (Required): The tag key.
+* **Value**: string (Required): The tag value.
+
+## Tag
+### Properties
 * **Key**: string (Required): A value that specifies the TagKey, the name of the tag. Tag keys must be unique for the resource to which they are attached.
 * **Value**: string (Required): A value that specifies the TagValue, the value assigned to the corresponding tag key. Tag values can be null and don't have to be unique in a tag set. For example, you can have a key-value pair in a tag set of finances : April and also of payroll : April.
 
 ## Tag
 ### Properties
+* **Key**: string (Required): The tag key.
+* **Value**: string (Required): The tag value.
+
+## Tag
+### Properties
 * **Key**: string (Required)
 * **Value**: string (Required)
+
+## Tag
+### Properties
+* **Key**: string (Required): The tag key.
+* **Value**: string (Required): The tag value.
 
 ## Tag
 ### Properties

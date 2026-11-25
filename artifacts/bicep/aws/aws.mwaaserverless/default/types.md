@@ -16,6 +16,7 @@
 * **DefinitionS3Location**: [S3Location](#s3location) (Required)
 * **Description**: string
 * **EncryptionConfiguration**: [EncryptionConfiguration](#encryptionconfiguration)
+* **Environment**: [Environment](#environment)
 * **LoggingConfiguration**: [LoggingConfiguration](#loggingconfiguration)
 * **ModifiedAt**: string (ReadOnly)
 * **Name**: string
@@ -42,6 +43,15 @@
 ### Properties
 * **KmsKeyId**: string
 * **Type**: string (Required)
+
+## Environment
+### Properties
+* **Variables**: [EnvironmentVariables](#environmentvariables) (Required)
+
+## EnvironmentVariables
+### Properties
+### Additional Properties
+* **Additional Properties Type**: string
 
 ## LoggingConfiguration
 ### Properties

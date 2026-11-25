@@ -92,9 +92,11 @@
 * **CertificateAuthorityArn**: string: The Amazon Resource Name (ARN) of the private certificate authority (CA) that will be used to issue the certificate.
 * **CertificateExport**: string: Specifies whether the certificate can be exported. ENABLED allows the certificate to be exported, DISABLED prevents export.
 * **CertificateTransparencyLoggingPreference**: string: You can opt out of certificate transparency logging by specifying the DISABLED option. Opt in by specifying ENABLED.
+* **CertificateUsage**: string: The extended key usage of an Amazon N2 certificate. Valid only with RootHierarchyType. Defaults to CLIENT_AND_SERVER_AUTH. CLIENT_AUTH_ONLY requires N2_AMAZON_MANAGED.
 * **DomainName**: string (Required): The fully qualified domain name (FQDN), such as www.example.com, with which you want to secure an ACM certificate
 * **DomainValidationOptions**: [DomainValidationOption](#domainvalidationoption)[]: Domain information that domain name registrars use to verify your identity.
 * **KeyAlgorithm**: string: Specifies the algorithm of the public and private key pair that your certificate uses to encrypt data.
+* **RootHierarchyType**: string: The Amazon N2 root hierarchy that issues the certificate. Omit for a public TLS certificate. Amazon N2 roots are not trusted by browsers.
 * **SubjectAlternativeNames**: string[]: Additional FQDNs to be included in the Subject Alternative Name extension of the ACM certificate.
 * **Tags**: [Tag](#tag)[]: Key-value pairs that can identify the certificate.
 * **ValidationMethod**: string (WriteOnly): The method you want to use to validate that you own or control the domain associated with a public certificate. Valid values are DNS, EMAIL or HTTP

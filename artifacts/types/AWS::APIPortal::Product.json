@@ -1,0 +1,206 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-APIPortal-Product",
+  "type": "AWS::APIPortal::Product",
+  "time": "2026-11-23T07:45:03.525Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/ProductId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/ApiSelectionConfiguration/ApiSelectionMode"
+    ],
+    "definitions": {
+      "ApiSelectionConfiguration": {
+        "additionalProperties": false,
+        "description": "Configuration controlling how APIs are selected for the product.",
+        "properties": {
+          "ApiSelectionMode": {
+            "description": "The mode used to select APIs for the product.",
+            "enum": [
+              "CUSTOM",
+              "RULE_BASED"
+            ],
+            "type": "string"
+          },
+          "RuleFilters": {
+            "description": "The filters that select the product's Managed APIs. Required for RULE_BASED, rejected for CUSTOM. Filters are combined with AND, the values within one filter with OR, and evaluated only over the account's Managed APIs. Replaced as a whole on update, not merged.",
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/RuleFilter"
+            },
+            "maxItems": 6,
+            "minItems": 1,
+            "type": "array"
+          }
+        },
+        "required": [
+          "ApiSelectionMode"
+        ],
+        "type": "object"
+      },
+      "RuleFilter": {
+        "additionalProperties": false,
+        "description": "A filter that selects Managed APIs by one attribute. Values are compared to the attribute as literals: exact and case-sensitive, no wildcards.",
+        "properties": {
+          "Key": {
+            "description": "The Managed API attribute to match on.",
+            "enum": [
+              "RESOURCE_ARN",
+              "HOST",
+              "METHOD",
+              "PATH",
+              "PORT",
+              "ACCOUNT"
+            ],
+            "type": "string"
+          },
+          "Values": {
+            "description": "The values to match. The filter matches when the attribute equals any of them.",
+            "insertionOrder": false,
+            "items": {
+              "maxLength": 4096,
+              "minLength": 1,
+              "pattern": "^\\S+$",
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          }
+        },
+        "required": [
+          "Key",
+          "Values"
+        ],
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with a resource.",
+        "properties": {
+          "Key": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::APIPortal::Product",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "apiportal:CreateProduct",
+          "apiportal:GetProduct",
+          "apiportal:TagResource"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "apiportal:DeleteProduct",
+          "apiportal:GetProduct"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "apiportal:ListProducts"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "apiportal:GetProduct"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "apiportal:UpdateProduct",
+          "apiportal:GetProduct",
+          "apiportal:TagResource",
+          "apiportal:UntagResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/ProductArn"
+    ],
+    "properties": {
+      "ApiSelectionConfiguration": {
+        "$ref": "#/definitions/ApiSelectionConfiguration",
+        "description": "Configuration controlling how APIs are selected for the product."
+      },
+      "Description": {
+        "description": "A description of the product.",
+        "maxLength": 1024,
+        "minLength": 0,
+        "type": "string"
+      },
+      "DisplayName": {
+        "description": "The display name of the product.",
+        "maxLength": 255,
+        "minLength": 1,
+        "type": "string"
+      },
+      "ProductArn": {
+        "description": "The ARN of the product.",
+        "maxLength": 2048,
+        "minLength": 20,
+        "type": "string"
+      },
+      "ProductId": {
+        "description": "The product identifier.",
+        "maxLength": 30,
+        "minLength": 10,
+        "pattern": "^[a-z0-9]+$",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "The tags associated with the product.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": false
+      },
+      "UpdatedAt": {
+        "description": "The timestamp when the product was last modified.",
+        "format": "date-time",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/ProductArn",
+      "/properties/ProductId",
+      "/properties/UpdatedAt"
+    ],
+    "required": [
+      "DisplayName"
+    ],
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-apiportal.git",
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "apiportal:TagResource",
+        "apiportal:UntagResource",
+        "apiportal:GetProduct"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::APIPortal::Product"
+  }
+}

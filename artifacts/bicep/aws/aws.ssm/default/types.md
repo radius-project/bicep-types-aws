@@ -24,6 +24,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.SSM/CloudConnectorProperties](#awsssmcloudconnectorproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.SSM/DefaultHostManagementConfiguration@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.SSM/DefaultHostManagementConfigurationProperties](#awsssmdefaulthostmanagementconfigurationproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.SSM/Document@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -178,6 +186,17 @@
 * **RoleArn**: string (Required): The IAM role ARN used by the cloud connector.
 * **Tags**: [Tag](#tag)[]: Tags to apply to the cloud connector.
 * **UpdatedAt**: string (ReadOnly): The timestamp when the cloud connector was last updated.
+
+## AWS.SSM/DefaultHostManagementConfigurationProperties
+### Properties
+* **CustomerManagedRoleArn**: string: The ARN of the customer-provided IAM role to register for DHMC. Required when PermissionModel is SELF_MANAGED and must not be set when PermissionModel is SERVICE_MANAGED.
+* **LastModifiedDate**: string (ReadOnly): The date the DHMC service setting was last modified.
+* **LastModifiedUser**: string (ReadOnly): The principal that last modified the DHMC service setting.
+* **PermissionModel**: string (Required)
+* **RoleArn**: string (ReadOnly): The ARN of the IAM role currently configured for DHMC. For SERVICE_MANAGED this is the SSM-created role in the IAM reserved path; for SELF_MANAGED this echoes the registered CustomerManagedRoleArn.
+* **SettingArn**: string (ReadOnly): The ARN of the DHMC service setting.
+* **SettingId**: string (ReadOnly, Identifier): The ID of the DHMC service setting. This is a fixed value that uniquely identifies the DHMC configuration for the account and Region.
+* **Status**: string (ReadOnly): The status of the DHMC service setting. 'Default' indicates DHMC is not configured; 'Customized' indicates a role is configured.
 
 ## AWS.SSM/DocumentProperties
 ### Properties
@@ -365,7 +384,8 @@
 
 ## CloudConnectorConfiguration
 ### Properties
-* **AzureConfiguration**: [AzureConfiguration](#azureconfiguration) (Required)
+* **AzureConfiguration**: [AzureConfiguration](#azureconfiguration)
+* **GcpConfiguration**: [GcpConfiguration](#gcpconfiguration)
 
 ## CloudWatchOutputConfig
 ### Properties
@@ -380,6 +400,22 @@
 ### Properties
 * **Name**: string (Identifier): The name of the required SSM document. The name can be an Amazon Resource Name (ARN).
 * **Version**: string: The document version required by the current document.
+
+## GcpConfiguration
+### Properties
+* **OrganizationId**: string: The GCP organization ID. Required when Targets is omitted, which targets the entire organization. Cannot be changed after creation.
+* **ServiceAccountEmail**: string (Required): The GCP service account the connector impersonates. Its project is the connector's management project. Cannot be changed after creation.
+* **Targets**: [GcpConfigurationTargets](#gcpconfigurationtargets)
+* **WorkloadIdentityPoolProvider**: string (Required): The resource name of the workload identity pool provider that trusts the connector's IAM role.
+
+## GcpConfigurationTargets
+### Properties
+* **Projects**: [GcpProject](#gcpproject)[] (Required): List of GCP projects.
+
+## GcpProject
+### Properties
+* **ProjectDisplayName**: string: The display name of the GCP project.
+* **ProjectId**: string (Required): The GCP project ID.
 
 ## InstanceAssociationOutputLocation
 ### Properties

@@ -150,6 +150,13 @@
 * **ManagedWordListsConfig**: [GuardrailManagedWordsConfig](#guardrailmanagedwordsconfig)[]: A config for the list of managed words.
 * **WordsConfig**: [GuardrailWordConfig](#guardrailwordconfig)[]: List of custom word configs.
 
+## AIPromptInferenceConfiguration
+### Properties
+* **MaxTokensToSample**: int
+* **Temperature**: int
+* **TopK**: int
+* **TopP**: int
+
 ## AIPromptTemplateConfiguration
 ### Properties
 
@@ -219,6 +226,7 @@
 * **AssistantArn**: string (ReadOnly)
 * **AssistantId**: string (Identifier)
 * **Description**: string
+* **InferenceConfiguration**: [AIPromptInferenceConfiguration](#aipromptinferenceconfiguration)
 * **ModelId**: string (Required)
 * **ModifiedTimeSeconds**: int (ReadOnly)
 * **Name**: string

@@ -1,0 +1,372 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-KinesisAnalyticsV2-Snapshot",
+  "type": "AWS::KinesisAnalyticsV2::Snapshot",
+  "time": "2026-11-25T20:59:43.165Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/SnapshotName"
+      ],
+      [
+        "/properties/SnapshotName",
+        "/properties/SnapshotCreationTimestamp"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/ApplicationName",
+      "/properties/ImportSourceConfiguration",
+      "/properties/SnapshotName",
+      "/properties/SnapshotDescription",
+      "/properties/SnapshotEncryptionConfigurationDescription",
+      "/properties/SnapshotFormat"
+    ],
+    "definitions": {
+      "ImportSourceConfiguration": {
+        "additionalProperties": false,
+        "description": "The Amazon S3 location to import a snapshot from, and the role the service assumes to read it.",
+        "properties": {
+          "ImportRoleArn": {
+            "description": "The ARN of the IAM role that the service assumes to read the snapshot files from Amazon S3 (and to decrypt them, if they are encrypted with a customer managed key).",
+            "maxLength": 2048,
+            "minLength": 1,
+            "pattern": "^arn:",
+            "type": "string"
+          },
+          "SourceEncryptionConfiguration": {
+            "$ref": "#/definitions/SnapshotEncryptionConfigurationDescription",
+            "description": "The encryption of the snapshot files in Amazon S3."
+          },
+          "SourceS3PrefixLocation": {
+            "$ref": "#/definitions/S3PrefixLocation",
+            "description": "The Amazon S3 bucket and key prefix that hold the snapshot files, for example the prefix an ExportSnapshot operation wrote them to."
+          },
+          "SourceType": {
+            "description": "The type of storage the snapshot is imported from.",
+            "enum": [
+              "S3"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "SourceType",
+          "ImportRoleArn",
+          "SourceS3PrefixLocation"
+        ],
+        "type": "object"
+      },
+      "S3PrefixLocation": {
+        "additionalProperties": false,
+        "description": "An Amazon S3 prefix location.",
+        "properties": {
+          "BucketARN": {
+            "description": "The ARN of the S3 bucket.",
+            "maxLength": 2048,
+            "minLength": 1,
+            "pattern": "^arn:",
+            "type": "string"
+          },
+          "KeyPrefix": {
+            "description": "The S3 key prefix.",
+            "maxLength": 200,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "BucketARN",
+          "KeyPrefix"
+        ],
+        "type": "object"
+      },
+      "SnapshotEncryptionConfigurationDescription": {
+        "additionalProperties": false,
+        "description": "A KMS encryption configuration for snapshot data: the key type, and the key when it is a customer managed key.",
+        "properties": {
+          "KeyId": {
+            "description": "The ARN of the customer managed KMS key. Required when KeyType is CUSTOMER_MANAGED_KEY; must be omitted for AWS_OWNED_KEY.",
+            "maxLength": 2048,
+            "minLength": 1,
+            "type": "string"
+          },
+          "KeyType": {
+            "description": "The type of KMS key: AWS_OWNED_KEY or CUSTOMER_MANAGED_KEY.",
+            "enum": [
+              "AWS_OWNED_KEY",
+              "CUSTOMER_MANAGED_KEY"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "KeyType"
+        ],
+        "type": "object"
+      },
+      "SnapshotSourceDescription": {
+        "additionalProperties": false,
+        "description": "Details about the source (application and/or S3 location) the snapshot was taken from. Populated by DescribeSnapshot.",
+        "properties": {
+          "S3PrefixLocation": {
+            "$ref": "#/definitions/S3PrefixLocation"
+          },
+          "SourceApplicationDescription": {
+            "$ref": "#/definitions/SourceApplicationDescription"
+          }
+        },
+        "type": "object"
+      },
+      "SourceApplicationDescription": {
+        "additionalProperties": false,
+        "description": "Details about the application the snapshot was taken from.",
+        "properties": {
+          "ApplicationCreationTimestamp": {
+            "description": "The time at which the source application was created.",
+            "format": "date-time",
+            "type": "string"
+          },
+          "ApplicationName": {
+            "description": "The name of the source application.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "ApplicationVersionId": {
+            "description": "The version of the source application captured in the snapshot.",
+            "maximum": 999999999,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "ApplicationName",
+          "ApplicationCreationTimestamp",
+          "ApplicationVersionId"
+        ],
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with a snapshot.",
+        "properties": {
+          "Key": {
+            "description": "The key of the tag.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value of the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::KinesisAnalyticsV2::Snapshot, a point-in-time snapshot of a Managed Service for Apache Flink (Kinesis Analytics V2) application's state. Snapshots are account-scoped and immutable: every input property except Tags is create-only, so changing any of them forces replacement, while changing Tags updates the snapshot in place. Specify exactly one source: ApplicationName to snapshot a running application (CreateSnapshot), or ImportSourceConfiguration to import a snapshot from Amazon S3 (ImportSnapshot). CloudFormation deletes the snapshot via DeleteSnapshot; to retain a snapshot beyond the stack, set DeletionPolicy: Retain on the resource.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "kinesisanalytics:CreateSnapshot",
+          "kinesisanalytics:ImportSnapshot",
+          "kinesisanalytics:DescribeSnapshot",
+          "kinesisanalytics:TagResource",
+          "kinesisanalytics:ListTagsForResource",
+          "kms:DescribeKey",
+          "kms:Decrypt",
+          "kms:GenerateDataKey",
+          "iam:PassRole"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "kinesisanalytics:DescribeSnapshot",
+          "kinesisanalytics:DeleteSnapshot",
+          "kinesisanalytics:ListTagsForResource"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "kinesisanalytics:ListSnapshots"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "kinesisanalytics:DescribeSnapshot",
+          "kinesisanalytics:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "kinesisanalytics:DescribeSnapshot",
+          "kinesisanalytics:TagResource",
+          "kinesisanalytics:UntagResource",
+          "kinesisanalytics:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/SnapshotArn"
+    ],
+    "properties": {
+      "ApplicationName": {
+        "description": "The name of the Managed Service for Apache Flink application to snapshot. Used only at create time to select the source application; immutable after create. Specify either ApplicationName or ImportSourceConfiguration, not both.",
+        "maxLength": 128,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9_.-]+$",
+        "type": "string"
+      },
+      "ImportSourceConfiguration": {
+        "$ref": "#/definitions/ImportSourceConfiguration",
+        "description": "The Amazon S3 location and role to import the snapshot from, with ImportSnapshot. Used only at create time; immutable after create. Specify either ApplicationName or ImportSourceConfiguration, not both."
+      },
+      "RuntimeEnvironment": {
+        "description": "The runtime environment of the source application when the snapshot was taken with ApplicationName (CreateSnapshot), for example FLINK-1_20. Populated by DescribeSnapshot. Not returned for snapshots created with ImportSourceConfiguration (ImportSnapshot), which carry no runtime version.",
+        "enum": [
+          "SQL-1_0",
+          "FLINK-1_6",
+          "FLINK-1_8",
+          "ZEPPELIN-FLINK-1_0",
+          "FLINK-1_11",
+          "FLINK-1_13",
+          "ZEPPELIN-FLINK-2_0",
+          "FLINK-1_15",
+          "ZEPPELIN-FLINK-3_0",
+          "FLINK-1_18",
+          "FLINK-1_19",
+          "FLINK-1_20",
+          "FLINK-2_1",
+          "FLINK-2_2",
+          "FLINK-2_3",
+          "FLINK-2_4"
+        ],
+        "type": "string"
+      },
+      "SnapshotArn": {
+        "description": "The Amazon Resource Name (ARN) of the snapshot. Account-scoped: arn:\u003cpartition\u003e:kinesisanalytics:\u003cregion\u003e:\u003caccount\u003e:snapshot/\u003cSnapshotName\u003e. Assigned by the service at create time and used as the resource's primary identifier.",
+        "maxLength": 2048,
+        "minLength": 1,
+        "pattern": "^arn:aws[a-z-]*:kinesisanalytics:[a-z0-9-]+:[0-9]{12}:snapshot/[a-zA-Z0-9_.-]+$",
+        "type": "string"
+      },
+      "SnapshotCreationTimestamp": {
+        "description": "The time at which the service created the snapshot, in ISO-8601 format. Populated by DescribeSnapshot.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "SnapshotDescription": {
+        "description": "Optional customer-supplied description of the snapshot. Immutable after create.",
+        "maxLength": 1024,
+        "minLength": 0,
+        "pattern": "^[^\\u0000-\\u001F\\u007F]*$",
+        "type": "string"
+      },
+      "SnapshotEncryptionConfigurationDescription": {
+        "$ref": "#/definitions/SnapshotEncryptionConfigurationDescription",
+        "description": "The encryption of the snapshot. Can be set only with ImportSourceConfiguration (sent as the ImportSnapshot DestinationEncryptionConfiguration; the AWS owned key when omitted). A snapshot taken from ApplicationName uses the application's encryption: DescribeSnapshot returns it for such snapshots, but it must not be set with ApplicationName. Immutable after create."
+      },
+      "SnapshotFormat": {
+        "description": "The format of the snapshot (CANONICAL). Sent to ImportSnapshot with ImportSourceConfiguration; with ApplicationName it may only be CANONICAL, the format CreateSnapshot produces. Returned by DescribeSnapshot. Immutable after create.",
+        "enum": [
+          "CANONICAL"
+        ],
+        "type": "string"
+      },
+      "SnapshotInitiator": {
+        "description": "Indicates whether the snapshot was initiated by the customer or by the service. Populated by DescribeSnapshot.",
+        "enum": [
+          "USER",
+          "SYSTEM"
+        ],
+        "type": "string"
+      },
+      "SnapshotInitiatorOperation": {
+        "description": "The operation that initiated the snapshot. Populated by DescribeSnapshot.",
+        "enum": [
+          "CreateSnapshot",
+          "ImportSnapshot",
+          "SystemCreateSnapshot"
+        ],
+        "type": "string"
+      },
+      "SnapshotName": {
+        "description": "The customer-chosen name of the snapshot, unique within the account. Immutable after create.",
+        "maxLength": 100,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9_.-]+$",
+        "type": "string"
+      },
+      "SnapshotSizeInBytes": {
+        "description": "The size of the snapshot in bytes. Populated by DescribeSnapshot once the snapshot reaches READY.",
+        "minimum": 0,
+        "type": "integer"
+      },
+      "SnapshotSourceDescription": {
+        "$ref": "#/definitions/SnapshotSourceDescription",
+        "description": "The source of the snapshot: the application it was taken from, or the Amazon S3 location it was imported from. Populated by DescribeSnapshot."
+      },
+      "SnapshotStatus": {
+        "description": "The lifecycle status of the snapshot as reported by the service (CREATING, READY, DELETING, FAILED). Populated by DescribeSnapshot.",
+        "enum": [
+          "CREATING",
+          "READY",
+          "DELETING",
+          "FAILED"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "Tags to apply to the snapshot. Applied at create time (with CreateSnapshot, or with TagResource right after ImportSnapshot) and updated in place with TagResource and UntagResource. Tag keys must not start with aws:.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 50,
+        "type": "array",
+        "uniqueItems": true
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/SnapshotArn",
+      "/properties/SnapshotStatus",
+      "/properties/SnapshotCreationTimestamp",
+      "/properties/RuntimeEnvironment",
+      "/properties/SnapshotSizeInBytes",
+      "/properties/SnapshotSourceDescription",
+      "/properties/SnapshotSourceDescription/S3PrefixLocation/BucketARN",
+      "/properties/SnapshotSourceDescription/S3PrefixLocation/KeyPrefix",
+      "/properties/SnapshotSourceDescription/SourceApplicationDescription/ApplicationName",
+      "/properties/SnapshotSourceDescription/SourceApplicationDescription/ApplicationCreationTimestamp",
+      "/properties/SnapshotSourceDescription/SourceApplicationDescription/ApplicationVersionId",
+      "/properties/SnapshotInitiator",
+      "/properties/SnapshotInitiatorOperation"
+    ],
+    "required": [
+      "SnapshotName"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": false,
+      "permissions": [
+        "kinesisanalytics:TagResource",
+        "kinesisanalytics:UntagResource",
+        "kinesisanalytics:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::KinesisAnalyticsV2::Snapshot",
+    "writeOnlyProperties": [
+      "/properties/ApplicationName",
+      "/properties/ImportSourceConfiguration"
+    ]
+  }
+}

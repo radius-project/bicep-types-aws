@@ -1,0 +1,410 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Timestream-InfluxDBBackup",
+  "type": "AWS::Timestream::InfluxDBBackup",
+  "time": "2026-11-25T20:43:40.251Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/Id"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Name",
+      "/properties/DbResourceId",
+      "/properties/RetentionDays"
+    ],
+    "definitions": {
+      "ClusterConfiguration": {
+        "additionalProperties": false,
+        "description": "The cluster configuration of the resource at the time of backup.",
+        "properties": {
+          "DedicatedCompactor": {
+            "description": "Indicates if the compactor instance is a standalone instance or not.",
+            "type": "boolean"
+          },
+          "IngestQueryInstances": {
+            "description": "The number of ingest and query instances in the cluster.",
+            "type": "integer"
+          },
+          "QueryOnlyInstances": {
+            "description": "The number of query-only instances in the cluster.",
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "LogDeliveryConfiguration": {
+        "additionalProperties": false,
+        "description": "The log delivery configuration of the resource at the time of backup.",
+        "properties": {
+          "S3Configuration": {
+            "$ref": "#/definitions/S3Configuration"
+          }
+        },
+        "required": [
+          "S3Configuration"
+        ],
+        "type": "object"
+      },
+      "MaintenanceSchedule": {
+        "additionalProperties": false,
+        "description": "The maintenance schedule of the resource at the time of backup.",
+        "properties": {
+          "PreferredMaintenanceWindow": {
+            "description": "The preferred maintenance window in the format ddd:HH:MM-ddd:HH:MM.",
+            "maxLength": 19,
+            "minLength": 0,
+            "pattern": "^$|^(Mon|Tue|Wed|Thu|Fri|Sat|Sun):([01]\\d|2[0-3]):[0-5]\\d-(Mon|Tue|Wed|Thu|Fri|Sat|Sun):([01]\\d|2[0-3]):[0-5]\\d$",
+            "type": "string"
+          },
+          "Timezone": {
+            "description": "The IANA timezone identifier for the maintenance window.",
+            "maxLength": 64,
+            "minLength": 1,
+            "pattern": "^(UTC|[A-Za-z_]+/[A-Za-z0-9_]+(/[A-Za-z0-9_]+)?)$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Timezone",
+          "PreferredMaintenanceWindow"
+        ],
+        "type": "object"
+      },
+      "S3Configuration": {
+        "additionalProperties": false,
+        "description": "Configuration for S3 bucket log delivery.",
+        "properties": {
+          "BucketName": {
+            "description": "The name of the S3 bucket to deliver logs to.",
+            "maxLength": 63,
+            "minLength": 3,
+            "pattern": "^[0-9a-z]+[0-9a-z\\.\\-]*[0-9a-z]+$",
+            "type": "string"
+          },
+          "Enabled": {
+            "description": "Indicates whether log delivery to the S3 bucket is enabled.",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "BucketName",
+          "Enabled"
+        ],
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with the resource.",
+        "properties": {
+          "Key": {
+            "description": "The key name of the tag.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value for the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource type definition for AWS::Timestream::InfluxDBBackup. An on-demand backup of an Amazon Timestream for InfluxDB DB instance or DB cluster.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "timestream-influxdb:CreateDbBackup",
+          "timestream-influxdb:GetDbBackup",
+          "timestream-influxdb:TagResource"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "timestream-influxdb:DeleteDbBackup",
+          "timestream-influxdb:GetDbBackup",
+          "timestream-influxdb:ListTagsForResource"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "timestream-influxdb:ListDbBackups"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "timestream-influxdb:GetDbBackup",
+          "timestream-influxdb:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "timestream-influxdb:GetDbBackup",
+          "timestream-influxdb:ListTagsForResource",
+          "timestream-influxdb:TagResource",
+          "timestream-influxdb:UntagResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "AllocatedStorage": {
+        "description": "The allocated storage of the resource at the time of backup, in GiB.",
+        "maximum": 15360,
+        "minimum": 20,
+        "type": "integer"
+      },
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the backup.",
+        "maxLength": 1011,
+        "minLength": 1,
+        "pattern": "^arn:aws[a-z\\-]*:timestream\\-influxdb:[a-z0-9\\-]+:[0-9]{12}:(db\\-instance|db\\-cluster|db\\-parameter\\-group|db\\-backup)/[a-zA-Z0-9]{3,64}$",
+        "type": "string"
+      },
+      "ClusterConfiguration": {
+        "$ref": "#/definitions/ClusterConfiguration"
+      },
+      "CreatedAt": {
+        "description": "The time when the backup was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "DbInstanceType": {
+        "description": "The DB instance type of the resource at the time of backup.",
+        "enum": [
+          "db.influx.medium",
+          "db.influx.large",
+          "db.influx.xlarge",
+          "db.influx.2xlarge",
+          "db.influx.4xlarge",
+          "db.influx.8xlarge",
+          "db.influx.12xlarge",
+          "db.influx.16xlarge",
+          "db.influx.24xlarge"
+        ],
+        "type": "string"
+      },
+      "DbParameterGroupId": {
+        "description": "The identifier of the DB parameter group associated with the backup.",
+        "maxLength": 64,
+        "minLength": 3,
+        "pattern": "^[a-zA-Z0-9]+$",
+        "type": "string"
+      },
+      "DbResourceId": {
+        "description": "The id of the DB instance or DB cluster to back up.",
+        "maxLength": 64,
+        "minLength": 3,
+        "pattern": "^[a-zA-Z0-9]+$",
+        "type": "string"
+      },
+      "DbStorageType": {
+        "description": "The storage type of the resource at the time of backup.",
+        "enum": [
+          "InfluxIOIncludedT1",
+          "InfluxIOIncludedT2",
+          "InfluxIOIncludedT3"
+        ],
+        "type": "string"
+      },
+      "DeploymentType": {
+        "description": "The deployment type of the resource that the backup was created from.",
+        "enum": [
+          "SINGLE_AZ",
+          "WITH_MULTIAZ_STANDBY",
+          "MULTI_NODE_READ_REPLICAS"
+        ],
+        "type": "string"
+      },
+      "EngineType": {
+        "description": "The engine type of the resource that the backup was created from.",
+        "enum": [
+          "INFLUXDB_V2",
+          "INFLUXDB_V3_CORE",
+          "INFLUXDB_V3_ENTERPRISE"
+        ],
+        "type": "string"
+      },
+      "ExpiresAfter": {
+        "description": "The date after which the backup will be automatically deleted, as a calendar date in YYYY-MM-DD format.",
+        "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+        "type": "string"
+      },
+      "FailoverMode": {
+        "description": "The failover mode of the resource at the time of backup.",
+        "enum": [
+          "AUTOMATIC",
+          "NO_FAILOVER"
+        ],
+        "type": "string"
+      },
+      "Id": {
+        "description": "Service-generated unique identifier of the backup.",
+        "maxLength": 64,
+        "minLength": 3,
+        "pattern": "^[a-zA-Z0-9]+$",
+        "type": "string"
+      },
+      "InfluxAuthParametersSecretArn": {
+        "description": "The ARN of the Secrets Manager secret containing the InfluxDB auth parameters.",
+        "type": "string"
+      },
+      "KmsKeyId": {
+        "description": "The Amazon Web Services KMS key ARN used for encryption of the resource at the time of backup.",
+        "maxLength": 2048,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9:/_\\-]+$",
+        "type": "string"
+      },
+      "LogDeliveryConfiguration": {
+        "$ref": "#/definitions/LogDeliveryConfiguration"
+      },
+      "MaintenanceSchedule": {
+        "$ref": "#/definitions/MaintenanceSchedule"
+      },
+      "Name": {
+        "description": "The name of the backup. Must be unique within the account and region.",
+        "maxLength": 40,
+        "minLength": 3,
+        "pattern": "^[a-zA-Z][a-zA-Z0-9]*(-[a-zA-Z0-9]+)*$",
+        "type": "string"
+      },
+      "NetworkType": {
+        "description": "The network type of the resource at the time of backup.",
+        "enum": [
+          "IPV4",
+          "DUAL"
+        ],
+        "type": "string"
+      },
+      "Port": {
+        "description": "The port number of the resource at the time of backup.",
+        "type": "integer"
+      },
+      "PubliclyAccessible": {
+        "description": "Indicates whether the resource was publicly accessible at the time of backup.",
+        "type": "boolean"
+      },
+      "RetentionDays": {
+        "description": "The number of days to retain the backup. Valid values are 1 to 3650.",
+        "maximum": 3650,
+        "minimum": 1,
+        "type": "integer"
+      },
+      "Status": {
+        "description": "The current status of the backup.",
+        "enum": [
+          "IN_PROGRESS",
+          "COMPLETED",
+          "FAILED",
+          "DELETING",
+          "DELETED"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "A list of key-value pairs to associate with the backup.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 200,
+        "type": "array",
+        "uniqueItems": true
+      },
+      "Type": {
+        "description": "The type of backup. Backups created through this resource type are always ON_DEMAND.",
+        "enum": [
+          "HOURLY",
+          "DAILY",
+          "WEEKLY",
+          "MONTHLY",
+          "CUSTOM_SCHEDULE",
+          "ON_DEMAND",
+          "CONTINUOUS"
+        ],
+        "type": "string"
+      },
+      "VpcSecurityGroupIds": {
+        "description": "The VPC security group IDs associated with the resource at the time of backup.",
+        "insertionOrder": false,
+        "items": {
+          "maxLength": 64,
+          "pattern": "^sg-[a-z0-9]+$",
+          "type": "string"
+        },
+        "maxItems": 5,
+        "minItems": 1,
+        "type": "array"
+      },
+      "VpcSubnetIds": {
+        "description": "The VPC subnet IDs associated with the resource at the time of backup.",
+        "insertionOrder": false,
+        "items": {
+          "maxLength": 64,
+          "pattern": "^subnet-[a-z0-9]+$",
+          "type": "string"
+        },
+        "maxItems": 6,
+        "minItems": 1,
+        "type": "array"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/Id",
+      "/properties/Status",
+      "/properties/Type",
+      "/properties/CreatedAt",
+      "/properties/ExpiresAfter",
+      "/properties/EngineType",
+      "/properties/DeploymentType",
+      "/properties/KmsKeyId",
+      "/properties/ClusterConfiguration",
+      "/properties/DbParameterGroupId",
+      "/properties/DbInstanceType",
+      "/properties/LogDeliveryConfiguration",
+      "/properties/FailoverMode",
+      "/properties/DbStorageType",
+      "/properties/AllocatedStorage",
+      "/properties/VpcSubnetIds",
+      "/properties/VpcSecurityGroupIds",
+      "/properties/PubliclyAccessible",
+      "/properties/Port",
+      "/properties/NetworkType",
+      "/properties/InfluxAuthParametersSecretArn",
+      "/properties/MaintenanceSchedule"
+    ],
+    "required": [
+      "Name",
+      "DbResourceId"
+    ],
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-timestream-influxdb.git",
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "timestream-influxdb:TagResource",
+        "timestream-influxdb:UntagResource",
+        "timestream-influxdb:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::Timestream::InfluxDBBackup",
+    "writeOnlyProperties": [
+      "/properties/RetentionDays"
+    ]
+  }
+}

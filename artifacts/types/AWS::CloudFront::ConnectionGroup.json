@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-CloudFront-ConnectionGroup",
   "type": "AWS::CloudFront::ConnectionGroup",
-  "time": "2026-09-28T16:32:03.424Z",
+  "time": "2026-11-20T04:12:03.908Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -24,6 +24,20 @@
         "required": [
           "Value",
           "Key"
+        ],
+        "type": "object"
+      },
+      "ViewerFallback": {
+        "additionalProperties": false,
+        "description": "",
+        "properties": {
+          "DistributionId": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "DistributionId"
         ],
         "type": "object"
       }
@@ -127,6 +141,10 @@
         },
         "type": "array",
         "uniqueItems": false
+      },
+      "ViewerFallback": {
+        "$ref": "#/definitions/ViewerFallback",
+        "description": ""
       }
     },
     "readOnlyProperties": [

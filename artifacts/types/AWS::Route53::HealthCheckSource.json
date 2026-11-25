@@ -1,0 +1,202 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Route53-HealthCheckSource",
+  "type": "AWS::Route53::HealthCheckSource",
+  "time": "2026-11-25T21:26:45.662Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/HealthCheckSourceId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/HealthCheckSourceConfig"
+    ],
+    "definitions": {
+      "HealthCheckSourceConfig": {
+        "additionalProperties": false,
+        "description": "\u003cp\u003eA complex type that contains the VPC, subnets, and security groups for a health check source. You can't change these values after you create the source.\u003c/p\u003e",
+        "properties": {
+          "SubnetConfigurationList": {
+            "description": "\u003cp\u003eA complex type that contains one \u003ccode\u003eSubnetConfiguration\u003c/code\u003e element for each Availability Zone that Route 53 uses for private endpoint health checks in the Amazon Web Services Region. Each element must be in a different Availability Zone. Most Regions require three elements. Regions that have only two such Availability Zones, such as US West (N. California), require two elements. Route 53 creates network interfaces in each subnet and sends health check requests from all of them.\u003c/p\u003e",
+            "items": {
+              "$ref": "#/definitions/SubnetConfiguration"
+            },
+            "maxItems": 3,
+            "minItems": 2,
+            "type": "array"
+          },
+          "VpcId": {
+            "description": "\u003cp\u003eThe ID of the VPC that contains the subnets for the health check source. All subnets in \u003ccode\u003eSubnetConfigurationList\u003c/code\u003e must belong to this VPC.\u003c/p\u003e",
+            "maxLength": 1024,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "VpcId",
+          "SubnetConfigurationList"
+        ],
+        "type": "object"
+      },
+      "SubnetConfiguration": {
+        "additionalProperties": false,
+        "description": "\u003cp\u003eA complex type that identifies one subnet for a health check source and the security groups that Route 53 associates with the network interfaces that it creates in that subnet.\u003c/p\u003e",
+        "properties": {
+          "AvailabilityZoneId": {
+            "description": "\u003cp\u003eThe ID of the Availability Zone that contains the subnet, for example \u003ccode\u003euse1-az1\u003c/code\u003e. Specify the Availability Zone ID, not the Availability Zone name. Each subnet in a health check source must be in a different Availability Zone.\u003c/p\u003e",
+            "maxLength": 64,
+            "minLength": 1,
+            "type": "string"
+          },
+          "SecurityGroupIdList": {
+            "description": "\u003cp\u003eThe IDs of one to ten security groups in the same VPC to associate with the network interfaces that Route 53 creates in this subnet. The security groups must allow outbound traffic to the endpoints that the health checks monitor.\u003c/p\u003e",
+            "items": {
+              "maxLength": 64,
+              "minLength": 1,
+              "type": "string"
+            },
+            "maxItems": 10,
+            "minItems": 1,
+            "type": "array"
+          },
+          "SubnetId": {
+            "description": "\u003cp\u003eThe ID of the subnet. The subnet must have free IP addresses for the network interfaces that Route 53 creates.\u003c/p\u003e",
+            "maxLength": 64,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "SubnetId",
+          "AvailabilityZoneId",
+          "SecurityGroupIdList"
+        ],
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with a resource.",
+        "properties": {
+          "Key": {
+            "description": "The key name of the tag.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value for the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::Route53::HealthCheckSource. The customer VPC, subnets and\nsecurity groups from which Route 53 probes private endpoints (PEHC). Immutable after creation\n(no Update API).",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "iam:CreateServiceLinkedRole",
+          "route53:ChangeTagsForResource",
+          "route53:CreateHealthCheckSource",
+          "route53:GetHealthCheckSource"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "iam:CreateServiceLinkedRole",
+          "route53:DeleteHealthCheckSource",
+          "route53:GetHealthCheckSource"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "route53:ListHealthCheckSources"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "route53:GetHealthCheckSource",
+          "route53:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "route53:ChangeTagsForResource",
+          "route53:GetHealthCheckSource",
+          "route53:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the resource.",
+        "pattern": "^arn:aws(?:-[a-z]+)*:route53:::healthchecksource/.+$",
+        "type": "string"
+      },
+      "HealthCheckSourceConfig": {
+        "$ref": "#/definitions/HealthCheckSourceConfig",
+        "description": "\u003cp\u003eThe VPC, subnets, and security groups for the health check source.\u003c/p\u003e"
+      },
+      "HealthCheckSourceId": {
+        "description": "\u003cp\u003eThe ID of the health check source. Route 53 assigns this ID when it creates the source.\u003c/p\u003e",
+        "maxLength": 64,
+        "minLength": 1,
+        "type": "string"
+      },
+      "HealthCheckSourceStatus": {
+        "description": "\u003cp\u003eThe current status of the health check source. The health check source status can have one of the following values:\u003c/p\u003e\n         \u003cdl\u003e\n            \u003cdt\u003eCREATE_PENDING, CREATE_IN_PROGRESS\u003c/dt\u003e\n            \u003cdd\u003e\n               \u003cp\u003eRoute 53 is creating the source. Health checks that reference the source don't send requests yet.\u003c/p\u003e\n            \u003c/dd\u003e\n            \u003cdt\u003eCREATE_COMPLETED\u003c/dt\u003e\n            \u003cdd\u003e\n               \u003cp\u003eThe source is ready to use.\u003c/p\u003e\n            \u003c/dd\u003e\n            \u003cdt\u003eCREATE_FAILED\u003c/dt\u003e\n            \u003cdd\u003e\n               \u003cp\u003eRoute 53 couldn't create the source. \u003ccode\u003eStatusReasonCode\u003c/code\u003e and \u003ccode\u003eStatusReason\u003c/code\u003e explain why.\u003c/p\u003e\n            \u003c/dd\u003e\n            \u003cdt\u003eDELETE_PENDING, DELETE_IN_PROGRESS\u003c/dt\u003e\n            \u003cdd\u003e\n               \u003cp\u003eRoute 53 is deleting the source.\u003c/p\u003e\n            \u003c/dd\u003e\n            \u003cdt\u003eDELETE_COMPLETED\u003c/dt\u003e\n            \u003cdd\u003e\n               \u003cp\u003eRoute 53 has deleted the source.\u003c/p\u003e\n            \u003c/dd\u003e\n            \u003cdt\u003eDELETE_FAILED\u003c/dt\u003e\n            \u003cdd\u003e\n               \u003cp\u003eRoute 53 couldn't delete the source. \u003ccode\u003eStatusReasonCode\u003c/code\u003e and \u003ccode\u003eStatusReason\u003c/code\u003e explain why.\u003c/p\u003e\n            \u003c/dd\u003e\n         \u003c/dl\u003e\n         \u003cp\u003eIf the status is \u003ccode\u003eCREATE_FAILED\u003c/code\u003e, delete the source and create a new one. If the status is \u003ccode\u003eDELETE_FAILED\u003c/code\u003e, retry the \u003ccode\u003eDeleteHealthCheckSource\u003c/code\u003e request.\u003c/p\u003e",
+        "enum": [
+          "CREATE_PENDING",
+          "CREATE_IN_PROGRESS",
+          "CREATE_COMPLETED",
+          "CREATE_FAILED",
+          "DELETE_PENDING",
+          "DELETE_IN_PROGRESS",
+          "DELETE_COMPLETED",
+          "DELETE_FAILED"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "An array of key-value pairs to apply to this resource.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 50,
+        "type": "array",
+        "uniqueItems": true
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/HealthCheckSourceId",
+      "/properties/HealthCheckSourceStatus",
+      "/properties/Arn"
+    ],
+    "required": [
+      "HealthCheckSourceConfig"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "route53:ChangeTagsForResource",
+        "route53:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::Route53::HealthCheckSource"
+  }
+}

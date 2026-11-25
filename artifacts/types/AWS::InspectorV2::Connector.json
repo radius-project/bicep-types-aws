@@ -1,13 +1,14 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-InspectorV2-Connector",
   "type": "AWS::InspectorV2::Connector",
-  "time": "2026-10-22T00:09:50.303Z",
+  "time": "2026-11-19T04:24:17.449Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
       "/properties/Provider",
       "/properties/Name",
-      "/properties/ProviderConfiguration/Azure/AwsConfigConnectorArn"
+      "/properties/ProviderConfiguration/Azure/AwsConfigConnectorArn",
+      "/properties/ProviderConfiguration/Gcp/AwsConfigConnectorArn"
     ],
     "definitions": {
       "AzureProviderConfiguration": {
@@ -22,7 +23,7 @@
             "description": "The ARN of the AWS Config connector used for Azure resource discovery.",
             "maxLength": 512,
             "minLength": 1,
-            "pattern": "arn:([^:]+):config:([^:]+):([^:]+):connector/([^/]+)/([^/]+)/([^/:\\s]+)",
+            "pattern": "^arn:([^:]+):config:([^:]+):([^:]+):connector/([^/]+)/([^/]+)/([^/:\\s]+)$",
             "type": "string"
           },
           "AzureRegions": {
@@ -63,7 +64,8 @@
       },
       "CloudProvider": {
         "enum": [
-          "AZURE"
+          "AZURE",
+          "GCP"
         ],
         "type": "string"
       },
@@ -107,27 +109,91 @@
         ],
         "type": "string"
       },
-      "ProviderConfiguration": {
+      "GcpProviderConfiguration": {
         "additionalProperties": false,
         "properties": {
-          "Azure": {
-            "$ref": "#/definitions/AzureProviderConfiguration"
+          "AutoInstallVMScanner": {
+            "default": true,
+            "description": "Whether to automatically install the VM scanner. Defaults to true.",
+            "type": "boolean"
+          },
+          "AwsConfigConnectorArn": {
+            "description": "The ARN of the AWS Config connector used for GCP resource discovery.",
+            "maxLength": 512,
+            "minLength": 1,
+            "pattern": "^arn:([^:]+):config:([^:]+):([^:]+):connector/([^/]+)/([^/]+)/([^/:\\s]+)$",
+            "type": "string"
+          },
+          "GcpRegions": {
+            "description": "List of GCP regions to scan (e.g. us-central1).",
+            "insertionOrder": false,
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "ScopeConfiguration": {
+            "$ref": "#/definitions/GcpScopeConfigurationMap"
           }
         },
         "required": [
-          "Azure"
+          "AwsConfigConnectorArn",
+          "ScopeConfiguration",
+          "GcpRegions"
         ],
+        "type": "object"
+      },
+      "GcpScopeConfigurationMap": {
+        "additionalProperties": false,
+        "description": "Defines which GCP resource types to scan and at what scope level. GCP supports multiple capabilities per connector.",
+        "properties": {
+          "ContainerImageScanning": {
+            "$ref": "#/definitions/ScopeConfiguration"
+          },
+          "ServerlessScanning": {
+            "$ref": "#/definitions/ScopeConfiguration"
+          },
+          "VmScanning": {
+            "$ref": "#/definitions/ScopeConfiguration"
+          }
+        },
+        "type": "object"
+      },
+      "ProviderConfiguration": {
+        "additionalProperties": false,
+        "description": "Provider-specific configuration. Exactly one of Azure or Gcp must be set, matching the top-level Provider field.",
+        "oneOf": [
+          {
+            "required": [
+              "Azure"
+            ]
+          },
+          {
+            "required": [
+              "Gcp"
+            ]
+          }
+        ],
+        "properties": {
+          "Azure": {
+            "$ref": "#/definitions/AzureProviderConfiguration"
+          },
+          "Gcp": {
+            "$ref": "#/definitions/GcpProviderConfiguration"
+          }
+        },
         "type": "object"
       },
       "ScopeConfiguration": {
         "additionalProperties": false,
-        "description": "Defines the scope of Azure resources to monitor for a specific resource type.",
+        "description": "Defines the scope of cloud resources to monitor for a specific resource type.",
         "properties": {
           "ScopeType": {
             "$ref": "#/definitions/ScopeType"
           },
           "ScopeValues": {
-            "description": "List of subscription IDs. Empty for TENANT scope.",
+            "description": "List of scope identifiers. For Azure, subscription IDs (empty for TENANT scope). For GCP, project IDs or organization ID (empty for ORGANIZATION scope).",
             "insertionOrder": false,
             "items": {
               "type": "string"
@@ -160,7 +226,9 @@
       "ScopeType": {
         "enum": [
           "TENANT",
-          "SUBSCRIPTION"
+          "SUBSCRIPTION",
+          "ORGANIZATION",
+          "PROJECT"
         ],
         "type": "string"
       },
@@ -187,7 +255,7 @@
         "type": "object"
       }
     },
-    "description": "Creates and manages a multi-cloud connector for Amazon Inspector, enabling vulnerability scanning of Azure resources.",
+    "description": "Creates and manages a multi-cloud connector for Amazon Inspector, enabling vulnerability scanning of Azure or GCP resources.",
     "handlers": {
       "create": {
         "permissions": [
@@ -308,7 +376,13 @@
       "/properties/ProviderConfiguration/Azure/ScopeConfiguration/ContainerImageScanning/State",
       "/properties/ProviderConfiguration/Azure/ScopeConfiguration/ContainerImageScanning/StateReason",
       "/properties/ProviderConfiguration/Azure/ScopeConfiguration/ServerlessScanning/State",
-      "/properties/ProviderConfiguration/Azure/ScopeConfiguration/ServerlessScanning/StateReason"
+      "/properties/ProviderConfiguration/Azure/ScopeConfiguration/ServerlessScanning/StateReason",
+      "/properties/ProviderConfiguration/Gcp/ScopeConfiguration/VmScanning/State",
+      "/properties/ProviderConfiguration/Gcp/ScopeConfiguration/VmScanning/StateReason",
+      "/properties/ProviderConfiguration/Gcp/ScopeConfiguration/ContainerImageScanning/State",
+      "/properties/ProviderConfiguration/Gcp/ScopeConfiguration/ContainerImageScanning/StateReason",
+      "/properties/ProviderConfiguration/Gcp/ScopeConfiguration/ServerlessScanning/State",
+      "/properties/ProviderConfiguration/Gcp/ScopeConfiguration/ServerlessScanning/StateReason"
     ],
     "replacementStrategy": "delete_then_create",
     "required": [

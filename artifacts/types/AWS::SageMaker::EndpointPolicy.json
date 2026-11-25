@@ -1,0 +1,95 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SageMaker-EndpointPolicy",
+  "type": "AWS::SageMaker::EndpointPolicy",
+  "time": "2026-11-25T21:20:52.668Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/EndpointName"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/EndpointArn"
+    ],
+    "description": "Resource Type definition for AWS::SageMaker::EndpointPolicy. Attaches a resource policy to a SageMaker endpoint. The policy grants other AWS accounts access to the endpoint, for example through a SageMaker Inference Router. An endpoint has at most one resource policy, which is removed when the endpoint is deleted.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "sagemaker:GetEndpointPolicy",
+          "sagemaker:PutEndpointPolicy"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "sagemaker:GetEndpointPolicy",
+          "sagemaker:DeleteEndpointPolicy"
+        ]
+      },
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "EndpointArn": {
+              "maxLength": 2048,
+              "minLength": 20,
+              "pattern": "^arn:aws[a-z\\-]*:sagemaker:[a-z0-9\\-]*:[0-9]{12}:endpoint/",
+              "type": "string"
+            }
+          },
+          "required": [
+            "EndpointArn"
+          ]
+        },
+        "permissions": [
+          "sagemaker:GetEndpointPolicy"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "sagemaker:GetEndpointPolicy"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "sagemaker:GetEndpointPolicy",
+          "sagemaker:PutEndpointPolicy"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/EndpointArn"
+    ],
+    "properties": {
+      "EndpointArn": {
+        "description": "The Amazon Resource Name (ARN) of the endpoint the policy is attached to. The endpoint must be in the same account and Region as the stack.",
+        "maxLength": 2048,
+        "minLength": 20,
+        "pattern": "^arn:aws[a-z\\-]*:sagemaker:[a-z0-9\\-]*:[0-9]{12}:endpoint/",
+        "type": "string"
+      },
+      "EndpointName": {
+        "description": "The name of the endpoint the policy is attached to.",
+        "maxLength": 63,
+        "minLength": 0,
+        "pattern": "^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$",
+        "type": "string"
+      },
+      "PolicyDocument": {
+        "description": "The resource policy document, as a JSON object. The service returns the document in its canonical form, so specify principals as full ARNs (for example arn:aws:iam::111122223333:root) and keep the form the service returns, to avoid drift.",
+        "type": "object"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/EndpointName"
+    ],
+    "required": [
+      "EndpointArn",
+      "PolicyDocument"
+    ],
+    "sourceUrl": "https://code.amazon.com/packages/UluruResourceStaging/trees/mainline/--/aws/sagemaker/endpointpolicy",
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::SageMaker::EndpointPolicy"
+  }
+}

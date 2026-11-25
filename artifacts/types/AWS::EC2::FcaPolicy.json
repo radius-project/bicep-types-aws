@@ -1,0 +1,303 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EC2-FcaPolicy",
+  "type": "AWS::EC2::FcaPolicy",
+  "time": "2026-11-25T21:06:48.043Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/FcaPolicyId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/NetworkResourceType"
+    ],
+    "definitions": {
+      "CidrMapping": {
+        "additionalProperties": false,
+        "description": "A single CIDR range to label mapping.",
+        "properties": {
+          "CidrLabel": {
+            "description": "The label for the CIDR range.",
+            "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_\\-]{0,63}$",
+            "type": "string"
+          },
+          "CidrRange": {
+            "description": "The CIDR range.",
+            "maxLength": 43,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "CidrRange",
+          "CidrLabel"
+        ],
+        "type": "object"
+      },
+      "CidrRangeSpecifications": {
+        "additionalProperties": false,
+        "description": "CIDR range specifications, used when the reporting granularity is 'cidr'.",
+        "properties": {
+          "Prefixes": {
+            "description": "The CIDR range to label mappings.",
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/CidrMapping"
+            },
+            "maxItems": 100,
+            "minItems": 1,
+            "type": "array"
+          },
+          "PrefixesType": {
+            "description": "The type of prefixes the mappings apply to.",
+            "maxLength": 64,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "PrefixesType",
+          "Prefixes"
+        ],
+        "type": "object"
+      },
+      "DimensionList": {
+        "description": "The cost dimensions to allocate.",
+        "insertionOrder": false,
+        "items": {
+          "enum": [
+            "data-transfer",
+            "data-processing"
+          ],
+          "type": "string"
+        },
+        "maxItems": 2,
+        "minItems": 1,
+        "type": "array"
+      },
+      "InstanceFcaPolicyDocument": {
+        "additionalProperties": false,
+        "description": "The FCA policy document for EC2 instance cost allocation.",
+        "properties": {
+          "CidrRangeSpecifications": {
+            "$ref": "#/definitions/CidrRangeSpecifications"
+          },
+          "Dimensions": {
+            "$ref": "#/definitions/DimensionList"
+          },
+          "ReportingGranularity": {
+            "$ref": "#/definitions/ReportingGranularityList"
+          }
+        },
+        "required": [
+          "ReportingGranularity",
+          "Dimensions"
+        ],
+        "type": "object"
+      },
+      "NatFcaPolicyDocument": {
+        "additionalProperties": false,
+        "description": "The FCA policy document for NAT gateway cost allocation.",
+        "properties": {
+          "CidrRangeSpecifications": {
+            "$ref": "#/definitions/CidrRangeSpecifications"
+          },
+          "Dimensions": {
+            "$ref": "#/definitions/DimensionList"
+          },
+          "ReportingGranularity": {
+            "$ref": "#/definitions/ReportingGranularityList"
+          }
+        },
+        "required": [
+          "ReportingGranularity",
+          "Dimensions"
+        ],
+        "type": "object"
+      },
+      "PcxFcaPolicyDocument": {
+        "additionalProperties": false,
+        "description": "The FCA policy document for VPC peering connection cost allocation.",
+        "properties": {
+          "CidrRangeSpecifications": {
+            "$ref": "#/definitions/CidrRangeSpecifications"
+          },
+          "Dimensions": {
+            "$ref": "#/definitions/DimensionList"
+          },
+          "ReportingGranularity": {
+            "$ref": "#/definitions/ReportingGranularityList"
+          }
+        },
+        "required": [
+          "ReportingGranularity",
+          "Dimensions"
+        ],
+        "type": "object"
+      },
+      "ReportingGranularityList": {
+        "description": "The granularity at which costs are reported. Contains exactly one value.",
+        "insertionOrder": false,
+        "items": {
+          "enum": [
+            "eni",
+            "ec2",
+            "subnet",
+            "vpc",
+            "account",
+            "peering-id",
+            "cidr"
+          ],
+          "type": "string"
+        },
+        "maxItems": 1,
+        "minItems": 1,
+        "type": "array"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "A Flex Cost Allocation (FCA) policy defines how shared network costs (data transfer, data processing) are allocated and reported for network resources such as NAT gateways, EC2 instances, and VPC peering connections.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "ec2:CreateNetworkingFlexCostAllocationPolicy",
+          "ec2:CreateTags"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "ec2:DeleteNetworkingFlexCostAllocationPolicies"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "ec2:DescribeNetworkingFlexCostAllocationPolicies"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "ec2:DescribeNetworkingFlexCostAllocationPolicies"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "ec2:ModifyNetworkingFlexCostAllocationPolicy",
+          "ec2:DescribeNetworkingFlexCostAllocationPolicies",
+          "ec2:CreateTags",
+          "ec2:DeleteTags"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the FCA policy.",
+        "type": "string"
+      },
+      "Description": {
+        "description": "The description of the FCA policy.",
+        "type": "string"
+      },
+      "FcaPolicyId": {
+        "description": "The ID of the FCA policy.",
+        "pattern": "^fcap-[a-f0-9]{17}$",
+        "type": "string"
+      },
+      "InstanceFcaPolicyDocument": {
+        "$ref": "#/definitions/InstanceFcaPolicyDocument"
+      },
+      "LatestVersion": {
+        "description": "The latest version number of the FCA policy.",
+        "type": "integer"
+      },
+      "NatFcaPolicyDocument": {
+        "$ref": "#/definitions/NatFcaPolicyDocument"
+      },
+      "NetworkResourceType": {
+        "description": "The type of network resource the FCA policy applies to.",
+        "enum": [
+          "natgw",
+          "pcx",
+          "ec2"
+        ],
+        "type": "string"
+      },
+      "OwnerAccount": {
+        "description": "The AWS account ID that owns the FCA policy.",
+        "type": "string"
+      },
+      "PcxFcaPolicyDocument": {
+        "$ref": "#/definitions/PcxFcaPolicyDocument"
+      },
+      "PolicyCreatedAt": {
+        "description": "The timestamp when the FCA policy was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "ShowBackEnabled": {
+        "description": "Indicates whether show-back reporting is enabled for the FCA policy.",
+        "type": "boolean"
+      },
+      "Tags": {
+        "description": "The tags for the FCA policy.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": true
+      },
+      "VersionExpectedEffectiveAt": {
+        "description": "The timestamp when the latest version of the FCA policy is expected to take effect.",
+        "format": "date-time",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/FcaPolicyId",
+      "/properties/Arn",
+      "/properties/OwnerAccount",
+      "/properties/LatestVersion",
+      "/properties/VersionExpectedEffectiveAt",
+      "/properties/PolicyCreatedAt"
+    ],
+    "required": [
+      "NetworkResourceType"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "ec2:CreateTags",
+        "ec2:DeleteTags",
+        "ec2:DescribeNetworkingFlexCostAllocationPolicies"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::EC2::FcaPolicy"
+  }
+}

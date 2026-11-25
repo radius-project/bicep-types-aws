@@ -313,6 +313,20 @@
 * **Id**: string: A unique identifier for this rule. The value must be no more than 255 characters.
 * **MaxAge**: int: The time in seconds that your browser is to cache the preflight response for the specified resource.
 
+## CostAndUsageReportsPrefixLevel
+### Properties
+* **IsEnabled**: bool (Required): Specifies whether publishing prefix-level metrics to AWS Cost and Usage Reports is enabled or disabled.
+* **SelectionCriteria**: [CostAndUsageReportsSelectionCriteria](#costandusagereportsselectioncriteria)
+
+## CostAndUsageReportsPublish
+### Properties
+* **PrefixLevel**: [CostAndUsageReportsPrefixLevel](#costandusagereportsprefixlevel)
+
+## CostAndUsageReportsSelectionCriteria
+### Properties
+* **MaxDepth**: int: The maximum prefix depth to publish to AWS Cost and Usage Reports. You must specify MinDepth and MaxDepth together, or neither. If you specify neither, MaxDepth defaults to 3.
+* **MinDepth**: int: The minimum prefix depth to publish to AWS Cost and Usage Reports. You must specify MinDepth and MaxDepth together, or neither. If you specify neither, MinDepth defaults to 1.
+
 ## DataExport
 ### Properties
 * **Destination**: [Destination](#destination) (Required): The place to store the data for an analysis.
@@ -384,6 +398,10 @@
 ### Properties
 * **GranteeIdentifier**: string (Required): The unique identifier of the Grantee
 * **GranteeType**: string (Required): Configures the transfer acceleration state for an Amazon S3 bucket.
+
+## IntAccessTiers
+### Properties
+* **IsEnabled**: bool: Specifies whether metric breakdown per Intelligent-Tiering access tiers is enabled or disabled.
 
 ## IntelligentTieringConfiguration
 ### Properties
@@ -785,11 +803,13 @@ Enabling this setting doesn't affect previously stored bucket policies, except t
 ### Properties
 * **AccountLevel**: [AccountLevel](#accountlevel) (Required)
 * **AwsOrg**: [AwsOrg](#awsorg)
+* **CostAndUsageReportsPublish**: [CostAndUsageReportsPublish](#costandusagereportspublish)
 * **DataExport**: [DataExport](#dataexport)
 * **Exclude**: [BucketsAndRegions](#bucketsandregions)
 * **ExpandedPrefixesDataExport**: [StorageLensExpandedPrefixesDataExport](#storagelensexpandedprefixesdataexport)
 * **Id**: string (Required)
 * **Include**: [BucketsAndRegions](#bucketsandregions)
+* **IntAccessTiers**: [IntAccessTiers](#intaccesstiers)
 * **IsEnabled**: bool (Required): Specifies whether the Amazon S3 Storage Lens configuration is enabled or disabled.
 * **PrefixDelimiter**: string: The delimiter to divide S3 key into hierarchy of prefixes.
 * **StorageLensArn**: string (ReadOnly): The ARN for the Amazon S3 Storage Lens configuration.

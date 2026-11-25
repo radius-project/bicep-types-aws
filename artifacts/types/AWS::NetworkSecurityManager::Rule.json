@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-NetworkSecurityManager-Rule",
   "type": "AWS::NetworkSecurityManager::Rule",
-  "time": "2026-10-27T19:05:41.797Z",
+  "time": "2026-11-25T20:52:41.91Z",
   "schema": {
     "additionalIdentifiers": [
       [
@@ -44,7 +44,26 @@
           "network-security-manager:CreateRule",
           "network-security-manager:GetRule",
           "network-security-manager:TagResource",
-          "network-security-manager:ListTagsForResource"
+          "network-security-manager:ListTagsForResource",
+          "network-firewall:CreateFirewallPolicyV2",
+          "network-firewall:TagResource",
+          "network-firewall:UpdateLoggingConfiguration",
+          "logs:CreateLogDelivery",
+          "logs:GetLogDelivery",
+          "logs:UpdateLogDelivery",
+          "logs:DeleteLogDelivery",
+          "logs:ListLogDeliveries",
+          "logs:DescribeLogGroups",
+          "logs:DescribeResourcePolicies",
+          "logs:PutResourcePolicy",
+          "s3:GetBucketAcl",
+          "s3:GetBucketPolicy",
+          "s3:PutBucketPolicy",
+          "s3:ListBucket",
+          "firehose:DescribeDeliveryStream",
+          "firehose:TagDeliveryStream",
+          "iam:GetRole",
+          "iam:CreateServiceLinkedRole"
         ]
       },
       "delete": {
@@ -71,7 +90,26 @@
           "network-security-manager:GetRule",
           "network-security-manager:TagResource",
           "network-security-manager:UntagResource",
-          "network-security-manager:ListTagsForResource"
+          "network-security-manager:ListTagsForResource",
+          "network-firewall:CreateFirewallPolicyV2",
+          "network-firewall:TagResource",
+          "network-firewall:UpdateLoggingConfiguration",
+          "logs:CreateLogDelivery",
+          "logs:GetLogDelivery",
+          "logs:UpdateLogDelivery",
+          "logs:DeleteLogDelivery",
+          "logs:ListLogDeliveries",
+          "logs:DescribeLogGroups",
+          "logs:DescribeResourcePolicies",
+          "logs:PutResourcePolicy",
+          "s3:GetBucketAcl",
+          "s3:GetBucketPolicy",
+          "s3:PutBucketPolicy",
+          "s3:ListBucket",
+          "firehose:DescribeDeliveryStream",
+          "firehose:TagDeliveryStream",
+          "iam:GetRole",
+          "iam:CreateServiceLinkedRole"
         ]
       }
     },
@@ -86,7 +124,8 @@
       "FirewallType": {
         "description": "The type of firewall for this rule.",
         "enum": [
-          "WAF"
+          "WAF",
+          "IGW_FIREWALL"
         ],
         "type": "string"
       },
@@ -96,6 +135,7 @@
       },
       "RuleDescription": {
         "description": "A description of the rule.",
+        "pattern": "^[a-zA-Z0-9 _.:/=+\\-@]*$",
         "type": "string"
       },
       "RuleId": {
@@ -104,6 +144,7 @@
       },
       "RuleName": {
         "description": "The name of the rule.",
+        "pattern": "^[a-zA-Z0-9][a-zA-Z0-9 _.:/=+\\-@]*$",
         "type": "string"
       },
       "RuleType": {

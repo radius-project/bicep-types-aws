@@ -219,6 +219,7 @@
 * **AuthType**: string
 * **IdentitySource**: string
 * **IdentityValidationExpression**: string
+* **JwtConfiguration**: [JwtConfiguration](#jwtconfiguration)
 * **Name**: string (Required)
 * **ProviderARNs**: string[]
 * **RestApiId**: string (Required, Identifier)
@@ -290,7 +291,7 @@
 * **RegionalDomainName**: string (ReadOnly)
 * **RegionalHostedZoneId**: string (ReadOnly)
 * **RoutingMode**: string
-* **SecurityPolicy**: string
+* **SecurityPolicy**: string: The Transport Layer Security (TLS) version + cipher suite for this DomainName.
 * **Tags**: [Tag](#tag)[]
 
 ## AWS.ApiGateway/DomainNameV2Properties
@@ -320,7 +321,7 @@
 * **ApiKeyRequired**: bool
 * **AuthorizationScopes**: string[]
 * **AuthorizationType**: string: The method's authorization type. This parameter is required. For valid values, see [Method](https://docs.aws.amazon.com/apigateway/latest/api/API_Method.html) in the *API Gateway API Reference*.
-  If you specify the ``AuthorizerId`` property, specify ``CUSTOM`` or ``COGNITO_USER_POOLS`` for this property.
+  If you specify the ``AuthorizerId`` property, specify ``CUSTOM``, ``COGNITO_USER_POOLS``, or ``JWT`` for this property.
 * **AuthorizerId**: string
 * **HttpMethod**: string (Required, Identifier)
 * **Integration**: [Integration](#integration)
@@ -512,6 +513,24 @@
 * **ResponseTemplates**: [Method_ResponseTemplates](#methodresponsetemplates)
 * **SelectionPattern**: string
 * **StatusCode**: string (Required)
+
+## JwtAdditionalClaim
+### Properties
+* **ClaimName**: string (Required): The claim name. Can't be iss, aud, exp, nbf, iat, scope or scp.
+* **ExpectedValues**: string[]: The value the claim must have. Leave it out to check only that the claim is present.
+* **Format**: string (Required): The claim's format. SINGLE_STRING is the only format.
+* **Required**: bool: Whether the token must carry the claim. Defaults to false.
+
+## JwtConfiguration
+### Properties
+* **DefaultAlgorithms**: string[] (Required): The signing algorithms the authorizer accepts: RS256, RS384, RS512, ES256, ES384 or ES512.
+* **Issuers**: [JwtIssuer](#jwtissuer)[] (Required): The token issuers the authorizer accepts.
+
+## JwtIssuer
+### Properties
+* **AdditionalClaims**: [JwtAdditionalClaim](#jwtadditionalclaim)[]: Other claims the token must carry.
+* **Audiences**: string[] (Required): The values that the token's aud claim must contain at least one of.
+* **Issuer**: string (Required): The HTTPS URL that the token's iss claim must match.
 
 ## Location
 ### Properties

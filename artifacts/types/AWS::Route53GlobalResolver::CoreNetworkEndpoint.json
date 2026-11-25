@@ -1,0 +1,260 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Route53GlobalResolver-CoreNetworkEndpoint",
+  "type": "AWS::Route53GlobalResolver::CoreNetworkEndpoint",
+  "time": "2026-11-18T00:07:40.987Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/Arn"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/GlobalResolverId",
+      "/properties/CoreNetworkArn",
+      "/properties/ClientToken"
+    ],
+    "definitions": {
+      "IpAddress": {
+        "additionalProperties": false,
+        "description": "A private DNS IP address of the core network endpoint. Specify exactly one of Ipv4Address or Ipv6Address. The IP address is the key of the entry: changing it adds the new address and then removes the old one.",
+        "oneOf": [
+          {
+            "required": [
+              "Ipv4Address"
+            ]
+          },
+          {
+            "required": [
+              "Ipv6Address"
+            ]
+          }
+        ],
+        "properties": {
+          "DnsLabel": {
+            "description": "Lowercase DNS label for the IP address. The service appends the endpoint ID to build the DNS name. The label of an existing IP address cannot be changed; to use a new label, change the IP address too.",
+            "maxLength": 32,
+            "minLength": 1,
+            "pattern": "^(?!-)[a-z0-9](?:[a-z0-9-]{0,30}[a-z0-9])?$",
+            "type": "string"
+          },
+          "Ipv4Address": {
+            "maxLength": 15,
+            "minLength": 1,
+            "pattern": "^((25[0-5]|(2[0-4]|1\\d|[1-9]|)\\d)\\.?\\b){4}$",
+            "type": "string"
+          },
+          "Ipv6Address": {
+            "maxLength": 39,
+            "minLength": 1,
+            "pattern": "^(?:[A-Fa-f0-9]{0,4}:){2,7}[A-Fa-f0-9]{1,4}$",
+            "type": "string"
+          },
+          "RegionScope": {
+            "$ref": "#/definitions/RegionScope",
+            "description": "ALL to serve the IP address in every available region of the endpoint, or REGIONAL to serve it only in Regions."
+          },
+          "Regions": {
+            "description": "Regions that serve the IP address. Required when RegionScope is REGIONAL and not allowed when it is ALL. Must be a subset of AvailableRegions.",
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/Region"
+            },
+            "type": "array",
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "DnsLabel",
+          "RegionScope"
+        ],
+        "type": "object"
+      },
+      "Region": {
+        "maxLength": 32,
+        "minLength": 1,
+        "type": "string"
+      },
+      "RegionScope": {
+        "enum": [
+          "ALL",
+          "REGIONAL"
+        ],
+        "type": "string"
+      },
+      "ResourceName": {
+        "maxLength": 64,
+        "minLength": 1,
+        "pattern": "^(?!^[0-9]+$)([a-zA-Z0-9-_/' ']+)$",
+        "type": "string"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource schema for AWS::Route53GlobalResolver::CoreNetworkEndpoint. A core network endpoint connects a Route 53 Global Resolver to an AWS Cloud WAN core network and defines the private DNS IP addresses that Cloud WAN traffic uses to reach the resolver.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "route53globalresolver:CreateCoreNetworkEndpoint",
+          "route53globalresolver:GetCoreNetworkEndpoint",
+          "route53globalresolver:TagResource",
+          "route53globalresolver:ListTagsForResource",
+          "networkmanager:GetCoreNetwork"
+        ],
+        "timeoutInMinutes": 60
+      },
+      "delete": {
+        "permissions": [
+          "route53globalresolver:DeleteCoreNetworkEndpoint",
+          "route53globalresolver:GetCoreNetworkEndpoint"
+        ],
+        "timeoutInMinutes": 70
+      },
+      "list": {
+        "permissions": [
+          "route53globalresolver:ListCoreNetworkEndpoints"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "route53globalresolver:GetCoreNetworkEndpoint",
+          "route53globalresolver:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "route53globalresolver:UpdateCoreNetworkEndpoint",
+          "route53globalresolver:GetCoreNetworkEndpoint",
+          "route53globalresolver:TagResource",
+          "route53globalresolver:UntagResource",
+          "route53globalresolver:ListTagsForResource"
+        ],
+        "timeoutInMinutes": 120
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/CoreNetworkEndpointId"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the core network endpoint.",
+        "maxLength": 2048,
+        "minLength": 1,
+        "type": "string"
+      },
+      "AvailableRegions": {
+        "description": "Regions where the endpoint can serve DNS: the Global Resolver regions that are also core network edge locations.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Region"
+        },
+        "type": "array"
+      },
+      "ClientToken": {
+        "maxLength": 256,
+        "minLength": 1,
+        "type": "string"
+      },
+      "CoreNetworkArn": {
+        "description": "The ARN of the AWS Cloud WAN core network to connect. The core network must be in the same account and AVAILABLE. A core network can have one core network endpoint.",
+        "maxLength": 2048,
+        "minLength": 1,
+        "pattern": "^arn:[-.a-z0-9]{1,63}:[-.a-z0-9]{1,63}:[-.a-z0-9]{0,63}:[-.a-z0-9]{0,63}:[^/].{0,1023}$",
+        "type": "string"
+      },
+      "CoreNetworkEndpointId": {
+        "description": "The ID of the core network endpoint.",
+        "maxLength": 64,
+        "minLength": 1,
+        "type": "string"
+      },
+      "CreatedAt": {
+        "type": "string"
+      },
+      "GlobalResolverId": {
+        "description": "The ID of the Global Resolver to connect. A Global Resolver can have one core network endpoint.",
+        "maxLength": 64,
+        "minLength": 1,
+        "pattern": "^[-.a-zA-Z0-9]+$",
+        "type": "string"
+      },
+      "IpAddresses": {
+        "description": "The private DNS IP addresses of the endpoint (1 to 5). Each IP address can appear once.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/IpAddress"
+        },
+        "maxItems": 5,
+        "minItems": 1,
+        "type": "array"
+      },
+      "Name": {
+        "$ref": "#/definitions/ResourceName",
+        "description": "A name for the core network endpoint."
+      },
+      "Status": {
+        "description": "CREATING, OPERATIONAL, UPDATING or DELETING. The service can also report FAILURE or ACTION_NEEDED, so this is not an enum.",
+        "type": "string"
+      },
+      "Tags": {
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 50,
+        "type": "array"
+      },
+      "UpdatedAt": {
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/CoreNetworkEndpointId",
+      "/properties/AvailableRegions",
+      "/properties/Status",
+      "/properties/CreatedAt",
+      "/properties/UpdatedAt"
+    ],
+    "required": [
+      "GlobalResolverId",
+      "CoreNetworkArn",
+      "IpAddresses"
+    ],
+    "sourceUrl": "https://code.amazon.com/packages/AWSCloudFormationResourceProvidersRoute53GlobalResolver",
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "route53globalresolver:TagResource",
+        "route53globalresolver:UntagResource",
+        "route53globalresolver:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::Route53GlobalResolver::CoreNetworkEndpoint",
+    "writeOnlyProperties": [
+      "/properties/ClientToken"
+    ]
+  }
+}

@@ -1,11 +1,12 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Config-ConformancePack",
   "type": "AWS::Config::ConformancePack",
-  "time": "2026-10-21T19:17:29.494Z",
+  "time": "2026-11-22T20:02:32.382Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
-      "/properties/ConformancePackName"
+      "/properties/ConformancePackName",
+      "/properties/Source"
     ],
     "definitions": {
       "ConformancePackInputParameter": {
@@ -25,6 +26,14 @@
         ],
         "type": "object"
       },
+      "ConformancePackType": {
+        "description": "The type of the conformance pack. CUSTOM for a conformance pack whose Config rules are managed by the customer; MANAGED for a managed conformance pack whose Config rules are managed by AWS.",
+        "enum": [
+          "CUSTOM",
+          "MANAGED"
+        ],
+        "type": "string"
+      },
       "ParameterName": {
         "description": "Key part of key-value pair with value being parameter value",
         "maxLength": 255,
@@ -36,6 +45,44 @@
         "maxLength": 4096,
         "minLength": 0,
         "type": "string"
+      },
+      "Scope": {
+        "additionalProperties": false,
+        "description": "The global tag scope of the managed conformance pack. If specified, only resources with this tag key and value pair are in scope of the conformance pack.",
+        "properties": {
+          "TagKey": {
+            "description": "The tag key of the tag scope. Only resources with this tag key are in scope of the conformance pack.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "TagValue": {
+            "description": "The tag value of the tag scope. If omitted, resources are in scope based on the presence of the tag key alone, regardless of its value.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "TagKey"
+        ],
+        "type": "object"
+      },
+      "Source": {
+        "additionalProperties": false,
+        "description": "The source of a managed conformance pack. Specifying Source creates a managed conformance pack, whose Config rules are managed by AWS. You can only specify one of Source or the template body or template S3Uri fields.",
+        "properties": {
+          "SourceIdentifier": {
+            "description": "The identifier specifying which managed conformance pack is being deployed.",
+            "maxLength": 256,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "SourceIdentifier"
+        ],
+        "type": "object"
       },
       "Tag": {
         "additionalProperties": false,
@@ -146,6 +193,12 @@
         "minLength": 0,
         "type": "string"
       },
+      "Scope": {
+        "$ref": "#/definitions/Scope"
+      },
+      "Source": {
+        "$ref": "#/definitions/Source"
+      },
       "Tags": {
         "description": "The tags for the conformance pack.",
         "items": {
@@ -184,10 +237,14 @@
           }
         },
         "type": "object"
+      },
+      "Type": {
+        "$ref": "#/definitions/ConformancePackType"
       }
     },
     "readOnlyProperties": [
-      "/properties/ConformancePackArn"
+      "/properties/ConformancePackArn",
+      "/properties/Type"
     ],
     "required": [
       "ConformancePackName"

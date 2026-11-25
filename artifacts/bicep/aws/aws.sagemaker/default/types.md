@@ -160,6 +160,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.SageMaker/EndpointConfigProperties](#awssagemakerendpointconfigproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.SageMaker/EndpointPolicy@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.SageMaker/EndpointPolicyProperties](#awssagemakerendpointpolicyproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.SageMaker/Experiment@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -175,6 +183,14 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.SageMaker/ExperimentTrialComponentProperties](#awssagemakerexperimenttrialcomponentproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.SageMaker/Extension@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.SageMaker/ExtensionProperties](#awssagemakerextensionproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.SageMaker/FeatureGroup@default
 * **Readable Scope(s)**: None
@@ -247,6 +263,14 @@
 * **alias**: string (Required, Identifier): the resource alias
 * **name**: string: the resource name
 * **properties**: [AWS.SageMaker/InferenceExperimentProperties](#awssagemakerinferenceexperimentproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.SageMaker/InferenceRouter@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.SageMaker/InferenceRouterProperties](#awssagemakerinferencerouterproperties) (Required, Identifier): properties of the resource
 
 ## Resource AWS.SageMaker/MlflowApp@default
 * **Readable Scope(s)**: None
@@ -643,10 +667,19 @@
 ### Properties
 * **MaxConcurrentInvocationsPerInstance**: int: The maximum number of concurrent requests sent by the SageMaker client to the model container. If no value is provided, SageMaker will choose an optimal value for you.
 
+## AsyncInferenceClientConfig
+### Properties
+* **MaxTimeInBacklogSeconds**: int: How long, in seconds, a request can wait for a destination to pick it up before it expires. The default is 900.
+
 ## AsyncInferenceConfig
 ### Properties
 * **ClientConfig**: [AsyncInferenceClientConfig](#asyncinferenceclientconfig): Configures the behavior of the client used by SageMaker to interact with the model container during asynchronous inference.
 * **OutputConfig**: [AsyncInferenceOutputConfig](#asyncinferenceoutputconfig) (Required): Specifies the configuration for asynchronous inference invocation outputs.
+
+## AsyncInferenceConfig
+### Properties
+* **ClientConfig**: [AsyncInferenceClientConfig](#asyncinferenceclientconfig)
+* **OutputConfig**: [AsyncInferenceOutputConfig](#asyncinferenceoutputconfig) (Required)
 
 ## AsyncInferenceNotificationConfig
 ### Properties
@@ -654,12 +687,24 @@
 * **IncludeInferenceResponseIn**: string[]: The Amazon SNS topics where you want the inference response to be included.
 * **SuccessTopic**: string: Amazon SNS topic to post a notification to when an inference completes successfully. If no topic is provided, no notification is sent on success.
 
+## AsyncInferenceNotificationConfig
+### Properties
+* **ErrorTopic**: string: The ARN of a standard (not FIFO) SNS topic to notify when a request fails. It can be in any Region.
+* **SuccessTopic**: string: The ARN of a standard (not FIFO) SNS topic to notify when a request succeeds. It can be in any Region.
+
 ## AsyncInferenceOutputConfig
 ### Properties
 * **KmsKeyId**: string: The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to encrypt the asynchronous inference output in Amazon S3.
 * **NotificationConfig**: [AsyncInferenceNotificationConfig](#asyncinferencenotificationconfig): Specifies the configuration for notifications of inference results for asynchronous inference.
 * **S3FailurePath**: string: The Amazon S3 location to upload failure inference responses to.
 * **S3OutputPath**: string: The Amazon S3 location to upload inference responses to.
+
+## AsyncInferenceOutputConfig
+### Properties
+* **KmsKeyId**: string: The AWS KMS key that encrypts the results. If any destination is in a different account or Region from the Inference Router, use a key ARN or an alias ARN.
+* **NotificationConfig**: [AsyncInferenceNotificationConfig](#asyncinferencenotificationconfig)
+* **S3FailurePath**: string (Required): The Amazon S3 location for failed requests. It can be in any Region and account.
+* **S3OutputPath**: string (Required): The Amazon S3 location for successful results. It can be in any Region and account.
 
 ## AthenaDatasetDefinition
 ### Properties
@@ -1009,6 +1054,7 @@
 ## AWS.SageMaker/EndpointConfigProperties
 ### Properties
 * **AsyncInferenceConfig**: [AsyncInferenceConfig](#asyncinferenceconfig): Specifies configuration for how an endpoint performs asynchronous inference.
+* **CrossRegionTrafficConfig**: [CrossRegionTrafficConfig](#crossregiontrafficconfig): Limits the requests per second that the endpoint accepts from other AWS Regions. The limit is MaxCrossRegionPercentPerEndpoint percent of MaxInvocationsPerSecondPerInstance multiplied by the number of InService instances, shared by all production variants and inference components of the endpoint. Requests from the endpoint's own Region are not counted. Not supported with serverless variants or AsyncInferenceConfig. If you don't specify it, requests from other Regions are not limited.
 * **DataCaptureConfig**: [DataCaptureConfig](#datacaptureconfig): Specifies how to capture endpoint data for model monitor. The data capture configuration applies to all production variants hosted at the endpoint.
 * **EnableNetworkIsolation**: bool: Sets whether all model containers deployed to the endpoint are isolated. If they are, no inbound or outbound network calls can be made to or from the model containers.
 * **EndpointConfigArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the endpoint configuration.
@@ -1021,6 +1067,12 @@
 * **ShadowProductionVariants**: [ProductionVariant](#productionvariant)[]: Array of ProductionVariant objects. There is one for each model that you want to host at this endpoint in shadow mode with production traffic replicated from the model specified on ProductionVariants. If you use this field, you can only specify one variant for ProductionVariants and one variant for ShadowProductionVariants.
 * **Tags**: [Tag](#tag)[]: A list of key-value pairs to apply to this resource.
 * **VpcConfig**: [VpcConfig](#vpcconfig): Specifies an Amazon Virtual Private Cloud (VPC) that your SageMaker jobs, hosted models, and compute resources have access to. You can control access to and from your resources by configuring a VPC.
+
+## AWS.SageMaker/EndpointPolicyProperties
+### Properties
+* **EndpointArn**: string (Required, Identifier): The Amazon Resource Name (ARN) of the endpoint the policy is attached to. The endpoint must be in the same account and Region as the stack.
+* **EndpointName**: string (ReadOnly): The name of the endpoint the policy is attached to.
+* **PolicyDocument**: [EndpointPolicy_PolicyDocument](#endpointpolicypolicydocument) (Required): The resource policy document, as a JSON object. The service returns the document in its canonical form, so specify principals as full ARNs (for example arn:aws:iam::111122223333:root) and keep the form the service returns, to avoid drift.
 
 ## AWS.SageMaker/EndpointProperties
 ### Properties
@@ -1057,6 +1109,19 @@
 * **Status**: [Status](#status)
 * **Tags**: [TagsItems](#tagsitems)[]
 * **TrialComponentName**: string (Required)
+
+## AWS.SageMaker/ExtensionProperties
+### Properties
+* **ClusterArn**: string (Required): The Amazon Resource Name (ARN) of the Amazon SageMaker HyperPod cluster to install the extension on.
+* **ConfigurationValues**: string: The configuration settings for the extension, as a JSON string. The settings must match the configuration schema for the extension version. For each setting that you don't specify, SageMaker HyperPod uses its default value. When you update the stack, SageMaker HyperPod applies the settings in the string to the current configuration. Settings that you leave out keep their current values. To restore the default value of a setting, set it to null. To write the settings as YAML or JSON in your template, use the Fn::ToJsonString intrinsic function with the AWS::LanguageExtensions transform. The JSON string can be up to 10,240 characters long.
+* **CreationTime**: string (ReadOnly): The date and time that you created the extension.
+* **ExtensionArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the extension.
+* **ExtensionName**: string (Required): The name of the extension to install, such as sagemaker-observability. You can't install the same extension twice on a cluster.
+* **ExtensionVersion**: string: The version of the extension to install, such as 1.0.0. When you create the extension without a version, SageMaker HyperPod installs the latest generally available version. If the extension doesn't have a generally available version, you must specify one. If you remove this property from your template during a stack update, the installed version doesn't change. You can't downgrade an extension. To install an earlier version, delete the extension and create it again.
+* **LastModifiedTime**: string (ReadOnly): The date and time of the most recent change to the extension.
+* **NodeSummary**: [ExtensionNodeSummary](#extensionnodesummary) (ReadOnly)
+* **Status**: string (ReadOnly): The current status of the extension. CloudFormation doesn't wait for the extension to finish installing or updating on the cluster nodes. To check progress, use Status and NodeSummary.
+* **Tags**: [Tag](#tag)[]: The tags to add to the extension. You can add up to 50 tags.
 
 ## AWS.SageMaker/FeatureGroupProperties
 ### Properties
@@ -1192,6 +1257,16 @@
 * **StatusReason**: string (WriteOnly): The error message or client-specified reason from the StopInferenceExperiment API, that explains the status of the inference experiment.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 * **Type**: string (Required): The type of the inference experiment that you want to run.
+
+## AWS.SageMaker/InferenceRouterProperties
+### Properties
+* **CreationTime**: string (ReadOnly): The time when the Inference Router was created.
+* **InferenceRouterArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the Inference Router.
+* **InferenceRouterName**: string: The name of the Inference Router. Unique per account per Region, case-sensitive. If you don't specify a name, CloudFormation generates one.
+* **LastModifiedTime**: string (ReadOnly): The time when the Inference Router was last modified.
+* **RoutingTargets**: [RoutingTarget](#routingtarget)[] (Required): The routing targets of the Inference Router. An update replaces the full list.
+* **Status**: string (ReadOnly): Where the Inference Router's most recent configuration write has got to. Writes commit synchronously; propagation to the data plane is asynchronous.
+* **Tags**: [Tag](#tag)[]: Tags to associate with the Inference Router.
 
 ## AWS.SageMaker/MlflowAppProperties
 ### Properties
@@ -1576,7 +1651,7 @@
 * **TransformEndTime**: string (ReadOnly): Indicates when the transform job has been completed, or has stopped or failed.
 * **TransformInput**: [TransformJob_TransformInput](#transformjobtransforminput) (Required): Describes the input source and the way the transform job consumes it.
 * **TransformJobArn**: string (Identifier): The Amazon Resource Name (ARN) of the transform job.
-* **TransformJobName**: string (Required, ReadOnly): The name of the transform job. The name must be unique within an AWS Region in an AWS account.
+* **TransformJobName**: string (ReadOnly): The name of the transform job. The name must be unique within an AWS Region in an AWS account.
 * **TransformJobStatus**: string (ReadOnly): The status of the transform job.
 * **TransformOutput**: [TransformJob_TransformOutput](#transformjobtransformoutput) (Required): Describes the results of the transform job.
 * **TransformResources**: [TransformJob_TransformResources](#transformjobtransformresources) (Required): Describes the resources, including ML instance types and ML instance count, to use for the transform job.
@@ -2145,6 +2220,11 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 * **DestinationS3Uri**: string (Required): The Amazon S3 bucket to send the core dump to.
 * **KmsKeyId**: string: The AWS Key Management Service (AWS KMS) key that SageMaker uses to encrypt the core dump data at rest using Amazon S3 server-side encryption. If you use a KMS key ID or an alias of your KMS key, the SageMaker execution role must include permissions to call kms:Encrypt.
 
+## CrossRegionTrafficConfig
+### Properties
+* **MaxCrossRegionPercentPerEndpoint**: int (Required): The percentage of the endpoint's capacity (MaxInvocationsPerSecondPerInstance multiplied by the number of InService instances) that requests from other Regions can use. Valid values are 1 to 100.
+* **MaxInvocationsPerSecondPerInstance**: int (Required): The number of invocations per second that one InService instance can serve, used to size the limit on requests from other Regions. One value applies to every production variant, whatever its instance type. Valid values are 1 to 10000.
+
 ## Csv
 ### Properties
 * **Header**: bool: A boolean flag indicating if given CSV has header
@@ -2378,6 +2458,10 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 * **BlueGreenUpdatePolicy**: [BlueGreenUpdatePolicy](#bluegreenupdatepolicy): Configuration for blue-green update deployment policies.
 * **RollingUpdatePolicy**: [RollingUpdatePolicy](#rollingupdatepolicy): Configuration for rolling update deployment policies.
 
+## Destination
+### Properties
+* **ResourceArn**: string (Required): The ARN of a SageMaker endpoint or inference component that serves the routing target. It can be in any Region and account within the Inference Router's partition.
+
 ## Device
 ### Properties
 * **Description**: string: Description of the device
@@ -2515,6 +2599,11 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 * **EndpointName**: string (Required)
 * **EndpointStatus**: string: The status of the endpoint. For possible values of the status of an endpoint.
 
+## EndpointPolicy_PolicyDocument
+### Properties
+### Additional Properties
+* **Additional Properties Type**: any
+
 ## Environment
 ### Properties
 ### Additional Properties
@@ -2569,6 +2658,11 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 ## ExplainerConfig
 ### Properties
 * **ClarifyExplainerConfig**: [ClarifyExplainerConfig](#clarifyexplainerconfig): A member of ExplainerConfig that contains configuration parameters for the SageMaker Clarify explainer.
+
+## ExtensionNodeSummary
+### Properties
+* **ActiveCount**: int (Required): The number of cluster nodes that run the requested extension version.
+* **TotalCount**: int (Required): The number of cluster nodes that the extension applies to.
 
 ## FeatureDefinition
 ### Properties
@@ -3955,6 +4049,13 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 * **PrefixAwareRoutingConfig**: [PrefixAwareRoutingConfig](#prefixawareroutingconfig): The configuration for prefix-aware routing. Specify this property only when you set RoutingStrategy to PREFIX_AWARE.
 * **RoutingStrategy**: string: Sets how the endpoint routes incoming traffic.
 
+## RoutingTarget
+### Properties
+* **AsyncInferenceConfig**: [AsyncInferenceConfig](#asyncinferenceconfig)
+* **Destinations**: [Destination](#destination)[] (Required): The endpoints and inference components that serve this routing target.
+* **Name**: string (Required): The logical model name a caller passes at invoke time. Unique within an Inference Router.
+* **RoutingPreference**: string: How the router prefers this routing target's destinations. LocalRegionFirst (the default) uses destinations in the router's Region first, then the others, each group in the order listed. InstancePoolOrder, for asynchronous routing targets only, tries destinations in order of the best instance pool they can serve from now. In both, degraded destinations are used after the others. If omitted, LocalRegionFirst is used and returned.
+
 ## RSessionAppSettings
 ### Properties
 * **CustomImages**: [CustomImage](#customimage)[]: A list of custom SageMaker images that are configured to run as a KernelGateway app.
@@ -4370,6 +4471,11 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 
 ## Tag
 ### Properties
+* **Key**: string (Required): The tag key. Each key must be unique for the extension.
+* **Value**: string (Required): The tag value.
+
+## Tag
+### Properties
 * **Key**: string (Required)
 * **Value**: string (Required)
 
@@ -4402,6 +4508,11 @@ If you provide a value for this parameter, SageMaker uses AWS Security Token Ser
 ### Properties
 * **Key**: string (Required): The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
 * **Value**: string (Required): The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+
+## Tag
+### Properties
+* **Key**: string (Required): The tag key. Tag keys must be unique per resource.
+* **Value**: string (Required): The tag value.
 
 ## Tag
 ### Properties

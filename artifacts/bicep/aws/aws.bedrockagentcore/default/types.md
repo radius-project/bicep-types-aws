@@ -460,7 +460,7 @@
 * **Description**: string: A description of the dataset.
 * **ExampleCount**: int (ReadOnly): The number of examples in the dataset DRAFT.
 * **KmsKeyArn**: string: Optional AWS KMS key ARN for SSE-KMS on service S3 writes.
-* **SchemaType**: string (Required): Versioned schema type governing the structure of examples. Immutable after creation.
+* **SchemaType**: string (WriteOnly): Deprecated. This property is ignored by the service; whether an example is predefined or simulated is inferred from its fields. Versioned schema type governing the structure of examples.
 * **Source**: [DataSourceType](#datasourcetype) (WriteOnly)
 * **Status**: string (ReadOnly): The current status of the dataset.
 * **Tags**: [Tag](#tag)[]: A list of tags to assign to the dataset.
@@ -488,6 +488,7 @@
 * **AuthorizerType**: string (Required)
 * **CreatedAt**: string (ReadOnly)
 * **Description**: string
+* **DomainOverride**: [DomainOverride](#domainoverride)
 * **ExceptionLevel**: string
 * **GatewayArn**: string (ReadOnly)
 * **GatewayIdentifier**: string (ReadOnly, Identifier)
@@ -664,6 +665,7 @@ Always present in responses.
 ## AWS.BedrockAgentCore/PaymentConnectorProperties
 ### Properties
 * **AuthorizationUrl**: string (ReadOnly): The URL the user must open to complete OAuth consent. Only present when ConnectorStatus is PENDING_AUTHENTICATION.
+* **AwsBillingIamRoleArn**: string (ReadOnly): The ARN of the AWS Marketplace service-linked role in the payment manager's account, set by the service. Only present for AwsBilling connectors.
 * **ConnectorCreatedAt**: string (ReadOnly): The timestamp when the connector was created
 * **ConnectorLastUpdatedAt**: string (ReadOnly): The timestamp when the connector was last updated
 * **ConnectorName**: string (Required): The name of the payment connector
@@ -778,12 +780,14 @@ Always present in responses.
 * **EnvironmentVariables**: [EnvironmentVariablesMap](#environmentvariablesmap): Environment variables for the agent runtime
 * **FailureReason**: string (ReadOnly): The reason for failure if the agent is in a failed state.
 * **FilesystemConfigurations**: [FilesystemConfiguration](#filesystemconfiguration)[]: Filesystem configurations for the agent runtime
+* **HooksConfiguration**: [RuntimeHooksConfiguration](#runtimehooksconfiguration): Lifecycle hooks for the agent runtime
 * **LastUpdatedAt**: string (ReadOnly): When resource was last updated
 * **LifecycleConfiguration**: [LifecycleConfiguration](#lifecycleconfiguration): Lifecycle configuration for managing runtime sessions
 * **NetworkConfiguration**: [NetworkConfiguration](#networkconfiguration): Network access configuration for the Agent
 * **PlatformVersion**: string: The version of the runtime platform
 * **ProtocolConfiguration**: string: Protocol configuration for the agent runtime
 * **RequestHeaderConfiguration**: [RequestHeaderConfiguration](#requestheaderconfiguration): Configuration for HTTP request headers
+* **ResourceConfigurations**: [ResourceConfiguration](#resourceconfiguration)[]: Resource configurations for the agent runtime
 * **RoleArn**: string (Required): Amazon Resource Name (ARN) of an IAM role
 * **Status**: string (ReadOnly): Current status of the agent
 * **Tags**: [TagsMap](#tagsmap)
@@ -824,6 +828,10 @@ Always present in responses.
 ## BrowserSigning
 ### Properties
 * **Enabled**: bool
+
+## BuildLifecycleHooks
+### Properties
+* **Warmup**: [LifecycleHook](#lifecyclehook)
 
 ## CapacityProvider_PropagatedTags
 ### Properties
@@ -868,6 +876,11 @@ Always present in responses.
 
 ## CertificateConfiguration
 ### Properties
+
+## CertificateConfiguration
+### Properties
+* **S3**: [S3CertificateConfiguration](#s3certificateconfiguration)
+* **SecretsManager**: [SecretsManagerCertificateConfiguration](#secretsmanagercertificateconfiguration)
 
 ## CertificateLocation
 ### Properties
@@ -999,6 +1012,10 @@ Always present in responses.
 * **Level**: string: The level of content detail to deliver
 * **Type**: string (Required): The type of content to deliver
 
+## CpuOptions
+### Properties
+* **NestedVirtualization**: string: Indicates whether nested virtualization is enabled on the instances, which exposes hardware virtualization (KVM) to agents. Default: DISABLED.
+
 ## CredentialProvider
 ### Properties
 
@@ -1072,6 +1089,7 @@ Always present in responses.
 
 ## CustomOauth2ProviderConfigInput
 ### Properties
+* **CertificateConfigurations**: [CertificateConfiguration](#certificateconfiguration)[]
 * **ClientAuthenticationMethod**: string: The client authentication method to use when authenticating with the token endpoint
 * **ClientId**: string: The client ID for the custom OAuth2 provider
 * **ClientSecret**: string: The client secret for the custom OAuth2 provider
@@ -1111,6 +1129,11 @@ Always present in responses.
 ### Properties
 ### Additional Properties
 * **Additional Properties Type**: string
+
+## DomainOverride
+### Properties
+* **AlternateDomains**: string[]
+* **DefaultDomain**: string (Required)
 
 ## EbsVolumeConfiguration
 ### Properties
@@ -1250,6 +1273,7 @@ Always present in responses.
 ### Properties
 * **CapacityProviderVolume**: [CapacityProviderVolumeConfiguration](#capacityprovidervolumeconfiguration)
 * **EfsAccessPoint**: [EfsAccessPointConfiguration](#efsaccesspointconfiguration)
+* **S3BucketMount**: [S3BucketMountConfiguration](#s3bucketmountconfiguration)
 * **S3FilesAccessPoint**: [S3FilesAccessPointConfiguration](#s3filesaccesspointconfiguration)
 * **SessionStorage**: [SessionStorageConfiguration](#sessionstorageconfiguration)
 
@@ -1278,6 +1302,8 @@ Always present in responses.
 * **InputConfiguration**: [InterceptorInputConfiguration](#interceptorinputconfiguration)
 * **InterceptionPoints**: string[] (Required)
 * **Interceptor**: [Gateway_InterceptorConfiguration](#gatewayinterceptorconfiguration) (Required)
+* **ResponseInterceptionMode**: string
+* **ResponseStreamingConfiguration**: [ResponseStreamingConfiguration](#responsestreamingconfiguration)
 
 ## GatewayPolicyEngineConfiguration
 ### Properties
@@ -1348,6 +1374,9 @@ Always present in responses.
 ### Properties
 ### Additional Properties
 * **Additional Properties Type**: any
+
+## Harness_None
+### Properties
 
 ## Harness_None
 ### Properties
@@ -1529,7 +1558,13 @@ Always present in responses.
 ## HarnessRemoteMcpConfig
 ### Properties
 * **Headers**: [Harness_Headers](#harnessheaders)
+* **OutboundAuth**: [HarnessRemoteMcpOutboundAuth](#harnessremotemcpoutboundauth): How the harness authenticates to this MCP endpoint. Defaults to None if omitted.
 * **Url**: string (Required)
+
+## HarnessRemoteMcpOutboundAuth
+### Properties
+* **AwsIam**: [IamCredentialProvider](#iamcredentialprovider): SigV4-sign requests using the harness execution role. Region defaults to the harness Region if omitted.
+* **None**: [Harness_None](#harnessnone): No authentication.
 
 ## HarnessSkill
 ### Properties
@@ -1599,6 +1634,16 @@ Always present in responses.
 ### Properties
 * **Arn**: string (Required): The ARN of the bedrock-agentcore hosting environment
 
+## HttpPostLifecycleHookAction
+### Properties
+* **Path**: string (Required)
+* **Port**: int: Port in the agent's container the platform sends the POST to. Defaults to the runtime's server port.
+
+## IamCredentialProvider
+### Properties
+* **Region**: string: The AWS Region used for SigV4 signing.
+* **Service**: string (Required): The AWS service name used for SigV4 signing.
+
 ## IdpConfig
 ### Properties
 * **Audience**: string
@@ -1629,7 +1674,7 @@ Always present in responses.
 
 ## InlineExamplesSource
 ### Properties
-* **Examples**: [Dataset_Examples](#datasetexamples)[] (Required): Examples to add. Each example is a free-form JSON document validated against the declared schemaType.
+* **Examples**: [Dataset_Examples](#datasetexamples)[] (Required): Examples to add. Each example is a free-form JSON document validated against the scenario rules.
 
 ## Insight
 ### Properties
@@ -1683,6 +1728,7 @@ Always present in responses.
 ## LaunchParameters
 ### Properties
 * **CapacityReservationSpecification**: [CapacityReservationSpecification](#capacityreservationspecification)
+* **CpuOptions**: [CpuOptions](#cpuoptions)
 * **EphemeralVolumes**: [EphemeralBlockDeviceMapping](#ephemeralblockdevicemapping)[]: The block device mapping for ephemeral (instance store) volumes.
 * **InstanceProfileArn**: string: The ARN of the IAM instance profile to associate with launched instances.
 * **InstanceRequirements**: [InstanceRequirements](#instancerequirements) (Required)
@@ -1702,13 +1748,21 @@ Always present in responses.
 
 ## LifecycleConfiguration
 ### Properties
-* **IdleRuntimeSessionTimeout**: int
-* **MaxLifetime**: int
+* **IdleRuntimeSessionTimeout**: int: Timeout in seconds for idle runtime sessions. When a session remains idle for this duration, it will be automatically terminated. Valid range: 60 to 28800 seconds (8 hours), and must be less than or equal to MaxLifetime. Default: 900 seconds (15 minutes).
+* **MaxLifetime**: int: Maximum lifetime for the instance in seconds. Once reached, instances will be automatically terminated and replaced. Valid range: 60 to 28800 seconds (8 hours). Default: 28800 seconds (8 hours).
 
 ## LifecycleConfiguration
 ### Properties
 * **IdleRuntimeSessionTimeout**: int: Timeout in seconds for idle runtime sessions
 * **MaxLifetime**: int: Maximum lifetime in seconds for runtime sessions
+
+## LifecycleHook
+### Properties
+* **Action**: [LifecycleHookAction](#lifecyclehookaction) (Required)
+
+## LifecycleHookAction
+### Properties
+* **HttpPost**: [HttpPostLifecycleHookAction](#httppostlifecyclehookaction) (Required)
 
 ## LimitEntry
 ### Properties
@@ -1838,7 +1892,7 @@ Always present in responses.
 ## Oauth2Discovery
 ### Properties
 * **AuthorizationServerMetadata**: [Oauth2AuthorizationServerMetadata](#oauth2authorizationservermetadata)
-* **DiscoveryUrl**: string: The discovery URL for the OAuth2 provider
+* **DiscoveryUrl**: string: OpenID Connect discovery URL or OAuth 2.0 authorization server metadata URL
 
 ## Oauth2ProviderConfigInput
 ### Properties
@@ -1854,6 +1908,7 @@ Always present in responses.
 
 ## Oauth2ProviderConfigOutput
 ### Properties
+* **CertificateConfigurations**: [CertificateConfiguration](#certificateconfiguration)[]
 * **ClientAuthenticationMethod**: string: The client authentication method used when authenticating with the token endpoint
 * **ClientId**: string
 * **OauthDiscovery**: [Oauth2Discovery](#oauth2discovery)
@@ -1987,6 +2042,14 @@ Always present in responses.
 ### Properties
 * **RequestHeaderAllowlist**: string[]
 
+## ResourceConfiguration
+### Properties
+* **MinimumMemoryInMiB**: int (Required): The minimum amount of memory in MiB to allocate to the agent runtime
+
+## ResponseStreamingConfiguration
+### Properties
+* **MaxEventsPerInvocation**: int
+
 ## RootVolumeConfiguration
 ### Properties
 * **Encrypted**: bool: Indicates whether the EBS volume is encrypted. Encrypted volumes can only be attached to instances that support Amazon EBS encryption. If you are creating a volume from a snapshot, you can't specify an encryption value.
@@ -2001,6 +2064,23 @@ Always present in responses.
 * **Filters**: [Filter](#filter)[]: The list of filters that determine which agent traces should be included in the evaluation.
 * **SamplingConfig**: [SamplingConfig](#samplingconfig) (Required)
 * **SessionConfig**: [SessionConfig](#sessionconfig)
+
+## RuntimeHooksConfiguration
+### Properties
+* **Build**: [BuildLifecycleHooks](#buildlifecyclehooks)
+
+## S3BucketMountConfiguration
+### Properties
+* **Bucket**: string (Required): Name of the S3 bucket to mount
+* **MountPath**: string (Required)
+* **Prefix**: string: S3 key prefix to mount. A trailing / is added if missing. May contain the {runtimeSessionId} placeholder, which is replaced with the session ID; that session ID must be 33-256 letters, digits, - or _, starting with a letter or digit. If omitted, the whole bucket is mounted
+* **S3BucketOwner**: string: AWS account ID of the expected bucket owner. Defaults to the runtime's account
+* **S3BucketRegion**: string: Region of the S3 bucket. Defaults to the runtime's region
+
+## S3CertificateConfiguration
+### Properties
+* **BucketOwnerAccountId**: string: The account ID of the Amazon S3 bucket owner, used for cross-account access to the bucket
+* **Uri**: string (Required): The URI of the Amazon S3 object that contains the PEM-encoded certificate
 
 ## S3FilesAccessPointConfiguration
 ### Properties
@@ -2056,6 +2136,10 @@ Always present in responses.
 ### Properties
 * **JsonKey**: string (Required): The JSON key within the secret that contains the credential value
 * **SecretId**: string (Required): The ID or ARN of the secret in AWS Secrets Manager
+
+## SecretsManagerCertificateConfiguration
+### Properties
+* **SecretArn**: string (Required): The ARN of the AWS Secrets Manager secret that contains the PEM-encoded certificate
 
 ## SelfManagedConfiguration
 ### Properties

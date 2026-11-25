@@ -1,0 +1,222 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Lambda-RuntimeVersion",
+  "type": "AWS::Lambda::RuntimeVersion",
+  "time": "2026-11-25T21:17:32.249Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/RuntimeName",
+        "/properties/Name"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/RuntimeName",
+      "/properties/Name",
+      "/properties/ImageUri"
+    ],
+    "definitions": {
+      "Compatibility": {
+        "additionalProperties": false,
+        "description": "Compatibility matrix for the runtime version: supported integration models, architectures, and feature policies.",
+        "properties": {
+          "Architectures": {
+            "description": "Supported CPU architectures for the runtime version.",
+            "insertionOrder": false,
+            "items": {
+              "enum": [
+                "x86_64",
+                "arm64"
+              ],
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": true
+          },
+          "IntegrationModels": {
+            "description": "Supported integration models for the runtime version.",
+            "insertionOrder": false,
+            "items": {
+              "enum": [
+                "RuntimeAPI"
+              ],
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": true
+          },
+          "ManagedInstances": {
+            "description": "Whether the runtime version supports managed instances.",
+            "enum": [
+              "Supported",
+              "NotSupported"
+            ],
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Platform": {
+        "additionalProperties": false,
+        "description": "A resolved OCI image platform descriptor.",
+        "properties": {
+          "Architecture": {
+            "type": "string"
+          },
+          "Digest": {
+            "type": "string"
+          },
+          "Os": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "Architecture",
+          "Os",
+          "Digest"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::Lambda::RuntimeVersion. An immutable, OCI-image-backed version of an AWS::Lambda::Runtime.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "lambda:CreateRuntimeVersion",
+          "lambda:GetRuntimeVersion",
+          "ecr:BatchGetImage",
+          "ecr:GetDownloadUrlForLayer",
+          "ecr:BatchCheckLayerAvailability"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "lambda:DeleteRuntimeVersion",
+          "lambda:GetRuntimeVersion"
+        ]
+      },
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "RuntimeName": {
+              "maxLength": 128,
+              "minLength": 2,
+              "pattern": "^[a-z0-9]([a-z0-9_.-]{0,126})?[a-z0-9]$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "RuntimeName"
+          ]
+        },
+        "permissions": [
+          "lambda:ListRuntimeVersions"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "lambda:GetRuntimeVersion"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "lambda:UpdateRuntimeVersion",
+          "lambda:GetRuntimeVersion"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the runtime version.",
+        "maxLength": 2048,
+        "minLength": 48,
+        "pattern": "^arn:(aws[a-zA-Z-]*):lambda:(eusc-)?[a-z]{2}((-gov)|(-iso([a-z]?)))?-[a-z]+-\\d{1}:\\d{12}:runtime/[a-z0-9]([a-z0-9_.-]{0,126})?[a-z0-9](/(version|alias)/[^/]{1,128})?$",
+        "type": "string"
+      },
+      "Compatibility": {
+        "$ref": "#/definitions/Compatibility"
+      },
+      "Created": {
+        "description": "The timestamp when the runtime version was created.",
+        "maxLength": 64,
+        "minLength": 1,
+        "type": "string"
+      },
+      "ImageUri": {
+        "description": "The URI of the OCI image to publish as this runtime version. Not returned in Read.",
+        "type": "string"
+      },
+      "LastModified": {
+        "description": "The timestamp when the runtime version was last modified.",
+        "maxLength": 64,
+        "minLength": 1,
+        "type": "string"
+      },
+      "Name": {
+        "description": "The version identifier (1-128 chars, alphanumeric plus _.-).",
+        "maxLength": 128,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9_]([A-Za-z0-9_.-]{0,126}[A-Za-z0-9_])?$",
+        "type": "string"
+      },
+      "Platforms": {
+        "description": "The OCI platforms resolved from the image manifest.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Platform"
+        },
+        "type": "array",
+        "uniqueItems": true
+      },
+      "ReleaseNotes": {
+        "description": "Optional release notes for this runtime version. Updatable; removing it from the template clears the release notes.",
+        "type": "string"
+      },
+      "ResolvedUri": {
+        "description": "The fully resolved (digest-pinned) image URI for this runtime version.",
+        "type": "string"
+      },
+      "RuntimeName": {
+        "description": "The name of the parent runtime.",
+        "maxLength": 128,
+        "minLength": 2,
+        "pattern": "^[a-z0-9]([a-z0-9_.-]{0,126})?[a-z0-9]$",
+        "type": "string"
+      },
+      "State": {
+        "description": "The lifecycle state of the runtime version.",
+        "enum": [
+          "CREATING",
+          "ACTIVE",
+          "FAILED",
+          "DELETING",
+          "PENDING_DELETION"
+        ],
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/ResolvedUri",
+      "/properties/State",
+      "/properties/Platforms",
+      "/properties/Compatibility",
+      "/properties/Created",
+      "/properties/LastModified"
+    ],
+    "required": [
+      "RuntimeName",
+      "Name"
+    ],
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::Lambda::RuntimeVersion",
+    "writeOnlyProperties": [
+      "/properties/ImageUri"
+    ]
+  }
+}

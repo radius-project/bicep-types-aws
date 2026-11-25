@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Route53-RecordSet",
   "type": "AWS::Route53::RecordSet",
-  "time": "2026-10-21T23:20:01.126Z",
+  "time": "2026-11-20T01:36:39.798Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -9,6 +9,33 @@
       "/properties/HostedZoneId"
     ],
     "definitions": {
+      "AZAffinity": {
+        "additionalProperties": false,
+        "properties": {
+          "LocationId": {
+            "description": "The ID of the location, for example an Availability Zone ID such as use1-az1, or a Region such as us-east-1.",
+            "maxLength": 64,
+            "minLength": 1,
+            "type": "string"
+          },
+          "LocationType": {
+            "description": "The type of the source location that the record set's answers apply to.",
+            "enum": [
+              "AvailabilityZone",
+              "AvailabilityZoneGroup",
+              "Region",
+              "Partition",
+              "Global"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "LocationType",
+          "LocationId"
+        ],
+        "type": "object"
+      },
       "AliasTarget": {
         "additionalProperties": false,
         "properties": {
@@ -298,6 +325,10 @@
       "/properties/SetIdentifier"
     ],
     "properties": {
+      "AZAffinity": {
+        "$ref": "#/definitions/AZAffinity",
+        "description": "AZ affinity resource record sets only: the source location (Availability Zone, Availability Zone group, Region, partition, or global) of the DNS queries that this record set's answers apply to."
+      },
       "AliasTarget": {
         "$ref": "#/definitions/AliasTarget",
         "description": "Alias resource record sets only: Information about the AWS resource, such as a CloudFront distribution or an Amazon S3 bucket, that you want to route traffic to."

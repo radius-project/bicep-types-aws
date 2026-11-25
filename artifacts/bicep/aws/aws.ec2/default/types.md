@@ -152,6 +152,22 @@
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/ExportInstanceTaskProperties](#awsec2exportinstancetaskproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.EC2/FcaPolicy@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.EC2/FcaPolicyProperties](#awsec2fcapolicyproperties) (Required, Identifier): properties of the resource
+
+## Resource AWS.EC2/FcaPolicyAssociation@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.EC2/FcaPolicyAssociationProperties](#awsec2fcapolicyassociationproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.EC2/FlowLog@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -840,6 +856,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.EC2/TransitGatewayMulticastGroupSourceProperties](#awsec2transitgatewaymulticastgroupsourceproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.EC2/TransitGatewayNetworkFunctionAttachment@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.EC2/TransitGatewayNetworkFunctionAttachmentProperties](#awsec2transitgatewaynetworkfunctionattachmentproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.EC2/TransitGatewayPeeringAttachment@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -1506,6 +1530,34 @@ Client route enforcement works by monitoring the route table of a connected devi
 * **State**: string (ReadOnly): The state of the export task.
 * **Tags**: [Tag](#tag)[]: The tags for the export task.
 * **TargetEnvironment**: string (Required): The target virtualization environment.
+
+## AWS.EC2/FcaPolicyAssociationProperties
+### Properties
+* **AssociatedAt**: string (ReadOnly): The timestamp when the association was created.
+* **AssociationMode**: string (ReadOnly): The mode of the association.
+* **ExpectedEffectiveAt**: string (ReadOnly): The timestamp when the association is expected to take effect.
+* **FcaPolicyAssociationId**: string (ReadOnly, Identifier): The ID of the FCA policy association.
+* **FcaPolicyId**: string (Required): The ID of the FCA policy to associate.
+* **ManagedBy**: string (ReadOnly): Who manages the association: the account that created it, or a declarative policy.
+* **NetworkResourceId**: string (Required): The ID of the network resource to associate the FCA policy with.
+* **NetworkResourceScopeType**: string: Associate by scope instead of directly. When set, NetworkResourceId is the ID of the scope (an account ID, a VPC ID, or a subnet ID) and the association covers every eligible network resource in that scope; when omitted, NetworkResourceId is a direct network resource (for example a NAT gateway or instance) and must match the policy's NetworkResourceType.
+* **OwnerAccount**: string (ReadOnly): The AWS account ID that owns the FCA policy association.
+
+## AWS.EC2/FcaPolicyProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the FCA policy.
+* **Description**: string: The description of the FCA policy.
+* **FcaPolicyId**: string (ReadOnly): The ID of the FCA policy.
+* **InstanceFcaPolicyDocument**: [InstanceFcaPolicyDocument](#instancefcapolicydocument)
+* **LatestVersion**: int (ReadOnly): The latest version number of the FCA policy.
+* **NatFcaPolicyDocument**: [NatFcaPolicyDocument](#natfcapolicydocument)
+* **NetworkResourceType**: string (Required): The type of network resource the FCA policy applies to.
+* **OwnerAccount**: string (ReadOnly): The AWS account ID that owns the FCA policy.
+* **PcxFcaPolicyDocument**: [PcxFcaPolicyDocument](#pcxfcapolicydocument)
+* **PolicyCreatedAt**: string (ReadOnly): The timestamp when the FCA policy was created.
+* **ShowBackEnabled**: bool: Indicates whether show-back reporting is enabled for the FCA policy.
+* **Tags**: [Tag](#tag)[]: The tags for the FCA policy.
+* **VersionExpectedEffectiveAt**: string (ReadOnly): The timestamp when the latest version of the FCA policy is expected to take effect.
 
 ## AWS.EC2/FlowLogProperties
 ### Properties
@@ -2641,12 +2693,29 @@ Use this for ICMP and any protocol that uses ports.
 * **TransitGatewayAttachmentId**: string (ReadOnly): The ID of the transit gateway attachment.
 * **TransitGatewayMulticastDomainId**: string (Required, Identifier): The ID of the transit gateway multicast domain.
 
+## AWS.EC2/TransitGatewayNetworkFunctionAttachmentProperties
+### Properties
+* **AvailabilityZoneIds**: string[]: The Availability Zone IDs for the attachment.
+* **AvailabilityZones**: string[]: The Availability Zones for the attachment.
+* **CreationTime**: string (ReadOnly): The creation time of the attachment.
+* **ResourceId**: string (ReadOnly): The resource ID of the network function.
+* **ServiceName**: string (WriteOnly): The name of the network function service.
+* **State**: string (ReadOnly): The state of the attachment.
+* **Tags**: [Tag](#tag)[]: The tags for the attachment.
+* **TransitGatewayAttachmentId**: string (ReadOnly, Identifier): The ID of the network function attachment.
+* **TransitGatewayId**: string (Required): The ID of the transit gateway.
+
 ## AWS.EC2/TransitGatewayPeeringAttachmentProperties
 ### Properties
+* **AccepterAllowMultipathResilience**: bool (ReadOnly): Whether the accepter side of the peering attachment has opted in to MultipathResilience.
 * **CreationTime**: string (ReadOnly): The time the transit gateway peering attachment was created.
+* **MultipathResilienceStatus**: string (ReadOnly): The connection-level MultipathResilience status, computed from both sides of the peering attachment. (enabled/pending/disabled)
+* **Options**: [TransitGatewayPeeringAttachmentOptions](#transitgatewaypeeringattachmentoptions) (WriteOnly): Options for transit gateway peering attachment
 * **PeerAccountId**: string (Required): The ID of the peer account
 * **PeerRegion**: string (Required): Peer Region
 * **PeerTransitGatewayId**: string (Required): The ID of the peer transit gateway.
+* **RequesterAllowMultipathResilience**: bool (ReadOnly): Whether the requester side of the peering attachment has opted in to MultipathResilience.
+* **RequesterMultipathResilienceMode**: string (ReadOnly): The MultipathResilience mode chosen by the requester side of the peering attachment.
 * **State**: string (ReadOnly): The state of the transit gateway peering attachment. Note that the initiating state has been deprecated.
 * **Status**: [PeeringAttachmentStatus](#peeringattachmentstatus) (ReadOnly): The status of the transit gateway peering attachment.
 * **Tags**: [Tag](#tag)[]: The tags for the transit gateway peering attachment.
@@ -2997,6 +3066,7 @@ Use this for ICMP and any protocol that uses ports.
 ### Properties
 * **AllowedPrincipals**: string[]
 * **ServiceId**: string (Required, Identifier)
+* **TransitGatewayAttachmentAllowedPrincipals**: string[]: The AWS account root ARNs (arn:aws:iam::account-id:root) allowed to create transit gateway attachments that connect to this Gateway Load Balancer endpoint service.
 
 ## AWS.EC2/VPCEndpointServiceProperties
 ### Properties
@@ -3023,12 +3093,15 @@ Use this for ICMP and any protocol that uses ports.
 ### Properties
 * **AssumeRoleRegion**: string (WriteOnly): The Region code to use when calling Security Token Service (STS) to assume the PeerRoleArn, if provided. You can update this property.
 * **Id**: string (ReadOnly, Identifier)
+* **MultipathResilienceStatus**: string (ReadOnly): The multipath resilience status of the VPC peering connection: enabled when both the requester and accepter sides allow multipath resilience, pending when only one side allows it, and disabled when neither side allows it.
 * **PeerOwnerId**: string: The AWS account ID of the owner of the accepter VPC.
 * **PeerRegion**: string: The Region code for the accepter VPC, if the accepter VPC is located in a Region other than the Region in which you make the request.
 * **PeerRoleArn**: string (WriteOnly): The Amazon Resource Name (ARN) of the VPC peer role for the peering connection in another AWS account. You can update this property. To manage PeerVpcPeeringConnectionOptions on a peering connection with another AWS account, the role must allow ec2:DescribeVpcPeeringConnections and ec2:ModifyVpcPeeringConnectionOptions.
 * **PeerVpcId**: string (Required): The ID of the VPC with which you are creating the VPC peering connection. You must specify this parameter in the request.
+* **PeerVpcPeeringConnectionOptions**: [VpcPeeringConnectionOptions](#vpcpeeringconnectionoptions): The VPC peering connection options corresponding to the accepter side of the connection.
 * **Tags**: [Tag](#tag)[]
 * **VpcId**: string (Required): The ID of the VPC.
+* **VpcPeeringConnectionOptions**: [VpcPeeringConnectionOptions](#vpcpeeringconnectionoptions): The VPC peering connection options corresponding to the requester side of the connection.
 
 ## AWS.EC2/VPCProperties
 ### Properties
@@ -3237,12 +3310,22 @@ Use this for ICMP and any protocol that uses ports.
 ### Properties
 * **ClientRootCertificateChainArn**: string (Required)
 
+## CidrMapping
+### Properties
+* **CidrLabel**: string (Required): The label for the CIDR range.
+* **CidrRange**: string (Required): The CIDR range.
+
 ## CidrOptions
 ### Properties
 * **Cidr**: string: The IP address range, in CIDR notation.
 * **PortRanges**: [PortRange](#portrange)[]: The list of port range.
 * **Protocol**: string: The IP protocol.
 * **SubnetIds**: string[]: The IDs of the subnets.
+
+## CidrRangeSpecifications
+### Properties
+* **Prefixes**: [CidrMapping](#cidrmapping)[] (Required): The CIDR range to label mappings.
+* **PrefixesType**: string (Required): The type of prefixes the mappings apply to.
 
 ## ClassicLoadBalancer
 ### Properties
@@ -3770,6 +3853,12 @@ Use this for ICMP and any protocol that uses ports.
 * **Dualstack**: [InstanceConnectEndpoint_InstanceConnectEndpointDnsNames](#instanceconnectendpointinstanceconnectendpointdnsnames): The dualstack DNS name of the EC2 Instance Connect Endpoint. A dualstack DNS name supports connections from both IPv4 and IPv6 clients.
 * **Ipv4**: [InstanceConnectEndpoint_InstanceConnectEndpointDnsNames](#instanceconnectendpointinstanceconnectendpointdnsnames): The IPv4-only DNS name of the EC2 Instance Connect Endpoint.
 
+## InstanceFcaPolicyDocument
+### Properties
+* **CidrRangeSpecifications**: [CidrRangeSpecifications](#cidrrangespecifications)
+* **Dimensions**: string[] (Required)
+* **ReportingGranularity**: string[] (Required)
+
 ## InstanceIpv6Address
 ### Properties
 * **Ipv6Address**: string (Required): The IPv6 address.
@@ -4281,6 +4370,12 @@ Use this for ICMP and any protocol that uses ports.
 * **ConfigurationType**: string
 * **StandbyAvailabilityZones**: [StandbyAvailabilityZone](#standbyavailabilityzone)[]
 
+## NatFcaPolicyDocument
+### Properties
+* **CidrRangeSpecifications**: [CidrRangeSpecifications](#cidrrangespecifications)
+* **Dimensions**: string[] (Required)
+* **ReportingGranularity**: string[] (Required)
+
 ## NativeApplicationOidcOptions
 ### Properties
 * **AuthorizationEndpoint**: string: The OIDC authorization endpoint.
@@ -4471,6 +4566,12 @@ Use this for ICMP and any protocol that uses ports.
 ### Properties
 * **PacketHeaderStatement**: [PacketHeaderStatementRequest](#packetheaderstatementrequest)
 * **ResourceStatement**: [ResourceStatementRequest](#resourcestatementrequest)
+
+## PcxFcaPolicyDocument
+### Properties
+* **CidrRangeSpecifications**: [CidrRangeSpecifications](#cidrrangespecifications)
+* **Dimensions**: string[] (Required)
+* **ReportingGranularity**: string[] (Required)
 
 ## PeeringAttachmentStatus
 ### Properties
@@ -4912,6 +5013,11 @@ Use this for ICMP and any protocol that uses ports.
 
 ## Tag
 ### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
+
+## Tag
+### Properties
 * **Key**: string (Required): The tag key.
 * **Value**: string (Required): The tag value.
 
@@ -5207,6 +5313,11 @@ Use this for ICMP and any protocol that uses ports.
 
 ## Tag
 ### Properties
+* **Key**: string: The key of the tag.
+* **Value**: string: The value of the tag.
+
+## Tag
+### Properties
 * **Key**: string: The key of the tag. Constraints: Tag keys are case-sensitive and accept a maximum of 127 Unicode characters. May not begin with aws:.
 * **Value**: string: The value of the tag. Constraints: Tag values are case-sensitive and accept a maximum of 255 Unicode characters.
 
@@ -5426,6 +5537,11 @@ Use this for ICMP and any protocol that uses ports.
 * **Igmpv2Support**: string: Indicates whether Internet Group Management Protocol (IGMP) version 2 is turned on for the transit gateway multicast domain. Valid Values: enable | disable
 * **StaticSourcesSupport**: string: Indicates whether support for statically configuring transit gateway multicast group sources is turned on. Valid Values: enable | disable
 
+## TransitGatewayPeeringAttachmentOptions
+### Properties
+* **AllowMultipathResilience**: bool: Whether to enable MultipathResilience on this side of the peering attachment.
+* **MultipathResilienceMode**: string: The MultipathResilience mode. Only valid when AllowMultipathResilience is true.
+
 ## TransitGatewayPolicyRule
 ### Properties
 * **DestinationCidrBlock**: string: The destination CIDR block for the transit gateway policy rule.
@@ -5627,6 +5743,22 @@ Use this for ICMP and any protocol that uses ports.
 * **VpcLattice**: [VpcEncryptionControlExclusion](#vpcencryptioncontrolexclusion) (ReadOnly): The exclusion configuration for VPC Lattice traffic.
 * **VpcPeering**: [VpcEncryptionControlExclusion](#vpcencryptioncontrolexclusion) (ReadOnly): The exclusion configuration for VPC peering connection traffic.
 
+## VpcPeeringConnectionOptions
+### Properties
+* **AllowDnsResolutionFromRemoteVpc**: bool: If true, enables a local VPC to resolve public DNS hostnames to private IP addresses when queried from instances in the peer VPC.
+* **AllowMultipathResilience**: bool: If true, allows multipath resilience on this side of the peering connection. Multipath resilience is enabled only when both the requester and accepter sides allow it; MultipathResilienceStatus reports the result.
+* **MultipathResilienceMode**: string: The mode of multipath resilience on the peering connection. Applies when AllowMultipathResilience is true.
+
+## VPNConnection_Phase1AdditionalKeyExchanges
+### Properties
+### Additional Properties
+* **Additional Properties Type**: any
+
+## VPNConnection_Phase2AdditionalKeyExchanges
+### Properties
+### Additional Properties
+* **Additional Properties Type**: any
+
 ## VpnTunnelLogOptionsSpecification
 ### Properties
 * **CloudwatchLogOptions**: [CloudwatchLogOptionsSpecification](#cloudwatchlogoptionsspecification): Options for sending VPN tunnel logs to CloudWatch.
@@ -5643,6 +5775,7 @@ Use this for ICMP and any protocol that uses ports.
 * **IKEVersions**: [IKEVersionsRequestListValue](#ikeversionsrequestlistvalue)[]: The IKE versions that are permitted for the VPN tunnel.
  Valid values: ``ikev1`` | ``ikev2``
 * **LogOptions**: [VpnTunnelLogOptionsSpecification](#vpntunnellogoptionsspecification): Options for logging VPN tunnel activity.
+* **Phase1AdditionalKeyExchanges**: [VPNConnection_Phase1AdditionalKeyExchanges](#vpnconnectionphase1additionalkeyexchanges)[]
 * **Phase1DHGroupNumbers**: [Phase1DHGroupNumbersRequestListValue](#phase1dhgroupnumbersrequestlistvalue)[]: One or more Diffie-Hellman group numbers that are permitted for the VPN tunnel for phase 1 IKE negotiations.
  Valid values: ``2`` | ``14`` | ``15`` | ``16`` | ``17`` | ``18`` | ``19`` | ``20`` | ``21`` | ``22`` | ``23`` | ``24``
 * **Phase1EncryptionAlgorithms**: [Phase1EncryptionAlgorithmsRequestListValue](#phase1encryptionalgorithmsrequestlistvalue)[]: One or more encryption algorithms that are permitted for the VPN tunnel for phase 1 IKE negotiations.
@@ -5652,6 +5785,7 @@ Use this for ICMP and any protocol that uses ports.
 * **Phase1LifetimeSeconds**: int: The lifetime for phase 1 of the IKE negotiation, in seconds.
  Constraints: A value between 900 and 28,800.
  Default: ``28800``
+* **Phase2AdditionalKeyExchanges**: [VPNConnection_Phase2AdditionalKeyExchanges](#vpnconnectionphase2additionalkeyexchanges)[]
 * **Phase2DHGroupNumbers**: [Phase2DHGroupNumbersRequestListValue](#phase2dhgroupnumbersrequestlistvalue)[]: One or more Diffie-Hellman group numbers that are permitted for the VPN tunnel for phase 2 IKE negotiations.
  Valid values: ``2`` | ``5`` | ``14`` | ``15`` | ``16`` | ``17`` | ``18`` | ``19`` | ``20`` | ``21`` | ``22`` | ``23`` | ``24``
 * **Phase2EncryptionAlgorithms**: [Phase2EncryptionAlgorithmsRequestListValue](#phase2encryptionalgorithmsrequestlistvalue)[]: One or more encryption algorithms that are permitted for the VPN tunnel for phase 2 IKE negotiations.

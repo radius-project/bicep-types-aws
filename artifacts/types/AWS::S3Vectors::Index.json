@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-S3Vectors-Index",
   "type": "AWS::S3Vectors::Index",
-  "time": "2026-10-13T18:29:48.629Z",
+  "time": "2026-11-21T03:28:03.713Z",
   "schema": {
     "additionalIdentifiers": [
       [
@@ -16,7 +16,7 @@
       "/properties/DistanceMetric",
       "/properties/EncryptionConfiguration",
       "/properties/IndexName",
-      "/properties/MetadataConfiguration",
+      "/properties/MetadataConfiguration/NonFilterableMetadataKeys",
       "/properties/VectorBucketArn",
       "/properties/VectorBucketName"
     ],
@@ -98,6 +98,16 @@
             "minItems": 1,
             "type": "array",
             "uniqueItems": true
+          },
+          "TextSearchConfigurations": {
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/TextSearchConfiguration"
+            },
+            "maxItems": 10,
+            "minItems": 1,
+            "type": "array",
+            "uniqueItems": true
           }
         },
         "type": "object"
@@ -120,6 +130,35 @@
         "required": [
           "Key",
           "Value"
+        ],
+        "type": "object"
+      },
+      "TextSearchConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "Language": {
+            "enum": [
+              "en",
+              "fr",
+              "es",
+              "pt",
+              "it",
+              "de",
+              "nl",
+              "zh",
+              "ja",
+              "ko"
+            ],
+            "type": "string"
+          },
+          "MetadataKey": {
+            "maxLength": 63,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "MetadataKey"
         ],
         "type": "object"
       },
@@ -146,7 +185,8 @@
           "s3vectors:TagResource",
           "kms:GenerateDataKey",
           "kms:Decrypt"
-        ]
+        ],
+        "timeoutInMinutes": 2160
       },
       "delete": {
         "permissions": [
@@ -190,10 +230,12 @@
       "update": {
         "permissions": [
           "s3vectors:GetIndex",
+          "s3vectors:UpdateMetadataConfiguration",
           "s3vectors:TagResource",
           "s3vectors:UntagResource",
           "s3vectors:ListTagsForResource"
-        ]
+        ],
+        "timeoutInMinutes": 2160
       }
     },
     "primaryIdentifier": [

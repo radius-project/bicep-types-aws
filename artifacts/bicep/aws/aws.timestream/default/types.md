@@ -8,6 +8,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.Timestream/DatabaseProperties](#awstimestreamdatabaseproperties) (Identifier): properties of the resource
 
+## Resource AWS.Timestream/InfluxDBBackup@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.Timestream/InfluxDBBackupProperties](#awstimestreaminfluxdbbackupproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.Timestream/InfluxDBCluster@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -54,6 +62,36 @@
 * **DatabaseName**: string (Identifier): The name for the database. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the database name.
 * **KmsKeyId**: string: The KMS key for the database. If the KMS key is not specified, the database will be encrypted with a Timestream managed KMS key located in your account.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+
+## AWS.Timestream/InfluxDBBackupProperties
+### Properties
+* **AllocatedStorage**: int (ReadOnly): The allocated storage of the resource at the time of backup, in GiB.
+* **Arn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the backup.
+* **ClusterConfiguration**: [ClusterConfiguration](#clusterconfiguration) (ReadOnly)
+* **CreatedAt**: string (ReadOnly): The time when the backup was created.
+* **DbInstanceType**: string (ReadOnly): The DB instance type of the resource at the time of backup.
+* **DbParameterGroupId**: string (ReadOnly): The identifier of the DB parameter group associated with the backup.
+* **DbResourceId**: string (Required): The id of the DB instance or DB cluster to back up.
+* **DbStorageType**: string (ReadOnly): The storage type of the resource at the time of backup.
+* **DeploymentType**: string (ReadOnly): The deployment type of the resource that the backup was created from.
+* **EngineType**: string (ReadOnly): The engine type of the resource that the backup was created from.
+* **ExpiresAfter**: string (ReadOnly): The date after which the backup will be automatically deleted, as a calendar date in YYYY-MM-DD format.
+* **FailoverMode**: string (ReadOnly): The failover mode of the resource at the time of backup.
+* **Id**: string (ReadOnly): Service-generated unique identifier of the backup.
+* **InfluxAuthParametersSecretArn**: string (ReadOnly): The ARN of the Secrets Manager secret containing the InfluxDB auth parameters.
+* **KmsKeyId**: string (ReadOnly): The Amazon Web Services KMS key ARN used for encryption of the resource at the time of backup.
+* **LogDeliveryConfiguration**: [LogDeliveryConfiguration](#logdeliveryconfiguration) (ReadOnly)
+* **MaintenanceSchedule**: [MaintenanceSchedule](#maintenanceschedule) (ReadOnly)
+* **Name**: string (Required): The name of the backup. Must be unique within the account and region.
+* **NetworkType**: string (ReadOnly): The network type of the resource at the time of backup.
+* **Port**: int (ReadOnly): The port number of the resource at the time of backup.
+* **PubliclyAccessible**: bool (ReadOnly): Indicates whether the resource was publicly accessible at the time of backup.
+* **RetentionDays**: int (WriteOnly): The number of days to retain the backup. Valid values are 1 to 3650.
+* **Status**: string (ReadOnly): The current status of the backup.
+* **Tags**: [Tag](#tag)[]: A list of key-value pairs to associate with the backup.
+* **Type**: string (ReadOnly): The type of backup. Backups created through this resource type are always ON_DEMAND.
+* **VpcSecurityGroupIds**: string[] (ReadOnly): The VPC security group IDs associated with the resource at the time of backup.
+* **VpcSubnetIds**: string[] (ReadOnly): The VPC subnet IDs associated with the resource at the time of backup.
 
 ## AWS.Timestream/InfluxDBClusterProperties
 ### Properties
@@ -161,6 +199,12 @@
 * **Schema**: [Table_Schema](#tableschema): A Schema specifies the expected data model of the table.
 * **TableName**: string (Identifier): The name for the table. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the table name.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
+
+## ClusterConfiguration
+### Properties
+* **DedicatedCompactor**: bool: Indicates if the compactor instance is a standalone instance or not.
+* **IngestQueryInstances**: int: The number of ingest and query instances in the cluster.
+* **QueryOnlyInstances**: int: The number of query-only instances in the cluster.
 
 ## DimensionMapping
 ### Properties
@@ -430,6 +474,15 @@
 * **WalSnapshotSize**: int: Defines the number of WAL files to attempt to remove in a snapshot. This, multiplied by the interval, determines how often snapshots are taken.
          Default: 600
 
+## LogDeliveryConfiguration
+### Properties
+* **S3Configuration**: [S3Configuration](#s3configuration) (Required)
+
+## MaintenanceSchedule
+### Properties
+* **PreferredMaintenanceWindow**: string (Required): The preferred maintenance window in the format ddd:HH:MM-ddd:HH:MM.
+* **Timezone**: string (Required): The IANA timezone identifier for the maintenance window.
+
 ## MaintenanceSchedule
 ### Properties
 * **PreferredMaintenanceWindow**: string (Required): The preferred maintenance window in format ddd:HH:MM-ddd:HH:MM.
@@ -487,6 +540,11 @@
 
 ## S3Configuration
 ### Properties
+* **BucketName**: string (Required): The name of the S3 bucket to deliver logs to.
+* **Enabled**: bool (Required): Indicates whether log delivery to the S3 bucket is enabled.
+
+## S3Configuration
+### Properties
 * **BucketName**: string (Required)
 * **EncryptionOption**: string
 * **ObjectKeyPrefix**: string
@@ -528,6 +586,11 @@
 ### Properties
 * **Key**: string
 * **Value**: string
+
+## Tag
+### Properties
+* **Key**: string (Required): The key name of the tag.
+* **Value**: string (Required): The value for the tag.
 
 ## Tag
 ### Properties

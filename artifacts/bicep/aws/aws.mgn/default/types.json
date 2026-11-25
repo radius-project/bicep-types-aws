@@ -1221,6 +1221,26 @@
   },
   {
     "$type": "ObjectType",
+    "name": "CidrMapping",
+    "properties": {
+      "OriginalCidr": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The original CIDR range in the source network."
+      },
+      "UpdatedCidr": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 1,
+        "description": "The updated CIDR range to use in the target network."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
     "name": "ScopeTagsMap",
     "properties": {},
     "additionalProperties": {
@@ -1240,7 +1260,7 @@
       },
       "SourceS3Configuration": {
         "type": {
-          "$ref": "#/58"
+          "$ref": "#/59"
         },
         "flags": 1
       }
@@ -1354,13 +1374,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/57"
+      "$ref": "#/56"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/59"
+      "$ref": "#/58"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/60"
     }
   },
   {
@@ -1373,6 +1399,13 @@
         },
         "flags": 18,
         "description": "The Amazon Resource Name (ARN) of the network migration definition."
+      },
+      "CidrMappings": {
+        "type": {
+          "$ref": "#/64"
+        },
+        "flags": 0,
+        "description": "A list of CIDR mappings that map original source CIDR ranges to updated target CIDR ranges. CIDR mappings can be provided only when VpcProvisioningStrategy is USE_EXISTING."
       },
       "CreatedAt": {
         "type": {
@@ -1404,21 +1437,21 @@
       },
       "ScopeTags": {
         "type": {
-          "$ref": "#/56"
+          "$ref": "#/57"
         },
         "flags": 0,
         "description": "Scope tags for the network migration definition."
       },
       "SourceConfigurations": {
         "type": {
-          "$ref": "#/63"
+          "$ref": "#/65"
         },
         "flags": 1,
         "description": "A list of source configurations for the network migration."
       },
       "Tags": {
         "type": {
-          "$ref": "#/64"
+          "$ref": "#/66"
         },
         "flags": 0,
         "description": "Tags to assign to the network migration definition."
@@ -1432,14 +1465,14 @@
       },
       "TargetNetwork": {
         "type": {
-          "$ref": "#/60"
+          "$ref": "#/61"
         },
         "flags": 1,
         "description": "The target network configuration including topology and CIDR ranges."
       },
       "TargetS3Configuration": {
         "type": {
-          "$ref": "#/61"
+          "$ref": "#/62"
         },
         "flags": 1,
         "description": "The S3 configuration for storing the target network artifacts."
@@ -1450,6 +1483,13 @@
         },
         "flags": 2,
         "description": "The timestamp when the network migration definition was last updated."
+      },
+      "VpcProvisioningStrategy": {
+        "type": {
+          "$ref": "#/1"
+        },
+        "flags": 0,
+        "description": "Specifies whether to create new target VPCs or use existing ones. CREATE_NEW provisions new target VPCs as part of the migration; USE_EXISTING migrates into existing VPCs in the target account."
       }
     }
   },
@@ -1473,7 +1513,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/65"
+          "$ref": "#/67"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1484,7 +1524,7 @@
     "$type": "ResourceType",
     "name": "AWS.MGN/NetworkMigrationDefinition@default",
     "body": {
-      "$ref": "#/66"
+      "$ref": "#/68"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1530,7 +1570,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/69"
+      "$ref": "#/71"
     }
   },
   {
@@ -1616,7 +1656,7 @@
       },
       "ReplicationServersSecurityGroupsIDs": {
         "type": {
-          "$ref": "#/71"
+          "$ref": "#/73"
         },
         "flags": 1,
         "description": "The security group IDs that will be used by the replication server."
@@ -1630,7 +1670,7 @@
       },
       "StagingAreaTags": {
         "type": {
-          "$ref": "#/68"
+          "$ref": "#/70"
         },
         "flags": 1
       },
@@ -1643,7 +1683,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/72"
+          "$ref": "#/74"
         },
         "flags": 0,
         "description": "A set of tags to be associated with the Replication Configuration Template resource."
@@ -1684,7 +1724,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/73"
+          "$ref": "#/75"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1695,7 +1735,7 @@
     "$type": "ResourceType",
     "name": "AWS.MGN/ReplicationConfigurationTemplate@default",
     "body": {
-      "$ref": "#/74"
+      "$ref": "#/76"
     },
     "readableScopes": 0,
     "writableScopes": 0
@@ -1726,7 +1766,7 @@
     "properties": {
       "DataReplicationInitiation": {
         "type": {
-          "$ref": "#/79"
+          "$ref": "#/81"
         },
         "flags": 0
       },
@@ -1753,7 +1793,7 @@
       },
       "ReplicatedDisks": {
         "type": {
-          "$ref": "#/94"
+          "$ref": "#/96"
         },
         "flags": 0,
         "description": "The replicated disks."
@@ -1814,7 +1854,7 @@
       },
       "Steps": {
         "type": {
-          "$ref": "#/95"
+          "$ref": "#/97"
         },
         "flags": 0,
         "description": "The data replication initiation steps."
@@ -1956,7 +1996,7 @@
       },
       "LastCutover": {
         "type": {
-          "$ref": "#/87"
+          "$ref": "#/89"
         },
         "flags": 0
       },
@@ -1969,7 +2009,7 @@
       },
       "LastTest": {
         "type": {
-          "$ref": "#/88"
+          "$ref": "#/90"
         },
         "flags": 0
       },
@@ -2021,19 +2061,19 @@
     "properties": {
       "Finalized": {
         "type": {
-          "$ref": "#/86"
+          "$ref": "#/88"
         },
         "flags": 0
       },
       "Initiated": {
         "type": {
-          "$ref": "#/85"
+          "$ref": "#/87"
         },
         "flags": 0
       },
       "Reverted": {
         "type": {
-          "$ref": "#/86"
+          "$ref": "#/88"
         },
         "flags": 0
       }
@@ -2045,19 +2085,19 @@
     "properties": {
       "Finalized": {
         "type": {
-          "$ref": "#/86"
+          "$ref": "#/88"
         },
         "flags": 0
       },
       "Initiated": {
         "type": {
-          "$ref": "#/85"
+          "$ref": "#/87"
         },
         "flags": 0
       },
       "Reverted": {
         "type": {
-          "$ref": "#/86"
+          "$ref": "#/88"
         },
         "flags": 0
       }
@@ -2069,7 +2109,7 @@
     "properties": {
       "Ips": {
         "type": {
-          "$ref": "#/96"
+          "$ref": "#/98"
         },
         "flags": 0,
         "description": "The IP addresses of the network interface."
@@ -2109,21 +2149,21 @@
     "properties": {
       "Cpus": {
         "type": {
-          "$ref": "#/97"
+          "$ref": "#/99"
         },
         "flags": 0,
         "description": "The source server CPUs."
       },
       "Disks": {
         "type": {
-          "$ref": "#/98"
+          "$ref": "#/100"
         },
         "flags": 0,
         "description": "The source server disks."
       },
       "IdentificationHints": {
         "type": {
-          "$ref": "#/82"
+          "$ref": "#/84"
         },
         "flags": 0
       },
@@ -2136,14 +2176,14 @@
       },
       "NetworkInterfaces": {
         "type": {
-          "$ref": "#/99"
+          "$ref": "#/101"
         },
         "flags": 0,
         "description": "The source server network interfaces."
       },
       "Os": {
         "type": {
-          "$ref": "#/90"
+          "$ref": "#/92"
         },
         "flags": 0
       },
@@ -2204,13 +2244,13 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/78"
+      "$ref": "#/80"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/80"
+      "$ref": "#/82"
     }
   },
   {
@@ -2222,19 +2262,19 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/76"
+      "$ref": "#/78"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/81"
+      "$ref": "#/83"
     }
   },
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/89"
+      "$ref": "#/91"
     }
   },
   {
@@ -2244,7 +2284,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/93"
+      "$ref": "#/95"
     }
   },
   {
@@ -2267,13 +2307,13 @@
       },
       "ConnectorAction": {
         "type": {
-          "$ref": "#/92"
+          "$ref": "#/94"
         },
         "flags": 2
       },
       "DataReplicationInfo": {
         "type": {
-          "$ref": "#/77"
+          "$ref": "#/79"
         },
         "flags": 2
       },
@@ -2293,13 +2333,13 @@
       },
       "LaunchedInstance": {
         "type": {
-          "$ref": "#/83"
+          "$ref": "#/85"
         },
         "flags": 2
       },
       "LifeCycle": {
         "type": {
-          "$ref": "#/84"
+          "$ref": "#/86"
         },
         "flags": 2
       },
@@ -2312,7 +2352,7 @@
       },
       "SourceProperties": {
         "type": {
-          "$ref": "#/91"
+          "$ref": "#/93"
         },
         "flags": 2
       },
@@ -2325,7 +2365,7 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/101"
+          "$ref": "#/103"
         },
         "flags": 2,
         "description": "The tags associated with the source server."
@@ -2366,7 +2406,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/102"
+          "$ref": "#/104"
         },
         "flags": 16,
         "description": "properties of the resource"
@@ -2377,7 +2417,7 @@
     "$type": "ResourceType",
     "name": "AWS.MGN/SourceServer@default",
     "body": {
-      "$ref": "#/103"
+      "$ref": "#/105"
     },
     "readableScopes": 31,
     "writableScopes": 0
@@ -2436,7 +2476,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/105"
+      "$ref": "#/107"
     }
   },
   {
@@ -2487,14 +2527,14 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/108"
+          "$ref": "#/110"
         },
         "flags": 0,
         "description": "Tags to assign to the wave."
       },
       "WaveAggregatedStatus": {
         "type": {
-          "$ref": "#/106"
+          "$ref": "#/108"
         },
         "flags": 2,
         "description": "The aggregated migration status of the wave."
@@ -2528,7 +2568,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/109"
+          "$ref": "#/111"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -2539,7 +2579,7 @@
     "$type": "ResourceType",
     "name": "AWS.MGN/Wave@default",
     "body": {
-      "$ref": "#/110"
+      "$ref": "#/112"
     },
     "readableScopes": 0,
     "writableScopes": 0

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Connect-Rule",
   "type": "AWS::Connect::Rule",
-  "time": "2026-10-14T21:54:17.008Z",
+  "time": "2026-11-19T21:27:03.701Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -368,7 +368,67 @@
               "^.{1,128}$": {
                 "type": "string"
               }
-            }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "PreEvaluationFilter": {
+        "additionalProperties": false,
+        "description": "",
+        "properties": {
+          "FilterKey": {
+            "description": "The key of the filter.",
+            "type": "string"
+          },
+          "FilterType": {
+            "description": "The type of the filter.",
+            "enum": [
+              "TAG"
+            ],
+            "type": "string"
+          },
+          "FilterValue": {
+            "description": "The value of the filter.",
+            "type": "string"
+          },
+          "Operator": {
+            "description": "The comparison operator for the filter.",
+            "enum": [
+              "EQUALS"
+            ],
+            "type": "string"
+          },
+          "ResourceType": {
+            "description": "The type of resource the filter applies to.",
+            "enum": [
+              "CONTACT",
+              "CONTACT_EVALUATION"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "ResourceType",
+          "FilterType",
+          "FilterKey",
+          "FilterValue",
+          "Operator"
+        ],
+        "type": "object"
+      },
+      "PreEvaluationFilters": {
+        "additionalProperties": false,
+        "description": "",
+        "properties": {
+          "AndConditions": {
+            "description": "A list of filter conditions that are combined with AND logic.",
+            "insertionOrder": true,
+            "items": {
+              "$ref": "#/definitions/PreEvaluationFilter"
+            },
+            "type": "array"
           }
         },
         "type": "object"
@@ -623,7 +683,8 @@
               "^.+$": {
                 "$ref": "#/definitions/Reference"
               }
-            }
+            },
+            "type": "object"
           }
         },
         "required": [
@@ -745,6 +806,10 @@
         "pattern": "^[a-zA-Z0-9._-]{1,200}$",
         "type": "string"
       },
+      "PreEvaluationFilters": {
+        "$ref": "#/definitions/PreEvaluationFilters",
+        "description": ""
+      },
       "PublishStatus": {
         "description": "The publish status of the rule.\n *Allowed values*: ``DRAFT`` | ``PUBLISHED``",
         "enum": [
@@ -757,6 +822,18 @@
         "description": "",
         "pattern": "^arn:aws[-a-z0-9]*:connect:[-a-z0-9]*:[0-9]{12}:instance/[-a-zA-Z0-9]*/rule/[-a-zA-Z0-9]*$",
         "type": "string"
+      },
+      "RuleCapabilityTiers": {
+        "description": "",
+        "insertionOrder": false,
+        "items": {
+          "enum": [
+            "GenerativeAI"
+          ],
+          "type": "string"
+        },
+        "type": "array",
+        "uniqueItems": true
       },
       "Tags": {
         "description": "The tags used to organize, track, or control access for this resource. For example, { \"tags\": {\"key1\":\"value1\", \"key2\":\"value2\"} }.",
@@ -774,7 +851,8 @@
       }
     },
     "readOnlyProperties": [
-      "/properties/RuleArn"
+      "/properties/RuleArn",
+      "/properties/RuleCapabilityTiers"
     ],
     "replacementStrategy": "delete_then_create",
     "required": [

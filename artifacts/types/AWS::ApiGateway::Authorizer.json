@@ -1,12 +1,106 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-ApiGateway-Authorizer",
   "type": "AWS::ApiGateway::Authorizer",
-  "time": "2026-09-18T14:25:06.569Z",
+  "time": "2026-11-22T14:51:46.417Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
       "/properties/RestApiId"
     ],
+    "definitions": {
+      "JwtAdditionalClaim": {
+        "additionalProperties": false,
+        "description": "",
+        "properties": {
+          "ClaimName": {
+            "description": "The claim name. Can't be iss, aud, exp, nbf, iat, scope or scp.",
+            "type": "string"
+          },
+          "ExpectedValues": {
+            "description": "The value the claim must have. Leave it out to check only that the claim is present.",
+            "insertionOrder": false,
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": true
+          },
+          "Format": {
+            "description": "The claim's format. SINGLE_STRING is the only format.",
+            "type": "string"
+          },
+          "Required": {
+            "description": "Whether the token must carry the claim. Defaults to false.",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "ClaimName",
+          "Format"
+        ],
+        "type": "object"
+      },
+      "JwtConfiguration": {
+        "additionalProperties": false,
+        "description": "",
+        "properties": {
+          "DefaultAlgorithms": {
+            "description": "The signing algorithms the authorizer accepts: RS256, RS384, RS512, ES256, ES384 or ES512.",
+            "insertionOrder": false,
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": true
+          },
+          "Issuers": {
+            "description": "The token issuers the authorizer accepts.",
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/JwtIssuer"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "Issuers",
+          "DefaultAlgorithms"
+        ],
+        "type": "object"
+      },
+      "JwtIssuer": {
+        "additionalProperties": false,
+        "description": "",
+        "properties": {
+          "AdditionalClaims": {
+            "description": "Other claims the token must carry.",
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/JwtAdditionalClaim"
+            },
+            "type": "array"
+          },
+          "Audiences": {
+            "description": "The values that the token's aud claim must contain at least one of.",
+            "insertionOrder": false,
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": true
+          },
+          "Issuer": {
+            "description": "The HTTPS URL that the token's iss claim must match.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Issuer",
+          "Audiences"
+        ],
+        "type": "object"
+      }
+    },
     "description": "The ``AWS::ApiGateway::Authorizer`` resource creates an authorization layer that API Gateway activates for methods that have authorization enabled. API Gateway activates the authorizer when a client calls those methods.",
     "handlers": {
       "create": {
@@ -80,6 +174,10 @@
       "IdentityValidationExpression": {
         "description": "",
         "type": "string"
+      },
+      "JwtConfiguration": {
+        "$ref": "#/definitions/JwtConfiguration",
+        "description": ""
       },
       "Name": {
         "description": "",

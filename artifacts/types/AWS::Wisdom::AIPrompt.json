@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-Wisdom-AIPrompt",
   "type": "AWS::Wisdom::AIPrompt",
-  "time": "2026-10-20T22:25:44.146Z",
+  "time": "2026-11-19T15:42:15.874Z",
   "schema": {
     "additionalIdentifiers": [
       [
@@ -27,6 +27,32 @@
           "TEXT_COMPLETIONS"
         ],
         "type": "string"
+      },
+      "AIPromptInferenceConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "MaxTokensToSample": {
+            "maximum": 4096,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "Temperature": {
+            "maximum": 1,
+            "minimum": 0,
+            "type": "number"
+          },
+          "TopK": {
+            "maximum": 200,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "TopP": {
+            "maximum": 1,
+            "minimum": 0,
+            "type": "number"
+          }
+        },
+        "type": "object"
       },
       "AIPromptTemplateConfiguration": {
         "oneOf": [
@@ -84,7 +110,7 @@
         "additionalProperties": false,
         "properties": {
           "Text": {
-            "maxLength": 200000,
+            "maxLength": 1000000,
             "minLength": 1,
             "type": "string"
           }
@@ -163,6 +189,9 @@
         "minLength": 1,
         "pattern": "^[a-zA-Z0-9\\s_.,-]+",
         "type": "string"
+      },
+      "InferenceConfiguration": {
+        "$ref": "#/definitions/AIPromptInferenceConfiguration"
       },
       "ModelId": {
         "maxLength": 2048,

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-BedrockAgentCore-Runtime",
   "type": "AWS::BedrockAgentCore::Runtime",
-  "time": "2026-11-05T18:13:22.12Z",
+  "time": "2026-11-25T04:05:49.295Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -141,6 +141,16 @@
           "ClaimMatchOperator",
           "ClaimMatchValue"
         ],
+        "type": "object"
+      },
+      "BuildLifecycleHooks": {
+        "additionalProperties": false,
+        "description": "Hooks that run while the platform builds a runtime version, before any session exists",
+        "properties": {
+          "Warmup": {
+            "$ref": "#/definitions/LifecycleHook"
+          }
+        },
         "type": "object"
       },
       "CapacityProviderArn": {
@@ -330,8 +340,8 @@
         "type": "string"
       },
       "DiscoveryUrl": {
-        "description": "OpenID Connect discovery URL",
-        "pattern": "^.+/\\.well-known/openid-configuration$",
+        "description": "OpenID Connect discovery URL or OAuth 2.0 authorization server metadata URL",
+        "pattern": "^[^\\s?#]+/\\.well-known/(openid-configuration|oauth-authorization-server)(/[^\\s?#]+)?$",
         "type": "string"
       },
       "EfsAccessPointArn": {
@@ -403,6 +413,9 @@
           "EfsAccessPoint": {
             "$ref": "#/definitions/EfsAccessPointConfiguration"
           },
+          "S3BucketMount": {
+            "$ref": "#/definitions/S3BucketMountConfiguration"
+          },
           "S3FilesAccessPoint": {
             "$ref": "#/definitions/S3FilesAccessPointConfiguration"
           },
@@ -456,6 +469,25 @@
         "type": "array",
         "uniqueItems": true
       },
+      "HttpPostLifecycleHookAction": {
+        "additionalProperties": false,
+        "description": "Sends an HTTP POST to the agent's container. Any 2xx response ends the hook; anything else fails it. The path and port must not be a route the platform already calls on the container, such as the protocol's invocation path or the default health check.",
+        "properties": {
+          "Path": {
+            "$ref": "#/definitions/LifecycleHookPath"
+          },
+          "Port": {
+            "description": "Port in the agent's container the platform sends the POST to. Defaults to the runtime's server port.",
+            "maximum": 12000,
+            "minimum": 8000,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "Path"
+        ],
+        "type": "object"
+      },
       "InboundTokenClaimName": {
         "description": "The name of the custom claim to validate",
         "pattern": "[A-Za-z0-9_.-:]+",
@@ -490,6 +522,39 @@
           }
         },
         "type": "object"
+      },
+      "LifecycleHook": {
+        "additionalProperties": false,
+        "description": "A lifecycle hook and the action it runs",
+        "properties": {
+          "Action": {
+            "$ref": "#/definitions/LifecycleHookAction"
+          }
+        },
+        "required": [
+          "Action"
+        ],
+        "type": "object"
+      },
+      "LifecycleHookAction": {
+        "additionalProperties": false,
+        "description": "The action a lifecycle hook runs. HttpPost is the only action.",
+        "properties": {
+          "HttpPost": {
+            "$ref": "#/definitions/HttpPostLifecycleHookAction"
+          }
+        },
+        "required": [
+          "HttpPost"
+        ],
+        "type": "object"
+      },
+      "LifecycleHookPath": {
+        "description": "Path the platform sends the POST to. Must start with a slash.",
+        "maxLength": 32,
+        "minLength": 1,
+        "pattern": "^/[A-Za-z0-9._~/-]*$",
+        "type": "string"
       },
       "ManagedVpcResource": {
         "additionalProperties": false,
@@ -689,6 +754,30 @@
         },
         "type": "object"
       },
+      "ResourceConfiguration": {
+        "additionalProperties": false,
+        "description": "Resource configuration for an agent runtime",
+        "properties": {
+          "MinimumMemoryInMiB": {
+            "description": "The minimum amount of memory in MiB to allocate to the agent runtime",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "MinimumMemoryInMiB"
+        ],
+        "type": "object"
+      },
+      "ResourceConfigurations": {
+        "description": "List of resource configurations for an agent runtime",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/ResourceConfiguration"
+        },
+        "maxItems": 1,
+        "minItems": 0,
+        "type": "array"
+      },
       "RoleArn": {
         "pattern": "arn:aws(-[^:]+)?:iam::([0-9]{12})?:role/.+",
         "type": "string"
@@ -699,6 +788,55 @@
         "minLength": 1,
         "pattern": "^(([0-9]{12})\\.dkr\\.ecr\\.([a-z0-9-]+)\\.([a-z0-9-]+(?:\\.[a-z0-9-]+)+)|public\\.ecr\\.aws)/((?:[a-z0-9]+(?:[._-][a-z0-9]+)*/)*[a-z0-9]+(?:[._-][a-z0-9]+)*)(?::([^:@]{1,300}))?(?:@(.+))?$",
         "type": "string"
+      },
+      "RuntimeHooksConfiguration": {
+        "additionalProperties": false,
+        "description": "Lifecycle hooks that the platform runs at fixed points in the runtime's lifecycle",
+        "properties": {
+          "Build": {
+            "$ref": "#/definitions/BuildLifecycleHooks"
+          }
+        },
+        "type": "object"
+      },
+      "S3BucketMountConfiguration": {
+        "additionalProperties": false,
+        "description": "Configuration for mounting an S3 bucket into the session with Mountpoint for Amazon S3",
+        "properties": {
+          "Bucket": {
+            "description": "Name of the S3 bucket to mount",
+            "maxLength": 63,
+            "minLength": 3,
+            "type": "string"
+          },
+          "MountPath": {
+            "$ref": "#/definitions/MountPath"
+          },
+          "Prefix": {
+            "description": "S3 key prefix to mount. A trailing / is added if missing. May contain the {runtimeSessionId} placeholder, which is replaced with the session ID; that session ID must be 33-256 letters, digits, - or _, starting with a letter or digit. If omitted, the whole bucket is mounted",
+            "maxLength": 1024,
+            "minLength": 1,
+            "pattern": "^[a-zA-Z0-9{][a-zA-Z0-9!_.*'()/{}-]*$",
+            "type": "string"
+          },
+          "S3BucketOwner": {
+            "description": "AWS account ID of the expected bucket owner. Defaults to the runtime's account",
+            "pattern": "^[0-9]{12}$",
+            "type": "string"
+          },
+          "S3BucketRegion": {
+            "description": "Region of the S3 bucket. Defaults to the runtime's region",
+            "maxLength": 32,
+            "minLength": 1,
+            "pattern": "^([a-z]+-){2,3}\\d+$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Bucket",
+          "MountPath"
+        ],
+        "type": "object"
       },
       "S3FilesAccessPointArn": {
         "description": "ARN of the S3 Files access point",
@@ -896,10 +1034,12 @@
           "vpc-lattice:GetServiceNetworkResourceAssociation",
           "vpc-lattice:ListServiceNetworkResourceAssociations",
           "vpc-lattice:AssociateViaAWSService",
+          "vpc-lattice:DeleteServiceNetworkResourceAssociation",
           "ec2:DescribeVpcs",
           "ec2:DescribeSubnets",
           "ec2:DescribeSecurityGroups",
-          "ec2:CreateNetworkInterface"
+          "ec2:CreateNetworkInterface",
+          "secretsmanager:GetSecretValue"
         ],
         "timeoutInMinutes": 35
       },
@@ -909,7 +1049,8 @@
           "bedrock-agentcore:DeleteAgentRuntimeEndpoint",
           "bedrock-agentcore:DeleteWorkloadIdentity",
           "bedrock-agentcore:GetAgentRuntime",
-          "bedrock-agentcore:GetAgentRuntimeEndpoint"
+          "bedrock-agentcore:GetAgentRuntimeEndpoint",
+          "vpc-lattice:DeleteServiceNetworkResourceAssociation"
         ],
         "timeoutInMinutes": 130
       },
@@ -946,10 +1087,12 @@
           "vpc-lattice:GetServiceNetworkResourceAssociation",
           "vpc-lattice:ListServiceNetworkResourceAssociations",
           "vpc-lattice:AssociateViaAWSService",
+          "vpc-lattice:DeleteServiceNetworkResourceAssociation",
           "ec2:DescribeVpcs",
           "ec2:DescribeSubnets",
           "ec2:DescribeSecurityGroups",
-          "ec2:CreateNetworkInterface"
+          "ec2:CreateNetworkInterface",
+          "secretsmanager:GetSecretValue"
         ],
         "timeoutInMinutes": 35
       }
@@ -1006,6 +1149,10 @@
         "$ref": "#/definitions/FilesystemConfigurations",
         "description": "Filesystem configurations for the agent runtime"
       },
+      "HooksConfiguration": {
+        "$ref": "#/definitions/RuntimeHooksConfiguration",
+        "description": "Lifecycle hooks for the agent runtime"
+      },
       "LastUpdatedAt": {
         "$ref": "#/definitions/LastUpdatedAt",
         "description": "When resource was last updated"
@@ -1029,6 +1176,10 @@
       "RequestHeaderConfiguration": {
         "$ref": "#/definitions/RequestHeaderConfiguration",
         "description": "Configuration for HTTP request headers"
+      },
+      "ResourceConfigurations": {
+        "$ref": "#/definitions/ResourceConfigurations",
+        "description": "Resource configurations for the agent runtime"
       },
       "RoleArn": {
         "$ref": "#/definitions/RoleArn",

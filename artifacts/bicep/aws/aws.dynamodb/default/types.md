@@ -121,7 +121,7 @@
  If you add or delete an index during an update, we recommend that you don't update any other resources. If your stack fails to update and is rolled back while adding a new index, you must manually delete the index. 
  Updates are not supported. The following are exceptions:
   +  If you update either the contributor insights specification or the provisioned throughput values of global secondary indexes, you can update the table without interruption.
-  +  You can delete or add one global secondary index without interruption. If you do both in the same update (for example, by changing the index's logical ID), the update fails.
+  +  You can create or delete one index without interruption. This index can be a global secondary index or a vector index, but not one of each. If you change more than one index in the same update, the update fails.
 * **ImportSourceSpecification**: [ImportSourceSpecification](#importsourcespecification) (WriteOnly): Specifies the properties of data being imported from the S3 bucket source to the" table.
   If you specify the ``ImportSourceSpecification`` property, and also specify either the ``StreamSpecification``, the ``TableClass`` property, the ``DeletionProtectionEnabled`` property, or the ``WarmThroughput`` property, the IAM entity creating/updating stack must have ``UpdateTable`` permission.
 * **KeySchema**: [Table_KeySchema](#tablekeyschema) (Required): Specifies the attributes that make up the primary key for the table. The attributes in the ``KeySchema`` property must also be defined in the ``AttributeDefinitions`` property.
@@ -145,7 +145,9 @@
  For more information, see [Tag](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html).
 * **TimeToLiveSpecification**: [TimeToLiveSpecification](#timetolivespecification): Specifies the Time to Live (TTL) settings for the table.
   For detailed information about the limits in DynamoDB, see [Limits in Amazon DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html) in the Amazon DynamoDB Developer Guide.
-* **VectorIndexes**: [VectorIndex](#vectorindex)[]
+* **VectorIndexes**: [VectorIndex](#vectorindex)[]: The vector indexes to create on the table. Each vector index enables similarity search on a vector attribute.
+  Vector indexes are supported only on tables that use on-demand capacity mode. To use vector indexes, you must set ``BillingMode`` to ``PAY_PER_REQUEST``.
+ In a single stack operation, you can create or delete one index. This index can be a global secondary index or a vector index, but not one of each. To change more indexes, use a separate stack operation for each.
 * **WarmThroughput**: [WarmThroughput](#warmthroughput): Represents the warm throughput (in read units per second and write units per second) for creating a table.
 
 ## CapacityAutoScalingSettings
@@ -395,8 +397,10 @@
 
 ## SearchSchemaElement
 ### Properties
-* **AttributeName**: string (Required)
-* **SearchSchemaElementType**: string (Required)
+* **AttributeName**: string (Required): The name of the attribute. This attribute must also be declared in the table's ``AttributeDefinitions``.
+* **SearchSchemaElementType**: string (Required): The role of the attribute in the search schema. Valid values:
+  +  ``HASH`` - A partition key that partitions the vector index for independent scaling. When specified, you must provide this attribute's value in the ``SearchConditionExpression``.
+  +  ``INLINE_FILTER`` - An attribute projected into the vector index for filtering at the storage layer during search. Inline filters are optional in the ``SearchConditionExpression``.
 
 ## SSESpecification
 ### Properties
@@ -475,7 +479,7 @@
 
 ## VectorAttribute
 ### Properties
-* **AttributeName**: string (Required)
+* **AttributeName**: string (Required): The name of the vector attribute.
 
 ## VectorIndex
 ### Properties
@@ -488,12 +492,13 @@
 
 ## VectorIndex
 ### Properties
-* **Dimensions**: int (Required)
-* **DistanceFunction**: string (Required)
-* **IndexName**: string (Required)
-* **Projection**: [Projection](#projection) (Required)
-* **SearchSchema**: [SearchSchemaElement](#searchschemaelement)[]
-* **VectorAttribute**: [VectorAttribute](#vectorattribute) (Required)
+* **Dimensions**: int (Required): The number of dimensions in each vector.
+* **DistanceFunction**: string (Required): The distance function used to calculate similarity between vectors. Valid values: ``COSINE``, ``EUCLIDEAN``, ``DOT_PRODUCT``.
+* **IndexName**: string (Required): The name of the vector index.
+* **Projection**: [Projection](#projection) (Required): Specifies attributes that are copied (projected) from the table into the vector index.
+* **SearchSchema**: [SearchSchemaElement](#searchschemaelement)[]: The search schema that defines partition key and inline filter attributes for the vector index.
+ Every attribute that you reference in ``SearchSchema`` must also be declared in the table's ``AttributeDefinitions``, the same way key attributes are declared for a global secondary index. Otherwise, the request fails with a ``ValidationException``.
+* **VectorAttribute**: [VectorAttribute](#vectorattribute) (Required): The vector attribute configuration for the index.
 
 ## WarmThroughput
 ### Properties

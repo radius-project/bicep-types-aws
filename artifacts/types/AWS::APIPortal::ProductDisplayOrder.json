@@ -1,0 +1,118 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-APIPortal-ProductDisplayOrder",
+  "type": "AWS::APIPortal::ProductDisplayOrder",
+  "time": "2026-11-23T07:44:55.399Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/ProductId"
+    ],
+    "definitions": {
+      "Section": {
+        "additionalProperties": false,
+        "description": "A named grouping of ProductApiPage ARNs inside DisplayOrder.Contents. To represent a labeled placeholder section without endpoints, supply an empty ProductApiPageArns list.",
+        "properties": {
+          "ProductApiPageArns": {
+            "description": "Ordered ProductApiPage ARNs shown under this section. Required; use an empty list for a placeholder section.",
+            "insertionOrder": true,
+            "items": {
+              "maxLength": 2048,
+              "minLength": 20,
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": true
+          },
+          "SectionName": {
+            "maxLength": 255,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "SectionName",
+          "ProductApiPageArns"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::APIPortal::ProductDisplayOrder. Singleton sub-property of an AWS::APIPortal::Product capturing its display layout (overview page, top-level ProductPage ordering, and sectioned ProductApiPage arrangement).",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "apiportal:UpdateProduct",
+          "apiportal:GetProduct"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "apiportal:UpdateProduct",
+          "apiportal:GetProduct"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "apiportal:ListProducts",
+          "apiportal:GetProduct"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "apiportal:GetProduct"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "apiportal:UpdateProduct",
+          "apiportal:GetProduct"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/ProductId"
+    ],
+    "properties": {
+      "Contents": {
+        "description": "Sectioned arrangement of ProductApiPage ARNs.",
+        "insertionOrder": true,
+        "items": {
+          "$ref": "#/definitions/Section"
+        },
+        "type": "array",
+        "uniqueItems": false
+      },
+      "OverviewPageArn": {
+        "description": "ARN of the ProductPage rendered as the overview/landing page.",
+        "maxLength": 2048,
+        "minLength": 20,
+        "type": "string"
+      },
+      "ProductId": {
+        "description": "The identifier of the parent Product. Singleton key for this CFN type.",
+        "maxLength": 30,
+        "minLength": 10,
+        "pattern": "^[a-z0-9]+$",
+        "type": "string"
+      },
+      "ProductPageArns": {
+        "description": "Top-level ProductPage ARNs in display order.",
+        "insertionOrder": true,
+        "items": {
+          "maxLength": 2048,
+          "minLength": 20,
+          "type": "string"
+        },
+        "type": "array",
+        "uniqueItems": true
+      }
+    },
+    "required": [
+      "ProductId"
+    ],
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-apiportal.git",
+    "tagging": {
+      "taggable": false
+    },
+    "typeName": "AWS::APIPortal::ProductDisplayOrder"
+  }
+}

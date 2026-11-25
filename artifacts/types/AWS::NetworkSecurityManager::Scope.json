@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-NetworkSecurityManager-Scope",
   "type": "AWS::NetworkSecurityManager::Scope",
-  "time": "2026-10-27T19:21:40.643Z",
+  "time": "2026-11-25T20:52:25.261Z",
   "schema": {
     "additionalIdentifiers": [
       [
@@ -10,7 +10,8 @@
     ],
     "additionalProperties": false,
     "createOnlyProperties": [
-      "/properties/ScopeName"
+      "/properties/ScopeName",
+      "/properties/SpecializedScopeType"
     ],
     "definitions": {
       "Tag": {
@@ -87,6 +88,7 @@
       },
       "ScopeDescription": {
         "description": "A description of the scope.",
+        "pattern": "^[a-zA-Z0-9 _.:/=+\\-@]*$",
         "type": "string"
       },
       "ScopeId": {
@@ -95,6 +97,14 @@
       },
       "ScopeName": {
         "description": "The name of the scope.",
+        "pattern": "^[a-zA-Z0-9][a-zA-Z0-9 _.:/=+\\-@]*$",
+        "type": "string"
+      },
+      "SpecializedScopeType": {
+        "description": "Marks the scope as built for one specific use. Omit for a standard scope. A specialized scope cannot be associated with a deployment. Cannot be changed after creation.",
+        "enum": [
+          "IGW_FIREWALL_SUBNET_CONNECTIVITY_OVERRIDE"
+        ],
         "type": "string"
       },
       "Status": {

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-EKS-PodIdentityAssociation",
   "type": "AWS::EKS::PodIdentityAssociation",
-  "time": "2026-10-21T16:38:56.463Z",
+  "time": "2026-11-20T00:17:34.707Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -32,6 +32,40 @@
           "Value"
         ],
         "type": "object"
+      },
+      "WorkloadIdentityConfig": {
+        "additionalProperties": false,
+        "dependencies": {
+          "ProviderArn": [
+            "TemplateArn"
+          ],
+          "TemplateArn": [
+            "ProviderArn"
+          ]
+        },
+        "description": "The workload identity configuration of the pod identity association. When enabled, the association also provisions a SPIFFE identity for the workload. Setting Enabled to false disables workload identity and keeps the ARNs. Removing the property from the template leaves the association unchanged; set Enabled to false to disable workload identity.",
+        "properties": {
+          "Enabled": {
+            "description": "Whether workload identity is enabled for the association. Enabling it requires TemplateArn and ProviderArn, and cannot be combined with TargetRoleArn.",
+            "type": "boolean"
+          },
+          "ProviderArn": {
+            "description": "The ARN of the customer-owned IAM workload identity provider that produces the trusted context assertion for the workload.",
+            "minLength": 1,
+            "pattern": "^arn:aws[a-zA-Z-]*:iam::([0-9]{12}|o-[a-z0-9]{10,32}):workload-identity-provider/[^/]+$",
+            "type": "string"
+          },
+          "TemplateArn": {
+            "description": "The ARN of the customer-owned IAM workload identity template that renders the workload's SPIFFE identity.",
+            "minLength": 1,
+            "pattern": "^arn:aws[a-zA-Z-]*:iam::[0-9]{12}:workload-identity-template/[^/]+$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Enabled"
+        ],
+        "type": "object"
       }
     },
     "description": "An object representing an Amazon EKS PodIdentityAssociation.",
@@ -42,7 +76,11 @@
           "eks:DescribePodIdentityAssociation",
           "eks:TagResource",
           "iam:PassRole",
-          "iam:GetRole"
+          "iam:GetRole",
+          "iam:PassWorkloadIdentityTemplate",
+          "iam:GetWorkloadIdentityTemplate",
+          "iam:GetWorkloadIdentityTemplateAttestationPolicy",
+          "iam:GetWorkloadIdentityProvider"
         ]
       },
       "delete": {
@@ -78,7 +116,11 @@
           "eks:TagResource",
           "eks:UntagResource",
           "iam:PassRole",
-          "iam:GetRole"
+          "iam:GetRole",
+          "iam:PassWorkloadIdentityTemplate",
+          "iam:GetWorkloadIdentityTemplate",
+          "iam:GetWorkloadIdentityTemplateAttestationPolicy",
+          "iam:GetWorkloadIdentityProvider"
         ]
       }
     },
@@ -140,6 +182,9 @@
         "description": "The Target Role Arn of the pod identity association.",
         "minLength": 1,
         "type": "string"
+      },
+      "WorkloadIdentityConfig": {
+        "$ref": "#/definitions/WorkloadIdentityConfig"
       }
     },
     "readOnlyProperties": [

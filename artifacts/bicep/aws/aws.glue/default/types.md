@@ -241,6 +241,12 @@
 * **SecurityConfiguration**: string: The name of the SecurityConfiguration structure to be used with this action.
 * **Timeout**: int: The JobRun timeout in minutes. This is the maximum time that a job run can consume resources before it is terminated and enters TIMEOUT status. The default is 2,880 minutes (48 hours). This overrides the timeout value set in the parent job.
 
+## AssetsSyncConfiguration
+### Properties
+* **ManagedCrawlerDetails**: [ManagedCrawlerDetails](#managedcrawlerdetails) (ReadOnly)
+* **RefreshIntervalMinutes**: int: How often the crawler synchronizes assets, in minutes. Glue enforces a service-side minimum that may be higher than the minimum accepted here.
+* **Status**: string (Required): Whether asset synchronization is enabled.
+
 ## AuthenticationConfiguration
 ### Properties
 * **AuthenticationType**: string (Required, WriteOnly): A structure containing the authentication configuration in the CreateConnection request.
@@ -274,7 +280,7 @@
 * **CatalogProperties**: [CatalogProperties](#catalogproperties)
 * **CreateDatabaseDefaultPermissions**: [PrincipalPermissions](#principalpermissions)[]: An array of PrincipalPermissions objects for default database permissions.
 * **CreateTableDefaultPermissions**: [PrincipalPermissions](#principalpermissions)[]: An array of PrincipalPermissions objects for default table permissions.
-* **CreateTime**: int (ReadOnly): The time at which the catalog was created.
+* **CreateTime**: string (ReadOnly): The time at which the catalog was created.
 * **Description**: string: A description of the catalog.
 * **FederatedCatalog**: [FederatedCatalog](#federatedcatalog)
 * **Name**: string (Required): The name of the catalog to create.
@@ -283,7 +289,7 @@
 * **ResourceArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the catalog.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 * **TargetRedshiftCatalog**: [TargetRedshiftCatalog](#targetredshiftcatalog)
-* **UpdateTime**: int (ReadOnly): The time at which the catalog was last updated.
+* **UpdateTime**: string (ReadOnly): The time at which the catalog was last updated.
 
 ## AWS.Glue/ClassifierProperties
 ### Properties
@@ -543,10 +549,12 @@
 ## AWS.Glue/UserDefinedFunctionProperties
 ### Properties
 * **Arn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the user-defined function.
+* **ArtifactLocation**: string: The registered Amazon S3 location that contains the function artifacts. Required when GovernanceMode is LAKE_FORMATION.
 * **ClassName**: string: The Java class that contains the function code.
 * **DatabaseName**: string (Required): The name of the catalog database in which the function is located.
 * **FunctionName**: string (Required): The name of the function.
 * **FunctionType**: string: The type of the function.
+* **GovernanceMode**: string: How access to the function is governed. The mode cannot be changed after creation.
 * **OwnerName**: string: The owner of the function.
 * **OwnerType**: string: The owner type.
 * **ResourceUris**: [ResourceUri](#resourceuri)[]: The resource URIs for the function.
@@ -897,6 +905,16 @@ The valid values are null or a value between 0.1 to 1.5. A null value is used wh
 * **Schema**: [ConnectionType_Schema](#connectiontypeschema): The schema definition for this entity.
 * **SourceConfiguration**: [SourceConfiguration](#sourceconfiguration)
 
+## ErrorDetail
+### Properties
+* **ErrorCode**: string (ReadOnly): The code associated with this error.
+* **ErrorMessage**: string (ReadOnly): A message describing the error.
+
+## ErrorDetail
+### Properties
+* **ErrorCode**: string (ReadOnly): The code associated with this error.
+* **ErrorMessage**: string (ReadOnly): A message describing the error.
+
 ## EventBatchingCondition
 ### Properties
 * **BatchSize**: int (Required): Number of events that must be received from Amazon EventBridge before EventBridge event trigger fires.
@@ -916,7 +934,9 @@ The valid values are null or a value between 0.1 to 1.5. A null value is used wh
 ## FederatedCatalog
 ### Properties
 * **ConnectionName**: string: The name of the connection to an external data source.
+* **ConnectionType**: string: The type of connection used to access the federated catalog. Synchronization is only supported for certain connection types.
 * **Identifier**: string: A unique identifier for the federated catalog.
+* **SyncConfiguration**: [SyncConfiguration](#syncconfiguration)
 
 ## FederatedDatabase
 ### Properties
@@ -1141,6 +1161,24 @@ If you do not need additional metadata, keep the field empty.
 * **AccountId**: string: Required for cross account crawls. For same account crawls as the target data, this can be left as null.
 * **UseLakeFormationCredentials**: bool: Specifies whether to use AWS Lake Formation credentials for the crawler instead of the IAM role credentials.
 
+## LineageSyncConfiguration
+### Properties
+* **ManagedCrawlerDetails**: [ManagedCrawlerDetails](#managedcrawlerdetails) (ReadOnly)
+* **RefreshIntervalMinutes**: int: How often the crawler synchronizes lineage, in minutes. Glue enforces a service-side minimum that may be higher than the minimum accepted here.
+* **Status**: string (Required): Whether lineage synchronization is enabled.
+
+## ManagedCrawlerDetails
+### Properties
+* **CrawlerArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the crawler.
+* **Error**: [ErrorDetail](#errordetail) (ReadOnly)
+* **Status**: string (ReadOnly): The provisioning state of the crawler.
+
+## ManagedCrawlerDetails
+### Properties
+* **CrawlerArn**: string (ReadOnly): The Amazon Resource Name (ARN) of the crawler.
+* **Error**: [ErrorDetail](#errordetail) (ReadOnly)
+* **Status**: string (ReadOnly): The provisioning state of the crawler.
+
 ## MLTransform_Tags
 ### Properties
 ### Additional Properties
@@ -1281,6 +1319,7 @@ If you do not need additional metadata, keep the field empty.
 
 ## ResourceUri
 ### Properties
+* **LastModified**: string (ReadOnly): The time at which Glue recorded the resource as last modified in Amazon S3 for a Lake Formation governed function.
 * **ResourceType**: string: The type of the resource.
 * **Uri**: string: The URI for accessing the resource.
 
@@ -1449,6 +1488,12 @@ If you do not need additional metadata, keep the field empty.
 * **SkewedInfo**: [SkewedInfo](#skewedinfo): The information about values that appear frequently in a column (skewed values).
 * **SortColumns**: [Order](#order)[]: A list specifying the sort order of each bucket in the table.
 * **StoredAsSubDirectories**: bool: True if the table data is stored in subdirectories, or False if not.
+
+## SyncConfiguration
+### Properties
+* **AssetsSyncConfiguration**: [AssetsSyncConfiguration](#assetssyncconfiguration)
+* **LineageSyncConfiguration**: [LineageSyncConfiguration](#lineagesyncconfiguration)
+* **RoleArn**: string (Required): The IAM role, in the catalog owner's account, that the crawlers Glue manages on your behalf assume.
 
 ## Table_Parameters
 ### Properties

@@ -8,6 +8,14 @@
 * **name**: string: the resource name
 * **properties**: [AWS.NetworkFlowMonitor/MonitorProperties](#awsnetworkflowmonitormonitorproperties) (Required, Identifier): properties of the resource
 
+## Resource AWS.NetworkFlowMonitor/PerformanceMonitor@default
+* **Readable Scope(s)**: None
+* **Writable Scope(s)**: None
+### Properties
+* **alias**: string (Required, Identifier): the resource alias
+* **name**: string: the resource name
+* **properties**: [AWS.NetworkFlowMonitor/PerformanceMonitorProperties](#awsnetworkflowmonitorperformancemonitorproperties) (Required, Identifier): properties of the resource
+
 ## Resource AWS.NetworkFlowMonitor/Scope@default
 * **Readable Scope(s)**: None
 * **Writable Scope(s)**: None
@@ -28,6 +36,18 @@
 * **ScopeArn**: string (WriteOnly): The Amazon Resource Name (ARN) of the scope for the monitor.
 * **Tags**: [Tag](#tag)[]: The tags for the monitor.
 
+## AWS.NetworkFlowMonitor/PerformanceMonitorProperties
+### Properties
+* **Arn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the performance monitor.
+* **CreatedAt**: string (ReadOnly): The date and time when the performance monitor was created.
+* **ModifiedAt**: string (ReadOnly): The date and time when the performance monitor was last modified.
+* **MonitorName**: string (Required): The name of the performance monitor.
+* **MonitorStatus**: string (ReadOnly): The status of the performance monitor.
+* **MonitorType**: string (ReadOnly): The type of the performance monitor.
+* **ScopeArn**: string (WriteOnly): The Amazon Resource Name (ARN) of the scope for the performance monitor.
+* **Tags**: [Tag](#tag)[]: The tags for the performance monitor.
+* **Targets**: [PerformanceMonitorTarget](#performancemonitortarget)[] (Required): The targets that are monitored by the performance monitor.
+
 ## AWS.NetworkFlowMonitor/ScopeProperties
 ### Properties
 * **ScopeArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) of the scope.
@@ -45,6 +65,16 @@
 ### Properties
 * **Identifier**: string (Required): The identifier of the remote resource.
 * **Type**: string (Required): The type of the remote resource.
+
+## PerformanceMonitorTarget
+### Properties
+* **Identifier**: string (Required): The identifier of the target.
+* **Type**: string (Required): The type of the target.
+
+## Tag
+### Properties
+* **Key**: string (Required)
+* **Value**: string (Required)
 
 ## Tag
 ### Properties

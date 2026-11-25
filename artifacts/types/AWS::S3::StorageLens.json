@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-S3-StorageLens",
   "type": "AWS::S3::StorageLens",
-  "time": "2026-10-14T14:20:09.521Z",
+  "time": "2026-11-23T16:39:35.675Z",
   "schema": {
     "$comment": "This schema must be kept in sync with its regional contract-test template: aws-s3-storagelens/templates/{region.region_name}_schema.json.erb. Any property change here must be mirrored there (and vice versa).",
     "additionalProperties": false,
@@ -164,6 +164,52 @@
         ],
         "type": "object"
       },
+      "CostAndUsageReportsPrefixLevel": {
+        "additionalProperties": false,
+        "description": "Prefix-level settings for publishing Amazon S3 Storage Lens metrics to AWS Cost and Usage Reports.",
+        "properties": {
+          "IsEnabled": {
+            "description": "Specifies whether publishing prefix-level metrics to AWS Cost and Usage Reports is enabled or disabled.",
+            "type": "boolean"
+          },
+          "SelectionCriteria": {
+            "$ref": "#/definitions/CostAndUsageReportsSelectionCriteria"
+          }
+        },
+        "required": [
+          "IsEnabled"
+        ],
+        "type": "object"
+      },
+      "CostAndUsageReportsPublish": {
+        "additionalProperties": false,
+        "description": "Settings for publishing Amazon S3 Storage Lens metrics to AWS Cost and Usage Reports.",
+        "properties": {
+          "PrefixLevel": {
+            "$ref": "#/definitions/CostAndUsageReportsPrefixLevel"
+          }
+        },
+        "type": "object"
+      },
+      "CostAndUsageReportsSelectionCriteria": {
+        "additionalProperties": false,
+        "description": "Selection criteria for the data that Amazon S3 Storage Lens publishes to AWS Cost and Usage Reports.",
+        "properties": {
+          "MaxDepth": {
+            "description": "The maximum prefix depth to publish to AWS Cost and Usage Reports. You must specify MinDepth and MaxDepth together, or neither. If you specify neither, MaxDepth defaults to 3.",
+            "maximum": 15,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "MinDepth": {
+            "description": "The minimum prefix depth to publish to AWS Cost and Usage Reports. You must specify MinDepth and MaxDepth together, or neither. If you specify neither, MinDepth defaults to 1.",
+            "maximum": 15,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
       "DataExport": {
         "additionalProperties": false,
         "description": "Specifies how Amazon S3 Storage Lens metrics should be exported.",
@@ -227,6 +273,17 @@
         "minLength": 1,
         "pattern": "^[a-zA-Z0-9\\-_.]+$",
         "type": "string"
+      },
+      "IntAccessTiers": {
+        "additionalProperties": false,
+        "description": "Metric breakdown per Intelligent-Tiering access tiers.",
+        "properties": {
+          "IsEnabled": {
+            "description": "Specifies whether metric breakdown per Intelligent-Tiering access tiers is enabled or disabled.",
+            "type": "boolean"
+          }
+        },
+        "type": "object"
       },
       "PrefixLevel": {
         "additionalProperties": false,
@@ -340,6 +397,9 @@
           "AwsOrg": {
             "$ref": "#/definitions/AwsOrg"
           },
+          "CostAndUsageReportsPublish": {
+            "$ref": "#/definitions/CostAndUsageReportsPublish"
+          },
           "DataExport": {
             "$ref": "#/definitions/DataExport"
           },
@@ -354,6 +414,9 @@
           },
           "Include": {
             "$ref": "#/definitions/BucketsAndRegions"
+          },
+          "IntAccessTiers": {
+            "$ref": "#/definitions/IntAccessTiers"
           },
           "IsEnabled": {
             "description": "Specifies whether the Amazon S3 Storage Lens configuration is enabled or disabled.",

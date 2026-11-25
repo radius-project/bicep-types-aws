@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-BedrockAgentCore-Gateway",
   "type": "AWS::BedrockAgentCore::Gateway",
-  "time": "2026-10-30T16:31:45.743Z",
+  "time": "2026-11-22T04:04:34.225Z",
   "schema": {
     "additionalProperties": false,
     "definitions": {
@@ -61,6 +61,36 @@
           "ClaimMatchValue"
         ],
         "type": "object"
+      },
+      "CertificateConfiguration": {
+        "oneOf": [
+          {
+            "additionalProperties": false,
+            "properties": {
+              "S3": {
+                "$ref": "#/definitions/S3CertificateConfiguration"
+              }
+            },
+            "required": [
+              "S3"
+            ],
+            "title": "S3",
+            "type": "object"
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "SecretsManager": {
+                "$ref": "#/definitions/SecretsManagerCertificateConfiguration"
+              }
+            },
+            "required": [
+              "SecretsManager"
+            ],
+            "title": "SecretsManager",
+            "type": "object"
+          }
+        ]
       },
       "ClaimMatchOperatorType": {
         "enum": [
@@ -163,6 +193,14 @@
             "minItems": 1,
             "type": "array"
           },
+          "CertificateConfigurations": {
+            "items": {
+              "$ref": "#/definitions/CertificateConfiguration"
+            },
+            "maxItems": 1,
+            "minItems": 1,
+            "type": "array"
+          },
           "CustomClaims": {
             "items": {
               "$ref": "#/definitions/CustomClaimValidationType"
@@ -180,6 +218,32 @@
         },
         "required": [
           "DiscoveryUrl"
+        ],
+        "type": "object"
+      },
+      "DomainOverride": {
+        "additionalProperties": false,
+        "properties": {
+          "AlternateDomains": {
+            "items": {
+              "maxLength": 253,
+              "minLength": 1,
+              "pattern": "^(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)(?:\\.(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?))+$",
+              "type": "string"
+            },
+            "maxItems": 10,
+            "minItems": 1,
+            "type": "array"
+          },
+          "DefaultDomain": {
+            "maxLength": 253,
+            "minLength": 1,
+            "pattern": "^(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)(?:\\.(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?))+$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "DefaultDomain"
         ],
         "type": "object"
       },
@@ -219,6 +283,12 @@
           },
           "Interceptor": {
             "$ref": "#/definitions/InterceptorConfiguration"
+          },
+          "ResponseInterceptionMode": {
+            "$ref": "#/definitions/ResponseInterceptionMode"
+          },
+          "ResponseStreamingConfiguration": {
+            "$ref": "#/definitions/ResponseStreamingConfiguration"
           }
         },
         "required": [
@@ -483,11 +553,59 @@
           }
         ]
       },
+      "ResponseInterceptionMode": {
+        "enum": [
+          "BUFFERED",
+          "STREAM"
+        ],
+        "type": "string"
+      },
+      "ResponseStreamingConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "MaxEventsPerInvocation": {
+            "maximum": 8192,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "S3CertificateConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "BucketOwnerAccountId": {
+            "pattern": "^[0-9]{12}$",
+            "type": "string"
+          },
+          "Uri": {
+            "pattern": "^s3://.{1,2043}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Uri"
+        ],
+        "type": "object"
+      },
       "SearchType": {
         "enum": [
           "SEMANTIC"
         ],
         "type": "string"
+      },
+      "SecretsManagerCertificateConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "SecretArn": {
+            "pattern": "^arn:aws(-[^:]+)?:secretsmanager:[a-z0-9-]+:[0-9]{12}:secret:.+$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "SecretArn"
+        ],
+        "type": "object"
       },
       "SelfManagedLatticeResource": {
         "oneOf": [
@@ -585,18 +703,38 @@
           "bedrock-agentcore:ListTagsForResource",
           "bedrock-agentcore:SynchronizeGatewayTargets",
           "bedrock-agentcore:TagResource",
+          "ec2:CreateNetworkInterface",
+          "ec2:DescribeSecurityGroups",
+          "ec2:DescribeSubnets",
+          "ec2:DescribeVpcs",
+          "iam:CreateServiceLinkedRole",
           "iam:PassRole",
           "kms:CreateGrant",
           "kms:Decrypt",
           "kms:DescribeKey",
-          "kms:GenerateDataKey"
+          "kms:GenerateDataKey",
+          "s3:GetObject",
+          "secretsmanager:GetSecretValue",
+          "vpc-lattice:AssociateViaAWSService",
+          "vpc-lattice:CreateResourceConfiguration",
+          "vpc-lattice:CreateResourceGateway",
+          "vpc-lattice:CreateServiceNetworkResourceAssociation",
+          "vpc-lattice:DeleteResourceConfiguration",
+          "vpc-lattice:DeleteResourceGateway",
+          "vpc-lattice:DeleteServiceNetworkResourceAssociation",
+          "vpc-lattice:GetResourceConfiguration",
+          "vpc-lattice:GetServiceNetworkResourceAssociation",
+          "vpc-lattice:ListServiceNetworkResourceAssociations"
         ]
       },
       "delete": {
         "permissions": [
           "bedrock-agentcore:DeleteGateway",
           "bedrock-agentcore:DeleteWorkloadIdentity",
-          "bedrock-agentcore:GetGateway"
+          "bedrock-agentcore:GetGateway",
+          "vpc-lattice:DeleteResourceConfiguration",
+          "vpc-lattice:DeleteResourceGateway",
+          "vpc-lattice:DeleteServiceNetworkResourceAssociation"
         ]
       },
       "list": {
@@ -617,11 +755,28 @@
           "bedrock-agentcore:TagResource",
           "bedrock-agentcore:UntagResource",
           "bedrock-agentcore:UpdateGateway",
+          "ec2:CreateNetworkInterface",
+          "ec2:DescribeSecurityGroups",
+          "ec2:DescribeSubnets",
+          "ec2:DescribeVpcs",
+          "iam:CreateServiceLinkedRole",
           "iam:PassRole",
           "kms:Decrypt",
           "kms:DescribeKey",
           "kms:GenerateDataKey",
-          "kms:ListGrants"
+          "kms:ListGrants",
+          "s3:GetObject",
+          "secretsmanager:GetSecretValue",
+          "vpc-lattice:AssociateViaAWSService",
+          "vpc-lattice:CreateResourceConfiguration",
+          "vpc-lattice:CreateResourceGateway",
+          "vpc-lattice:CreateServiceNetworkResourceAssociation",
+          "vpc-lattice:DeleteResourceConfiguration",
+          "vpc-lattice:DeleteResourceGateway",
+          "vpc-lattice:DeleteServiceNetworkResourceAssociation",
+          "vpc-lattice:GetResourceConfiguration",
+          "vpc-lattice:GetServiceNetworkResourceAssociation",
+          "vpc-lattice:ListServiceNetworkResourceAssociations"
         ]
       }
     },
@@ -643,6 +798,9 @@
         "maxLength": 200,
         "minLength": 1,
         "type": "string"
+      },
+      "DomainOverride": {
+        "$ref": "#/definitions/DomainOverride"
       },
       "ExceptionLevel": {
         "$ref": "#/definitions/ExceptionLevel"

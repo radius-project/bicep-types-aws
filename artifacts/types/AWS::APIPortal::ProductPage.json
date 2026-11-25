@@ -1,0 +1,172 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-APIPortal-ProductPage",
+  "type": "AWS::APIPortal::ProductPage",
+  "time": "2026-11-23T07:44:40.241Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/ProductId",
+        "/properties/ProductPageId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/ProductId"
+    ],
+    "definitions": {
+      "DisplayContent": {
+        "additionalProperties": false,
+        "description": "The displayed content of the product page.",
+        "properties": {
+          "Body": {
+            "description": "Markdown-formatted body of the product page.",
+            "maxLength": 32768,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Title": {
+            "description": "The title of the product page.",
+            "maxLength": 255,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Title",
+          "Body"
+        ],
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with a resource.",
+        "properties": {
+          "Key": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::APIPortal::ProductPage. A free-form documentation page within an AWS::APIPortal::Product.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "apiportal:CreateProductPage",
+          "apiportal:GetProductPage",
+          "apiportal:TagResource"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "apiportal:DeleteProductPage",
+          "apiportal:GetProductPage"
+        ]
+      },
+      "list": {
+        "handlerSchema": {
+          "properties": {
+            "ProductId": {
+              "$ref": "resource-schema.json#/properties/ProductId"
+            }
+          },
+          "required": [
+            "ProductId"
+          ]
+        },
+        "permissions": [
+          "apiportal:ListProductPages"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "apiportal:GetProductPage"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "apiportal:UpdateProductPage",
+          "apiportal:GetProductPage",
+          "apiportal:TagResource",
+          "apiportal:UntagResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/ProductPageArn"
+    ],
+    "properties": {
+      "DisplayContent": {
+        "$ref": "#/definitions/DisplayContent"
+      },
+      "ProductId": {
+        "description": "The identifier of the parent Product.",
+        "maxLength": 30,
+        "minLength": 10,
+        "pattern": "^[a-z0-9]+$",
+        "type": "string"
+      },
+      "ProductPageArn": {
+        "description": "The ARN of the product page.",
+        "maxLength": 2048,
+        "minLength": 20,
+        "type": "string"
+      },
+      "ProductPageId": {
+        "description": "The product page identifier.",
+        "maxLength": 30,
+        "minLength": 10,
+        "pattern": "^[a-z0-9]+$",
+        "type": "string"
+      },
+      "Tags": {
+        "description": "The tags associated with the product page.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": false
+      },
+      "UpdatedAt": {
+        "description": "The timestamp when the product page was last modified.",
+        "format": "date-time",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/ProductPageArn",
+      "/properties/ProductPageId",
+      "/properties/UpdatedAt"
+    ],
+    "required": [
+      "ProductId",
+      "DisplayContent"
+    ],
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-apiportal.git",
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "apiportal:TagResource",
+        "apiportal:UntagResource",
+        "apiportal:GetProductPage"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::APIPortal::ProductPage"
+  }
+}

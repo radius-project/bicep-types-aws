@@ -318,6 +318,11 @@
 * **Name**: string (Required)
 * **Value**: string
 
+## EksContainerLinuxCapabilities
+### Properties
+* **Add**: string[]
+* **Drop**: string[]
+
 ## EksContainerResourceRequirements
 ### Properties
 * **Limits**: [JobDefinition_Limits](#jobdefinitionlimits)
@@ -326,11 +331,13 @@
 ## EksContainerSecurityContext
 ### Properties
 * **AllowPrivilegeEscalation**: bool
+* **Capabilities**: [EksContainerLinuxCapabilities](#ekscontainerlinuxcapabilities)
 * **Privileged**: bool
 * **ReadOnlyRootFilesystem**: bool
 * **RunAsGroup**: int
 * **RunAsNonRoot**: bool
 * **RunAsUser**: int
+* **SeccompProfile**: [EksSeccompProfile](#eksseccompprofile)
 
 ## EksContainerVolumeMount
 ### Properties
@@ -367,13 +374,27 @@
 * **ImagePullSecrets**: [ImagePullSecret](#imagepullsecret)[]
 * **InitContainers**: [EksContainer](#ekscontainer)[]
 * **Metadata**: [EksMetadata](#eksmetadata)
+* **SecurityContext**: [EksPodSecurityContext](#ekspodsecuritycontext)
 * **ServiceAccountName**: string
 * **ShareProcessNamespace**: bool
 * **Volumes**: [EksVolume](#eksvolume)[]
 
+## EksPodSecurityContext
+### Properties
+* **FsGroup**: int
+* **RunAsGroup**: int
+* **RunAsNonRoot**: bool
+* **RunAsUser**: int
+* **SeccompProfile**: [EksSeccompProfile](#eksseccompprofile)
+
 ## EksProperties
 ### Properties
 * **PodProperties**: [EksPodProperties](#ekspodproperties)
+
+## EksSeccompProfile
+### Properties
+* **LocalhostProfile**: string
+* **Type**: string (Required)
 
 ## EksSecret
 ### Properties

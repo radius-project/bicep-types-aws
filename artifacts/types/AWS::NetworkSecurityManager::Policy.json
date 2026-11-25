@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-NetworkSecurityManager-Policy",
   "type": "AWS::NetworkSecurityManager::Policy",
-  "time": "2026-10-27T20:32:08.567Z",
+  "time": "2026-11-25T20:57:38.27Z",
   "schema": {
     "additionalIdentifiers": [
       [
@@ -29,10 +29,38 @@
         },
         "type": "object"
       },
+      "IgwFirewallConfig": {
+        "additionalProperties": false,
+        "description": "Internet gateway firewall policy settings. Populated only for IGW_FIREWALL firewall type policies.",
+        "properties": {
+          "DefaultSubnetConnectivity": {
+            "description": "The default internet connectivity treatment applied to subnets in scope unless a subnet connectivity override applies. Required for IGW_FIREWALL policies.",
+            "enum": [
+              "flexible",
+              "bidirectional",
+              "outbound-only"
+            ],
+            "type": "string"
+          },
+          "SubnetConnectivityOverrides": {
+            "description": "An ordered list of subnet connectivity overrides. When a subnet matches more than one override, the first match applies. At most one override per connectivity type.",
+            "insertionOrder": true,
+            "items": {
+              "$ref": "#/definitions/SubnetConnectivityOverride"
+            },
+            "maxItems": 4,
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
       "PolicyConfiguration": {
         "additionalProperties": false,
         "description": "Configuration settings for policy behavior.",
         "properties": {
+          "IgwFirewallConfig": {
+            "$ref": "#/definitions/IgwFirewallConfig"
+          },
           "RemediationEnabled": {
             "description": "Controls automatic remediation of non-compliant resources.",
             "type": "boolean"
@@ -45,6 +73,39 @@
             "$ref": "#/definitions/WafConfig"
           }
         },
+        "type": "object"
+      },
+      "SubnetConnectivityOverride": {
+        "additionalProperties": false,
+        "description": "Applies a connectivity treatment other than the policy default to the subnets that the referenced scope selects.",
+        "properties": {
+          "ConnectivityType": {
+            "description": "The connectivity treatment applied to the subnets that the referenced scope selects.",
+            "enum": [
+              "flexible",
+              "bidirectional",
+              "outbound-only",
+              "exclude"
+            ],
+            "type": "string"
+          },
+          "Scopes": {
+            "description": "The ARN of the IGW_FIREWALL_SUBNET_CONNECTIVITY_OVERRIDE scope whose selected subnets receive ConnectivityType.",
+            "insertionOrder": true,
+            "items": {
+              "maxLength": 1010,
+              "minLength": 20,
+              "pattern": "^arn(:[a-z0-9]+([.-][a-z0-9]+)*){2}(:([a-z0-9]+([.-][a-z0-9]+)*)?){2}:(.+)$",
+              "type": "string"
+            },
+            "maxItems": 1,
+            "type": "array"
+          }
+        },
+        "required": [
+          "ConnectivityType",
+          "Scopes"
+        ],
         "type": "object"
       },
       "Tag": {
@@ -150,7 +211,8 @@
         "description": "The type of firewall.",
         "enum": [
           "WAF",
-          "SHIELD_ADVANCED"
+          "SHIELD_ADVANCED",
+          "IGW_FIREWALL"
         ],
         "type": "string"
       },

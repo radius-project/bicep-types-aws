@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-MWAAServerless-Workflow",
   "type": "AWS::MWAAServerless::Workflow",
-  "time": "2026-10-19T19:39:33.158Z",
+  "time": "2026-11-20T13:13:07.261Z",
   "schema": {
     "additionalIdentifiers": [
       [
@@ -78,6 +78,32 @@
         "required": [
           "Type"
         ],
+        "type": "object"
+      },
+      "Environment": {
+        "additionalProperties": false,
+        "description": "Contains the environment variables that tasks in a workflow use during execution.",
+        "properties": {
+          "Variables": {
+            "$ref": "#/definitions/EnvironmentVariables"
+          }
+        },
+        "required": [
+          "Variables"
+        ],
+        "type": "object"
+      },
+      "EnvironmentVariables": {
+        "additionalProperties": false,
+        "description": "A map of environment variable names to values. Up to 50 variables. Names must start with a letter and contain only letters, numbers, and underscores. Names starting with AWS_ or AIRFLOW__ are reserved, except AIRFLOW__WORKERS__SECRETS_BACKEND, AIRFLOW__WORKERS__SECRETS_BACKEND_KWARGS, and names prefixed with AIRFLOW__WORKERS__SECRETS_BACKEND_KWARG__.",
+        "maxProperties": 50,
+        "minProperties": 1,
+        "patternProperties": {
+          "^[a-zA-Z][a-zA-Z0-9_]{0,127}$": {
+            "maxLength": 255,
+            "type": "string"
+          }
+        },
         "type": "object"
       },
       "LoggingConfiguration": {
@@ -265,6 +291,9 @@
       },
       "EncryptionConfiguration": {
         "$ref": "#/definitions/EncryptionConfiguration"
+      },
+      "Environment": {
+        "$ref": "#/definitions/Environment"
       },
       "LoggingConfiguration": {
         "$ref": "#/definitions/LoggingConfiguration"

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-BedrockAgentCore-CapacityProvider",
   "type": "AWS::BedrockAgentCore::CapacityProvider",
-  "time": "2026-10-21T21:47:13.482Z",
+  "time": "2026-11-25T19:07:45.539Z",
   "schema": {
     "additionalIdentifiers": [
       [
@@ -66,6 +66,21 @@
         "required": [
           "Ec2Configuration"
         ],
+        "type": "object"
+      },
+      "CpuOptions": {
+        "additionalProperties": false,
+        "description": "The CPU options for the instances.",
+        "properties": {
+          "NestedVirtualization": {
+            "description": "Indicates whether nested virtualization is enabled on the instances, which exposes hardware virtualization (KVM) to agents. Default: DISABLED.",
+            "enum": [
+              "ENABLED",
+              "DISABLED"
+            ],
+            "type": "string"
+          }
+        },
         "type": "object"
       },
       "EbsVolumeConfiguration": {
@@ -305,6 +320,9 @@
         "properties": {
           "CapacityReservationSpecification": {
             "$ref": "#/definitions/CapacityReservationSpecification"
+          },
+          "CpuOptions": {
+            "$ref": "#/definitions/CpuOptions"
           },
           "EphemeralVolumes": {
             "description": "The block device mapping for ephemeral (instance store) volumes.",

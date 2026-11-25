@@ -65,6 +65,7 @@
 ## MetadataConfiguration
 ### Properties
 * **NonFilterableMetadataKeys**: string[]: Non-filterable metadata keys allow you to enrich vectors with additional context during storage and retrieval. Unlike default metadata keys, these keys cannot be used as query filters. Non-filterable metadata keys can be retrieved but cannot be searched, queried, or filtered. You can access non-filterable metadata keys of your vectors after finding the vectors.
+* **TextSearchConfigurations**: [TextSearchConfiguration](#textsearchconfiguration)[]
 
 ## Tag
 ### Properties
@@ -75,4 +76,9 @@
 ### Properties
 * **Key**: string (Required): Tag key must be between 1 to 128 characters in length. Tag key cannot start with 'aws:' and can only contain alphanumeric characters, spaces, _, ., /, =, +, -, and @.
 * **Value**: string (Required): Tag value must be between 0 to 256 characters in length. Tag value can only contain alphanumeric characters, spaces, _, ., /, =, +, -, and @.
+
+## TextSearchConfiguration
+### Properties
+* **Language**: string
+* **MetadataKey**: string (Required)
 

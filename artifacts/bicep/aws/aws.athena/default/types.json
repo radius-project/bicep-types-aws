@@ -663,6 +663,124 @@
   },
   {
     "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1,
+        "description": "The tag key."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 1,
+        "description": "The tag value."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tags",
+    "properties": {}
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/43"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.Athena/SystemTablesProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/43"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Athena/SystemTablesProperties",
+    "properties": {
+      "CreatedAt": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 2,
+        "description": "The time the configuration was created, set by the service."
+      },
+      "KmsKeyArn": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "The ARN of the customer managed AWS KMS key used to encrypt the system table data. Specify a key ARN (not an alias); the key must be in the same account and Region. The encryption choice is permanent for the account and Region: it cannot be changed or removed after creation, and it persists after this resource is deleted."
+      },
+      "LastModifiedAt": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 2,
+        "description": "The time the configuration was last modified, set by the service."
+      },
+      "TableName": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 17,
+        "description": "The reserved keyword identifying the account-level System Tables configuration. The only accepted value is ALL, which enables all system tables for the account. This is the resource's primary identifier."
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/47"
+        },
+        "flags": 0,
+        "description": "An array of key-value pairs to apply to the system tables configuration."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.Athena/SystemTables",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/8"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/48"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.Athena/SystemTables@default",
+    "body": {
+      "$ref": "#/49"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
     "name": "AclConfiguration",
     "properties": {
       "S3AclOption": {
@@ -696,7 +814,7 @@
       },
       "Properties": {
         "type": {
-          "$ref": "#/80"
+          "$ref": "#/88"
         },
         "flags": 0,
         "description": "A set of properties specified within a configuration classification."
@@ -709,7 +827,7 @@
     "properties": {
       "Enabled": {
         "type": {
-          "$ref": "#/81"
+          "$ref": "#/89"
         },
         "flags": 0,
         "description": "Enables CloudWatch logging."
@@ -730,7 +848,7 @@
       },
       "LogTypes": {
         "type": {
-          "$ref": "#/83"
+          "$ref": "#/91"
         },
         "flags": 0,
         "description": "The types of logs that you want to publish to CloudWatch."
@@ -788,14 +906,14 @@
     "properties": {
       "AdditionalConfigs": {
         "type": {
-          "$ref": "#/84"
+          "$ref": "#/92"
         },
         "flags": 0,
         "description": "Contains additional notebook engine MAP<string, string> parameter mappings in the form of key-value pairs. To specify an Athena notebook that the Jupyter server will download and serve, specify a value for the StartSessionRequest$NotebookVersion field, and then add a key named NotebookId to AdditionalConfigs that has the value of the Athena notebook ID."
       },
       "Classifications": {
         "type": {
-          "$ref": "#/85"
+          "$ref": "#/93"
         },
         "flags": 0,
         "description": "The configuration classifications that can be specified for the engine."
@@ -823,7 +941,7 @@
       },
       "SparkProperties": {
         "type": {
-          "$ref": "#/86"
+          "$ref": "#/94"
         },
         "flags": 0,
         "description": "Specifies custom jar files and Spark properties for use cases like cluster encryption, table formats, and general Spark tuning."
@@ -869,7 +987,7 @@
     "properties": {
       "Enabled": {
         "type": {
-          "$ref": "#/81"
+          "$ref": "#/89"
         },
         "flags": 0,
         "description": "Enables managed log persistence."
@@ -889,13 +1007,13 @@
     "properties": {
       "Enabled": {
         "type": {
-          "$ref": "#/81"
+          "$ref": "#/89"
         },
         "flags": 0
       },
       "EncryptionConfiguration": {
         "type": {
-          "$ref": "#/60"
+          "$ref": "#/68"
         },
         "flags": 0
       }
@@ -919,19 +1037,19 @@
     "properties": {
       "CloudWatchLoggingConfiguration": {
         "type": {
-          "$ref": "#/47"
+          "$ref": "#/55"
         },
         "flags": 0
       },
       "ManagedLoggingConfiguration": {
         "type": {
-          "$ref": "#/58"
+          "$ref": "#/66"
         },
         "flags": 0
       },
       "S3LoggingConfiguration": {
         "type": {
-          "$ref": "#/74"
+          "$ref": "#/82"
         },
         "flags": 0
       }
@@ -988,13 +1106,13 @@
     "properties": {
       "AclConfiguration": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/51"
         },
         "flags": 0
       },
       "EncryptionConfiguration": {
         "type": {
-          "$ref": "#/50"
+          "$ref": "#/58"
         },
         "flags": 0
       },
@@ -1018,13 +1136,13 @@
     "properties": {
       "AclConfiguration": {
         "type": {
-          "$ref": "#/43"
+          "$ref": "#/51"
         },
         "flags": 0
       },
       "EncryptionConfiguration": {
         "type": {
-          "$ref": "#/50"
+          "$ref": "#/58"
         },
         "flags": 0
       },
@@ -1042,25 +1160,25 @@
       },
       "RemoveAclConfiguration": {
         "type": {
-          "$ref": "#/81"
+          "$ref": "#/89"
         },
         "flags": 0
       },
       "RemoveEncryptionConfiguration": {
         "type": {
-          "$ref": "#/81"
+          "$ref": "#/89"
         },
         "flags": 0
       },
       "RemoveExpectedBucketOwner": {
         "type": {
-          "$ref": "#/81"
+          "$ref": "#/89"
         },
         "flags": 0
       },
       "RemoveOutputLocation": {
         "type": {
-          "$ref": "#/81"
+          "$ref": "#/89"
         },
         "flags": 0
       }
@@ -1077,7 +1195,7 @@
     "properties": {
       "Enabled": {
         "type": {
-          "$ref": "#/81"
+          "$ref": "#/89"
         },
         "flags": 0,
         "description": "Enables S3 log delivery."
@@ -1144,25 +1262,25 @@
       },
       "CustomerContentEncryptionConfiguration": {
         "type": {
-          "$ref": "#/48"
+          "$ref": "#/56"
         },
         "flags": 0
       },
       "EnforceWorkGroupConfiguration": {
         "type": {
-          "$ref": "#/81"
+          "$ref": "#/89"
         },
         "flags": 0
       },
       "EngineConfiguration": {
         "type": {
-          "$ref": "#/92"
+          "$ref": "#/100"
         },
         "flags": 0
       },
       "EngineVersion": {
         "type": {
-          "$ref": "#/91"
+          "$ref": "#/99"
         },
         "flags": 0
       },
@@ -1174,31 +1292,31 @@
       },
       "ManagedQueryResultsConfiguration": {
         "type": {
-          "$ref": "#/59"
+          "$ref": "#/67"
         },
         "flags": 0
       },
       "MonitoringConfiguration": {
         "type": {
-          "$ref": "#/61"
+          "$ref": "#/69"
         },
         "flags": 0
       },
       "PublishCloudWatchMetricsEnabled": {
         "type": {
-          "$ref": "#/81"
+          "$ref": "#/89"
         },
         "flags": 0
       },
       "RequesterPaysEnabled": {
         "type": {
-          "$ref": "#/81"
+          "$ref": "#/89"
         },
         "flags": 0
       },
       "ResultConfiguration": {
         "type": {
-          "$ref": "#/71"
+          "$ref": "#/79"
         },
         "flags": 0
       }
@@ -1222,25 +1340,25 @@
       },
       "CustomerContentEncryptionConfiguration": {
         "type": {
-          "$ref": "#/48"
+          "$ref": "#/56"
         },
         "flags": 0
       },
       "EnforceWorkGroupConfiguration": {
         "type": {
-          "$ref": "#/81"
+          "$ref": "#/89"
         },
         "flags": 0
       },
       "EngineConfiguration": {
         "type": {
-          "$ref": "#/53"
+          "$ref": "#/61"
         },
         "flags": 0
       },
       "EngineVersion": {
         "type": {
-          "$ref": "#/54"
+          "$ref": "#/62"
         },
         "flags": 0
       },
@@ -1252,43 +1370,43 @@
       },
       "ManagedQueryResultsConfiguration": {
         "type": {
-          "$ref": "#/59"
+          "$ref": "#/67"
         },
         "flags": 0
       },
       "MonitoringConfiguration": {
         "type": {
-          "$ref": "#/61"
+          "$ref": "#/69"
         },
         "flags": 0
       },
       "PublishCloudWatchMetricsEnabled": {
         "type": {
-          "$ref": "#/81"
+          "$ref": "#/89"
         },
         "flags": 0
       },
       "RemoveBytesScannedCutoffPerQuery": {
         "type": {
-          "$ref": "#/81"
+          "$ref": "#/89"
         },
         "flags": 0
       },
       "RemoveCustomerContentEncryptionConfiguration": {
         "type": {
-          "$ref": "#/81"
+          "$ref": "#/89"
         },
         "flags": 0
       },
       "RequesterPaysEnabled": {
         "type": {
-          "$ref": "#/81"
+          "$ref": "#/89"
         },
         "flags": 0
       },
       "ResultConfigurationUpdates": {
         "type": {
-          "$ref": "#/72"
+          "$ref": "#/80"
         },
         "flags": 0
       }
@@ -1316,7 +1434,7 @@
     "name": "WorkGroup_LogTypes",
     "properties": {},
     "additionalProperties": {
-      "$ref": "#/82"
+      "$ref": "#/90"
     }
   },
   {
@@ -1330,7 +1448,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/46"
+      "$ref": "#/54"
     }
   },
   {
@@ -1344,7 +1462,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/76"
+      "$ref": "#/84"
     }
   },
   {
@@ -1354,7 +1472,7 @@
   {
     "$type": "ArrayType",
     "itemType": {
-      "$ref": "#/76"
+      "$ref": "#/84"
     }
   },
   {
@@ -1384,7 +1502,7 @@
       },
       "RecursiveDeleteOption": {
         "type": {
-          "$ref": "#/81"
+          "$ref": "#/89"
         },
         "flags": 4,
         "description": "The option to delete the workgroup and its contents even if the workgroup contains any named queries."
@@ -1398,21 +1516,21 @@
       },
       "Tags": {
         "type": {
-          "$ref": "#/89"
+          "$ref": "#/97"
         },
         "flags": 0,
         "description": "One or more tags, separated by commas, that you want to attach to the workgroup as you create it"
       },
       "WorkGroupConfiguration": {
         "type": {
-          "$ref": "#/78"
+          "$ref": "#/86"
         },
         "flags": 0,
         "description": "The workgroup configuration"
       },
       "WorkGroupConfigurationUpdates": {
         "type": {
-          "$ref": "#/79"
+          "$ref": "#/87"
         },
         "flags": 4,
         "description": "The workgroup configuration update object"
@@ -1443,14 +1561,14 @@
     "properties": {
       "AdditionalConfigs": {
         "type": {
-          "$ref": "#/84"
+          "$ref": "#/92"
         },
         "flags": 4,
         "description": "Contains additional notebook engine MAP<string, string> parameter mappings in the form of key-value pairs. To specify an Athena notebook that the Jupyter server will download and serve, specify a value for the StartSessionRequest$NotebookVersion field, and then add a key named NotebookId to AdditionalConfigs that has the value of the Athena notebook ID."
       },
       "Classifications": {
         "type": {
-          "$ref": "#/85"
+          "$ref": "#/93"
         },
         "flags": 0,
         "description": "The configuration classifications that can be specified for the engine."
@@ -1478,7 +1596,7 @@
       },
       "SparkProperties": {
         "type": {
-          "$ref": "#/86"
+          "$ref": "#/94"
         },
         "flags": 4,
         "description": "Specifies custom jar files and Spark properties for use cases like cluster encryption, table formats, and general Spark tuning."
@@ -1505,7 +1623,7 @@
       },
       "properties": {
         "type": {
-          "$ref": "#/90"
+          "$ref": "#/98"
         },
         "flags": 17,
         "description": "properties of the resource"
@@ -1516,7 +1634,7 @@
     "$type": "ResourceType",
     "name": "AWS.Athena/WorkGroup@default",
     "body": {
-      "$ref": "#/93"
+      "$ref": "#/101"
     },
     "readableScopes": 0,
     "writableScopes": 0

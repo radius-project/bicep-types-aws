@@ -1,0 +1,212 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-NetworkSecurityManager-Deployment",
+  "type": "AWS::NetworkSecurityManager::Deployment",
+  "time": "2026-11-25T21:08:57.324Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/DeploymentId"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/DeploymentName"
+    ],
+    "definitions": {
+      "AssociatedPolicy": {
+        "additionalProperties": false,
+        "properties": {
+          "PolicyArn": {
+            "description": "ARN of the associated policy.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "PolicyArn"
+        ],
+        "type": "object"
+      },
+      "AssociatedScope": {
+        "additionalProperties": false,
+        "properties": {
+          "ScopeArn": {
+            "description": "ARN of the associated scope.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "ScopeArn"
+        ],
+        "type": "object"
+      },
+      "DeploymentConfiguration": {
+        "additionalProperties": false,
+        "description": "Configuration settings for the deployment.",
+        "properties": {
+          "EnableCrossAccountVisibility": {
+            "description": "Whether cross-account visibility is enabled for the deployment.",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "EnableCrossAccountVisibility"
+        ],
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with a resource.",
+        "properties": {
+          "Key": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::NetworkSecurityManager::Deployment. Creates and manages a Network Security Manager deployment.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "network-security-manager:CreateDeployment",
+          "network-security-manager:GetDeployment",
+          "network-security-manager:TagResource",
+          "network-security-manager:ListTagsForResource"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "network-security-manager:DeleteDeployment",
+          "network-security-manager:GetDeployment",
+          "network-security-manager:ListTagsForResource"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "network-security-manager:ListDeployments"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "network-security-manager:GetDeployment",
+          "network-security-manager:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "network-security-manager:UpdateDeployment",
+          "network-security-manager:GetDeployment",
+          "network-security-manager:TagResource",
+          "network-security-manager:UntagResource",
+          "network-security-manager:ListTagsForResource"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/DeploymentArn"
+    ],
+    "properties": {
+      "AssociatedPolicyList": {
+        "description": "List of policies associated with this deployment.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/AssociatedPolicy"
+        },
+        "type": "array"
+      },
+      "AssociatedScopeList": {
+        "description": "List of scopes associated with this deployment.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/AssociatedScope"
+        },
+        "type": "array"
+      },
+      "DeploymentArn": {
+        "description": "The ARN of the deployment.",
+        "type": "string"
+      },
+      "DeploymentConfiguration": {
+        "$ref": "#/definitions/DeploymentConfiguration"
+      },
+      "DeploymentDescription": {
+        "description": "A description of the deployment.",
+        "pattern": "^[a-zA-Z0-9 _.:/=+\\-@]*$",
+        "type": "string"
+      },
+      "DeploymentId": {
+        "description": "The unique identifier of the deployment.",
+        "type": "string"
+      },
+      "DeploymentName": {
+        "description": "The name of the deployment.",
+        "pattern": "^[a-zA-Z0-9][a-zA-Z0-9 _.:/=+\\-@]*$",
+        "type": "string"
+      },
+      "Status": {
+        "description": "The status of the deployment.",
+        "enum": [
+          "DRAFT",
+          "ACTIVE",
+          "DISABLED"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "The tags associated with the deployment.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "type": "array",
+        "uniqueItems": true
+      },
+      "UpdatedAt": {
+        "description": "An ISO 8601 timestamp indicating when the deployment was last modified.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "Version": {
+        "description": "The version number.",
+        "maxLength": 10,
+        "minLength": 1,
+        "pattern": "^[1-9][0-9]*$",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/DeploymentId",
+      "/properties/DeploymentArn",
+      "/properties/Status",
+      "/properties/Version",
+      "/properties/UpdatedAt"
+    ],
+    "required": [
+      "DeploymentName"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "network-security-manager:TagResource",
+        "network-security-manager:UntagResource",
+        "network-security-manager:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::NetworkSecurityManager::Deployment"
+  }
+}

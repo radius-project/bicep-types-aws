@@ -74,6 +74,7 @@
 
 ## AWS.RolesAnywhere/TrustAnchorProperties
 ### Properties
+* **CrlDpRevocationEnabled**: bool
 * **Enabled**: bool
 * **Name**: string (Required)
 * **NotificationSettings**: [NotificationSetting](#notificationsetting)[]

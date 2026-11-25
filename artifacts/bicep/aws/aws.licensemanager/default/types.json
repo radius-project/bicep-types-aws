@@ -1188,5 +1188,236 @@
     },
     "readableScopes": 0,
     "writableScopes": 0
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ReportContext",
+    "properties": {
+      "LicenseAssetGroupArns": {
+        "type": {
+          "$ref": "#/74"
+        },
+        "flags": 0,
+        "description": "Amazon Resource Names (ARNs) of the license asset groups to include in the report."
+      },
+      "LicenseConfigurationArns": {
+        "type": {
+          "$ref": "#/75"
+        },
+        "flags": 0,
+        "description": "Amazon Resource Names (ARNs) of the license configurations that this generator reports on."
+      },
+      "ReportEndDate": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "End date for the report data collection period."
+      },
+      "ReportStartDate": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "Start date for the report data collection period."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "ReportFrequency",
+    "properties": {
+      "Period": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "Time period between each report. The period can be daily, weekly, or monthly."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/21"
+        },
+        "flags": 0,
+        "description": "Number of times within the frequency period that a report is generated. The only supported value is 1."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "S3Location",
+    "properties": {
+      "Bucket": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "Name of the S3 bucket reports are published to."
+      },
+      "KeyPrefix": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "Prefix of the S3 bucket reports are published to."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "Tag",
+    "properties": {
+      "Key": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The tag key."
+      },
+      "Value": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "The tag value."
+      }
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/2"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/2"
+    }
+  },
+  {
+    "$type": "StringLiteralType",
+    "value": "AWS.LicenseManager/ReportGeneratorProperties"
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/2"
+    }
+  },
+  {
+    "$type": "ArrayType",
+    "itemType": {
+      "$ref": "#/73"
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.LicenseManager/ReportGeneratorProperties",
+    "properties": {
+      "Arn": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 18,
+        "description": "Amazon Resource Name (ARN) of the report generator."
+      },
+      "CreateTime": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "Time the report was created."
+      },
+      "Description": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "Description of the report generator."
+      },
+      "ReportContext": {
+        "type": {
+          "$ref": "#/70"
+        },
+        "flags": 1
+      },
+      "ReportCreatorAccount": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 2,
+        "description": "The AWS account ID used to create the report generator."
+      },
+      "ReportFrequency": {
+        "type": {
+          "$ref": "#/71"
+        },
+        "flags": 1
+      },
+      "ReportGeneratorName": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 1,
+        "description": "Name of the report generator."
+      },
+      "ReportType": {
+        "type": {
+          "$ref": "#/77"
+        },
+        "flags": 1,
+        "description": "Type of reports to generate. The report type determines the data reported on."
+      },
+      "S3Location": {
+        "type": {
+          "$ref": "#/72"
+        },
+        "flags": 2
+      },
+      "Tags": {
+        "type": {
+          "$ref": "#/78"
+        },
+        "flags": 0,
+        "description": "An array of key-value pairs to apply to this resource."
+      }
+    }
+  },
+  {
+    "$type": "ObjectType",
+    "name": "AWS.LicenseManager/ReportGenerator",
+    "properties": {
+      "name": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 0,
+        "description": "the resource name"
+      },
+      "alias": {
+        "type": {
+          "$ref": "#/2"
+        },
+        "flags": 17,
+        "description": "the resource alias"
+      },
+      "properties": {
+        "type": {
+          "$ref": "#/79"
+        },
+        "flags": 17,
+        "description": "properties of the resource"
+      }
+    }
+  },
+  {
+    "$type": "ResourceType",
+    "name": "AWS.LicenseManager/ReportGenerator@default",
+    "body": {
+      "$ref": "#/80"
+    },
+    "readableScopes": 0,
+    "writableScopes": 0
   }
 ]

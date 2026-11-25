@@ -1,0 +1,404 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-ElasticLoadBalancingProxy-Proxy",
+  "type": "AWS::ElasticLoadBalancingProxy::Proxy",
+  "time": "2026-11-25T21:12:51.68Z",
+  "schema": {
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/Name",
+      "/properties/Type",
+      "/properties/ProxyVersion",
+      "/properties/RoleArn",
+      "/properties/IpAddressingConfiguration"
+    ],
+    "definitions": {
+      "Attribute": {
+        "additionalProperties": false,
+        "description": "A configurable proxy attribute. Attributes you do not specify are set to their service-assigned default values.",
+        "properties": {
+          "Key": {
+            "description": "The name of the attribute.",
+            "maxLength": 1024,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value of the attribute.",
+            "maxLength": 2048,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      },
+      "ConfigurationArchive": {
+        "additionalProperties": false,
+        "description": "The configuration archive for the proxy. This is a bundle of the files referenced by the configuration file.",
+        "properties": {
+          "ConfigurationBytes": {
+            "description": "The base64-encoded contents of the proxy configuration archive. The decoded contents must be a valid ZIP archive with at least one entry. The archive can be at most 10 MB (10,485,760 bytes), with at most 50 entries and at most 50 MB (52,428,800 bytes) of uncompressed content.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "ConfigurationBytes"
+        ],
+        "type": "object"
+      },
+      "ConfigurationFile": {
+        "additionalProperties": false,
+        "description": "The configuration file for the proxy.",
+        "properties": {
+          "ConfigurationBytes": {
+            "description": "The base64-encoded contents of the proxy configuration file. The decoded contents must be a valid Envoy bootstrap configuration for the requested proxy version, and can be at most 128 KB (131,072 bytes).",
+            "type": "string"
+          }
+        },
+        "required": [
+          "ConfigurationBytes"
+        ],
+        "type": "object"
+      },
+      "ConfigurationMetadata": {
+        "additionalProperties": false,
+        "description": "Metadata describing the currently applied proxy configuration.",
+        "properties": {
+          "ConfigArchiveHash": {
+            "description": "The hash of the currently applied configuration archive. Absent when the proxy does not have a configuration archive.",
+            "type": "string"
+          },
+          "ConfigArchiveLastUpdatedAt": {
+            "description": "The time when the configuration archive was last updated.",
+            "format": "date-time",
+            "type": "string"
+          },
+          "ConfigFileHash": {
+            "description": "The hash of the currently applied configuration file.",
+            "type": "string"
+          },
+          "ConfigFileLastUpdatedAt": {
+            "description": "The time when the configuration file was last updated.",
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "IpAddressingConfiguration": {
+        "additionalProperties": false,
+        "description": "The IP addressing configuration of the proxy. This configuration cannot be changed after the proxy is created.",
+        "properties": {
+          "Ipv4Addressability": {
+            "description": "The IPv4 addressability of the proxy.",
+            "enum": [
+              "off",
+              "internet-facing",
+              "internal"
+            ],
+            "type": "string"
+          },
+          "Ipv6Addressability": {
+            "description": "The IPv6 addressability of the proxy.",
+            "enum": [
+              "off",
+              "internet-facing",
+              "internal"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "Ipv4Addressability",
+          "Ipv6Addressability"
+        ],
+        "type": "object"
+      },
+      "SubnetAndZone": {
+        "additionalProperties": false,
+        "description": "A subnet the proxy is deployed into, together with the Availability Zone that contains it.",
+        "properties": {
+          "SubnetId": {
+            "description": "The ID of the subnet.",
+            "maxLength": 1024,
+            "minLength": 1,
+            "pattern": "^subnet-.+$",
+            "type": "string"
+          },
+          "ZoneId": {
+            "description": "The ID of the Availability Zone that contains the subnet.",
+            "type": "string"
+          },
+          "ZoneName": {
+            "description": "The name of the Availability Zone that contains the subnet.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "SubnetId",
+          "ZoneId"
+        ],
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "properties": {
+          "Key": {
+            "description": "The key of the tag.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Value": {
+            "description": "The value of the tag.",
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource type definition for AWS::ElasticLoadBalancingProxy::Proxy. An Elastic Load Balancing for Envoy proxy is a fully managed, scalable Envoy proxy fleet that AWS provisions and operates in your VPC.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "elasticloadbalancing:CreateProxy",
+          "elasticloadbalancing:GetProxy",
+          "elasticloadbalancing:TagResource",
+          "ec2:DescribeSubnets",
+          "ec2:DescribeSecurityGroups",
+          "ec2:GetSecurityGroupsForVpc",
+          "ec2:ValidateSecurityGroupQuotasForInterface",
+          "iam:PassRole",
+          "iam:CreateServiceLinkedRole",
+          "kms:DescribeKey",
+          "kms:GenerateDataKey",
+          "kms:Decrypt",
+          "wafv2:AssociateWebACL",
+          "elasticloadbalancing:CreateProxyWafAssociation"
+        ]
+      },
+      "delete": {
+        "permissions": [
+          "elasticloadbalancing:DeleteProxy",
+          "elasticloadbalancing:GetProxy",
+          "elasticloadbalancing:GetProxyAttributes",
+          "elasticloadbalancing:ListTagsForResource"
+        ]
+      },
+      "list": {
+        "permissions": [
+          "elasticloadbalancing:ListProxies"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "elasticloadbalancing:GetProxy",
+          "elasticloadbalancing:GetProxyAttributes",
+          "elasticloadbalancing:ListTagsForResource"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "elasticloadbalancing:ListTagsForResource",
+          "elasticloadbalancing:UpdateProxyAttributes",
+          "elasticloadbalancing:UpdateProxyConfiguration",
+          "elasticloadbalancing:UpdateProxyNetworkConfiguration",
+          "elasticloadbalancing:UpdateProxyVersion",
+          "elasticloadbalancing:CancelProxyVersionUpdate",
+          "elasticloadbalancing:TagResource",
+          "elasticloadbalancing:UntagResource",
+          "ec2:DescribeSubnets",
+          "ec2:DescribeSecurityGroups",
+          "ec2:GetSecurityGroupsForVpc",
+          "ec2:ValidateSecurityGroupQuotasForInterface",
+          "kms:DescribeKey",
+          "kms:GenerateDataKey",
+          "kms:Decrypt"
+        ]
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/Arn"
+    ],
+    "properties": {
+      "Arn": {
+        "description": "The Amazon Resource Name (ARN) of the proxy.",
+        "maxLength": 2048,
+        "minLength": 1,
+        "pattern": "^arn:[a-z-]+:elasticloadbalancing:[a-z0-9-]+:[0-9]{12}:proxy/[a-zA-Z0-9-]+:[a-zA-Z0-9]+$",
+        "type": "string"
+      },
+      "Attributes": {
+        "arrayType": "AttributeList",
+        "description": "The configurable attributes of the proxy, as a list of key-value pairs. Attributes you omit are set to their service-assigned defaults, and removing one from your template resets it to its default. Some attributes can be set only at creation; changing one afterward fails and leaves the proxy unchanged. The AWS WAF setup is one such create-time choice: no web ACL is attached unless you set waf.web_acl_arn at creation to a web ACL you own.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Attribute"
+        },
+        "type": "array"
+      },
+      "AvailabilityZones": {
+        "description": "The subnets the proxy is deployed into, together with their Availability Zones.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/SubnetAndZone"
+        },
+        "type": "array"
+      },
+      "ConfigurationArchive": {
+        "$ref": "#/definitions/ConfigurationArchive"
+      },
+      "ConfigurationFile": {
+        "$ref": "#/definitions/ConfigurationFile"
+      },
+      "ConfigurationMetadata": {
+        "$ref": "#/definitions/ConfigurationMetadata"
+      },
+      "CreatedAt": {
+        "description": "The time when the proxy was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "CustomerKmsKeyArn": {
+        "description": "The ARN of a customer managed AWS KMS key used to encrypt the proxy's configuration. Omit it to use a key owned by the service.",
+        "maxLength": 2048,
+        "minLength": 1,
+        "pattern": "^arn:[a-z-]+:kms:[a-z0-9-]+:[0-9]{12}:key/(mrk-)?[a-f0-9-]+$",
+        "type": "string"
+      },
+      "DnsName": {
+        "description": "The public DNS name of the proxy.",
+        "type": "string"
+      },
+      "IpAddressingConfiguration": {
+        "$ref": "#/definitions/IpAddressingConfiguration"
+      },
+      "Name": {
+        "description": "The name of the proxy. The name must be unique within your account for the Region.",
+        "maxLength": 32,
+        "minLength": 1,
+        "pattern": "(^[a-zA-Z0-9]+$|^[a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9]$)",
+        "type": "string"
+      },
+      "ProxyVersion": {
+        "description": "The version of the proxy software to run.",
+        "maxLength": 64,
+        "minLength": 1,
+        "pattern": "^\\d+\\.\\d+$",
+        "type": "string"
+      },
+      "RoleArn": {
+        "description": "The Amazon Resource Name (ARN) of the IAM role whose permissions the proxy uses when it calls AWS services. The role's trust policy must allow the ELB for Envoy service to assume the role.",
+        "maxLength": 2048,
+        "minLength": 20,
+        "pattern": "^arn:[a-z-]+:iam::[0-9]{12}:role/.+$",
+        "type": "string"
+      },
+      "SecurityGroups": {
+        "description": "The IDs of the security groups associated with the proxy.",
+        "insertionOrder": false,
+        "items": {
+          "maxLength": 1024,
+          "minLength": 1,
+          "pattern": "^sg-.+$",
+          "type": "string"
+        },
+        "minItems": 1,
+        "type": "array"
+      },
+      "Status": {
+        "description": "The current status of the proxy.",
+        "enum": [
+          "action-required",
+          "active",
+          "create-failed",
+          "create-in-progress",
+          "delete-in-progress",
+          "update-in-progress",
+          "cancel-update-in-progress"
+        ],
+        "type": "string"
+      },
+      "Subnets": {
+        "description": "The IDs of the subnets the proxy is deployed into. All subnets must belong to the same VPC and must be in distinct Availability Zones.",
+        "insertionOrder": false,
+        "items": {
+          "maxLength": 1024,
+          "minLength": 1,
+          "pattern": "^subnet-.+$",
+          "type": "string"
+        },
+        "minItems": 1,
+        "type": "array"
+      },
+      "Tags": {
+        "description": "The tags assigned to the proxy.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 200,
+        "type": "array"
+      },
+      "Type": {
+        "description": "The type of the proxy.",
+        "enum": [
+          "envoy"
+        ],
+        "type": "string"
+      },
+      "VpcId": {
+        "description": "The ID of the VPC that contains the proxy.",
+        "type": "string"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/Arn",
+      "/properties/DnsName",
+      "/properties/VpcId",
+      "/properties/Status",
+      "/properties/CreatedAt",
+      "/properties/AvailabilityZones",
+      "/properties/ConfigurationMetadata",
+      "/properties/ConfigurationMetadata/ConfigFileHash",
+      "/properties/ConfigurationMetadata/ConfigArchiveHash",
+      "/properties/ConfigurationMetadata/ConfigFileLastUpdatedAt",
+      "/properties/ConfigurationMetadata/ConfigArchiveLastUpdatedAt"
+    ],
+    "replacementStrategy": "delete_then_create",
+    "required": [
+      "Name",
+      "Type",
+      "ProxyVersion",
+      "RoleArn",
+      "IpAddressingConfiguration",
+      "Subnets",
+      "SecurityGroups"
+    ],
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "elasticloadbalancing:TagResource",
+        "elasticloadbalancing:UntagResource",
+        "elasticloadbalancing:ListTagsForResource"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::ElasticLoadBalancingProxy::Proxy",
+    "writeOnlyProperties": [
+      "/properties/ConfigurationFile",
+      "/properties/ConfigurationArchive"
+    ]
+  }
+}

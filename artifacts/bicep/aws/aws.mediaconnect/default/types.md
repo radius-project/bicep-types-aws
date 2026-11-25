@@ -232,6 +232,7 @@
 * **RemoteId**: string: The remote ID for the Zixi-pull stream.
 * **RouterIntegrationState**: string
 * **RouterIntegrationTransitEncryption**: [FlowTransitEncryption](#flowtransitencryption)
+* **RtmpPushSettings**: [RtmpPushSettings](#rtmppushsettings)
 * **SmoothingLatency**: int: The smoothing latency in milliseconds for RIST, RTP, and RTP-FEC streams.
 * **StreamId**: string: The stream ID that you want to use for this transport. This parameter applies only to Zixi-based streams.
 * **Tags**: [Tag](#tag)[]: Key-value pairs that can be used to tag and organize this flow output.
@@ -270,6 +271,8 @@
 * **MinLatency**: int: The minimum latency in milliseconds.
 * **Name**: string (Required): The name of the source.
 * **Protocol**: string: The protocol that is used by the source.
+* **RtmpPushDetails**: [RtmpPushDetails](#rtmppushdetails) (ReadOnly)
+* **RtmpPushSettings**: [RtmpPushSettings](#rtmppushsettings)
 * **SenderControlPort**: int: The port that the flow uses to send outbound requests to initiate connection with the sender for fujitsu-qos protocol.
 * **SenderIpAddress**: string: The IP address that the flow communicates with to initiate connection with the sender for fujitsu-qos protocol.
 * **SourceArn**: string (ReadOnly, Identifier): The ARN of the source.
@@ -346,6 +349,7 @@
 * **RoutedOutputs**: int (ReadOnly): The number of router outputs associated with the router input.
 * **RoutingScope**: string (Required)
 * **State**: string (ReadOnly)
+* **StreamDetails**: [RouterInputStreamDetails](#routerinputstreamdetails) (ReadOnly)
 * **Tags**: [Tag](#tag)[]: Key-value pairs that can be used to tag and organize this router input.
 * **Tier**: string (Required)
 * **TransitEncryption**: [RouterInputTransitEncryption](#routerinputtransitencryption)
@@ -568,6 +572,9 @@
 ## FlowOutput_FlowTransitEncryptionKeyConfiguration
 ### Properties
 
+## FlowOutput_TlsEncryptionConfiguration
+### Properties
+
 ## FlowTransitEncryption
 ### Properties
 * **EncryptionKeyConfiguration**: [Flow_FlowTransitEncryptionKeyConfiguration](#flowflowtransitencryptionkeyconfiguration) (Required)
@@ -721,6 +728,9 @@
 ## RouterInputConfiguration
 ### Properties
 
+## RouterInputStreamDetails
+### Properties
+
 ## RouterInputTransitEncryption
 ### Properties
 * **EncryptionKeyConfiguration**: [RouterInput_RouterInputTransitEncryptionKeyConfiguration](#routerinputrouterinputtransitencryptionkeyconfiguration) (Required)
@@ -731,6 +741,36 @@
 
 ## RouterOutputConfiguration
 ### Properties
+
+## RtmpPushDetails
+### Properties
+* **ApplicationName**: string (Required, ReadOnly): The name of the RTMP application. Together with the stream name, the application name forms the RTMP URL path, in the pattern rtmp://ingestAddress/applicationName/streamName.
+* **StreamName**: string (Required, ReadOnly): The name of the RTMP stream. The stream name forms the final segment of the RTMP URL path.
+
+## RtmpPushDetails
+### Properties
+* **ApplicationName**: string (Required, ReadOnly): The name of the RTMP application. Together with the stream name, the application name forms the RTMP URL path, in the pattern rtmp://ingestAddress/applicationName/streamName.
+* **StreamName**: string (Required, ReadOnly): The name of the RTMP stream. The stream name forms the final segment of the RTMP URL path.
+
+## RtmpPushNamingConfiguration
+### Properties
+
+## RtmpPushNamingConfiguration
+### Properties
+
+## RtmpPushSettings
+### Properties
+* **NamingConfiguration**: [RtmpPushNamingConfiguration](#rtmppushnamingconfiguration) (Required)
+
+## RtmpPushSettings
+### Properties
+* **ApplicationName**: string (Required): The name of the RTMP application on the destination server. Together with the stream name, the application name forms the RTMP URL path, in the pattern rtmp://destinationAddress/applicationName/streamName.
+* **StreamName**: string (Required): The name of the RTMP stream that the output publishes to the destination application. The stream name forms the final segment of the RTMP URL path.
+* **TlsEncryption**: [TlsEncryption](#tlsencryption)
+
+## RtmpPushSettings
+### Properties
+* **NamingConfiguration**: [RtmpPushNamingConfiguration](#rtmppushnamingconfiguration) (Required)
 
 ## SilentAudio
 ### Properties
@@ -755,6 +795,8 @@
 * **Protocol**: string: The protocol that is used by the source.
 * **RouterIntegrationState**: string
 * **RouterIntegrationTransitDecryption**: [FlowTransitEncryption](#flowtransitencryption)
+* **RtmpPushDetails**: [RtmpPushDetails](#rtmppushdetails) (ReadOnly)
+* **RtmpPushSettings**: [RtmpPushSettings](#rtmppushsettings)
 * **SenderControlPort**: int: The port that the flow uses to send outbound requests to initiate connection with the sender for fujitsu-qos protocol.
 * **SenderIpAddress**: string: The IP address that the flow communicates with to initiate connection with the sender for fujitsu-qos protocol.
 * **SourceArn**: string (ReadOnly): The ARN of the source.
@@ -837,6 +879,11 @@
 ### Properties
 * **Key**: string (Required)
 * **Value**: string (Required)
+
+## TlsEncryption
+### Properties
+* **EncryptionConfiguration**: [FlowOutput_TlsEncryptionConfiguration](#flowoutputtlsencryptionconfiguration) (Required)
+* **EncryptionType**: string
 
 ## VideoMonitoringSetting
 ### Properties

@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-MediaConnect-Flow",
   "type": "AWS::MediaConnect::Flow",
-  "time": "2026-10-14T04:27:40.593Z",
+  "time": "2026-11-21T06:05:41.174Z",
   "schema": {
     "additionalProperties": false,
     "createOnlyProperties": [
@@ -23,6 +23,11 @@
       "AutomaticEncryptionKeyConfiguration": {
         "additionalProperties": false,
         "description": "Configuration settings for automatic encryption key management, where MediaConnect handles key creation and rotation.",
+        "type": "object"
+      },
+      "AutomaticRtmpPushNamingConfiguration": {
+        "additionalProperties": false,
+        "description": "The automatic RTMP naming configuration, where MediaConnect generates the application and stream names. This type does not require any additional settings.",
         "type": "object"
       },
       "BlackFrames": {
@@ -382,6 +387,25 @@
         ],
         "type": "object"
       },
+      "ManualRtmpPushNamingConfiguration": {
+        "additionalProperties": false,
+        "description": "The manual RTMP naming configuration, where you specify the application and stream names.",
+        "properties": {
+          "ApplicationName": {
+            "description": "The name of the RTMP application. Together with the stream name, the application name forms the RTMP URL path, in the pattern rtmp://ingestAddress/applicationName/streamName.",
+            "type": "string"
+          },
+          "StreamName": {
+            "description": "The name of the RTMP stream. The stream name forms the final segment of the RTMP URL path.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "ApplicationName",
+          "StreamName"
+        ],
+        "type": "object"
+      },
       "MediaStream": {
         "additionalProperties": false,
         "description": "A single track or stream of media that contains video, audio, or ancillary data. After you add a media stream to a flow, you can associate it with sources and outputs on that flow, as long as they use the CDI protocol or the ST 2110 JPEG XS protocol. Each source or output can consist of one or many media streams.",
@@ -560,6 +584,69 @@
         ],
         "type": "string"
       },
+      "RtmpPushDetails": {
+        "additionalProperties": false,
+        "description": "The read-only details for the RTMP (Real-Time Messaging Protocol) source.",
+        "properties": {
+          "ApplicationName": {
+            "description": "The name of the RTMP application. Together with the stream name, the application name forms the RTMP URL path, in the pattern rtmp://ingestAddress/applicationName/streamName.",
+            "type": "string"
+          },
+          "StreamName": {
+            "description": "The name of the RTMP stream. The stream name forms the final segment of the RTMP URL path.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "ApplicationName",
+          "StreamName"
+        ],
+        "type": "object"
+      },
+      "RtmpPushNamingConfiguration": {
+        "description": "The configuration settings for the RTMP (Real-Time Messaging Protocol) application and stream names.",
+        "oneOf": [
+          {
+            "additionalProperties": false,
+            "properties": {
+              "Manual": {
+                "$ref": "#/definitions/ManualRtmpPushNamingConfiguration"
+              }
+            },
+            "required": [
+              "Manual"
+            ],
+            "title": "Manual",
+            "type": "object"
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "Automatic": {
+                "$ref": "#/definitions/AutomaticRtmpPushNamingConfiguration"
+              }
+            },
+            "required": [
+              "Automatic"
+            ],
+            "title": "Automatic",
+            "type": "object"
+          }
+        ]
+      },
+      "RtmpPushSettings": {
+        "additionalProperties": false,
+        "description": "The settings for the RTMP (Real-Time Messaging Protocol) source.",
+        "properties": {
+          "NamingConfiguration": {
+            "$ref": "#/definitions/RtmpPushNamingConfiguration"
+          }
+        },
+        "required": [
+          "NamingConfiguration"
+        ],
+        "type": "object"
+      },
       "SecretsManagerEncryptionKeyConfiguration": {
         "additionalProperties": false,
         "description": "The configuration settings for transit encryption of a flow source using AWS Secrets Manager, including the secret ARN and role ARN.",
@@ -671,7 +758,8 @@
               "srt-caller",
               "st2110-jpegxs",
               "cdi",
-              "ndi-speed-hq"
+              "ndi-speed-hq",
+              "rtmp-push"
             ],
             "type": "string"
           },
@@ -684,6 +772,12 @@
           },
           "RouterIntegrationTransitDecryption": {
             "$ref": "#/definitions/FlowTransitEncryption"
+          },
+          "RtmpPushDetails": {
+            "$ref": "#/definitions/RtmpPushDetails"
+          },
+          "RtmpPushSettings": {
+            "$ref": "#/definitions/RtmpPushSettings"
           },
           "SenderControlPort": {
             "description": "The port that the flow uses to send outbound requests to initiate connection with the sender for fujitsu-qos protocol.",
@@ -924,7 +1018,8 @@
           "mediaconnect:RemoveFlowVpcInterface",
           "mediaconnect:TagResource",
           "mediaconnect:UntagResource",
-          "mediaconnect:ListTagsForResource"
+          "mediaconnect:ListTagsForResource",
+          "iam:PassRole"
         ]
       }
     },
@@ -1019,6 +1114,9 @@
       "/properties/Source/SourceArn",
       "/properties/Source/IngestIp",
       "/properties/Source/SourceIngestPort",
+      "/properties/Source/RtmpPushDetails",
+      "/properties/Source/RtmpPushDetails/ApplicationName",
+      "/properties/Source/RtmpPushDetails/StreamName",
       "/properties/EgressIp",
       "/properties/FlowNdiMachineName"
     ],

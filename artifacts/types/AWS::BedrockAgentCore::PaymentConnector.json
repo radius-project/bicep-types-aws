@@ -1,7 +1,7 @@
 {
   "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-BedrockAgentCore-PaymentConnector",
   "type": "AWS::BedrockAgentCore::PaymentConnector",
-  "time": "2026-11-01T18:56:59.307Z",
+  "time": "2026-11-25T20:59:39.623Z",
   "schema": {
     "additionalIdentifiers": [
       [
@@ -56,7 +56,8 @@
       "PaymentConnectorType": {
         "enum": [
           "CoinbaseCDP",
-          "StripePrivy"
+          "StripePrivy",
+          "AwsBilling"
         ],
         "type": "string"
       },
@@ -80,7 +81,8 @@
         "permissions": [
           "bedrock-agentcore:CreatePaymentConnector",
           "bedrock-agentcore:GetPaymentConnector",
-          "bedrock-agentcore:GetPaymentCredentialProvider"
+          "bedrock-agentcore:GetPaymentCredentialProvider",
+          "iam:GetRole"
         ]
       },
       "delete": {
@@ -126,6 +128,13 @@
         "description": "The URL the user must open to complete OAuth consent. Only present when ConnectorStatus is PENDING_AUTHENTICATION.",
         "maxLength": 4096,
         "pattern": "^https://[^\\p{C}]*$",
+        "type": "string"
+      },
+      "AwsBillingIamRoleArn": {
+        "description": "The ARN of the AWS Marketplace service-linked role in the payment manager's account, set by the service. Only present for AwsBilling connectors.",
+        "maxLength": 2048,
+        "minLength": 1,
+        "pattern": "^arn:aws(-[^:]+)?:iam::([0-9]{12})?:role/.+$",
         "type": "string"
       },
       "ConnectorCreatedAt": {
@@ -192,7 +201,8 @@
       "/properties/ConnectorStatus",
       "/properties/ConnectorCreatedAt",
       "/properties/ConnectorLastUpdatedAt",
-      "/properties/AuthorizationUrl"
+      "/properties/AuthorizationUrl",
+      "/properties/AwsBillingIamRoleArn"
     ],
     "required": [
       "PaymentManagerId",

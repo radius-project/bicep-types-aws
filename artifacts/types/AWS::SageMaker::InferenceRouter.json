@@ -1,0 +1,307 @@
+{
+  "arn": "arn:aws:cloudformation:us-west-2::type/resource/AWS-SageMaker-InferenceRouter",
+  "type": "AWS::SageMaker::InferenceRouter",
+  "time": "2026-11-25T21:19:36.487Z",
+  "schema": {
+    "additionalIdentifiers": [
+      [
+        "/properties/InferenceRouterName"
+      ]
+    ],
+    "additionalProperties": false,
+    "createOnlyProperties": [
+      "/properties/InferenceRouterName"
+    ],
+    "definitions": {
+      "AsyncInferenceClientConfig": {
+        "additionalProperties": false,
+        "description": "How the Inference Router submits a request to a destination.",
+        "properties": {
+          "MaxTimeInBacklogSeconds": {
+            "description": "How long, in seconds, a request can wait for a destination to pick it up before it expires. The default is 900.",
+            "maximum": 21600,
+            "minimum": 60,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "AsyncInferenceConfig": {
+        "additionalProperties": false,
+        "description": "Set this when the routing target's destinations are asynchronous inference endpoints. A routing target without it serves real-time requests.",
+        "properties": {
+          "ClientConfig": {
+            "$ref": "#/definitions/AsyncInferenceClientConfig"
+          },
+          "OutputConfig": {
+            "$ref": "#/definitions/AsyncInferenceOutputConfig"
+          }
+        },
+        "required": [
+          "OutputConfig"
+        ],
+        "type": "object"
+      },
+      "AsyncInferenceNotificationConfig": {
+        "additionalProperties": false,
+        "description": "The SNS topics the Inference Router publishes a completion to. The notification carries the location of the result, not the result.",
+        "properties": {
+          "ErrorTopic": {
+            "description": "The ARN of a standard (not FIFO) SNS topic to notify when a request fails. It can be in any Region.",
+            "maxLength": 2048,
+            "minLength": 20,
+            "pattern": "^arn:aws[a-z-]*:sns:[a-z0-9-]*:[0-9]{12}:[a-zA-Z0-9_.-]+$",
+            "type": "string"
+          },
+          "SuccessTopic": {
+            "description": "The ARN of a standard (not FIFO) SNS topic to notify when a request succeeds. It can be in any Region.",
+            "maxLength": 2048,
+            "minLength": 20,
+            "pattern": "^arn:aws[a-z-]*:sns:[a-z0-9-]*:[0-9]{12}:[a-zA-Z0-9_.-]+$",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "AsyncInferenceOutputConfig": {
+        "additionalProperties": false,
+        "description": "Where the results of asynchronous requests are written. Every destination of the routing target writes to these paths.",
+        "properties": {
+          "KmsKeyId": {
+            "description": "The AWS KMS key that encrypts the results. If any destination is in a different account or Region from the Inference Router, use a key ARN or an alias ARN.",
+            "maxLength": 2048,
+            "minLength": 0,
+            "pattern": "^[a-zA-Z0-9:/_-]*$",
+            "type": "string"
+          },
+          "NotificationConfig": {
+            "$ref": "#/definitions/AsyncInferenceNotificationConfig"
+          },
+          "S3FailurePath": {
+            "description": "The Amazon S3 location for failed requests. It can be in any Region and account.",
+            "maxLength": 512,
+            "minLength": 1,
+            "pattern": "^(https|s3)://([^/])/?(.*)$",
+            "type": "string"
+          },
+          "S3OutputPath": {
+            "description": "The Amazon S3 location for successful results. It can be in any Region and account.",
+            "maxLength": 512,
+            "minLength": 1,
+            "pattern": "^(https|s3)://([^/])/?(.*)$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "S3OutputPath",
+          "S3FailurePath"
+        ],
+        "type": "object"
+      },
+      "Destination": {
+        "additionalProperties": false,
+        "description": "One placement of a routing target's model. ResourceArn is the destination's identity: changing it is a removal plus an addition.",
+        "properties": {
+          "ResourceArn": {
+            "description": "The ARN of a SageMaker endpoint or inference component that serves the routing target. It can be in any Region and account within the Inference Router's partition.",
+            "maxLength": 2048,
+            "minLength": 20,
+            "pattern": "^arn:aws[a-z-]*:sagemaker:[a-z0-9-]+:[0-9]{12}:(endpoint|inference-component)/[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "ResourceArn"
+        ],
+        "type": "object"
+      },
+      "RoutingTarget": {
+        "additionalProperties": false,
+        "description": "A named logical model within the Inference Router. Callers pass Name on the inference request to select which model serves it.",
+        "properties": {
+          "AsyncInferenceConfig": {
+            "$ref": "#/definitions/AsyncInferenceConfig"
+          },
+          "Destinations": {
+            "description": "The endpoints and inference components that serve this routing target.",
+            "insertionOrder": false,
+            "items": {
+              "$ref": "#/definitions/Destination"
+            },
+            "maxItems": 10,
+            "minItems": 1,
+            "type": "array"
+          },
+          "Name": {
+            "description": "The logical model name a caller passes at invoke time. Unique within an Inference Router.",
+            "maxLength": 63,
+            "minLength": 1,
+            "pattern": "^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$",
+            "type": "string"
+          },
+          "RoutingPreference": {
+            "description": "How the router prefers this routing target's destinations. LocalRegionFirst (the default) uses destinations in the router's Region first, then the others, each group in the order listed. InstancePoolOrder, for asynchronous routing targets only, tries destinations in order of the best instance pool they can serve from now. In both, degraded destinations are used after the others. If omitted, LocalRegionFirst is used and returned.",
+            "enum": [
+              "LocalRegionFirst",
+              "InstancePoolOrder"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "Name",
+          "Destinations"
+        ],
+        "type": "object"
+      },
+      "Tag": {
+        "additionalProperties": false,
+        "description": "A key-value pair to associate with the Inference Router.",
+        "properties": {
+          "Key": {
+            "description": "The tag key. Tag keys must be unique per resource.",
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+            "type": "string"
+          },
+          "Value": {
+            "description": "The tag value.",
+            "maxLength": 256,
+            "minLength": 0,
+            "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Resource Type definition for AWS::SageMaker::InferenceRouter. Creates a SageMaker Inference Router, a named entry point that routes inference requests for each routing target to one of its destination endpoints or inference components, which can be in other AWS Regions and accounts.",
+    "handlers": {
+      "create": {
+        "permissions": [
+          "sagemaker:CreateInferenceRouter",
+          "sagemaker:DescribeInferenceRouter",
+          "sagemaker:AddTags",
+          "sagemaker:ListTags"
+        ],
+        "timeoutInMinutes": 60
+      },
+      "delete": {
+        "permissions": [
+          "sagemaker:DeleteInferenceRouter",
+          "sagemaker:DescribeInferenceRouter"
+        ],
+        "timeoutInMinutes": 60
+      },
+      "list": {
+        "permissions": [
+          "sagemaker:ListInferenceRouters"
+        ]
+      },
+      "read": {
+        "permissions": [
+          "sagemaker:DescribeInferenceRouter",
+          "sagemaker:ListTags"
+        ]
+      },
+      "update": {
+        "permissions": [
+          "sagemaker:UpdateInferenceRouter",
+          "sagemaker:DescribeInferenceRouter",
+          "sagemaker:AddTags",
+          "sagemaker:DeleteTags",
+          "sagemaker:ListTags"
+        ],
+        "timeoutInMinutes": 60
+      }
+    },
+    "primaryIdentifier": [
+      "/properties/InferenceRouterArn"
+    ],
+    "properties": {
+      "CreationTime": {
+        "description": "The time when the Inference Router was created.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "InferenceRouterArn": {
+        "description": "The Amazon Resource Name (ARN) of the Inference Router.",
+        "maxLength": 2048,
+        "minLength": 20,
+        "pattern": "^arn:aws[a-z-]*:sagemaker:[a-z0-9-]+:[0-9]{12}:inference-router/[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$",
+        "type": "string"
+      },
+      "InferenceRouterName": {
+        "description": "The name of the Inference Router. Unique per account per Region, case-sensitive. If you don't specify a name, CloudFormation generates one.",
+        "maxLength": 63,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$",
+        "type": "string"
+      },
+      "LastModifiedTime": {
+        "description": "The time when the Inference Router was last modified.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "RoutingTargets": {
+        "description": "The routing targets of the Inference Router. An update replaces the full list.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/RoutingTarget"
+        },
+        "maxItems": 20,
+        "minItems": 1,
+        "type": "array"
+      },
+      "Status": {
+        "description": "Where the Inference Router's most recent configuration write has got to. Writes commit synchronously; propagation to the data plane is asynchronous.",
+        "enum": [
+          "InService",
+          "Creating",
+          "Updating",
+          "Failed",
+          "Deleting"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "description": "Tags to associate with the Inference Router.",
+        "insertionOrder": false,
+        "items": {
+          "$ref": "#/definitions/Tag"
+        },
+        "maxItems": 50,
+        "minItems": 0,
+        "type": "array"
+      }
+    },
+    "readOnlyProperties": [
+      "/properties/InferenceRouterArn",
+      "/properties/Status",
+      "/properties/CreationTime",
+      "/properties/LastModifiedTime"
+    ],
+    "required": [
+      "RoutingTargets"
+    ],
+    "sourceUrl": "https://code.amazon.com/packages/UluruResourceStaging/trees/mainline/--/aws/sagemaker/inferencerouter",
+    "tagging": {
+      "cloudFormationSystemTags": true,
+      "permissions": [
+        "sagemaker:AddTags",
+        "sagemaker:DeleteTags",
+        "sagemaker:ListTags"
+      ],
+      "tagOnCreate": true,
+      "tagProperty": "/properties/Tags",
+      "tagUpdatable": true,
+      "taggable": true
+    },
+    "typeName": "AWS::SageMaker::InferenceRouter"
+  }
+}

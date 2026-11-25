@@ -686,7 +686,7 @@
 * **OutboundCallerConfig**: [OutboundCallerConfig](#outboundcallerconfig): The outbound caller ID name, number, and outbound whisper flow.
 * **OutboundEmailConfig**: [OutboundEmailConfig](#outboundemailconfig): The outbound email configuration for a specified queue.
 * **QueueArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) for the queue.
-* **QuickConnectArns**: string[]: The quick connects available to agents who are working the queue.
+* **QuickConnectArns**: string[]: The quick connects available to agents who are working the queue. To remove all quick connects from the queue, specify an empty list.
 * **Status**: string: The status of the queue.
 * **Tags**: [Tag](#tag)[]: An array of key-value pairs to apply to this resource.
 * **Type**: string (ReadOnly): The type of queue.
@@ -720,9 +720,11 @@
 * **Function**: string (Required): The conditions of the rule.
 * **InstanceArn**: string (Required): The Amazon Resource Name (ARN) of the instance.
 * **Name**: string (Required): The name of the rule.
+* **PreEvaluationFilters**: [PreEvaluationFilters](#preevaluationfilters)
 * **PublishStatus**: string (Required): The publish status of the rule.
  *Allowed values*: ``DRAFT`` | ``PUBLISHED``
 * **RuleArn**: string (ReadOnly, Identifier)
+* **RuleCapabilityTiers**: string[] (ReadOnly)
 * **Tags**: [Tag](#tag)[]: The tags used to organize, track, or control access for this resource. For example, { "tags": {"key1":"value1", "key2":"value2"} }.
 * **TriggerEventSource**: [RuleTriggerEventSource](#ruletriggereventsource) (Required): The event source to trigger the rule.
 
@@ -756,6 +758,7 @@
 * **ClientToken**: string
 * **Constraints**: [TaskTemplate_Constraints](#tasktemplateconstraints): The constraints for the task template
 * **ContactFlowArn**: string: The identifier of the contact flow.
+* **ContactHooks**: [TaskTemplate_ContactHooks](#tasktemplatecontacthooks): The contact hooks for the task template.
 * **Defaults**: [DefaultFieldValue](#defaultfieldvalue)[]
 * **Description**: string: The description of the task template.
 * **Fields**: [Field](#field)[]: The list of task template's fields
@@ -825,7 +828,7 @@
 * **PhoneConfig**: [UserPhoneConfig](#userphoneconfig): The phone settings for the user.
 * **PhoneNumberConfigs**: [PhoneNumberConfig](#phonenumberconfig)[]: Phone Number configurations of a user.
 * **RoutingProfileArn**: string (Required): The identifier of the routing profile for the user.
-* **SecurityProfileArns**: string[] (Required): One or more security profile arns for the user
+* **SecurityProfileArns**: string[] (Required): One or more customer-managed or AWS-managed security profile ARNs for the user.
 * **Tags**: [Tag](#tag)[]: One or more tags.
 * **UserArn**: string (ReadOnly, Identifier): The Amazon Resource Name (ARN) for the user.
 * **Username**: string (Required): The user name for the account.
@@ -979,6 +982,7 @@
 
 ## EvaluationFormItemEnablementConditionOperand
 ### Properties
+* **Condition**: [EvaluationFormItemEnablementCondition](#evaluationformitemenablementcondition)
 * **Expression**: [EvaluationFormItemEnablementExpression](#evaluationformitemenablementexpression): An expression of the enablement condition.
 
 ## EvaluationFormItemEnablementConfiguration
@@ -995,12 +999,20 @@
 
 ## EvaluationFormItemEnablementSource
 ### Properties
+* **AiMetricsField**: string
+* **ContactAttributeKey**: string
+* **ContactField**: string
+* **EvaluationMetadataField**: string
 * **RefId**: string: A referenceId of the source item.
+* **SegmentAttributeKey**: string
 * **Type**: string (Required): A type of source item.
 
 ## EvaluationFormItemEnablementSourceValue
 ### Properties
+* **BooleanValue**: bool
+* **NumericValue**: int
 * **RefId**: string: A referenceId of the source value.
+* **StringValue**: string
 * **Type**: string: A type of source item value.
 
 ## EvaluationFormLanguageConfiguration
@@ -1458,6 +1470,18 @@
 ### Properties
 * **StringList**: string[]
 
+## PreEvaluationFilter
+### Properties
+* **FilterKey**: string (Required): The key of the filter.
+* **FilterType**: string (Required): The type of the filter.
+* **FilterValue**: string (Required): The value of the filter.
+* **Operator**: string (Required): The comparison operator for the filter.
+* **ResourceType**: string (Required): The type of resource the filter applies to.
+
+## PreEvaluationFilters
+### Properties
+* **AndConditions**: [PreEvaluationFilter](#preevaluationfilter)[]: A list of filter conditions that are combined with AND logic.
+
 ## PrimaryAttributeAccessControlConfigurationItem
 ### Properties
 * **PrimaryAttributeValues**: [PrimaryAttributeValue](#primaryattributevalue)[]: An array of PrimaryAttributeValue objects.
@@ -1768,6 +1792,10 @@
 * **InvisibleFields**: [InvisibleFieldInfo](#invisiblefieldinfo)[]
 * **ReadOnlyFields**: [ReadOnlyFieldInfo](#readonlyfieldinfo)[]
 * **RequiredFields**: [RequiredFieldInfo](#requiredfieldinfo)[]
+
+## TaskTemplate_ContactHooks
+### Properties
+* **WrapUpFlowArn**: string: The identifier (arn) of the flow module that runs when an agent attempts to disconnect from a task created by referencing this template. If no agent ever connects to the task, the flow module runs when the task is terminated.
 
 ## TestCase_ChatEntryPointParameters
 ### Properties
